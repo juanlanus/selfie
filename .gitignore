@@ -1,0 +1,11 @@
+*swp
+*~
+node_modules/**
+**/node_modules/**
+[._]*.s[a-w][a-z]
+[._]s[a-w][a-z]
+*.un~
+Session.vim
+**/qqq*
+**/nohup.out
+
