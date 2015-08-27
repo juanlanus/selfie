@@ -1,0 +1,40 @@
+/* don't change this unless you want the layout stuff to show up in the outline view! */
+
+.layout div, #footer *, #controlForm *  {display: none;}
+#footer, #controls, #controlForm, #navLinks, #toggle { display: block; visibility: visible; margin: 0; padding: 0;}
+#toggle                                 {float: right; padding: 0.5em;}
+html>body #toggle                       {position: fixed; top: 0; right: 0;}
+
+/* making the outline look pretty-ish */
+
+#slide0 h1, #slide0 h2, #slide0 h3, #slide0 h4
+                        {border: none; margin: 0;}
+#slide0 h1              {padding-top: 1.5em;}
+.slide h1               {margin: 0.5em 0 0; padding-top: 0.25em; border-bottom: 1px solid #AAA;}
+#toggle                 {border: 1px solid; border-width: 0 0 1px 1px; background: #FFF;}
+
+
+
+
+html, body              { background-color: rgb(200, 200, 200); margin: 0; padding: 0;}
+.presentation           { font-family: Tahoma, sans-serif;}
+.presentation .toc      { font-size: 80%; }
+.slide                  { background-color: rgb(255, 255, 255); font-size: 100%; font-family: Tahoma, sans-serif;
+                          border: 4px solid rgb(200, 200, 200); margin: 0.5em; padding: 0 1em 1em 1em; max-width: 45em; }
+.slide .handout p       { margin: 0.4em 0 0.2em 0; }
+.slide .size1           { font-size: 170%; }
+.slide .size2           { font-size: 150%; }
+.slide .size3           { font-size: 130%; }
+.slide .size6           { font-size: 75%; }
+
+.handout                { max-width: 45em; border-top: 4px dotted rgb(200, 200, 200); margin-top: 0.5em; padding-top: 0.5em; clear: both;}
+
+
+.dataTable              { margin-left: 1em; border-collapse: collapse; font-size: 80%; }
+.dataTable td           { border: 1px solid #e0e0e0; padding: 0 0.3em 0 0.3em;}
+.dataTable th           { text-align: center; background-color: #e0e0e0; color: #808080; font-size: 80%; border: 1px solid #e0e0e0; }
+.dataTableStandout      { color: black; }
+.dataTableLame          { color: rgb(160, 160, 160); }
+
+.dataTableStandout      { color: black; }
+.dataTableLame          { color: rgb(160, 160, 160); }
