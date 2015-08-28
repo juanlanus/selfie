@@ -8,4 +8,4 @@ node_modules/**
 Session.vim
 **/qqq*
 **/nohup.out
-
+**/.~lock*
