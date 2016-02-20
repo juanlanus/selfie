@@ -32,50 +32,89 @@
 
 <div class="toc">
 </div>
+
+<div class="toc">
+<ul>
+  <li><a href="#L43">UC77 - News navigation</a> 
+    <ul>
+      <li><a href="#L54">1 - Brief</a></li>
+      <li><a href="#L59">2 - Actors</a></li>
+      <li><a href="#L80">3 - Interaction steps (main success scenario)</a></li>
+      <li><a href="#L261">4 - Business rules</a> 
+        <ul>
+          <li><a href="#L1981">A "news article"</a></li>
+          <li><a href="#L1990">Selection of news articles</a></li>
+          <li><a href="#L2013">Filters</a></li>
+          <li><a href="#L2054">Sorting</a></li>
+          <li><a href="#L2072">Devaluated interest</a></li>
+        </ul>
+      </li>
+      <li><a href="#L902">5 - Data elements</a></li>
+      <li><a href="#L1468">z - Concepts</a></li>
+    </ul>
+  </li>
+</ul>
+</div>
 </div>
 <hr>
 </div>
 </div>
 
 <div id="docBody">
-<h2>UC77 - News navigation</h2>
+<h2 id="L43">UC77 - News navigation</h2>
 
 <p>The underlying interactions scheme was successfully implemented in an
 "infomercial" web site with a captive audience of 500K users affiliated through
 the companies they work for. </p>
 
+<p>The site owner uses the site to promote its services, like supermarkets,
+insurance, hotels, travel services, education and more.</p>
+
 <p>The "news" are mostly articles, somehow like magazine articles, with a mix
 of interesting information and promotion of related goods and services provided
-by The Company like supermarkets, insurance, hotels, travel services, education
-and more. </p>
+by The Company. </p>
 
 <p></p>
 
 <p></p>
 
 <div class="ucItem">
-<h3 class="ucItemName">1 - Brief</h3>
+<h3 class="ucItemName" id="L54">1 - Brief</h3>
+
+<p class="ucText">A user (anybody, in fact) wants to read about a subject of
+their interest and eventually make a purchase. For example read about a beach
+resort and purchase a vacation ticket. Or, eventually be enticed to affiliate.
+</p>
 
 <p class="ucText">According to the profile of the user, the system chooses and
 keeps displaying the most suitable "news" articles in a stochastic fashion but
 according to the user type (identified or not), his income level, and his
-preferences. </p>
+interests. </p>
 </div>
 
 <div class="ucItem">
-<h3 class="ucItemName">2 - Actors</h3>
+<h3 class="ucItemName" id="L59">2 - Actors</h3>
 <ol class="ucText">
   <li><strong>user</strong> 
-    <p>primary: any user of The Company site, can be registered or not. </p>
+    <p>Primary: any user of The Company site, can be registered or not, and
+    also can be affiliated or not. Affiliated users are registered. </p>
   </li>
   <li><strong>system</strong> 
-    <p>The <span title="System Under Development">SUD</span>. </p>
+    <p>The <span title="System Under Development">Company's portal</span>. </p>
   </li>
 </ol>
 </div>
 
 <div class="ucItem">
-<h3 class="ucItemName">3 - Interaction steps (main success scenario)</h3>
+<h3 class="ucItemName" id="L80">3 - Interaction steps (main success
+scenario)</h3>
+
+<p class="ucText">The interaction steps below define the functionality of the
+system during a user's session. The looping ends when the user closes the
+session, or chooses a link like for purchasing something, that takes them
+somewhere else. </p>
+
+<p></p>
 <ol class="ucText">
   <li><strong>user</strong>: The UC interaction starts when the user enters The
     Company's site. </li>
@@ -178,9 +217,9 @@ preferences. </p>
 </div>
 
 <div class="ucItem">
-<h3 class="ucItemName">4 - Business rules</h3>
+<h3 class="ucItemName" id="L261">4 - Business rules</h3>
 
-<p><strong>A "news article"</strong></p>
+<h4 id="L1981">A "news article"</h4>
 
 <p>In this context "news article" does not have the same meaning than in a
 newspaper. That name is applied to anything that is published in the site, like
@@ -194,7 +233,7 @@ on the properties and tags that the article contains. </p>
 combines them with the properties in the user profile in order to provide a
 ersonalized navigation. </p>
 
-<p><strong>Selection of news articles</strong></p>
+<h4 id="L1990">Selection of news articles</h4>
 
 <p>There is a universe of continually created news articles available for
 publishing. The articles have various properties or tags that the system uses
@@ -212,7 +251,7 @@ the most relevant show at the top of the list. The articles are sorted on a
 priority value, made up of the article's <em>devaluated interest</em> and its
 <em>currentness</em>. </p>
 
-<p><strong>Filters</strong></p>
+<h4 id="L2013">Filters</h4>
 <ul>
   <li><strong>currentness</strong>: excludes news articles that are not current
     this date, be it because they are already expired, or because they didn't
@@ -222,17 +261,17 @@ priority value, made up of the article's <em>devaluated interest</em> and its
     filter excludes the news tagged for registered users only. </li>
   <li><strong>category</strong>: excludes the news tagged with categories
     different from that of the user. </li>
-  <li>banner: excludes all articles but the banners. </li>
+  <li><strong>banner</strong>: excludes all articles but the banners. </li>
   <li><strong>satisfier</strong>: when there is a selected satosfier, excludes
     all articles but those tagged with the selected satisfier. </li>
   <li><strong>sub-satisfier</strong>: when there is a selected satosfier,
     excludes all articles but those tagged with the selected
   sub-satisfier. </li>
   <li><strong>age group</strong>: excludes articles tagged for age groups other
-    then the user's. </li>
+    then the user's, when the user's age is known. </li>
 </ul>
 
-<p><strong>Sorting</strong></p>
+<h4 id="L2054">Sorting</h4>
 
 <div>
 The set of filtered news articles is sorted so the most relevant show at the
@@ -240,16 +279,29 @@ top of the list. 
 
 <div>
 The articles are sorted on a <i>priority</i> value, made up of the
-article's <i>devaluated interest</i> and its <i>currentness</i>. </div>
+article's <i>devaluated interest</i> and its <i>currentness</i>.  
+
+<h4 id="L20721">Lifespan</h4>
+
+<p>Independently of the <em>interest</em> of an article, it has a
+<em>lifespan</em> determined by its publish date and its end date. </p>
+
+<p>The article will not be considered for publishing outside the time lapse
+defined by said dates. During that time lapse it will be eligible for
+publishing, as defined in the rules for ranking articles. </p>
+
+<p>The expired articles will not be proactively published, but will remain in
+the repository so they can be reached via deep links or bookmarks. </p>
+</div>
 </div>
 
-<p><strong>Devaluated interest</strong></p>
+<h4 id="L2072">Devaluated interest</h4>
 
 <p>The interest in displaying an article diminishes, or gets devaluated, over
 the articles's lifespan (determined by the article's <em>publication date</em>
 and <em>end date</em>).</p>
 
-<p>When an article is created it is given two prameters: <em>interest</em> and
+<p>When an article is created it is given two parameters: <em>interest</em> and
 <em>devaluation</em>.</p>
 
 <p>The first one, <em>interest</em>, is a number from zero to 10 meaning how
@@ -269,13 +321,13 @@ much the company is interested in showing it. Zero means not to display it, and
 
 <p>The second parameter, <em>devaluation</em>, is a number of days. By its
 publication date the article's interest value is that stated in the interest
-parameter; the following days it gets devaluated gradually until it becomes
-zero after devaluation number of days.</p>
+parameter, the following days it gets devaluated gradually until it becomes
+zero after <em>devaluation</em> number of days.</p>
 
 <p>For example, an article with interest 3 and devaluation 4 will have a
-davaluated interest of 3 for the first day, and 2.25, 1.4, and .75 for each of
-the folowing days, and after its devaluated interest will be zero, that is, it
-will hardly be displayed. </p>
+devaluated interest of 3 for the first day, and 2.25, 1.4, and .75 for each of
+the folowing days, and after its devaluated interest will be very low, that is,
+it will hardly be displayed. </p>
 
 <p>So, the formula is:</p>
 
@@ -288,9 +340,10 @@ publication date until the current date.</p>
 <p>There are a few additional rules: </p>
 <ul>
   <li><font face="verdana, sans-serif">If the article's interest is 10 (Force
-    publication) then the devauated interest is always 10. </font></li>
+    publication) then the devaluated interest is always 10. No devaluation
+    happens. </font></li>
   <li><font face="verdana, sans-serif">If the article doesn't have a
-    devaluation value then its devaluated interesr is always the original
+    devaluation value then its devaluated interest is always the original
     interest. </font></li>
   <li><font face="verdana, sans-serif">If the davaluated interest is negative
     the article is still selected for publishing; it will have a very low
@@ -299,8 +352,8 @@ publication date until the current date.</p>
     not eligible for publishing. </font></li>
 </ul>
 
-<p>The following table displays the devaluated interest evolution for various
-articles with publication date = August 1st. </p>
+<p>The following table displays examples of the devaluated interest evolution
+for various articles with publication date = August 1st. </p>
 
 <table class="borderTable" style="margin-left:2em;">
   <colgroup style="margin:0px"><col style="text-align:center;">
@@ -519,7 +572,7 @@ articles with publication date = August 1st. </p>
 </div>
 
 <div class="ucItem">
-<h3 class="ucItemName">5 - Data elements</h3>
+<h3 class="ucItemName" id="L902">5 - Data elements</h3>
 
 <p></p>
 
@@ -812,7 +865,7 @@ articles with publication date = August 1st. </p>
 </div>
 
 <div class="ucItem">
-<h3 class="ucItemName">z - Concepts</h3>
+<h3 class="ucItemName" id="L1468">z - Concepts</h3>
 
 <p>Una "noticia"</p>
 
@@ -841,6 +894,10 @@ personalizada.</p>
     <dd>An item that has no information content, only advertising. It has the
       same structure as news articles, and a flag that marks it as a banner.
     </dd>
+  <dt>category</dt>
+    <dd>The users profiles contain a set of tags that enumerate their
+      interests. These tags, termed <em>categories</em>, are used to filter the
+      articles. </dd>
 </dl>
 </div>
 

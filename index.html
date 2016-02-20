@@ -19,9 +19,12 @@ $(document).ready(function () {
       .items a         { text-decoration:none; color:blue; }
       .items a:link    { }
       .items a:visited { color:rgb(128,128,128); text-decoration:none; }
-      .items a:hover   { text-decoration:underline; color:black; }
+      .items a:hover   { text-decoration:underline; color:black; background-color:rgb(240,240,240); }
       .items a:active  { color:blue; }
+      .items li a      { padding:4px; border-radius:4px; }
+      .items li a      { display:block; }
       .itemsGroup > span { font-weight:bold; }
+      .itemName        { font-weight:bold; color:black; }
       .itemDesctiption { color:rgb(96,96,96); display:inline; }
     </style>
   </head>
@@ -53,13 +56,10 @@ $(document).ready(function () {
       <ul class="items">
         <li class="itemsGroup"><span>Quick interaction prototypes</span><br>
           <div class="itemDesctiption">
-            HTML + jQuery working prototypes created to show interactions that
-            else would be difficult to communicate. <br>
-            These are usually stored in shared storage so all the participants could
-            see them during the conference when they were explained.
+            Working prototypes created to showcase interactions.
           </div>
           <ul>
-            <li><a href="foodSelector/foodHierarchy.html" target="other">Food selector: 
+            <li><a href="foodSelector/foodHierarchy.html" target="other"><span class="itemName">Food selector:</span> 
               <div class="itemDesctiption">
                 The requirement was to allow the users to select items from a rather lengthy
                 set where the structure of the data was known to be hierarchical. 
@@ -74,7 +74,7 @@ $(document).ready(function () {
         </li>
         <li class="itemsGroup"><span>Functional specifications</span>
           <ul>
-            <li>Info service</li>
+            <li>A content management system</li>
             <li>Congreso interactivo</li>
             <li>Continuous evaluation</li>
             <li>Comments on two Mulesoft pages</li>
@@ -95,7 +95,7 @@ $(document).ready(function () {
             <li>Semantic texts</li>
             <li>Bitstarter <a href="file:///media/juan/WD%20Passport/bup20150403/HomeJLanus/coursera-startup/index.html" target="other">Coursera Startup</a></li>
             <li>On-screen reading</li>
-            <li>Introducción al desarrollo web</li>
+            <li>Introducci&oacute;n al desarrollo web</li>
             <li>Congreso interactivo ~/Dropbox/taller</li>
           </ul>
         </li>

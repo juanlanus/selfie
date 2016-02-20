@@ -10,13 +10,16 @@
   #docHeader li img  { vertical-align:bottom; }
   #docHeader li      { margin-top:0px; margin-bottom:1px }
   #docHeader hr      { width:100%; height:4px; color:#c0c0c0; background-color:#e5e7bc; border:0px; }
-  #docLinks p, #docLinks li { color: #606060; font-size: 90%; line-height: 18px; margin: 0; padding: 0; }
+  #docLinks p, #docLinks li { color: #606060; font-size: 95%; line-height: 18px; margin: 0; padding: 0; }
   #docLinks p a      { color: #0000C0; }
 
 /* uc items */
 .ucItem { border:1px solid rgb(128,128,128); }
+.ucItem > p { margin-left:3em; }
+.ucItem > ol { margin-left:3em; }
+.ucItem > ul { margin-left:3em; }
 .ucItemName {}
-.ucText { margin-left:3em; } 
+.ucText {  } 
 .ucExtensions { list-style-type:lower-alpha; }
 
 
