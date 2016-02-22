@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Language" content="en">
+    <title>Column selection &amp; sorting</title>
+    <script src="res/jquery.js"></script>
+    <script src="res/jquery.quicksearch.js"></script>
+    <script src="res/jquery.sortable.js"></script>
+    <script src="res/jquery.hoverIntent.js"></script>
+    <script src="res/jquery.contextMenu.js"></script>
+    <script src="res/jquery.ui.position.js"></script>
+    <script src="columnProperties.js"></script>
+    <link href="res/jquery.contextMenu.css" rel="stylesheet" type="text/css" />
+    <script>
+      $(document).ready(function () {
+
+        // set the display/hide help function
+        $('#formHelpButton').on(
+          'click',
+          function(){
+            $('#formHelpText').toggle();
+          }
+        );
+          
+        // enable quicksearch
+        var qs = $('#colNamesearch').quicksearch(
+          '#columnNames li',
+          {
+            show: function () {
+              $(this).removeClass('hiddenByQS');
+            },
+            hide: function () {
+              $(this).addClass('hiddenByQS');
+            },
+          }
+        );
+
+        // enable sort with drag and drop
+        $('#columnNames').sortable();
+        $('#colNamesearch').focus();
+
+        // handle click on reset settings button
+        $('#resetAllSettings').on(
+          'click',
+          function() {
+            var warningText = 
+            'This action will reset all your settings:\n' +
+            '  -columns selected\n' +
+            '  -column ordering\n' +
+            '  -rows sorting\n' +
+            '  -column widths\n' +
+            ' \n' +
+            'Click "OK" to jump into.';
+            if( window.confirm(warningText) ) {
+              location.reload();
+            }
+          }
+        );
+
+        // click on a col name: toggle selection
+        $('#columnNames li').on(
+          'click',
+          function(e) {
+            if(e.which !== 1) { return false; }
+            $('#colProperties').hide('fast');
+            var $this = $(this);
+            $this.toggleClass('colIsSelected');
+          }
+        );
+
+        // load the properties of a col in the properties pane
+        var loadColPropertiesPane = function( $theColNameItem, $thePanel ){
+          var theColName = $theColNameItem[0].id;
+          var colData = columnsData[theColName];
+          $('#colProperties #colNameId').val( theColName );
+          $('#colProperties .colPropsName').text( theColName );
+          $('#colProperties #header').val( colData.header ? colData.header : '' );
+          $('#colProperties #isSelected').prop('checked', !! colData.selected );
+          $('#colProperties #isLocked').prop('checked', !! colData.locked );
+          $('#colProperties #isSortable').prop('checked', !! colData.draggable );
+          $('#colProperties #isResizable').prop('checked', !! colData.resizable );
+          colData.width = ( 222 * Math.random() + 70 ).toFixed(0);
+          $('#colProperties #width').val( colData.width ? colData.width : '' );
+          $('#colProperties #title').val( colData.title ? colData.title : '' );
+        };
+
+        // display the properties editor form on a col name
+        var displayColPropertiesForm = function($theColNameItem) {
+            var $thePanel = $('#colProperties');
+            var theColName = $theColNameItem[0].id;
+            loadColPropertiesPane( $theColNameItem, $thePanel );
+            // calculate x so the popup lays fully inside the container
+            var x = $theColNameItem.offset().left;
+            if( x < 0 ) {
+              x = 0;
+            } else {
+              var xl = x + $('#colProperties').width() - $('#columnNamesContainer').width();
+              if( xl > 0 ) x = x - xl;
+            }
+            // calculate y so the popup lays fully inside the container
+            var y = $theColNameItem.offset().top + $theColNameItem.height(); // col name bottom
+            // if there is no fit put the popup above
+            if( ( y + $('#colProperties').height() ) > $('#columnNamesContainer').height() ) {
+              y = $theColNameItem.offset().top - $('#colProperties').height() - $theColNameItem.height();
+            }
+            $thePanel.css( {'left':x, 'top':y + 4} );
+            $thePanel.show();
+        };
+
+        // hide the properties editor form
+        var hideColPropertiesForm = function(e) {
+          $('#colProperties').hide('fast');
+        };
+
+        // context menu: select a column
+        var columnSelect = function() {
+          $(this).toggleClass('colIsSelected');
+        };
+
+        // context menu: lock a col and flock with the frozen cols pack
+        var columnFreeze = function() {
+          var lastFrozenColName = $('#columnNames li.colIsLocked').last();
+          $(this).toggleClass('colIsLocked');
+          if( $(this).hasClass('colIsLocked') ){
+            $(this).insertAfter(lastFrozenColName[0]);
+          }
+        };
+
+        // context menu: open the col properties editor
+        var columnEdit = function() {
+          displayColPropertiesForm(this);
+        };
+
+        // activate context menu
+        /*
+        $.contextMenu({
+          selector: '#columnNames li', 
+          callback: function(key, options) {
+            var m = 'clicked: ' + key;
+            window.console && console.log(m) || alert(m); 
+          },
+          items: {
+            'select': {
+              name: 'select',
+              icon: 'select',
+              callback: columnSelect
+            },
+            'freeze': {
+              name: 'freeze',
+              icon: 'freeze',
+              callback: columnFreeze
+            },
+            'edit': {
+              name: 'edit',
+              icon: 'edit',
+              callback: columnEdit
+            }
+          }
+        });
+        */
+        
+
+        // hover on a col name: display interaction context
+        $('#columnNames li').hoverIntent({
+          // start displaying
+          over: function(e) {
+            displayColPropertiesForm(e);
+          },
+          // end displaying
+          out: function(e) {
+            // start a timer to allow to move the hover to the form
+            var timeoutID = window.setTimeout(
+              function() {
+                if( ! $('#colProperties').hasClass('hovering') ) {
+                  hideColPropertiesForm();
+                };
+              },
+              150
+            );
+          },
+          interval: 77,
+          timeout: 0
+        });
+
+        // hovering the col props pane keeps it visible
+        $('#colProperties').hoverIntent({
+          // set no to be hidden
+          over: function(e) {
+            $('#colProperties').addClass('hovering');
+          },
+          // end displaying
+          out: function(e) {
+            $('#colProperties').removeClass('hovering').hide('fast');
+          },
+          interval: 33, // wait time before hover starts
+          timeout: 222  // time the pointer can wander out of target before calling the hover
+        });
+
+        // click on "done" button
+        $('#doneSelectingCols').on(
+          'click',
+          function() { alert('thanks for trying this prototype') }
+        );
+
+        // change on "show only selected" checkbox
+        $('#showOnlySelected').on(
+          'change',
+          function() {
+            // qs.search( $('#colNamesearch').val() );
+            if(this.checked) {
+              $('#columnNames li').not('.colIsSelected').addClass('colNameHidden');
+            } else {
+              $('#columnNames li').removeClass('colNameHidden');
+            }
+          }
+        )
+
+        // apply change of sub-form to main form demo
+        $('#colProperties #isSelected').on(
+          'change',
+          function(e) {
+            // get the value of the checkbox
+            var isSelected = e.target.checked;
+            // get a handle to the clicked col name
+            var theColNameId = $('#colProperties #colNameId').val(); 
+            var $theClickedCol = $( '#' + theColNameId );
+            if( isSelected ) {
+              $theClickedCol.addClass( 'colIsSelected' );
+            } else {
+              $theClickedCol.removeClass( 'colIsSelected' );
+            }
+          }
+        );
+
+      });
+    </script>
+    <style>
+      body { font-family:calibri, sans-serif; }
+      #colNamesearch { border:2px solid silver; border-radius:4px; padding:0 6px; width:12em; line-height:125%; }
+      #colNamesearchBox { margin:0px; padding-bottom:10px; padding-left:10px; background-color:#f0f0f0; }
+
+      #columnNamesContainer { position:relative; border:2px solid silver; padding:0 0 0 0px; overflow-x:scroll; }
+      #columnNames { list-style-type:none; margin-top:10px; margin-left:-2em;
+      -moz-column-count:auto; -moz-column-width:200px; -moz-column-fill:auto;
+      -webkit-column-count:auto; -webkit-column-width:200px;
+      column-count:auto; column-width:200px;
+      font-size:80%; line-height:110%; overflow:hidden;
+      }
+      #columnNames li { cursor:move; margin-left:2em; }
+      #columnNames li:hover { background-color:rgb(240,240,222); }
+
+
+      #columnNames li:hover { outline:1px solid blue; }
+      #columnNames li:hover { background-color:rgb(240,240,222); }
+
+      #columnNames li.colIsSelected {
+          font-weight:bold; 
+          list-style-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAALAQMAAACTYuVlAAAABlBMVEUAAAD///+l2Z/dAAAAAnRSTlP/AOW3MEoAAAAqSURBVHicY/h/gOF/A8N/BoZ/CgxzEhgkHjAIPmBgfsDA/oCB/wHD/AcA2fQMeXzFYwcAAAAASUVORK5CYII=");
+      }
+      #columnNames li.colIsLocked {
+        padding-left:20px;
+        background-image:url("res/lock76.png");
+        background-repeat:no-repeat;
+      }
+
+      .hiddenByQS { display:none; }
+      .colNameHidden { display:none; }
+
+      /* lock76.png */
+
+      #colProperties { position:absolute; bottom:0; right:0; }
+      #colProperties { width:270px; height:165px; font-size:70%; border:2px solid rgb(222,222,222); border-radius:4px;
+                       padding:8px 0; padding-top:0; background-color:rgb(240,240,220); }
+      #colProperties label { display:inline-block; width:47px; text-align:right; padding:0 2px; }
+      #colProperties input, #colProperties textarea { font-size:90%; font-family:consolas,monotype; }
+      #colProperties .colPropsName { font-weight:bold; font-size:110%; margin:6px 0 2px 4px; }
+      #colProperties .colCheckbox input[type="checkbox"] { vertical-align:top; height:12px; } 
+      #colProperties .colLongText label { vertical-align:top; }
+      #colProperties .colLongText textarea { width:205px; height:35px; border:1px solid #c0c0c0; border-radius:4px; }
+      #colProperties .colNumber input[type="text"] { text-align:right; padding-right:4px; width:77px; border:1px solid #c0c0c0; border-radius:4px; vertical-align:middle; }
+      #colProperties .colText input[type="text"] { text-align:left; padding-left:4px; width:111px; border:1px solid #c0c0c0; border-radius:4px; vertical-align:middle; }
+
+      /* context menu icons */
+      .context-menu-item.icon-select { background-image: url(res/menuIcons/check_mark.png); }
+      .context-menu-item.icon-freeze { background-image: url(res/menuIcons/lock_icon.png); }
+      .context-menu-item.icon-edit { background-image: url(res/menuIcons/gear.png); }
+
+    </style>
+  </head>
+  
+  <body>
+    <form>
+      <div id="columnNamesContainer">
+        <div id="formHelpButton" class="helpButton">
+          <img src="res/helpIcon.png" alt="show help text" style="float:right; cursor:pointer;">
+        </div>
+        <div id="formHelpText" style="display:none;">
+          <ul>
+            <li>Click a column name to select or de-select it</li>
+            <li>Drag the column names to sort them</li>
+            <li>Right-click a column name to bring up the contextual menu:
+              <ul>
+                <li>Select: changes the selection status, equivalent to cliching on the column name</li>
+                <li>Freeze: add the column to the left-hand side fixed columns set (the column name will move
+                together with the other freezed columns</li>
+                <li>Edit: bring up a pop-up dialog (not working, unreal, example) to edit <em>all</em> the 
+                column properties</li>
+              </ul>
+            </li>
+            <li>Use the filters at the top to select the col names containing a certain text particle, and 
+            to see only the selected column names</li>
+            <li>Use the "reset all settings" button to fully bring the grid to its default state</li>
+            <li>Click the "done" button to save the changes done. From now on this will be its state 
+            whenever you start a session</li>
+          </ul>
+        </div>
+        <div id="colNamesearchBox">
+          <input type="text" id="colNamesearch" placeholder="type partial or full words"/>
+          <label><input type="checkbox" id="showOnlySelected" name="showOnlySelected">Show only selected col names</label>
+        </div>
+
+        <div style="display:none;">
+            <div class="colLockArea"></div>
+            <div class="colSelArea"></div>
+            <div class="colDnDArea"></div>
+        </div>
+
+        <ul id="columnNames">
+          <li id="RelationshipGroup"          class="colIsSelected colIsLocked" draggable="true" description="counterfeit description for Relationship Group to be replaced by something useful">Relationship Group</li>
+          <li id="AccountNumber"              class="colIsSelected colIsLocked" draggable="true" description="counterfeit description for Account Number to be replaced by something useful">Account Number</li>
+          <li id="AccountName"                class="colIsSelected colIsLocked" draggable="true" description="counterfeit description for Account Name to be replaced by something useful">Account Name</li>
+          <li id="StatusCategory"             description="counterfeit description for Status Category to be replaced by something useful">Status Category</li>
+          <li id="ADP"                        description="counterfeit description for ADP to be replaced by something useful">ADP</li>
+          <li id="ISIN"                       description="counterfeit description for ISIN to be replaced by something useful">ISIN</li>
+          <li id="PrimaryInstrument"          class="colIsSelected" draggable="true" description="counterfeit description for Primary Instrument to be replaced by something useful">Primary Instrument</li>
+          <li id="Side"                       description="counterfeit description for Side to be replaced by something useful">Side</li>
+          <li id="PrimaryQuantity"            class="colIsSelected" draggable="true" description="counterfeit description for Primary Quantity to be replaced by something useful">Primary Quantity</li>
+          <li id="OpenQuantity"               class="colIsSelected" draggable="true" description="counterfeit description for Open Quantity to be replaced by something useful">Open Quantity</li>
+          <li id="Price"                      class="colIsSelected" draggable="true" description="counterfeit description for Price to be replaced by something useful">Price</li>
+          <li id="NetConsideration"           description="counterfeit description for Net Consideration to be replaced by something useful">Net Consideration</li>
+          <li id="OpenConsideration"          description="counterfeit description for Open Consideration to be replaced by something useful">Open Consideration</li>
+          <li id="OpenConsideration-USDEquiv" description="counterfeit description for Open Consideration - USD Equiv to be replaced by something useful">Open Consideration - USD Equiv</li>
+          <li id="SettleCurrency"             description="counterfeit description for Settle Currency to be replaced by something useful">Settle Currency</li>
+          <li id="TradeDate"                  class="colIsSelected" draggable="true" description="counterfeit description for Trade Date to be replaced by something useful">Trade Date</li>
+          <li id="ValueDate"                  description="counterfeit description for Value Date to be replaced by something useful">Value Date</li>
+          <li id="CounterpartyReference"      description="counterfeit description for Counterparty Reference to be replaced by something useful">Counterparty Reference</li>
+          <li id="CounterpartyDescription"    description="counterfeit description for Counterparty Description to be replaced by something useful">Counterparty Description</li>
+          <li id="TradeReference"             description="counterfeit description for Trade Reference to be replaced by something useful">Trade Reference</li>
+          <li id="Age"                        description="counterfeit description for Age to be replaced by something useful">Age</li>
+          <li id="Agedays"                    class="colIsSelected" draggable="true" description="counterfeit description for Age days to be replaced by something useful">Age days</li>
+          <li id="Market"                     class="colIsSelected" draggable="true" description="counterfeit description for Market to be replaced by something useful">Market</li>
+          <li id="Buy-inMarket"               description="counterfeit description for Buy-in Market to be replaced by something useful">Buy-in Market</li>
+          <li id="IDMarket"                   description="counterfeit description for ID Market to be replaced by something useful">ID Market</li>
+          <li id="AutoFX"                     description="counterfeit description for Auto FX to be replaced by something useful">Auto FX</li>
+          <li id="HighValue/Qty"              class="colIsSelected" draggable="true" description="counterfeit description for High Value/Qty to be replaced by something useful">High Value/Qty</li>
+          <li id="MiddleOfficeKeyClient"      class="colIsSelected" draggable="true" description="counterfeit description for Middle Office Key Client to be replaced by something useful">Middle Office Key Client</li>
+          <li id="BankStatusNarrative"        description="counterfeit description for Bank Status Narrative to be replaced by something useful">Bank Status Narrative</li>
+          <li id="BankStatusDescription"      description="counterfeit description for Bank Status Description to be replaced by something useful">Bank Status Description</li>
+          <li id="InternalComments"           description="counterfeit description for Internal Comments to be replaced by something useful">Internal Comments</li>
+          <li id="UpdatePending"              class="colIsSelected" draggable="true" description="counterfeit description for Update Pending to be replaced by something useful">Update Pending</li>
+          <li id="NAClientService"            description="counterfeit description for NA Client Service to be replaced by something useful">NA Client Service</li>
+          <li id="EMEAClientService"          description="counterfeit description for EMEA Client Service to be replaced by something useful">EMEA Client Service</li>
+          <li id="APACClientService"          description="counterfeit description for APAC Client Service to be replaced by something useful">APAC Client Service</li>
+          <li id="NAMOClientFacing"           description="counterfeit description for NA MO: Client Facing to be replaced by something useful">NA MO: Client Facing</li>
+          <li id="EMEAMOClientFacing"         description="counterfeit description for EMEA MO: Client Facing to be replaced by something useful">EMEA MO: Client Facing</li>
+          <li id="APACMOClientFacing"         description="counterfeit description for APAC MO: Client Facing to be replaced by something useful">APAC MO: Client Facing</li>
+          <li id="Business"                   description="counterfeit description for Business to be replaced by something useful">Business</li>
+          <li id="BankStatus"                 class="colIsSelected" draggable="true" description="counterfeit description for Bank Status to be replaced by something useful">Bank Status</li>
+          <li id="AssignedTo"                 class="colIsSelected" draggable="true" description="counterfeit description for Assigned To to be replaced by something useful">Assigned To</li>
+          <li id="OperationType"              class="colIsSelected" draggable="true" description="counterfeit description for Operation Type to be replaced by something useful">Operation Type</li>
+          <li id="RELMID"                     description="counterfeit description for RELM ID to be replaced by something useful">RELM ID</li>
+          <li id="RELMName"                   description="counterfeit description for RELM Name to be replaced by something useful">RELM Name</li>
+          <li id="FamilyCode"                 description="counterfeit description for Family Code to be replaced by something useful">Family Code</li>
+          <li id="FamilyName"                 description="counterfeit description for Family Name to be replaced by something useful">Family Name</li>
+          <li id="RelationshipID"             description="counterfeit description for Relationship ID to be replaced by something useful">Relationship ID</li>
+          <li id="ClearanceCode"              description="counterfeit description for Clearance Code to be replaced by something useful">Clearance Code</li>
+          <li id="RAG"                        description="counterfeit description for RAG to be replaced by something useful">RAG</li>
+          <li id="ExceptionTrades"            description="counterfeit description for Exception Trades to be replaced by something useful">Exception Trades</li>
+          <li id="NAMOClientFacingTeamLead"   description="counterfeit description for NA MO: Client Facing Team Lead to be replaced by something useful">NA MO: Client Facing Team Lead</li>
+          <li id="EMEAMOClientFacingTeamLead" description="counterfeit description for EMEA MO: Client Facing Team Lead to be replaced by something useful">EMEA MO: Client Facing Team Lead</li>
+          <li id="APACMOClientFacingTeamLead" description="counterfeit description for APAC MO: Client Facing Team Lead to be replaced by something useful">APAC MO: Client Facing Team Lead</li>
+          <li id="Region"                     description="counterfeit description for Region to be replaced by something useful">Region</li>
+          <li id="BrokerCoverage"             description="counterfeit description for Broker Coverage to be replaced by something useful">Broker Coverage</li>
+          <li id="MOPrematchingCoverage"      description="counterfeit description for MO: Prematching Coverage to be replaced by something useful">MO: Prematching Coverage</li>
+          <li id="NAClientServiceTeamLead"    description="counterfeit description for NA Client Service Team Lead to be replaced by something useful">NA Client Service Team Lead</li>
+          <li id="EMEAClientServiceTeamLead"  description="counterfeit description for EMEA Client Service Team Lead to be replaced by something useful">EMEA Client Service Team Lead</li>
+          <li id="APACClientServiceTeamLead"  description="counterfeit description for APAC Client Service Team Lead to be replaced by something useful">APAC Client Service Team Lead</li>
+          <li id="Exposure"                   class="colIsSelected" draggable="true" description="counterfeit description for Exposure to be replaced by something useful">Exposure</li>
+          <li id="TradeStatus"                description="counterfeit description for Trade Status to be replaced by something useful">Trade Status</li>
+          <li id="CompanyGlossReference"      description="counterfeit description for Company Gloss Reference to be replaced by something useful">Company Gloss Reference</li>
+          <li id="LegalEntity"                class="colIsSelected" draggable="true" description="counterfeit description for Legal Entity to be replaced by something useful">Legal Entity</li>
+          <li id="AssetServicingEvent"        description="counterfeit description for Asset Servicing Event to be replaced by something useful">Asset Servicing Event</li>
+          <li id="ASEventDeadlineDate"        description="counterfeit description for AS Event Deadline Date to be replaced by something useful">AS Event Deadline Date</li>
+          <li id="SettlementTypeDescription"  description="counterfeit description for Settlement Type Description to be replaced by something useful">Settlement Type Description</li>
+          <li id="Origin"                     description="counterfeit description for Origin to be replaced by something useful">Origin</li>
+          <li id="RrNo"                       description="counterfeit description for RrNo to be replaced by something useful">RrNo</li>
+          <li id="CpartyExternalReference"    description="counterfeit description for Cparty External Reference to be replaced by something useful">Cparty External Reference</li>
+          <li id="Postage"                    description="counterfeit description for Postage to be replaced by something useful">Postage</li>
+          <li id="Stamp"                      description="counterfeit description for Stamp to be replaced by something useful">Stamp</li>
+          <li id="Tariff"                     description="counterfeit description for Tariff to be replaced by something useful">Tariff</li>
+          <li id="Vat"                        description="counterfeit description for Vat to be replaced by something useful">Vat</li>
+          <li id="Levy"                       description="counterfeit description for Levy to be replaced by something useful">Levy</li>
+          <li id="AccruedInterest"            description="counterfeit description for Accrued Interest to be replaced by something useful">Accrued Interest</li>
+          <li id="Commission"                 description="counterfeit description for Commission to be replaced by something useful">Commission</li>
+          <li id="ActualSettleDate"           description="counterfeit description for Actual Settle Date to be replaced by something useful">Actual Settle Date</li>
+          <li id="GrossCredit"                description="counterfeit description for Gross Credit to be replaced by something useful">Gross Credit</li>
+          <li id="TradeVersion"               description="counterfeit description for Trade Version to be replaced by something useful">Trade Version</li>
+          <li id="TradingCurrency"            description="counterfeit description for Trading Currency to be replaced by something useful">Trading Currency</li>
+          <li id="SettleQuantity"             description="counterfeit description for Settle Quantity to be replaced by something useful">Settle Quantity</li>
+          <li id="TradeType"                  description="counterfeit description for Trade Type to be replaced by something useful">Trade Type</li>
+          <li id="OperationTypeDescription"   description="counterfeit description for Operation Type Description to be replaced by something useful">Operation Type Description</li>
+          <li id="PrincipalTradeCurrency"     description="counterfeit description for Principal Trade Currency to be replaced by something useful">Principal Trade Currency</li>
+          <li id="PrincipalSettlingCurrency"  description="counterfeit description for Principal Settling Currency to be replaced by something useful">Principal Settling Currency</li>
+          <li id="FinanceRate"                description="counterfeit description for Finance Rate to be replaced by something useful">Finance Rate</li>
+          <li id="TRSTradeRef"                description="counterfeit description for TRS Trade Ref to be replaced by something useful">TRS Trade Ref</li>
+          <li id="TGID"                       description="counterfeit description for TGID to be replaced by something useful">TGID</li>
+          <li id="SEMEID"                     description="counterfeit description for SEME ID to be replaced by something useful">SEME ID</li>
+          <li id="LinkType"                   description="counterfeit description for Link Type to be replaced by something useful">Link Type</li>
+          <li id="UserName"                   description="counterfeit description for User Name to be replaced by something useful">User Name</li>
+          <li id="ExchangeRate"               description="counterfeit description for Exchange Rate to be replaced by something useful">Exchange Rate</li>
+          <li id="ExchangeRateIndicator"      description="counterfeit description for Exchange Rate Indicator to be replaced by something useful">Exchange Rate Indicator</li>
+          <li id="SettlementDiv"              description="counterfeit description for Settlement Div to be replaced by something useful">Settlement Div</li>
+          <li id="SpecialInstr1"              description="counterfeit description for Special Instr 1 to be replaced by something useful">Special Instr 1</li>
+          <li id="SpecialInstr2"              description="counterfeit description for Special Instr 2 to be replaced by something useful">Special Instr 2</li>
+          <li id="SpecialInstr3"              description="counterfeit description for Special Instr 3 to be replaced by something useful">Special Instr 3</li>
+          <li id="SpecialInstr4"              description="counterfeit description for Special Instr 4 to be replaced by something useful">Special Instr 4</li>
+          <li id="TimeStamp"                  description="counterfeit description for Time Stamp to be replaced by something useful">Time Stamp</li>
+          <li id="TradeNo"                    description="counterfeit description for Trade No to be replaced by something useful">Trade No</li>
+          <li id="InstNumber"                 description="counterfeit description for Inst Number to be replaced by something useful">Inst Number</li>
+          <li id="Service"                    description="counterfeit description for Service to be replaced by something useful">Service</li>
+          <li id="Status"                     description="counterfeit description for Status to be replaced by something useful">Status</li>
+          <li id="TradeTypeDescription"       description="counterfeit description for Trade Type Description to be replaced by something useful">Trade Type Description</li>
+          <li  id="AgeCategory"               description="counterfeit description for Age Category to be replaced by something useful">Age Category</li>
+        </ul>
+      </div>
+
+      <div>
+        <button id="resetAllSettings" type="button" 
+        title="reset all column selections, ordering, widths and row sort criteria to the initial default values"
+        style="margin:10px; border-radius:4px; border:1px solid silver;">reset all settings</button>
+
+        <button id="doneSelectingCols" type="button" 
+        title="in this a prototype, this button does nothing"
+        style="float:right; margin:10px; border-radius:4px;
+        border:1px solid silver; padding:2px 24px;">done</button>
+      </div>
+    </form>
+
+    <div id="colProperties" style="display:none;"> <!-- properties sub-pane -->
+      <p class="colPropsName">(column name)</p>
+      <form>
+        <input id="colNameId" type="hidden" value="(the clicked element id)" />
+        <div class="colText">
+          <label for="header">header</label><input type="text" name="header" id="header" value="(col header)" />
+        </div>
+        <div class="colCheckbox">
+          <label for="isSelected">selected</label><input type="checkbox" name="isSelected" id="isSelected">
+        </div>
+        <div class="colCheckbox">
+          <label for="isLocked">locked</label><input type="checkbox" name="isLocked" id="isLocked">
+        </div>
+        <div class="colCheckbox">
+          <label for="isSortable">sortable</label><input type="checkbox" name="isSortable" id="isSortable">
+        </div>
+        <div class="colCheckbox">
+          <label for="isResizable">resizable</label><input type="checkbox" name="isResizable" id="isResizable">
+        </div>
+        <div class="colNumber">
+          <label for="width">width (px)</label><input type="text" name="width" id="width" value="-1" />
+        </div>
+        <div class="colLongText">
+          <label for="title">title</label><textarea name="title" id="title"></textarea>
+        </div>
+      </form>
+    </div>
+
+
+  </body>
+</html>

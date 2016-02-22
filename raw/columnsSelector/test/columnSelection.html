@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Language" content="en">
+    <title>Column selection &amp; sorting</title>
+    <script src="res/jquery.js"></script>
+    <script src="res/jquery.quicksearch.js"></script>
+    <script src="res/jquery.sortable.js"></script>
+    <script>
+      $(document).ready(function () {
+
+        var qs = $('#colNamesearch').quicksearch(
+          '#columnNames li',
+          {
+			show: function () {
+				$(this).removeClass('hiddenByQS');
+			},
+			hide: function () {
+				$(this).addClass('hiddenByQS');
+			},
+          }
+        );
+
+        $('#columnNames').sortable();
+
+        $('#colNamesearch').focus();
+
+        $('#resetAllSettings').on(
+          'click',
+          function() {
+            var warningText = 
+            'This action will reset all your settings:\n' +
+            '  -columns selected\n' +
+            '  -column ordering\n' +
+            '  -rows sorting\n' +
+            '  -column widths\n' +
+            ' \n' +
+            'Click "OK" to jump into.';
+            if( window.confirm(warningText) ) {
+              location.reload();
+            }
+          }
+        );
+
+        $('#columnNames li').on(
+          'click',
+          function() {
+            if(event.which !== 1) { return false; }
+            var $this = $(this);
+            $this.toggleClass('colNameSelected');
+          }
+        );
+
+        $('#doneSelectingCols').on(
+          'click',
+          function() { alert('thanks for trying this prototype') }
+        );
+
+        $('#showOnlySelected').on(
+          'change',
+          function() {
+            // qs.search( $('#colNamesearch').val() );
+            if(this.checked) {
+              $('#columnNames li').not('.colNameSelected').addClass('colNameHidden');
+            } else {
+              $('#columnNames li').removeClass('colNameHidden');
+            }
+          }
+        )
+
+      });
+    </script>
+    <style>
+      body { font-family:calibri, sans-serif; }
+      #colNamesearch { border:2px solid silver; border-radius:4px; padding:0 6px; width:12em; line-height:125%; }
+      #colNamesearchBox { margin:0px; padding-bottom:10px; padding-left:10px; background-color:#f0f0f0; }
+      #columnNamesContainer { position:relative; max-width:22em; border:2px solid silver; padding:0 0 0 0px; }
+      #columnNames { list-style-type:none; margin-top:10px; height:440px; overflow-y:scroll; }
+      .colNameSelected {
+          cursor:move;
+          font-weight:bold; 
+          list-style-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAALAQMAAACTYuVlAAAABlBMVEUAAAD///+l2Z/dAAAAAnRSTlP/AOW3MEoAAAAqSURBVHicY/h/gOF/A8N/BoZ/CgxzEhgkHjAIPmBgfsDA/oCB/wHD/AcA2fQMeXzFYwcAAAAASUVORK5CYII=");
+      }
+      .hiddenByQS { display:none; }
+      .colNameHidden { display:none; }
+    </style>
+  </head>
+  
+  <body>
+    <div id="columnNamesContainer">
+      <form>
+        <div id="colNamesearchBox">
+          <input type="text" id="colNamesearch" placeholder="type partial or full words"/>
+          <button id="resetAllSettings" type="button" 
+          title="reset all column selections, ordering, widths and row sort criteria to the initial default values"
+          style="margin:10px; border-radius:4px; border:1px solid silver;">reset all settings</button>
+          <br>
+          <label><input type="checkbox" id="showOnlySelected" name="showOnlySelected">Show only selected col names</label>
+        </div>
+
+        <button id="doneSelectingCols" type="button" 
+        title="in this a prototype, this button does nothing"
+        style="position:fixed; top:540px; left:18.5rem; margin:10px; border-radius:4px; border:1px solid silver;">done</button>
+
+      </form>
+      <ul id="columnNames" style="">
+        <li class="colNameSelected" draggable="true" title="counterfeit description for Relationship Group to be replaced by something useful">Relationship Group</li>
+        <li class="colNameSelected" draggable="true" title="counterfeit description for Account Number to be replaced by something useful">Account Number</li>
+        <li class="colNameSelected" draggable="true" title="counterfeit description for Account Name to be replaced by something useful">Account Name</li>
+        <li title="counterfeit description for Status Category to be replaced by something useful">Status Category</li>
+        <li title="counterfeit description for ADP to be replaced by something useful">ADP</li>
+        <li title="counterfeit description for ISIN to be replaced by something useful">ISIN</li>
+        <li class="colNameSelected" draggable="true" title="counterfeit description for Primary Instrument to be replaced by something useful">Primary Instrument</li>
+        <li title="counterfeit description for Side to be replaced by something useful">Side</li>
+        <li class="colNameSelected" draggable="true" title="counterfeit description for Primary Quantity to be replaced by something useful">Primary Quantity</li>
+        <li class="colNameSelected" draggable="true" title="counterfeit description for Open Quantity to be replaced by something useful">Open Quantity</li>
+        <li class="colNameSelected" draggable="true" title="counterfeit description for Price to be replaced by something useful">Price</li>
+        <li title="counterfeit description for Net Consideration to be replaced by something useful">Net Consideration</li>
+        <li title="counterfeit description for Open Consideration to be replaced by something useful">Open Consideration</li>
+        <li title="counterfeit description for Open Consideration - USD Equiv to be replaced by something useful">Open Consideration - USD Equiv</li>
+        <li title="counterfeit description for Settle Currency to be replaced by something useful">Settle Currency</li>
+        <li class="colNameSelected" draggable="true" title="counterfeit description for Exchange Rate to be replaced by something useful">Exchange Rate</li>
+        <li class="colNameSelected" draggable="true" title="counterfeit description for Trade Date to be replaced by something useful">Trade Date</li>
+        <li title="counterfeit description for Value Date to be replaced by something useful">Value Date</li>
+        <li title="counterfeit description for Counterparty Reference to be replaced by something useful">Counterparty Reference</li>
+        <li title="counterfeit description for Counterparty Description to be replaced by something useful">Counterparty Description</li>
+        <li title="counterfeit description for Trade Reference to be replaced by something useful">Trade Reference</li>
+        <li title="counterfeit description for Age to be replaced by something useful">Age</li>
+        <li class="colNameSelected" draggable="true" title="counterfeit description for Age days to be replaced by something useful">Age days</li>
+        <li class="colNameSelected" draggable="true" title="counterfeit description for Market to be replaced by something useful">Market</li>
+        <li title="counterfeit description for Buy-in Market to be replaced by something useful">Buy-in Market</li>
+        <li title="counterfeit description for ID Market to be replaced by something useful">ID Market</li>
+        <li title="counterfeit description for Auto FX to be replaced by something useful">Auto FX</li>
+        <li class="colNameSelected" draggable="true" title="counterfeit description for High Value/Qty to be replaced by something useful">High Value/Qty</li>
+        <li class="colNameSelected" draggable="true" title="counterfeit description for Middle Office Key Client to be replaced by something useful">Middle Office Key Client</li>
+        <li title="counterfeit description for Bank Status Narrative to be replaced by something useful">Bank Status Narrative</li>
+        <li title="counterfeit description for Bank Status Description to be replaced by something useful">Bank Status Description</li>
+        <li title="counterfeit description for Internal Comments to be replaced by something useful">Internal Comments</li>
+        <li class="colNameSelected" draggable="true" title="counterfeit description for Update Pending to be replaced by something useful">Update Pending</li>
+        <li title="counterfeit description for NA Client Service to be replaced by something useful">NA Client Service</li>
+        <li title="counterfeit description for EMEA Client Service to be replaced by something useful">EMEA Client Service</li>
+        <li title="counterfeit description for APAC Client Service to be replaced by something useful">APAC Client Service</li>
+        <li title="counterfeit description for NA MO: Client Facing to be replaced by something useful">NA MO: Client Facing</li>
+        <li title="counterfeit description for EMEA MO: Client Facing to be replaced by something useful">EMEA MO: Client Facing</li>
+        <li title="counterfeit description for APAC MO: Client Facing to be replaced by something useful">APAC MO: Client Facing</li>
+        <li title="counterfeit description for Business to be replaced by something useful">Business</li>
+        <li class="colNameSelected" draggable="true" title="counterfeit description for Bank Status to be replaced by something useful">Bank Status</li>
+        <li class="colNameSelected" draggable="true" title="counterfeit description for Assigned To to be replaced by something useful">Assigned To</li>
+        <li class="colNameSelected" draggable="true" title="counterfeit description for Operation Type to be replaced by something useful">Operation Type</li>
+        <li title="counterfeit description for RELM ID to be replaced by something useful">RELM ID</li>
+        <li title="counterfeit description for RELM Name to be replaced by something useful">RELM Name</li>
+        <li title="counterfeit description for Family Code to be replaced by something useful">Family Code</li>
+        <li title="counterfeit description for Family Name to be replaced by something useful">Family Name</li>
+        <li title="counterfeit description for Relationship ID to be replaced by something useful">Relationship ID</li>
+        <li title="counterfeit description for Clearance Code to be replaced by something useful">Clearance Code</li>
+        <li title="counterfeit description for RAG to be replaced by something useful">RAG</li>
+        <li title="counterfeit description for Exception Trades to be replaced by something useful">Exception Trades</li>
+        <li title="counterfeit description for NA MO: Client Facing Team Lead to be replaced by something useful">NA MO: Client Facing Team Lead</li>
+        <li title="counterfeit description for EMEA MO: Client Facing Team Lead to be replaced by something useful">EMEA MO: Client Facing Team Lead</li>
+        <li title="counterfeit description for APAC MO: Client Facing Team Lead to be replaced by something useful">APAC MO: Client Facing Team Lead</li>
+        <li title="counterfeit description for Region to be replaced by something useful">Region</li>
+        <li title="counterfeit description for Broker Coverage to be replaced by something useful">Broker Coverage</li>
+        <li title="counterfeit description for MO: Prematching Coverage to be replaced by something useful">MO: Prematching Coverage</li>
+        <li title="counterfeit description for NA Client Service Team Lead to be replaced by something useful">NA Client Service Team Lead</li>
+        <li title="counterfeit description for EMEA Client Service Team Lead to be replaced by something useful">EMEA Client Service Team Lead</li>
+        <li title="counterfeit description for APAC Client Service Team Lead to be replaced by something useful">APAC Client Service Team Lead</li>
+        <li class="colNameSelected" draggable="true" title="counterfeit description for Exposure to be replaced by something useful">Exposure</li>
+        <li title="counterfeit description for Trade Status to be replaced by something useful">Trade Status</li>
+        <li title="counterfeit description for Company Gloss Reference to be replaced by something useful">Company Gloss Reference</li>
+        <li class="colNameSelected" draggable="true" title="counterfeit description for Legal Entity to be replaced by something useful">Legal Entity</li>
+        <li title="counterfeit description for Asset Servicing Event to be replaced by something useful">Asset Servicing Event</li>
+        <li title="counterfeit description for AS Event Deadline Date to be replaced by something useful">AS Event Deadline Date</li>
+        <li title="counterfeit description for Settlement Type Description to be replaced by something useful">Settlement Type Description</li>
+        <li title="counterfeit description for Origin to be replaced by something useful">Origin</li>
+        <li title="counterfeit description for RrNo to be replaced by something useful">RrNo</li>
+        <li title="counterfeit description for Cparty External Reference to be replaced by something useful">Cparty External Reference</li>
+        <li title="counterfeit description for Postage to be replaced by something useful">Postage</li>
+        <li title="counterfeit description for Stamp to be replaced by something useful">Stamp</li>
+        <li title="counterfeit description for Tariff to be replaced by something useful">Tariff</li>
+        <li title="counterfeit description for Vat to be replaced by something useful">Vat</li>
+        <li title="counterfeit description for Levy to be replaced by something useful">Levy</li>
+        <li title="counterfeit description for Accrued Interest to be replaced by something useful">Accrued Interest</li>
+        <li class="colNameSelected" draggable="true" title="counterfeit description for Region to be replaced by something useful">Region</li>
+        <li title="counterfeit description for Commission to be replaced by something useful">Commission</li>
+        <li title="counterfeit description for Actual Settle Date to be replaced by something useful">Actual Settle Date</li>
+        <li title="counterfeit description for Gross Credit to be replaced by something useful">Gross Credit</li>
+        <li title="counterfeit description for Trade Version to be replaced by something useful">Trade Version</li>
+        <li title="counterfeit description for Trading Currency to be replaced by something useful">Trading Currency</li>
+        <li title="counterfeit description for Settle Quantity to be replaced by something useful">Settle Quantity</li>
+        <li title="counterfeit description for Trade Type to be replaced by something useful">Trade Type</li>
+        <li title="counterfeit description for Operation Type Description to be replaced by something useful">Operation Type Description</li>
+        <li title="counterfeit description for Principal Trade Currency to be replaced by something useful">Principal Trade Currency</li>
+        <li title="counterfeit description for Principal Settling Currency to be replaced by something useful">Principal Settling Currency</li>
+        <li title="counterfeit description for Finance Rate to be replaced by something useful">Finance Rate</li>
+        <li title="counterfeit description for TRS Trade Ref to be replaced by something useful">TRS Trade Ref</li>
+        <li title="counterfeit description for TGID to be replaced by something useful">TGID</li>
+        <li title="counterfeit description for SEME ID to be replaced by something useful">SEME ID</li>
+        <li title="counterfeit description for Link Type to be replaced by something useful">Link Type</li>
+        <li title="counterfeit description for User Name to be replaced by something useful">User Name</li>
+        <li title="counterfeit description for Exchange Rate to be replaced by something useful">Exchange Rate</li>
+        <li title="counterfeit description for Exchange Rate Indicator to be replaced by something useful">Exchange Rate Indicator</li>
+        <li title="counterfeit description for Settlement Div to be replaced by something useful">Settlement Div</li>
+        <li title="counterfeit description for Special Instr 1 to be replaced by something useful">Special Instr 1</li>
+        <li title="counterfeit description for Special Instr 2 to be replaced by something useful">Special Instr 2</li>
+        <li title="counterfeit description for Special Instr 3 to be replaced by something useful">Special Instr 3</li>
+        <li title="counterfeit description for Special Instr 4 to be replaced by something useful">Special Instr 4</li>
+        <li title="counterfeit description for Time Stamp to be replaced by something useful">Time Stamp</li>
+        <li title="counterfeit description for Trade No to be replaced by something useful">Trade No</li>
+        <li title="counterfeit description for Inst Number to be replaced by something useful">Inst Number</li>
+        <li title="counterfeit description for Service to be replaced by something useful">Service</li>
+        <li title="counterfeit description for Status to be replaced by something useful">Status</li>
+        <li title="counterfeit description for Trade Type Description to be replaced by something useful">Trade Type Description</li>
+        <li title="counterfeit description for Age Category to be replaced by something useful">Age Category</li>
+      </ul>
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Language" content="en">
+    <title>Column selection &amp; sorting</title>
+    <script src="res/jquery.js"></script>
+    <script src="res/jquery.quicksearch.js"></script>
+    <script>
+      $(document).ready(function () {
+
+        var draggedColName = null;
+
+        function loadColumnsList() {
+          $('#columnNames').empty();
+          $('#columnNamesOriginal > li').clone().appendTo('#columnNames');
+
+          $('#colNamesearch').quicksearch('#columnNames li');
+
+          $('#columnNames li').on('click', function() {
+            $this = $(this);
+            $this.toggleClass('colNameSelected');
+            if( $this.hasClass('colNameSelected') ) {
+                $this.prop('draggable', true);
+                $this.on(
+                  'dragstart', 
+                  function(e) {
+                    draggedColName = this;
+                    e.originalEvent.dataTransfer.effectAllowed = 'move';
+                    e.originalEvent.dataTransfer.setData('text/html', this.innerHTML);
+                    // console.log(JSON.stringify(e.originalEvent.dataTransfer, null, '  '));
+                  }
+                );
+            } else {
+                $this.prop('draggable', false);
+                $this.off('dragstart');
+            }
+          });
+
+          $('#columnNames li').on(
+            'dragover',
+            function(e) {
+              if (draggedColName != this) {
+                $this = $(this);
+                $this.css('border-top', '1px solid black');
+                e.originalEvent.dataTransfer.dropEffect = 'move';
+                console.log(JSON.stringify(e.originalEvent.dataTransfer, null, '  '));
+                e.preventDefault();
+                e.stopPropagation();
+              }
+            }
+          );
+
+          $('#columnNames li').on(
+            'dragleave',
+            function() {
+              $this = $(this);
+              $this.css('border-top', '0');
+            }
+          );
+
+          $('#columnNames li').on(
+            'drop',
+            function(e) {
+              console.log('drop!');
+              $this.insertBefore(draggedColName);
+              $(e.target).css('border-top', '0');
+              if (e.stopPropagation) {
+                e.stopPropagation(); // stops some browsers from redirecting
+              }
+              if (draggedColName != this) {
+                draggedColName.innerHTML = e.target.innerHTML;
+                this.innerHTML = e.originalEvent.dataTransfer.getData('text/html');
+                console.log(e.originalEvent.dataTransfer.getData('text/html'));
+              }
+              e.preventDefault();
+              $(e.target).toggleClass('colNameSelected');
+            }
+          );
+
+
+        }
+
+        loadColumnsList();
+
+        $('#colNamesearch').focus();
+
+        $('#resetAllSettings').on(
+          'click',
+          function() {
+            var warningText = 
+            'This action will reset all your settings:\n' +
+            '  -columns selected\n' +
+            '  -column ordering\n' +
+            '  -rows sorting\n' +
+            '  -column widths\n' +
+            ' \n' +
+            'Click "OK" to jump into.';
+            if( window.confirm(warningText) ) {
+              loadColumnsList();
+            }
+          }
+        );
+
+        $('#doneSelectingCols').on(
+          'click',
+          function() { alert('thanks for using this prototype, this button does nothing') }
+        );
+
+        function handleDragStart(e) {
+        }
+
+        function handleDrop(e) {
+        }
+
+      });
+    </script>
+    <style>
+      body { font-family:calibri, sans-serif; }
+
+      #colNamesearch { border:2px solid silver; border-radius:4px; padding:0 6px; width:14em; }
+      #colNamesearchBox { position:fixed; top:0px; left:0px; margin:10px; }
+      #columnNamesContainer { position:relative; max-width:22em; border:2px solid silver; padding:0 0 0 10px; }
+      #columnNames { list-style-type:none; margin-top:40px; }
+      #columnNames li { border-bottom:1px solid transparent; }
+      .colNameSelected {
+          cursor:move;
+          font-weight:bold; 
+          list-style-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAALAQMAAACTYuVlAAAABlBMVEUAAAD///+l2Z/dAAAAAnRSTlP/AOW3MEoAAAAqSURBVHicY/h/gOF/A8N/BoZ/CgxzEhgkHjAIPmBgfsDA/oCB/wHD/AcA2fQMeXzFYwcAAAAASUVORK5CYII=");
+      }
+    </style>
+  </head>
+  
+  <body>
+    <div id="columnNamesContainer">
+      <form>
+        <div id="colNamesearchBox">
+        <input type="text" id="colNamesearch" placeholder="type word or partial text"/>
+        </div>
+
+        <button id="doneSelectingCols" type="button" 
+        title="in this prototype, this button does nothing"
+        style="position:fixed; top:480px; left:18.5rem; margin:10px;">done</button>
+
+        <button id="resetAllSettings" type="button" 
+        title="reset all column selections, ordering, widths and row sort criteria
+        to the initial default values"
+        style="position:fixed; top:0px; left:14.5rem; margin:10px;">reset all settings</button>
+      </form>
+      <ul id="columnNames" style="height:444px; overflow-y:scroll;">
+      </ul>
+    </div>
+
+    <div id="originalList" style="display:none;">
+      <ul id="columnNamesOriginal">
+        <li class="colNameSelected" draggable="true">Relationship Group</li>
+        <li class="colNameSelected" draggable="true">Account Number</li>
+        <li class="colNameSelected" draggable="true">Account Name</li>
+        <li>Status Category</li>
+        <li>ADP</li>
+        <li>ISIN</li>
+        <li class="colNameSelected" draggable="true">Primary Instrument</li>
+        <li>Side</li>
+        <li class="colNameSelected" draggable="true">Primary Quantity</li>
+        <li class="colNameSelected" draggable="true">Open Quantity</li>
+        <li class="colNameSelected" draggable="true">Price</li>
+        <li>Net Consideration</li>
+        <li>Open Consideration</li>
+        <li>Open Consideration - USD Equiv</li>
+        <li>Settle Currency</li>
+        <li class="colNameSelected" draggable="true">Exchange Rate</li>
+        <li class="colNameSelected" draggable="true">Trade Date</li>
+        <li>Value Date</li>
+        <li>Counterparty Reference</li>
+        <li>Counterparty Description</li>
+        <li>Trade Reference</li>
+        <li>Age</li>
+        <li class="colNameSelected" draggable="true">Age days</li>
+        <li class="colNameSelected" draggable="true">Market</li>
+        <li>Buy-in Market</li>
+        <li>ID Market</li>
+        <li>Auto FX</li>
+        <li class="colNameSelected" draggable="true">High Value/Qty</li>
+        <li class="colNameSelected" draggable="true">Middle Office Key Client</li>
+        <li>Bank Status Narrative</li>
+        <li>Bank Status Description</li>
+        <li>Internal Comments</li>
+        <li class="colNameSelected" draggable="true">Update Pending</li>
+        <li>NA Client Service</li>
+        <li>EMEA Client Service</li>
+        <li>APAC Client Service</li>
+        <li>NA MO: Client Facing</li>
+        <li>EMEA MO: Client Facing</li>
+        <li>APAC MO: Client Facing</li>
+        <li>Business</li>
+        <li class="colNameSelected" draggable="true">Bank Status</li>
+        <li class="colNameSelected" draggable="true">Assigned To</li>
+        <li class="colNameSelected" draggable="true">Operation Type</li>
+        <li>RELM ID</li>
+        <li>RELM Name</li>
+        <li>Family Code</li>
+        <li>Family Name</li>
+        <li>Relationship ID</li>
+        <li>Clearance Code</li>
+        <li>RAG</li>
+        <li>Exception Trades</li>
+        <li>NA MO: Client Facing Team Lead</li>
+        <li>EMEA MO: Client Facing Team Lead</li>
+        <li>APAC MO: Client Facing Team Lead</li>
+        <li>Region</li>
+        <li>Broker Coverage</li>
+        <li>MO: Prematching Coverage</li>
+        <li>NA Client Service Team Lead</li>
+        <li>EMEA Client Service Team Lead</li>
+        <li>APAC Client Service Team Lead</li>
+        <li class="colNameSelected" draggable="true">Exposure</li>
+        <li>Trade Status</li>
+        <li>Company Gloss Reference</li>
+        <li class="colNameSelected" draggable="true">Legal Entity</li>
+        <li>Asset Servicing Event</li>
+        <li>AS Event Deadline Date</li>
+        <li>Settlement Type Description</li>
+        <li>Origin</li>
+        <li>RrNo</li>
+        <li>Cparty External Reference</li>
+        <li>Postage</li>
+        <li>Stamp</li>
+        <li>Tariff</li>
+        <li>Vat</li>
+        <li>Levy</li>
+        <li>Accrued Interest</li>
+        <li class="colNameSelected" draggable="true">Region</li>
+        <li>Commission</li>
+        <li>Actual Settle Date</li>
+        <li>Gross Credit</li>
+        <li>Trade Version</li>
+        <li>Trading Currency</li>
+        <li>Settle Quantity</li>
+        <li>Trade Type</li>
+        <li>Operation Type Description</li>
+        <li>Principal Trade Currency</li>
+        <li>Principal Settling Currency</li>
+        <li>Finance Rate</li>
+        <li>TRS Trade Ref</li>
+        <li>TGID</li>
+        <li>SEME ID</li>
+        <li>Link Type</li>
+        <li>User Name</li>
+        <li>Exchange Rate</li>
+        <li>Exchange Rate Indicator</li>
+        <li>Settlement Div</li>
+        <li>Special Instr 1</li>
+        <li>Special Instr 2</li>
+        <li>Special Instr 3</li>
+        <li>Special Instr 4</li>
+        <li>Time Stamp</li>
+        <li>Trade No</li>
+        <li>Inst Number</li>
+        <li>Service</li>
+        <li>Status</li>
+        <li>Trade Type Description</li>
+        <li>Age Category</li>
+      </ul>
+    </div>
+
+  </body>
+</html>

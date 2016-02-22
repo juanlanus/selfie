@@ -1,0 +1,2507 @@
+<html>
+
+<head>
+	<script src="jquery-1.11.js"></script>
+	<script type="text/javascript" src="./jquery-ui-1.11.3.custom/jquery-ui.js"></script>
+	
+	<link rel="stylesheet" type="text/css" href="ext-theme-grey-all.css">
+	<link rel="stylesheet" type="text/css" href="./jquery-ui-1.11.3.custom/jquery-ui.css">
+	<link rel="stylesheet" type="text/css" href="./jquery-ui-1.11.3.custom/jquery-ui.theme.css">
+	
+	<link rel="stylesheet" type="text/css" href="jquery.mCustomScrollbar.css" />
+	
+	<script type="text/javascript" src="jquery.mCustomScrollbar.concat.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="settings.css">
+	<script type="text/javascript" src="settings.js"></script>
+	
+	
+	<script type="text/javascript">
+
+	$(document).ready(function(){
+		
+		/*$('.jpmm-pb-column-settings-dialog').modal({
+			//keyboard: true,
+			backdrop: true
+			
+		});*/
+		
+		/*var dialog = new Jpmm.widget.Dialog({
+			title: 'This is sample window'
+		});
+		dialog.show();*/
+		
+		/*var dialog = new Jpmm.widget.JqueryDialog({
+			modal: true
+		});*/
+		
+		/*var dialog = new Jpmm.widget.ColumnSelectorDialog({
+			modal: true,
+			width: '85%',
+			height: '80%'
+			
+		});
+		
+		dialog.show();*/
+		
+		
+		var dialog = new Jpmm.widget.ColumnSelectorDialog({
+		
+			modal: true,
+			width: '85%',
+			height: '600',
+			buttons:[
+				
+				{
+					"text": 'Cancel',
+					"class": 'footer-btn cancel'
+				},
+				{
+					"text": "Done",
+					"class":'footer-btn done'
+				}
+			],
+			store: new Jpmm.store.Store({
+				
+				fields: [
+				
+					{
+						name: "dataIndex"
+					},
+					{
+						name: "flex"
+					},
+					{
+						name: "sortable"
+					},
+					{
+						name: "text"
+					},
+					{
+						name: "width"
+					},
+					{
+						name: "filter"
+					},
+					{
+						name: "locked"
+					},
+					{
+						name: "hidden"
+					},
+					{
+						name: "rendererType"
+					},
+					{
+						name: "field"
+					}
+				],
+				
+				data: [
+	{
+		"dataIndex": "BUSINESS",
+		"flex": null,
+		"sortable": true,
+		"text": "Business",
+		"width": "121",
+		"filter": 
+		{
+			"type": "string"
+		},
+
+		"locked": true,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "BUSINESS",
+		"id": 2575,
+		"name": "Business",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "FirmAccount",
+		"flex": null,
+		"sortable": true,
+		"text": "Firm Account",
+		"width": "89",
+		"filter": 
+		{
+			"type": "string"
+		},
+
+		"locked": true,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "FirmAccount",
+		"id": 2576,
+		"name": "Firm Account",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "CounterpartyReference",
+		"flex": null,
+		"sortable": true,
+		"text": "Counterparty Reference",
+		"width": "132",
+		"filter": 
+		{
+			"type": "string"
+		},
+
+		"locked": true,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "CounterpartyReference",
+		"id": 2577,
+		"name": "Counterparty Reference",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "PENDING_UPDATE",
+		"flex": null,
+		"sortable": true,
+		"text": "Update Pending",
+		"width": "88",
+		"filter": 
+		{
+			"type": "boolean"
+		},
+
+		"locked": true,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "PENDING_UPDATE",
+		"id": 2578,
+		"name": "Update Pending",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "EXCEPTION_TRADES",
+		"flex": null,
+		"sortable": true,
+		"text": "Exception Trades",
+		"width": "150",
+		"filter": 
+		{
+			"type": "string"
+		},
+
+		"locked": true,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "EXCEPTION_TRADES",
+		"id": 2579,
+		"name": "Exception Trades",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "FirmAccountDescription",
+		"flex": null,
+		"sortable": true,
+		"text": "Firm Account Description",
+		"width": "150",
+		"filter": 
+		{
+			"type": "string"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "FirmAccountDescription",
+		"id": 2580,
+		"name": "Firm Account Description",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "CounterpartyDescription",
+		"flex": null,
+		"sortable": true,
+		"text": "Counterparty Description",
+		"width": "150",
+		"filter": 
+		{
+			"type": "string"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "CounterpartyDescription",
+		"id": 2581,
+		"name": "Counterparty Description",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "BankStatusCategory",
+		"flex": null,
+		"sortable": true,
+		"text": "Status Category",
+		"width": "150",
+		"filter": 
+		{
+			"type": "string",
+			"options": 
+			[
+				"UNMATCH"
+			]
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": "multiSelect",
+		"aliasColumnName": null,
+		"field": "BankStatusCategory",
+		"id": 2582,
+		"name": "Status Category",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "BankStatus",
+		"flex": null,
+		"sortable": true,
+		"text": "Bank Status",
+		"width": "150",
+		"filter": 
+		{
+			"type": "string"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "BankStatus",
+		"id": 2583,
+		"name": "Bank Status",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "BsNarrative",
+		"flex": null,
+		"sortable": true,
+		"text": "Bank Status Narrative",
+		"width": "150",
+		"filter": 
+		{
+			"type": "string"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "BsNarrative",
+		"id": 2584,
+		"name": "Bank Status Narrative",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "BankStatusDesciption",
+		"flex": null,
+		"sortable": true,
+		"text": "Bank Status Description",
+		"width": "150",
+		"filter": 
+		{
+			"type": "string"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "BankStatusDesciption",
+		"id": 2585,
+		"name": "Bank Status Description",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "IntNarrative",
+		"flex": null,
+		"sortable": true,
+		"text": "Internal Comments",
+		"width": "150",
+		"filter": 
+		{
+			"type": "string"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "IntNarrative",
+		"id": 2586,
+		"name": "Internal Comments",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "TradeDate",
+		"flex": null,
+		"sortable": true,
+		"text": "Trade Date",
+		"width": "150",
+		"filter": 
+		{
+			"type": "date"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "TradeDate",
+		"id": 2587,
+		"name": "Trade Date",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "ValueDate",
+		"flex": null,
+		"sortable": true,
+		"text": "Value Date",
+		"width": "150",
+		"filter": 
+		{
+			"type": "date"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "ValueDate",
+		"id": 2588,
+		"name": "Value Date",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "ASSIGN_TO",
+		"flex": null,
+		"sortable": true,
+		"text": "Assigned To",
+		"width": "150",
+		"filter": 
+		{
+			"type": "string"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "ASSIGN_TO",
+		"id": 2589,
+		"name": "Assigned To",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "OperationType",
+		"flex": null,
+		"sortable": true,
+		"text": "Operation Type",
+		"width": "150",
+		"filter": 
+		{
+			"type": "string"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "OperationType",
+		"id": 2590,
+		"name": "Operation Type",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "IsinReference",
+		"flex": null,
+		"sortable": true,
+		"text": "Isin Reference",
+		"width": "150",
+		"filter": 
+		{
+			"type": "string"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "IsinReference",
+		"id": 2591,
+		"name": "Isin Reference",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "AdpInstrumentRef",
+		"flex": null,
+		"sortable": true,
+		"text": "Adp Instrument Ref",
+		"width": "150",
+		"filter": 
+		{
+			"type": "string"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "AdpInstrumentRef",
+		"id": 2592,
+		"name": "Adp Instrument Ref",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "PrimaryQuantity",
+		"flex": null,
+		"sortable": true,
+		"text": "Primary Quantity",
+		"width": "150",
+		"filter": 
+		{
+			"type": "double"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "PrimaryQuantity",
+		"id": 2593,
+		"name": "Primary Quantity",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "OpenQuantity",
+		"flex": null,
+		"sortable": true,
+		"text": "Open Quantity",
+		"width": "150",
+		"filter": 
+		{
+			"type": "double"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "OpenQuantity",
+		"id": 2594,
+		"name": "Open Quantity",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "Price",
+		"flex": null,
+		"sortable": true,
+		"text": "Price",
+		"width": "150",
+		"filter": 
+		{
+			"type": "double"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "Price",
+		"id": 2595,
+		"name": "Price",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "NetConsideration",
+		"flex": null,
+		"sortable": true,
+		"text": "Net Consideration",
+		"width": "150",
+		"filter": 
+		{
+			"type": "double"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "NetConsideration",
+		"id": 2596,
+		"name": "Net Consideration",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "OpenConsideration",
+		"flex": null,
+		"sortable": true,
+		"text": "Open Consideration",
+		"width": "150",
+		"filter": 
+		{
+			"type": "double"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "OpenConsideration",
+		"id": 2597,
+		"name": "Open Consideration",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "OpenConsiderationUSD",
+		"flex": null,
+		"sortable": true,
+		"text": "Open Consideration - USD Equivalent",
+		"width": "150",
+		"filter": 
+		{
+			"type": "bigdecimal"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "OpenConsiderationUSD",
+		"id": 2598,
+		"name": "Open Consideration - USD Equivalent",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "SettlementCurrency",
+		"flex": null,
+		"sortable": true,
+		"text": "Settlement Currency",
+		"width": "150",
+		"filter": 
+		{
+			"type": "string"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "SettlementCurrency",
+		"id": 2599,
+		"name": "Settlement Currency",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "ENTITY_ID",
+		"flex": null,
+		"sortable": true,
+		"text": "Relm Id",
+		"width": "150",
+		"filter": 
+		{
+			"type": "string"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "ENTITY_ID",
+		"id": 2600,
+		"name": "Relm Id",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "RELATIONSHIP_LNAME",
+		"flex": null,
+		"sortable": true,
+		"text": "Relationship Group",
+		"width": "150",
+		"filter": 
+		{
+			"type": "string"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "RELATIONSHIP_LNAME",
+		"id": 2601,
+		"name": "Relationship Group",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "RELATIONSHIP_SNAME",
+		"flex": null,
+		"sortable": true,
+		"text": "Relationship Id",
+		"width": "150",
+		"filter": 
+		{
+			"type": "string"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "RELATIONSHIP_SNAME",
+		"id": 2602,
+		"name": "Relationship Id",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "MARKET",
+		"flex": null,
+		"sortable": true,
+		"text": "Market",
+		"width": "150",
+		"filter": 
+		{
+			"type": "string"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "MARKET",
+		"id": 2603,
+		"name": "Market",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "ClearanceCode",
+		"flex": null,
+		"sortable": true,
+		"text": "Clearance Code",
+		"width": "150",
+		"filter": 
+		{
+			"type": "string"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "ClearanceCode",
+		"id": 2604,
+		"name": "Clearance Code",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "OverdueDays",
+		"flex": null,
+		"sortable": true,
+		"text": "Age",
+		"width": "150",
+		"filter": 
+		{
+			"type": "integer"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "OverdueDays",
+		"id": 2605,
+		"name": "Age",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "AGE_BUCKET",
+		"flex": null,
+		"sortable": true,
+		"text": "Age days",
+		"width": "150",
+		"filter": 
+		{
+			"type": "string"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "AGE_BUCKET",
+		"id": 2606,
+		"name": "Age days",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "RAG",
+		"flex": null,
+		"sortable": true,
+		"text": "Rag",
+		"width": "150",
+		"filter": 
+		{
+			"type": "string"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "RAG",
+		"id": 2607,
+		"name": "Rag",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "BUYIN",
+		"flex": null,
+		"sortable": true,
+		"text": "Buy-in Market",
+		"width": "150",
+		"filter": 
+		{
+			"type": "string"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "BUYIN",
+		"id": 2608,
+		"name": "Buy-in Market",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "AUTOFX_IND",
+		"flex": null,
+		"sortable": true,
+		"text": "Auto FX",
+		"width": "150",
+		"filter": 
+		{
+			"type": "boolean"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "AUTOFX_IND",
+		"id": 2609,
+		"name": "Auto FX",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "KEY_CLIENT_IND",
+		"flex": null,
+		"sortable": true,
+		"text": "Middle Office Key Client",
+		"width": "150",
+		"filter": 
+		{
+			"type": "boolean"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "KEY_CLIENT_IND",
+		"id": 2610,
+		"name": "Middle Office Key Client",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "HIGH_VALUE_QTY_IND",
+		"flex": null,
+		"sortable": true,
+		"text": "High Value/Qty",
+		"width": "150",
+		"filter": 
+		{
+			"type": "boolean"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "HIGH_VALUE_QTY_IND",
+		"id": 2611,
+		"name": "High Value/Qty",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "NA_CFT_COVERAGE",
+		"flex": null,
+		"sortable": true,
+		"text": "NA MO: Client Facing",
+		"width": "150",
+		"filter": 
+		{
+			"type": "string"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "NA_CFT_COVERAGE",
+		"id": 2612,
+		"name": "NA MO: Client Facing",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "EMEA_CFT_COVERAGE",
+		"flex": null,
+		"sortable": true,
+		"text": "EMEA MO: Client Facing",
+		"width": "150",
+		"filter": 
+		{
+			"type": "string"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "EMEA_CFT_COVERAGE",
+		"id": 2613,
+		"name": "EMEA MO: Client Facing",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "ASIA_CFT_COVERAGE",
+		"flex": null,
+		"sortable": true,
+		"text": "APAC MO: Client Facing",
+		"width": "150",
+		"filter": 
+		{
+			"type": "string"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "ASIA_CFT_COVERAGE",
+		"id": 2614,
+		"name": "APAC MO: Client Facing",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "OSD_TEAM_NA",
+		"flex": null,
+		"sortable": true,
+		"text": "NA MO: Client Facing Team Lead",
+		"width": "150",
+		"filter": 
+		{
+			"type": "string"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "OSD_TEAM_NA",
+		"id": 2615,
+		"name": "NA MO: Client Facing Team Lead",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "OSD_TEAM_EMEA",
+		"flex": null,
+		"sortable": true,
+		"text": "EMEA MO: Client Facing Team Lead",
+		"width": "150",
+		"filter": 
+		{
+			"type": "string"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "OSD_TEAM_EMEA",
+		"id": 2616,
+		"name": "EMEA MO: Client Facing Team Lead",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "OSD_TEAM_ASIA",
+		"flex": null,
+		"sortable": true,
+		"text": "APAC MO: Client Facing Team Lead",
+		"width": "150",
+		"filter": 
+		{
+			"type": "string"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "OSD_TEAM_ASIA",
+		"id": 2617,
+		"name": "APAC MO: Client Facing Team Lead",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "REGION",
+		"flex": null,
+		"sortable": true,
+		"text": "Region",
+		"width": "150",
+		"filter": 
+		{
+			"type": "string",
+			"options": 
+			[
+				"Registration",
+				"Unknown",
+				"PanEurope",
+				"Crest",
+				"Manual",
+				"LatAm",
+				"Euroclear",
+				"EasterEuropean",
+				"Canada",
+				"Scandi",
+				"Africa",
+				"SelfClear",
+				"Asia",
+				"MiddleEast"
+			]
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": "multiSelect",
+		"aliasColumnName": null,
+		"field": "REGION",
+		"id": 2618,
+		"name": "Region",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "BROKER_SHRT_NME",
+		"flex": null,
+		"sortable": true,
+		"text": "Broker Coverage",
+		"width": "150",
+		"filter": 
+		{
+			"type": "string"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "BROKER_SHRT_NME",
+		"id": 2619,
+		"name": "Broker Coverage",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "BROKER_COVERAGE_NAME",
+		"flex": null,
+		"sortable": true,
+		"text": "MO: Prematching Coverage",
+		"width": "150",
+		"filter": 
+		{
+			"type": "string"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "BROKER_COVERAGE_NAME",
+		"id": 2620,
+		"name": "MO: Prematching Coverage",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "NA_AM_COVERAGE",
+		"flex": null,
+		"sortable": true,
+		"text": "NA Client Service",
+		"width": "150",
+		"filter": 
+		{
+			"type": "string"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "NA_AM_COVERAGE",
+		"id": 2621,
+		"name": "NA Client Service",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "EMEA_AM_COVERAGE",
+		"flex": null,
+		"sortable": true,
+		"text": "EMEA Client Service",
+		"width": "150",
+		"filter": 
+		{
+			"type": "string"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "EMEA_AM_COVERAGE",
+		"id": 2622,
+		"name": "EMEA Client Service",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "ASIA_AM_COVERAGE",
+		"flex": null,
+		"sortable": true,
+		"text": "APAC Client Service",
+		"width": "150",
+		"filter": 
+		{
+			"type": "string"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "ASIA_AM_COVERAGE",
+		"id": 2623,
+		"name": "APAC Client Service",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "NA_AM_TL",
+		"flex": null,
+		"sortable": true,
+		"text": "NA Client Service Team Lead",
+		"width": "150",
+		"filter": 
+		{
+			"type": "string"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "NA_AM_TL",
+		"id": 2624,
+		"name": "NA Client Service Team Lead",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "EMEA_AM_TL",
+		"flex": null,
+		"sortable": true,
+		"text": "EMEA Client Service Team Lead",
+		"width": "150",
+		"filter": 
+		{
+			"type": "string"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "EMEA_AM_TL",
+		"id": 2625,
+		"name": "EMEA Client Service Team Lead",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "ASIA_AM_TL",
+		"flex": null,
+		"sortable": true,
+		"text": "APAC Client Service Team Lead",
+		"width": "150",
+		"filter": 
+		{
+			"type": "string"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "ASIA_AM_TL",
+		"id": 2626,
+		"name": "APAC Client Service Team Lead",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "Exposure",
+		"flex": null,
+		"sortable": true,
+		"text": "Exposure",
+		"width": "150",
+		"filter": 
+		{
+			"type": "double"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "Exposure",
+		"id": 2627,
+		"name": "Exposure",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "ExchangeRate",
+		"flex": null,
+		"sortable": true,
+		"text": "Exchange Rate",
+		"width": "150",
+		"filter": 
+		{
+			"type": "bigdecimal"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "ExchangeRate",
+		"id": 2628,
+		"name": "Exchange Rate",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "TradeStatus",
+		"flex": null,
+		"sortable": true,
+		"text": "Trade Status",
+		"width": "150",
+		"filter": 
+		{
+			"type": "string"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "TradeStatus",
+		"id": 2629,
+		"name": "Trade Status",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "CompanyGlossReference",
+		"flex": null,
+		"sortable": true,
+		"text": "Company Gloss Reference",
+		"width": "150",
+		"filter": 
+		{
+			"type": "string"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "CompanyGlossReference",
+		"id": 2630,
+		"name": "Company Gloss Reference",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "LEGAL_ENTITY",
+		"flex": null,
+		"sortable": true,
+		"text": "Legal Entity",
+		"width": "150",
+		"filter": 
+		{
+			"type": "string"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "LEGAL_ENTITY",
+		"id": 2631,
+		"name": "Legal Entity",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "Asset_Servicing_Event",
+		"flex": null,
+		"sortable": true,
+		"text": "Asset Servicing Event",
+		"width": "150",
+		"filter": 
+		{
+			"type": "string"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "Asset_Servicing_Event",
+		"id": 2632,
+		"name": "Asset Servicing Event",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "DeadlineDate",
+		"flex": null,
+		"sortable": true,
+		"text": "AS Event Deadline Date",
+		"width": "150",
+		"filter": 
+		{
+			"type": "date"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "DeadlineDate",
+		"id": 2633,
+		"name": "AS Event Deadline Date",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "SettlementTypeDescription",
+		"flex": null,
+		"sortable": true,
+		"text": "Settlement Type Description",
+		"width": "150",
+		"filter": 
+		{
+			"type": "string"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "SettlementTypeDescription",
+		"id": 2634,
+		"name": "Settlement Type Description",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "Origin",
+		"flex": null,
+		"sortable": true,
+		"text": "Origin",
+		"width": "150",
+		"filter": 
+		{
+			"type": "string"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "Origin",
+		"id": 2635,
+		"name": "Origin",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "RrNo",
+		"flex": null,
+		"sortable": true,
+		"text": "Rr No",
+		"width": "150",
+		"filter": 
+		{
+			"type": "string"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "RrNo",
+		"id": 2636,
+		"name": "Rr No",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "CpartyExternalReference",
+		"flex": null,
+		"sortable": true,
+		"text": "Counterparty External Reference",
+		"width": "150",
+		"filter": 
+		{
+			"type": "string"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "CpartyExternalReference",
+		"id": 2637,
+		"name": "Counterparty External Reference",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "AdpInstrumentRefDesc",
+		"flex": null,
+		"sortable": true,
+		"text": "Primary Instrument",
+		"width": "150",
+		"filter": 
+		{
+			"type": "string"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "AdpInstrumentRefDesc",
+		"id": 2638,
+		"name": "Primary Instrument",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "Postage",
+		"flex": null,
+		"sortable": true,
+		"text": "Postage",
+		"width": "150",
+		"filter": 
+		{
+			"type": "double"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "Postage",
+		"id": 2639,
+		"name": "Postage",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "Stamp",
+		"flex": null,
+		"sortable": true,
+		"text": "Stamp",
+		"width": "150",
+		"filter": 
+		{
+			"type": "double"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "Stamp",
+		"id": 2640,
+		"name": "Stamp",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "Tariff",
+		"flex": null,
+		"sortable": true,
+		"text": "Tariff",
+		"width": "150",
+		"filter": 
+		{
+			"type": "double"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "Tariff",
+		"id": 2641,
+		"name": "Tariff",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "Vat",
+		"flex": null,
+		"sortable": true,
+		"text": "Vat",
+		"width": "150",
+		"filter": 
+		{
+			"type": "double"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "Vat",
+		"id": 2642,
+		"name": "Vat",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "Levy",
+		"flex": null,
+		"sortable": true,
+		"text": "Levy",
+		"width": "150",
+		"filter": 
+		{
+			"type": "double"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "Levy",
+		"id": 2643,
+		"name": "Levy",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "AccruedInterest",
+		"flex": null,
+		"sortable": true,
+		"text": "Accrued Interest",
+		"width": "150",
+		"filter": 
+		{
+			"type": "double"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "AccruedInterest",
+		"id": 2644,
+		"name": "Accrued Interest",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "Commission",
+		"flex": null,
+		"sortable": true,
+		"text": "Commission",
+		"width": "150",
+		"filter": 
+		{
+			"type": "double"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "Commission",
+		"id": 2645,
+		"name": "Commission",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "ActualSettleDate",
+		"flex": null,
+		"sortable": true,
+		"text": "Actual Settle Date",
+		"width": "150",
+		"filter": 
+		{
+			"type": "date"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "ActualSettleDate",
+		"id": 2646,
+		"name": "Actual Settle Date",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "GrossCredit",
+		"flex": null,
+		"sortable": true,
+		"text": "Gross Credit",
+		"width": "150",
+		"filter": 
+		{
+			"type": "double"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "GrossCredit",
+		"id": 2647,
+		"name": "Gross Credit",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "TradeVersion",
+		"flex": null,
+		"sortable": true,
+		"text": "Trade Version",
+		"width": "150",
+		"filter": 
+		{
+			"type": "integer"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "TradeVersion",
+		"id": 2648,
+		"name": "Trade Version",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "TradingCurrency",
+		"flex": null,
+		"sortable": true,
+		"text": "Trading Currency",
+		"width": "150",
+		"filter": 
+		{
+			"type": "string"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "TradingCurrency",
+		"id": 2649,
+		"name": "Trading Currency",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "SettleQuantity",
+		"flex": null,
+		"sortable": true,
+		"text": "Settle Quantity",
+		"width": "150",
+		"filter": 
+		{
+			"type": "double"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "SettleQuantity",
+		"id": 2650,
+		"name": "Settle Quantity",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "TradeType",
+		"flex": null,
+		"sortable": true,
+		"text": "Trade Type",
+		"width": "150",
+		"filter": 
+		{
+			"type": "string"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "TradeType",
+		"id": 2651,
+		"name": "Trade Type",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "OperationTypeDescription",
+		"flex": null,
+		"sortable": true,
+		"text": "Operation Type Description",
+		"width": "150",
+		"filter": 
+		{
+			"type": "string"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "OperationTypeDescription",
+		"id": 2652,
+		"name": "Operation Type Description",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "PrincipalTradeCurrency",
+		"flex": null,
+		"sortable": true,
+		"text": "Principal Trade Currency",
+		"width": "150",
+		"filter": 
+		{
+			"type": "double"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "PrincipalTradeCurrency",
+		"id": 2653,
+		"name": "Principal Trade Currency",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "PrincipalSettlingCurrency",
+		"flex": null,
+		"sortable": true,
+		"text": "Principal Settling Currency",
+		"width": "150",
+		"filter": 
+		{
+			"type": "double"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "PrincipalSettlingCurrency",
+		"id": 2654,
+		"name": "Principal Settling Currency",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "FinanceRate",
+		"flex": null,
+		"sortable": true,
+		"text": "Finance Rate",
+		"width": "150",
+		"filter": 
+		{
+			"type": "double"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "FinanceRate",
+		"id": 2655,
+		"name": "Finance Rate",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "TRSTradeRef",
+		"flex": null,
+		"sortable": true,
+		"text": "TRS Trade Ref",
+		"width": "150",
+		"filter": 
+		{
+			"type": "string"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "TRSTradeRef",
+		"id": 2656,
+		"name": "TRS Trade Ref",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "TGID",
+		"flex": null,
+		"sortable": true,
+		"text": "TGID",
+		"width": "150",
+		"filter": 
+		{
+			"type": "string"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "TGID",
+		"id": 2657,
+		"name": "TGID",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "SEMEID",
+		"flex": null,
+		"sortable": true,
+		"text": "SEME ID",
+		"width": "150",
+		"filter": 
+		{
+			"type": "string"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "SEMEID",
+		"id": 2658,
+		"name": "SEME ID",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "LinkType",
+		"flex": null,
+		"sortable": true,
+		"text": "Link Type",
+		"width": "150",
+		"filter": 
+		{
+			"type": "string"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "LinkType",
+		"id": 2659,
+		"name": "Link Type",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "UserName",
+		"flex": null,
+		"sortable": true,
+		"text": "User Name",
+		"width": "150",
+		"filter": 
+		{
+			"type": "string"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "UserName",
+		"id": 2660,
+		"name": "User Name",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "ExchangeRateIndicator",
+		"flex": null,
+		"sortable": true,
+		"text": "Exchange Rate Indicator",
+		"width": "150",
+		"filter": 
+		{
+			"type": "string"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "ExchangeRateIndicator",
+		"id": 2661,
+		"name": "Exchange Rate Indicator",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "SettlementDiv",
+		"flex": null,
+		"sortable": true,
+		"text": "Settlement Div",
+		"width": "150",
+		"filter": 
+		{
+			"type": "string"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "SettlementDiv",
+		"id": 2662,
+		"name": "Settlement Div",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "SpecialInstr1",
+		"flex": null,
+		"sortable": true,
+		"text": "Special Instr 1",
+		"width": "150",
+		"filter": 
+		{
+			"type": "string"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "SpecialInstr1",
+		"id": 2663,
+		"name": "Special Instr 1",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "SpecialInstr2",
+		"flex": null,
+		"sortable": true,
+		"text": "Special Instr 2",
+		"width": "150",
+		"filter": 
+		{
+			"type": "string"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "SpecialInstr2",
+		"id": 2664,
+		"name": "Special Instr 2",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "SpecialInstr3",
+		"flex": null,
+		"sortable": true,
+		"text": "Special Instr 3",
+		"width": "150",
+		"filter": 
+		{
+			"type": "string"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "SpecialInstr3",
+		"id": 2665,
+		"name": "Special Instr 3",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "SpecialInstr4",
+		"flex": null,
+		"sortable": true,
+		"text": "Special Instr 4",
+		"width": "150",
+		"filter": 
+		{
+			"type": "string"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "SpecialInstr4",
+		"id": 2666,
+		"name": "Special Instr 4",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "tradeNo",
+		"flex": null,
+		"sortable": true,
+		"text": "Trade No",
+		"width": "150",
+		"filter": 
+		{
+			"type": "integer"
+		},
+
+		"locked": false,
+		"hidden": true,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "tradeNo",
+		"id": 2667,
+		"name": "Trade No",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "instNumber",
+		"flex": null,
+		"sortable": true,
+		"text": "Inst Number",
+		"width": "150",
+		"filter": 
+		{
+			"type": "integer"
+		},
+
+		"locked": false,
+		"hidden": true,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "instNumber",
+		"id": 2668,
+		"name": "Inst Number",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "service",
+		"flex": null,
+		"sortable": true,
+		"text": "Service",
+		"width": "150",
+		"filter": 
+		{
+			"type": "string"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "service",
+		"id": 2669,
+		"name": "Service",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "TRADE_TYPE_DESC",
+		"flex": null,
+		"sortable": true,
+		"text": "Trade Type Description",
+		"width": "150",
+		"filter": 
+		{
+			"type": "string"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "TRADE_TYPE_DESC",
+		"id": 2670,
+		"name": "Trade Type Description",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "SIDE",
+		"flex": null,
+		"sortable": true,
+		"text": "Side",
+		"width": "150",
+		"filter": 
+		{
+			"type": "string"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "SIDE",
+		"id": 2671,
+		"name": "Side",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	},
+
+	{
+		"dataIndex": "AGE",
+		"flex": null,
+		"sortable": true,
+		"text": "Age Category",
+		"width": "150",
+		"filter": 
+		{
+			"type": "string"
+		},
+
+		"locked": false,
+		"hidden": false,
+		"rendererType": null,
+		"aliasColumnName": null,
+		"field": "AGE",
+		"id": 2672,
+		"name": "Age Category",
+		"precision": -1,
+		"comma": false,
+		"currencySymbol": null
+	}
+]
+			})
+		
+		});
+		dialog.show();
+		//dialogC.setWidth('85%');
+	});
+
+</script>
+
+
+</head>
+
+<body>
+
+<!--
+
+	<div class="modal fade jpmm-pb-column-settings-dialog" tabindex="-1" role="dialog" aria-labelledby="jpmmmodellabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+					
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
+					<h4 class="modal-title" id="jpmmmodellabel">&nbsp;</h4>
+				</div>
+					  
+				<div class="modal-body">	
+					<div class="jpmm-pb-column-settings">
+						
+						<div class="search-bar">
+							<div class="search-title" style="padding-left:60px;"><h4>Column selection</h4></div>
+							<div class="search-field-bar" style="display:inline-block;">
+								<div class="search-image-section"><img src="search-32.png" /></div>
+								<div class="search-field-section"><input type="text" style="width:260px;"></div>
+							</div>
+						</div>
+						<div class="show-only-selected-section">
+							<input type="checkbox" name="show-all-selected" value="true">Show only selected column names<br>
+						</div>
+						
+						<div class="column-layout">
+							<div class="column-layout-body" style="width:100%;height:100%;">
+							
+							
+							<div style="height:100%" class="scroll">
+							<div class="column">
+								<ul>
+									<li>Account Number</li>
+									<li>Account Name</li>
+									<li>Trade Date</li>
+									<li>Trade reference</li>
+									<li>Region</li>
+									<li>Bank Account</li>
+									<li class="selected">Service</li>
+									<li>Account Number</li>
+									<li>Region</li>
+									<li>Bank Account</li>
+									<li>Service</li>
+									<li>Account Number</li>
+								</ul>
+							</div>
+							<div class="column">
+								<ul>
+									<li>Account Number</li>
+									<li class="selected">Account Name</li>
+									<li>Trade Date</li>
+									<li>Trade reference</li>
+									<li>Region</li>
+									<li>Bank Account</li>
+									<li>Service</li>
+									<li>Account Number</li>
+									<li>Region</li>
+									<li>Bank Account</li>
+									<li>Service</li>
+									<li>Account Number</li>
+								</ul>
+							</div>
+							<div class="column">
+								<ul>
+									<li>Account Number</li>
+									<li>Account Name</li>
+									<li>Trade Date</li>
+									<li>Trade reference</li>
+									<li class="selected">Region</li>
+									<li>Bank Account</li>
+									<li>Service</li>
+									<li>Account Number</li>
+									<li>Account Number</li>
+									<li>Account Name</li>
+									<li>Trade Date</li>
+									<li>Trade reference</li>
+								</ul>
+							</div>
+							
+							<div class="column">
+								<ul>
+									<li>Account Number</li>
+									<li>Account Name</li>
+									<li>Trade Date</li>
+									<li>Trade reference</li>
+									<li class="selected">Region</li>
+									<li>Bank Account</li>
+									<li>Service</li>
+									<li>Account Number</li>
+									<li>Account Number</li>
+									<li>Account Name</li>
+									<li>Trade Date</li>
+									<li>Trade reference</li>
+								</ul>
+							</div>
+							</div>
+							</div>
+						</div>
+						
+						<div class="change-settings-section">
+							<div class="reset-settings"><a href="#">Reset All Settings</a></div>
+							<div class="save-settings"></div>
+						</div>
+					</div>
+				</div>
+					 
+				  
+				<div class="modal-footer">
+					<button type="button" class="footer-btn cancel" data-dismiss="modal">Cancel</button>
+					<button type="button" class="footer-btn done">Done</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+-->
+</body>
+
+</html>

@@ -1,0 +1,107 @@
+{
+  "header": {
+    "status": "SUCCESS",
+    "apiVersion": "1.0",
+    "apiTitle": "UserPreferences",
+    "statusMessage": "Request complete"
+  },
+  "CurrentUser": {
+    "id": "ADLK",
+    "USER_ID": "V597493",
+    "COMPONENT_ID": "100"
+  },
+  "payload": [
+    {
+      "COLUMN_ID": "1",
+      "COLUMN_SEQUENCE": "1",
+      "LOCKED_COLUMN": "Y",
+      "HIDDEN_COLUMN": "N",
+      "SORT_ORDER": "ASC",
+      "COLUMN_WIDTH": "50",
+      "SELECTED": "Y",
+      "FILTER_VALUE": ""
+    },
+    {
+      "COLUMN_ID": "2",
+      "COLUMN_SEQUENCE": "2",
+      "LOCKED_COLUMN": "Y",
+      "HIDDEN_COLUMN": "N",
+      "SORT_ORDER": "",
+      "COLUMN_WIDTH": "50",
+      "SELECTED": "Y",
+      "FILTER_VALUE": ""
+    },
+    {
+      "COLUMN_ID": "3",
+      "COLUMN_SEQUENCE": "3",
+      "LOCKED_COLUMN": "N",
+      "HIDDEN_COLUMN": "N",
+      "SORT_ORDER": "ASC",
+      "COLUMN_WIDTH": "50",
+      "SELECTED": "Y",
+      "FILTER_VALUE": ""
+    },
+    {
+      "COLUMN_ID": "4",
+      "COLUMN_SEQUENCE": "4",
+      "LOCKED_COLUMN": "N",
+      "HIDDEN_COLUMN": "N",
+      "SORT_ORDER": "",
+      "COLUMN_WIDTH": "80",
+      "SELECTED": "Y",
+      "FILTER_VALUE": ""
+    },
+    {
+      "COLUMN_ID": "5",
+      "COLUMN_SEQUENCE": "5",
+      "LOCKED_COLUMN": "N",
+      "HIDDEN_COLUMN": "N",
+      "SORT_ORDER": "",
+      "COLUMN_WIDTH": "80",
+      "SELECTED": "Y",
+      "FILTER_VALUE": ""
+    },
+    {
+      "COLUMN_ID": "6",
+      "COLUMN_SEQUENCE": "6",
+      "LOCKED_COLUMN": "N",
+      "HIDDEN_COLUMN": "N",
+      "SORT_ORDER": "",
+      "COLUMN_WIDTH": "80",
+      "SELECTED": "Y",
+      "FILTER_VALUE": ""
+    },
+    {
+      "COLUMN_ID": "7",
+      "COLUMN_SEQUENCE": "7",
+      "LOCKED_COLUMN": "N",
+      "HIDDEN_COLUMN": "N",
+      "SORT_ORDER": "",
+      "COLUMN_WIDTH": "80",
+      "SELECTED": "Y",
+      "FILTER_VALUE": ""
+    },
+    {
+      "COLUMN_ID": "8",
+      "COLUMN_SEQUENCE": "8",
+      "LOCKED_COLUMN": "N",
+      "HIDDEN_COLUMN": "N",
+      "SORT_ORDER": "",
+      "COLUMN_WIDTH": "80",
+      "SELECTED": "Y",
+      "FILTER_VALUE": ""
+    }
+  ]
+}
+
+    {
+      "columnId": "6",
+      "columnSequence": 6,
+      "lockedColumn": false,
+      "hiddenColumn":  false,
+      "sortOrder": "",
+      "columnWidth": 80,
+      "selected": true,
+      "filterValue": "whatever"
+    },
+
