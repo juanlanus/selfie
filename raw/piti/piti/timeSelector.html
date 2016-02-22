@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Time input with slider</title>
+  <script src="jquery-1.7.2.js"></script>
+  <script src="jquery-ui-1.9.2.custom.js"></script>
+  <link rel="stylesheet" href="jquery-ui-1.9.2.custom.css">
+  <link rel="stylesheet" href="style.css">
+  <script>
+  $(function() {
+    $( "#datepicker" ).datepicker({
+      showOn: "button",
+      buttonImage: "calendar_icon.png",
+      buttonImageOnly: true,
+      buttonText: "Select date",
+      onClose: function(q) {
+        alert( ' you closed me!!! ' + q + ' ' + typeof q );
+      }
+    });
+
+		$( "#theSlider" ).slider({
+			orientation: "vertical",
+			range: "min",
+			min: -1410,
+			max: 0,
+			value: -720,
+      step: 30,
+			slide: function( event, ui ) {
+				$( "#amount" ).val( ui.value );
+			}
+		});
+
+    $( "#theSlider" ).on(
+      "slidechange",
+      function( e, ui ) {
+        var selectedTime = - ui.value / 60;
+        $( '#selectedTimeDisplay' ).text( selectedTime.toString() );
+      }
+    )
+
+	});
+	</script>
+
+  <style>
+    body { font-family:sans-serif; }
+    .piti_AMTime { color:black; background-color:white; }
+    .piti_PMTime { color:white; background-color:black; }
+    #dateTimePicker .ui-slider-handle, #dateTimePicker .ui-state-default {
+      background-image:url(images/timeSelectorHandle.png);
+      background-repeat:no-repeat;
+      background-position:0 50%;
+    }
+    #dateTimePicker .ui-slider, #dateTimePicker .ui-slider-handle { width:27px; border:0; }
+    #allHours { background-color:yellow; }
+    #dateTimePicker .ui-slider-handle { height:15px; width:25px; }
+  </style>
+
+</head>
+<body>
+
+<div id="demoContainer">
+
+  <p><input type="text" id="datepicker" style="display:none;"></p>
+
+  <div id="dateTimePicker">
+    <div id="theSlider" style="display:inline-block; height:240px;"></div>
+
+    <ul id="allHours" style="display:inline-block; font-size:11px; line-height:95%; list-style-type:none; margin:0; padding:0;">
+      <li class="piti_AMTime">12:00 AM</li>
+      <li class="piti_AMTime">01:00 AM</li>
+      <li class="piti_AMTime">02:00 AM</li>
+      <li class="piti_AMTime">03:00 AM</li>
+      <li class="piti_AMTime">04:00 AM</li>
+      <li class="piti_AMTime">05:00 AM</li>
+      <li class="piti_AMTime">06:00 AM</li>
+      <li class="piti_AMTime">07:00 AM</li>
+      <li class="piti_AMTime">08:00 AM</li>
+      <li class="piti_AMTime">09:00 AM</li>
+      <li class="piti_AMTime">10:00 AM</li>
+      <li class="piti_AMTime">11:00 AM</li>
+      <li class="piti_PMTime">12:00 PM</li>
+      <li class="piti_PMTime">01:00 PM</li>
+      <li class="piti_PMTime">02:00 PM</li>
+      <li class="piti_PMTime">03:00 PM</li>
+      <li class="piti_PMTime">04:00 PM</li>
+      <li class="piti_PMTime">05:00 PM</li>
+      <li class="piti_PMTime">06:00 PM</li>
+      <li class="piti_PMTime">07:00 PM</li>
+      <li class="piti_PMTime">08:00 PM</li>
+      <li class="piti_PMTime">09:00 PM</li>
+      <li class="piti_PMTime">10:00 PM</li>
+      <li class="piti_PMTime">11:00 PM</li>
+    </ul>
+
+  </div>
+</div>
+ 
+<p>Selected time: <span id="selectedTimeDisplay">...</span></p>
+ 
+</body>
+</html>

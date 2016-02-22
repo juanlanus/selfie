@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-Language" content="en">
+    <title>jQuery point-in-time input</title>
+    <script src="jquery-1.7.2.js"></script>
+    <script src="jquery-ui-1.9.2.custom.js"></script>
+    <link rel="stylesheet" href="jquery-ui-1.9.2.custom.css">
+    <script src="jquery.pointInTime.js"></script>
+    <link rel="stylesheet" href="jquery.pointInTime.css" type="text/css">
+    <link rel="shortcut icon" href="https://www.jpmorgan.com/favicon.ico" type="image/x-icon">
+
+    <style> /* for this page */
+      body { font-family:sans-serif; }
+      h1 { font-size:1.9em; }
+      pre { font-family:Consolas; }
+      ZZZ.inData { font-size:26px; }
+      ZZZ.inData input { font-size:26px; }
+      .doneItem { color:#c0c0c0; }
+      .doneItem::before { content:"(done) ";}
+      .bugs { max-width:34em; }
+      .bugs li { margin-bottom:6px; }
+      .bugs p { margin:0; }
+      .bugs pre { font-size:80%; }
+      #bugsList span { font-weight:100; font-size:75%; }  
+    </style>
+
+    <script>
+      $(function() {
+
+        // display an instance of the date input
+        var thisYear = new Date().getFullYear();
+        $('#dateInput').pointInTime( {
+          fieldsActive: ['month', 'date', 'year'], // omit 'hour', 'minute', 'second', 'millisecond'
+          // initial value: a JS Date object
+          value: new Date(),
+          // callback function, called whenever error messages are produced
+          errorMsgHandler: function( errText ) {
+            $( '#errorMessages' ).html( errText + '&nbsp;' );
+          },
+          // fill ommited sub-fields with their low bounds (minValue) unless they have
+          // a default specified
+          omittedFieldsDefault: 'low-value',
+          formats: { 
+            // For each of the fields listed in fieldsAll, specify the appropriate
+            // sub-field options that differ form those stated in the defaults:
+            //   numeric:true means this sub-field is a numeric value, made of digits only,
+            //                like the year, month, date, ...
+            //   length: the max number of digits for a subfield, like for example 2 for the
+            //           month, 4 for the year; used to trigger the automating tabbing to
+            //           the next sub-field
+            //   separator: a character, like "/", to be displayed after the sub-field; the
+            //              last sub-field can have an empty string
+            //   placeholder: the placeholder shown in light gray in empty sub-fields; as
+            //                the numeric fields are right-aligned is can have spaces to
+            //                position it better
+            //   minValue: bottom value for a numeric field, used as default when
+            //             omittedFieldsDefault:'low-value' is specified
+            //   maxValue: top value for a numeric field, used as default when 
+            //             omittedFieldsDefault:'high-value' is specified
+            //   default: optional default value for a sub-field when it is not equal to
+            //            minValue or maxValue
+            date: { separator: '/' },
+            year: { minValue:1990, maxValue:2030, separator:'', defaultValue:thisYear }
+          }
+        });
+
+// IN JS FILE:
+        $('#dateInput fieldset').append(
+          $( '<div class="piti_calendar_icon" style="position:absolute; top:1px; right:18px; z-index:0;">' +
+          '<input type="text" class="piti_hidden_JQUI_date" style="display:none;">' +
+          '<\/div>' )
+        );
+        $( 'fieldset.piti' ).css( 'padding-right', '40px' );
+        // bind the calendar icon to the datepicker
+        $('#dateInput .piti_hidden_JQUI_date').datepicker({
+          showOn: "button",
+          buttonImage: "calendar_icon.png",
+          buttonImageOnly: true,
+          buttonText: "pick a date",
+          changeMonth: true,
+          changeYear: true,
+          yearRange: '1990:2030',
+          showOn: 'both',
+          onClose: function( datePicked ) {
+            if( ! datePicked ) { // cancelled
+              // do nothing
+            } else {
+              $( '#dateInput' ).data('pointInTime').setValue( new Date( Date.parse( datePicked ) ) );
+            }
+          }
+        });
+
+// IN CSS FILE (not piti's):
+//      <style>  fieldset.piti { padding-right:40px; } <\/style>
+
+
+        // set the focus to the first input sub-field in #dateInput
+        $('#dateInput').find( 'input' ).first().focus();
+
+        // when the user exits the control, show the date entered
+        $('#nextField1').on(
+          'focus',
+          function(){
+            var d = $('#dateInput').data('pointInTime').getValue();
+            if( d ) {
+              $( '#dateEntered' ).text( d.toISOString() );
+              $( '#errorMessages' ).html( '&nbsp;' );
+            } else {
+              $('#dateEntered').text( 'wrong date' );
+            }
+          }
+        );
+        $('#dateInput').find( 'input' ).first().focus();
+
+        // display a pair of instances, a start and an end date
+        $('#dateInputStart').pointInTime( {
+          fieldsActive: ['month', 'date', 'year'], // omit 'hour', 'minute', 'second', 'millisecond'
+          value: new Date(), // initial value
+          omittedFieldsDefault: 'low-value',  // fill ommited parts with low values
+          formats: { 
+            date: { separator: '/' },
+            year: { minValue:1990, maxValue:2030, separator: '' }
+          }
+        });
+        $('#dateInputEnd').pointInTime( {
+          fieldsActive: ['month', 'date', 'year'], // omit 'hour', 'minute', 'second', 'millisecond'
+          // value: new Date(), // initial value
+          omittedFieldsDefault: 'high-value',  // fill ommited parts with high values
+          formats: { 
+            date: { separator: '/' },
+            year: { minValue:1990, maxValue:2030, separator: '' }
+          }
+        });
+
+
+        // display the bugs count
+        $( '#bugsList' ).append(
+          $(' <span> '
+          + $( '#bugsList' ).next( 'ol' ).children( 'li.doneItem ').length // number of done items
+          + ' done out of '
+          + $( '#bugsList' ).next( 'ol' ).children( 'li ').length // total number of items
+          + '<\/span>' )
+        );
+
+
+      });
+    </script>
+
+  </head>
+  <body>
+
+    <h1>Date, datetime, timestamp input</h1>
+
+    <div>
+      <h2>Point-in-time input</h2>
+
+      <p>To use, give focus to the first field and write the numbers. <br>
+      When in a field, use the up and down arrows or the "+" and "-" keys to change its value by 1.
+      Use tab to jump to next field.</p>
+      <div>
+        <p id="dateEntered" style="font-size:80%; color:rgb(80,80,192);">&nbsp;</p>
+        <p id="errorMessages" style="color:rgb(255,80,80); font-size:80%; font-weight:bold;">&nbsp;</p>
+      </div>
+      <div>
+        <span id="dateInput" class="inData"></span>
+        <span>&nbsp;</span>
+        <input id="nextField1" type="text" value=" " class="inData" size="1" style="border:0; outline:0 none;"/>
+      </div>
+      <div>
+        <label for="dateInputStart">start date: </label>
+        <span id="dateInputStart" class="inData"></span>
+        <span>&nbsp;</span>
+        <input id="nextField2" type="text" value=" " class="inData" size="1" style="border:0; outline:0 none;"/>
+      </div>
+      <div>
+        <label for="dateInputEnd">&nbsp;end date: </label>
+        <span id="dateInputEnd" class="inData"></span>
+        <span>&nbsp;</span>
+        <input id="nextField3" type="text" value=" " class="inData" size="1" style="border:0; outline:0 none;"/>
+      </div>
+
+  </div>
+
+  <!--
+    // Unicode Character 'NARROW NO-BREAK SPACE' (U+202F) &#8239;
+    // Unicode Character 'ZERO WIDTH JOINER' (U+200D) &#8205;
+  -->
+
+  <div id="HTML5DateInput">
+    <h2>Comparisons</h2>
+    <p>Totally simple date input, a plain text box:<br/>
+      <input type="datetime" value="20150422" class="inData" />
+    </p>
+    <p>The W3C is defining a "date input", currently it only works in the Chrome browser:<br/>
+      <input name="date" data-placeholder="year-month-day" type="datetime-local" id="date"
+      style="font-family:monospace; font-weight:bold;" class="inData" >
+    </p>
+  </div>
+
+  <div>
+    <h2>The development bug tracker: </h2>
+
+    <p>This is the current list of the missing features or issues of the device.<br/>
+    The grayed items are resolved.</p>
+
+    <h3 id="bugsList">bugs</h3>
+    <ol class="bugs">
+      <li class="doneItem">Validation is not working (not applying the error class)</li>
+      <li class="doneItem">Merge <code>formats</code> into <code>defaults</code>
+      allowing to change them in the options</li>
+      <li class="doneItem">
+      <span>Upon exit from the last sub-field, run a function to validate the whole date.<br>
+        Include the leap year number of days check in February.<br/></span>
+      If the date turns out to be invalid, complain() and highlight the offending field.</li>
+      <li class="doneItem">Calculate the exact size of the inputs: 
+        <ol>
+          <li>Build a detached span DS with the apprppriate number of digits (as
+            stated in the field format)</li>
+          <li>Apply all the styles of the original input that influence the width
+            to the fake span: 
+            <pre>          // all box models: 8 styles
+          'font-family',
+          'font-size',
+          'font-stretch',
+          'font-style',
+          'font-variant',
+          'font-weight',
+          'letter-spacing',
+          'box-sizing',
+          // border-box: a few more styles
+          'padding-left',
+          'padding-right',
+          'border-left-width',
+          'border-right-width'</pre>
+          </li>
+          <li>Make the fake span's visibility=hidden (in JS, not jQuery)</li>
+          <li>Attach it to the same container as the inputs</li>
+          <li>Copy the fake span's with to the original input</li>
+          <li>Remove the fake span</li>
+        </ol>
+      </li>
+      <li class="doneItem">Write a convenience <code>getFormat()</code>
+      function</li>
+      <li class="doneItem">Center the up/down arrows relative to the input field.
+        Now it does <code>margin-left:-1rem;</code> 
+        <p>It should calculate the left-margin according to the input field width.
+        </p>
+      </li>
+      <li class="doneItem">Calculate .incDec height based on the input height</li>
+      <li class="doneItem">Does not work on firefox, it swallows the tab keystrokes<br/>
+      This is because in the keypress event the $e.which property is zero for
+      non-character keystrokes (like tab, and also arrows, del, backspace, ...)
+      and the program has to compare against $e.keyCode instead.</li>
+      <li class="doneItem">Test in IE8</li>
+      <li class="doneItem">Allot an initial value</li>
+      <li class="doneItem">Replace spaces in separators by non-breaking spaces</li>
+      <li class="doneItem">Don't allow invalid values when using the +/-
+      feature</li>
+      <li>Make it noticeable when a value is longer then the allowed size (in
+        number of digits)
+        <p>Like, displaying it in red with a title property. </p>
+      </li>
+      <li class="doneItem">Implement a <code>piti.complain()</code> default function</li>
+      <li class="doneItem">Check that the UI complains on all errors</li>
+      <li>Giving focus to a field in error triggers the complain beep</li>
+      <li class="doneItem">Auto-tabbing to the next field does not select its text?</li>
+      <li class="doneItem">Complain when focus exits the last field and the date is
+      not valid</li> <li class="doneItem">Implement the high-values padding</li>
+      <li class="doneItem">Refactor the input widths calculations into a function</li>
+      <li>On resize recalculate input widths, also up/down arrows artifact</li>
+      <li>When the value is incremented or decremented with the arrows, it might be
+        useful to select it</li>
+      <li class="doneItem">When incrementing or decrementing, check the result against
+      both top and bottom margin, to detect any out-of-band values</li>
+      <li>Implement the AM/PM thing</li>
+      <li class="doneItem">The piti object must not be global, make an instance per
+      input and store in the input's data</li>
+      <li class="doneItem">Do not complain on blur of an empty sub-field</li>
+      <li class="doneItem">Clear the error highlight whenever a value changes, before
+      checking it<br/>
+      Resolved by clearing the highlight when the input gets focos.</li>
+      <li class="doneItem">Add a default value option in the format object, useful for
+      the items left out (replaces the "padding" functionality?</li>
+      <li class="doneItem">It complains when a value is decremented out of range, but
+      not when incremented below the bottom limit (like year 0001): first increment of
+      an empty value should yield the bottom value</li>
+      <li>Disable the up/down arrow when the value is as its top/bottom</li>
+      <li class="doneItem">When trying to decrement the seconds value when its 00 and
+      then doing the same to the millies the artifact ends up with two arrow sets</li>
+      <li class="doneItem">A back-tab in the last field triggers the full control
+      function, same as the forward tab</li>
+      <li class="doneItem">
+      When a field is in error blur doesn't
+      fully run, the up/down arrors stay visible and the internal value is not updated
+      with the current one.<br>
+      Sometimes the procedure below reproduces the error:<br>
+        <ol>
+          <li>Select two leters, out of the control</li>
+          <li>Click in the date input and paste the selected letters</li>
+          <li>Tab to the next sub-field:</li>
+          <li>The pasted letters are visible and the up/down arrows of the date 
+          subfield are still there, the field is not flagged</li>
+          <li>Tabbing to other fields will leave the arrows even for fields with
+          good values</li>
+        </ol>
+      </li>
+      <li class="doneItem">ii. Should be able turn on/off Time from configuration</li>
+      <li class="doneItem">iii. Should be able to programmatically set/get date/time</li>
+      <li>iv. Should be able to add onchange events</li>
+      <li class="doneItem">v. Implement validate() so that it would be called upon click
+      of "OK" <br> The function is <code>piti.validate()</code> with no arguments <br>
+          It returns a <code>Date</code> object with the value entered by the user,
+          or <code>false</code> if something is wrong. It ensures that all the date
+          parts are within the ranges specified in the configuration. <br>
+          The day number is checked against the right number of days for that
+          particular month and year. 
+      </li>
+      <li class="doneItem">For low-values padding when there is no bottom value use
+      the UNIX epoch <em>01 Jan 1970 00:00:00 GMT</em> that would return a pure time
+      value when the input sports only the time parts (should compensate for the
+      local TZ?).</li>
+      <li>Add the usual calendar page for mouse input of a date</li>
+      <li class="doneItem">When month is available but year isn't do a more
+      generid chech for the date range.</li>
+      <li class="doneItem">Relocate the up/down arrows to the right of the
+      affected value, instead of above and below it.</li>
+      <li class="doneItem">When tabbing back from the last field omit the full
+      validation (check the shift key?)</li>
+      <li>Handle tab back in the first field as the last-field exit too</li>
+      <li class="doneItem">Setting the insertion point between the digits of the
+      first field with the mouse and tabbing through the end leaves the up-down
+      arrows behind (in chrome and ff)</li>
+      <li class="doneItem">When the year is wrong tabbing over the other fields also
+      flags them as erroneous (in ff)</li>
+      <li class="doneItem">Use jQuery 1.7</li>
+      <li class="doneItem"> When there is no initial value, the control shows
+      00/00/0000</li>
+      <li class="doneItem"> Validating the last field, first validate it as a
+      single field, and after that do the full date validation</li>
+      <li class="doneItem">A date with high-value padding ands up with
+      31/31/2030 after having tabbed over all its fields (31 in the month!)</li>
+      <li class="doneItem">Display a single up/down arrows set, to the right of
+      the last sub-field</li>
+      <li>Emit a blur-type event for when the user completed the input</li>
+      <li class="doneItem">Create data URLs for the arrow-head icon images</li>
+      <li class="doneItem">In IE8 the +/- keys do not actionate the spinners
+      (requires re-implementing the non-characters filter as a list of
+      scancodes)</li>
+      <li>Upon completing the number of characters for the last field must tab
+      out, to the next control or whatever</li>
+      <li class="doneItem">The user can input non-digit characters</li>
+      <li>Don't beep when the focus is not in the control</li>
+      <li>Replace the content attribute by data-content</li>
+      <li class="doneItem">Before emitting a complain sound cancel any
+      outstanding previous instance</li>
+      <li>Raise error events so they can be shown to the user</li>
+      <li class="doneItem">Validation alerts are not working in IE, it accepts
+      letters</li>
+      <li class="doneItem">In IE the "+" key is inserted in the input instead of
+      actionating a spinner</li>
+      <li>Add an onError() option to be called in order to publish the input
+      errors</li>
+      <li>IE does not outline the currently focused sub-field</li>
+      <li class="doneItem">A click in the spinner arrows hide them and does not
+      spind the value</li>
+      <li class="doneItem">The error about the date exceeding the month length
+      displays the month, not the date</li>
+      <li>When the control contains data, must pre-load it in the picker</li>
+      <li>For IE all dates are wrong (no error message)</li>
+      <li class="doneItem">Cancelling the datepicker fills al the date parts
+      with NaN</li>
+      <li class="doneItem">The click on the calendar icon works only once</li>
+      <li class="doneItem">Has to check February number of days also when the
+      date number is entered</li>
+      <li>After closing the date picker move the focus ahead if the current piti
+      (it is set before the first input)</li>
+      <li>When an input is given focus by means of automatic tabulation select
+      its content</li>
+      <li>Make the spinners react to the mouse wheel</li>
+      <li>Add a parameter that, in the end date (of a date range) provides a
+        reference to the start date, and upon first focus event loads the end
+        date with the start date if it has a valid value; this way the user can
+        leverage the spinners to build the end date like "start plus 1 year" or
+        so</li>
+      <li>Add a new sub-field "picker" that displays as the calendar icon and
+        upon click opens the date and time picker popup, loaded with the current
+        date and time values, and when the popup is closed sets the entered date
+        and time in the main control</li>
+      <li>Set the calendar icon as a data URL</li>
+    </ol> 
+
+    <h3>enhancements (nice to have, someday)</h3>
+    <ol class="bugs">
+      <li>Validate the <code>formats</code> values at init time</li>
+      <li>Build a UI for parameters input</li>
+      <li>Allow informing the initial value as a function, like <code>{ new Date();
+        }</code> for example</li>
+      <li>Manage paste events (<a
+        href="https://developer.mozilla.org/en-US/docs/Web/Events/paste">MDN</a>) 
+        <pre>$('#myid').on('paste', function() {
+        setTimeout(function () { 
+          console.log($('#myid').val()); 
+        }, 100);
+    });</pre>
+        Paste a full date in pieces, splitting a string into each of the sub-fields. 
+      </li>
+      <li>Add a visual "flash" as a complement to the audible complain</li>
+      <li>Add a means to silence the audible complain</li>
+      <li>Package the control as a slick grid custom cell editor as in <a target="other" 
+      href="https://github.com/mleibman/SlickGrid/wiki/Writing-custom-cell-editors"
+      >writing custom cell editors</a> </li>
+    </ol>
+  </div>
+
+    <h3>tests suite</h3>
+    <ol class="bugs">
+      <li>The control displays
+      <li>The initial values are displayed, the <code>defaultValue</code>
+      property if present, else the bottom or the top value depending on if
+      omittedFieldsDefault is 'low-value' or 'high-value'
+      <li>When focused the spinner arrows become visible
+      <li>When focus goes out the spinner arrows are hidden
+      <li>Trying to insert characters other than digits in numeric inputs
+      ignores the character and produces an error message
+      <li>The focused numeric input is incremented by entering the up arrow or
+      any "+" key
+      <li>The focused numeric input is decremented by entering the down arrow or
+      any "-" key
+      <li>The focused numeric input is incremented or decremented by
+      mouse-clicking the up or down arrows
+      <li>A month number over 12 highlights the month field and produces an
+      error
+      <li>A date number greater than 31 highlights the date field and produces
+      an error message
+      <li>When the month is February a date number greater than 20 produces an
+      error and highlights the date input
+      <li>When the month is February and the date is 29 an error happens it it's
+      not a leap year
+      <li>When the values entered make a valid date, the <code>validate()</code>
+      method returns it
+      <li>When the values entered make an invalid date, the
+      <code>validate()</code> method returns <code>false</code>
+
+    </ol>
+
+  <div style="height:400px;">
+    <p>&nbsp;</p>
+  </div>
+
+</body>
+</html>

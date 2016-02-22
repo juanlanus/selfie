@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>jQuery UI Dialog Test</title>
+  <link rel="shortcut icon" href="https://www.jpmorgan.com/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="jquery-ui-1.9.2.custom.css">
+  <script src="jquery-1.7.2.js"></script>
+  <script src="jquery-ui-1.9.2.custom.js"></script>
+  <script src="jquery.pointInTime.js"></script>
+  <link rel="stylesheet" href="jquery.pointInTime.css" type="text/css">
+
+  <style> /* for this demo page */
+    body { font-family:sans-serif; }
+    h1 { font-size:1.9em; }
+    pre { font-family:Consolas; }
+    .doneItem { color:#c0c0c0; }
+    .doneItem::before { content:"(done) ";}
+    .bugs { max-width:34em; }
+    .bugs li { margin-bottom:6px; }
+    .bugs p { margin:0; }
+    .bugs pre { font-size:80%; }
+    #bugsList span { font-weight:100; font-size:75%; }  
+    .bugs p { margin:0; }
+    .bugs pre { font-size:80%; }
+    #bugsList span { font-weight:100; font-size:75%; }  
+  </style>
+
+  <script>
+      $(function() {
+
+      });
+  </script>
+
+</head>
+<body>
+
+
+  <div id="thePitiDateInput">
+
+
+    <div class="piti_timePicker" style="position:relative; display: inline-block; margin-left:10px; height:237.5px;">    
+      <ul class="piti_allHours">
+        <li class="piti_time">12 am</li>
+        <li class="piti_time">01 am</li>
+        <li class="piti_time">02 am</li>
+        <li class="piti_time">03 am</li>
+        <li class="piti_time">04 am</li>
+        <li class="piti_time">05 am</li>
+        <li class="piti_time">06 am</li>
+        <li class="piti_time">07 am</li>
+        <li class="piti_time">08 am</li>
+        <li class="piti_time">09 am</li>
+        <li class="piti_time">10 am</li>
+        <li class="piti_time">11 am</li>
+        <li class="piti_time">12 pm</li>
+        <li class="piti_time">01 pm</li>
+        <li class="piti_time">02 pm</li>
+        <li class="piti_time">03 pm</li>
+        <li class="piti_time">04 pm</li>
+        <li class="piti_time">05 pm</li>
+        <li class="piti_time">06 pm</li>
+        <li class="piti_time">07 pm</li>
+        <li class="piti_time">08 pm</li>
+        <li class="piti_time">09 pm</li>
+        <li class="piti_time">10 pm</li>
+        <li class="piti_time">11 pm</li>    
+      </ul>  
+      <div class="piti_timePointer ui-widget-content ui-draggable" tabindex="0"
+      style="
+        position:absolute; top:0; left:0;
+        height:600px; width:100px; overflow-x:hidden; overfolw-y:scroll;
+        background-image:url(timeCursor.png);
+      "></div>    
+    </div>
+  </div>
+
+</body>
+</html>
+

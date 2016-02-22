@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>jQuery UI Dialog Test</title>
+  <link rel="shortcut icon" href="https://www.jpmorgan.com/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="jquery-ui-1.9.2.custom.css">
+  <script src="jquery-1.7.2.js"></script>
+  <script src="jquery-ui-1.9.2.custom.js"></script>
+  <script src="jquery.pointInTime.js"></script>
+  <link rel="stylesheet" href="jquery.pointInTime.css" type="text/css">
+
+  <style> /* for this demo page */
+    body { font-family:sans-serif; }
+    h1 { font-size:1.9em; }
+    pre { font-family:Consolas; }
+    .doneItem { color:#c0c0c0; }
+    .doneItem::before { content:"(done) ";}
+    .bugs { max-width:34em; }
+    .bugs li { margin-bottom:6px; }
+    .bugs p { margin:0; }
+    .bugs pre { font-size:80%; }
+    #bugsList span { font-weight:100; font-size:75%; }  
+    .bugs p { margin:0; }
+    .bugs pre { font-size:80%; }
+    #bugsList span { font-weight:100; font-size:75%; }  
+  </style>
+
+  <script>
+      $(function() {
+
+        // display an instance of the date input
+        var thisYear = new Date().getFullYear();
+        $('#thePitiDateInput').pointInTime( {
+          fieldsActive: ['month', 'date', 'year', 'hour', 'minute', 'picker'],
+          // initial value: a JS Date object
+          value: new Date(),
+          // callback function, called whenever error messages are produced
+          errorMsgHandler: function( errText ) {
+            $( '#errorMessages' ).html( errText + '&nbsp;' );
+          },
+          // fill ommited sub-fields with their low bounds (minValue) unless they have
+          // a default specified
+          omittedFieldsDefault: 'low-value',
+          formats: { 
+            // For each of the fields listed in fieldsAll, specify the appropriate
+            // sub-field options that differ form those stated in the defaults:
+            //   numeric:true means this sub-field is a numeric value, made of digits only,
+            //                like the year, month, date, ...
+            //   length: the max number of digits for a subfield, like for example 2 for the
+            //           month, 4 for the year; used to trigger the automating tabbing to
+            //           the next sub-field
+            //   separator: a character, like "/", to be displayed after the sub-field; the
+            //              last sub-field can have an empty string
+            //   placeholder: the placeholder shown in light gray in empty sub-fields; as
+            //                the numeric fields are right-aligned is can have spaces to
+            //                position it better
+            //   minValue: bottom value for a numeric field, used as default when
+            //             omittedFieldsDefault:'low-value' is specified
+            //   maxValue: top value for a numeric field, used as default when 
+            //             omittedFieldsDefault:'high-value' is specified
+            //   default: optional default value for a sub-field when it is not equal to
+            //            minValue or maxValue
+            date: { separator: '/' },
+            minute: { separator: '' },
+            year: { minValue:1990, maxValue:2030, separator:'', defaultValue:thisYear }
+          }
+        });
+      });
+  </script>
+
+</head>
+<body>
+
+
+  <div id="thePitiDateInput">
+    <span onclick="
+      // TODO: must calculate position, needs a reference to the bounding container
+      // var thePopup = piti.pitiPicker( pitiPickerOptions );
+      // $( '.piti_pickerDialog' ).slideDown( 100 );
+    ">(piti date input)</span>
+  </div>
+ 
+
+  <div>
+    <p>Time selected: <span id="timeSelected">...</span></p>
+  </div>
+
+  <script>
+
+  // these options are provided by the caller, the piti control 
+  var pitiPickerOptions = {
+    hoursList: ['12 am', '01 am', '02 am', '03 am', '04 am', '05 am', '06 am',
+    '07 am', '08 am', '09 am', '10 am', '11 am', '12 pm', '01 pm', '02 pm',
+    '03 pm', '04 pm', '05 pm', '06 pm', '07 pm', '08 pm', '09 pm', '10 pm',
+    '11 pm'],
+    // initial date and time to display in the pickers
+    initialValue: new Date(),
+    // show time picker in addition to the date picker
+    showTimePicker: true,
+    // the date and time to show initially
+    defaultDate: null, // set by the constructor
+    defaultTime: null, // the constructor extracts this time from defaultDate
+    // selected date and time
+    selectedDate: null, // set by the user
+    selectedTime: null, // set by the user
+    // number of minutes added/subtracted by the mouse wheel or the arrows/+/- keys
+    minutesPerWheelDelta: 6, // because each hour slot is 10px high
+    minutesPerArrowkeyClick: 1
+  };
+
+  </script>
+
+  <p id='piti_picker_1'>unique id test</p>
+
+
+
+  <div id="todoList">
+    <style>
+      .doneItem             { color:#c0c0c0; }
+      .doneItem a           { color:#a0a0f0; text-decoration:underline; }
+    </style>
+
+    <h3>piti popup</h3>
+    <ol>
+      <li class="doneItem">Make a function to display the current date and time
+        in the popup</li>
+      <li class="doneItem">The popup must have an internal time value:
+        <code>pp.time</code> same as <code>piti.pitiPicker.time</code>
+        initialized 00:00:00.000UTC</li>
+      <li class="doneItem">Copy the piti date (and time) into the popup before
+        popping it</li>
+      <li class="doneItem">Disable the piti controls while the popup is up</li>
+      <li class="doneItem">Re-enable the piti controls when the popup is
+        closed</li>
+      <li class="doneItem">Refactor all the time handling so the current time
+        value pp.options.selectedTime is updated by the UI acttons and a
+        function repositions the draggable pointer according to its valus</li>
+      <li class="doneItem">Initialize the date picker with the
+        piti date on init</li>
+      <li class="doneItem">Initialize the time picker with the piti time on
+        init (must do after the popup HTML is set)</li>
+      <li class="doneItem">Display the piti date and time numbers upon init
+        omitting time if it's zero</li>
+      <li class="doneItem">Upon closing the popup, the piti.pitiPicker property
+        must be falsy</li>
+      <li class="doneItem">With the mouse wheel, increment the time by
+        fractions of an hour, like 5 or 10 minutes, depending on the height of
+        the time cell in pixels</li>
+      <li class="doneItem">When the shift key is down increment times with the
+        mouse wheel much faster</li>
+      <li>&rarr; With the up and down arrows (or the +/- keys), increment the
+        time by fractions of an hour, like 1 minute or 5 minuties if the shift
+        key is held down</li>
+      <li>Set a title property on the time picker to tell the user about the
+        time adjusting methods available</li>
+      <li>Avoid showing the spinner arrows while the picker is visible</li>
+      <li class="doneItem">Continuously update the selected time while dragging
+        the time selector pointer</li>
+      <li class="doneItem">After selecting a date, the time plotting goes amok
+        (it reports 3 hours above the right time, so it's a TZ issue)</li>
+      <li>Change the time pointer style from that blue bead into a
+        radio-dial-like thing similar to a sliding transparent window</li>
+      <li class="doneItem">Upon a click in the [close] button copy the selected
+        date and time into the piti control inputs</li>
+      <li>&rarr; The date selected in the calendar date picker is one less than
+        the one in the piti inputs</li>
+      <li class="doneItem">Parameterize the popup header</li>
+      <li>Check that all the handlers are removed when the picker is closed,
+        especially those applied at the document leve</li>
+      <li>Pressing the [Cancel] button does not re-enable the disabled piti
+        inputs</li>
+    </ol>
+  
+    <h3>to-dos</h3>
+    <ul>
+      <li class="doneItem">Replace ids by piti_ classes in all CSS
+      selectors</li>
+      <li class="doneItem">Use the actual height of the li elements for
+      calculations</li>
+      <li class="doneItem">Highlight the selected time in the list</li>
+      <li class="doneItem">Upon click on a time, select it and move the pointer
+      accordingly</li>
+      <li class="doneItem">Set an initial time</li>
+      <li class="doneItem">The slider container (left side) needs to allot
+      additional space for when the slider image is taller than a single time
+      slot on the right side, and the right side has to be positioned
+      vertically</li>
+      <li>NTH: add half-hour resolution by halving the slider grid step, albeit
+      not showing the numbers in the list</li>
+      <li class="doneItem">Allow selection of a time also by clicking the
+      slider track</li>
+      <li>Change the cursor pointer to grab/grabbing?</li>
+      <li class="doneItem">Add mouse wheel support</li>
+      <li>When dragging with the wheel, return higher resolution times, like
+      10' or 15'</li>
+      <li class="doneItem">Add mouse wheel support</li>
+      <li>When using the wheel the pointer can be moved way below the bottom of
+      the list</li>
+      <li class="doneItem">Point the js and css files to locals so tests run
+      faster</li>
+      <li>Encapsulate the date and time picker thing into an IIFE, expose an
+      open() function that displays it, pass a reference to the owner piti
+      control so the popup can load its values</li>
+      <li class="doneItem">Make a date URL out of the pointer image</li>
+      <li class="doneItem">Cancel default after wheel events, to avoid
+      scrolling the page</li>
+      <li>On mouse wheel action over the time picker, change the cursor to
+      ns-resize during 50 or 100 ms</li>
+      <li>When the popup is displayed, load it with the currently selected
+      date and time</li>
+      <li>Implement the option to display without the time picker, for
+      date-only cases <code>showTimePicker: true;</code></li>
+      <li class="doneItem">Bind the cancel and OK buttons to Esc and Enter</li>
+      <li>Close (cancel) the popup upon a mouse click outside it</li>
+      <li>Disable the calendar icon button as soon as it is clicked, to avoid
+      conflicting states</li>
+      <li>Enable time selection with spinner keys, like up/down arrows and
+      +/-</li>
+      <li>When the picker's [done] button is clicked, the spinners of the owner
+      piti control become visible briefly</li>
+      <li>On the change events of both the date and the time pickers, update
+      the displayed datetime</li>
+</ul>
+  </div>
+
+</body>
+</html>
+

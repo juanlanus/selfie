@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Draggable duck</title>
+  <script src="jquery-1.7.2.js"></script>
+
+  <script>
+    $( function( ) {
+
+      function Dragger( element, options ) {
+      // enables dragging element according to options
+      // element is an element reference or a jQuery selector
+      // options is an object, see defaults below
+
+        var defaults = {
+          attachElement: null,  // optional drag handle, element or jQuery selector
+          lowerBound: null,     // a Position object:
+                                // (leftmost, topmost) position allowed to left top
+                                // corner of the dragged element, relative to the
+                                // container's left top corner, calculated like:
+                                // container width - content width, similar with heights
+          upperBound: null,     // similar but using right bottom corners, like (0, 0)
+          startCallback: null,  // optional function to run when dragging starts  
+          moveCallback: null,   // optional function to run during dragging
+          endCallback: null,    // optional function to run when dragging ends
+          axis: 'x'             // 'x' | 'y' | false
+        };
+
+        this.config = {};
+
+        function cancelEvent( $e ) {
+          $e.stopPropagation();
+          $e.preventDefault();
+        }
+
+        function dragStart( $eventObj ) {
+          if( dragging ) { return; }
+          dragging = true;
+          theDragger.config.startCallback && theDragger.config.startCallback( $eventObj, element );
+          cursorStartPos = new Position( $eventObj.pageX, $eventObj.pageY );
+          elementStartPos = new Position( parseInt( element.style.left ), parseInt( element.style.top )).check();
+          $( document ).on( 'mousemove' + '.dragger', dragGo );
+          $( document ).on( 'mouseup' + '.dragger', dragStopHandler );
+          cancelEvent( $eventObj );
+        }
+
+        function dragGo( $eventObj ) {
+          if( ! dragging ) { return; }
+          var newPos = new Position( $eventObj.pageX, $eventObj.pageY );
+          newPos = newPos.add( elementStartPos ).subtract( cursorStartPos );
+          newPos = newPos.bound( theDragger.config.lowerBound, theDragger.config.upperBound )
+          newPos.apply( element, theDragger.config.axis );
+          theDragger.config.moveCallback && theDragger.config.moveCallback( newPos, element );
+          cancelEvent( $eventObj );
+        }
+
+        function dragStopHandler( $eventObj ) {
+          if( ! dragging ) { return; }
+          $( document ).off( 'mousemove', dragGo );
+          $( document ).off( 'mouseup', dragStopHandler );
+          cursorStartPos = null;
+          elementStartPos = null;
+          theDragger.config.endCallback && theDragger.config.endCallback( $eventObj, element );
+          dragging = false;
+          cancelEvent( $eventObj );
+        }
+
+        // initialization
+        var theDragger = this;
+        $.extend( this.config, defaults, options );
+        if( typeof( element ) === 'string' ) {
+          element = $( element )[0];
+        }
+        if( element == null ) { return; }
+        var cursorStartPos = null;
+        var elementStartPos = null;
+        var dragging = false;
+
+        if( typeof( this.config.attachElement ) === 'string' ) {
+          this.config.attachElement = $( this.config.attachElement )[0];
+        }
+        if( this.config.attachElement == null ) { 
+          this.config.attachElement = element;
+        }
+        $( this.config.attachElement ).on( 'mousedown' + '.dragger', dragStart );
+        
+      } // end of Dragger object
+
+
+      function Position( x, y ) {
+      // contains a screen position (X, Y) and provides a number of
+      // related methods
+
+        this.X = x;
+        this.Y = y;
+        
+        this.add = function( val ) {
+          return new Position( this.X + val.X, this.Y + val.Y );
+        }
+        
+        this.subtract = function( val ) {
+          return new Position( this.X - val.X, this.Y - val.Y );
+        }
+        
+        this.min = function( val ) {
+          return new Position( Math.min( this.X, val.X ), Math.min( this.Y, val.Y ) );
+        }
+        
+        this.max = function( val ) {
+          return new Position( Math.max( this.X, val.X ), Math.max( this.Y, val.Y ) );
+        }  
+        
+        this.bound = function( lower, upper ) {
+          return this.max( lower ).min( upper );
+        }
+        
+        this.check = function( ) {
+          return new Position( isNaN( this.X ) ? 0 : this.X, isNaN( this.Y ) ? 0 : this.Y );
+        }
+        
+        this.apply = function( element, axis ) {
+          if( ! axis || axis === 'x' ) { if( ! isNaN( this.X )) element.style.left = this.X + 'px'; }
+          if( ! axis || axis === 'y' ) { if( ! isNaN( this.Y )) element.style.top = this.Y + 'px'; }
+        }
+      } // of Position object
+
+
+      var el = document.getElementById( 'draggableElement' ); // not used
+      var leftEdge = el.parentNode.clientWidth - el.clientWidth;
+      var topEdge = el.parentNode.clientHeight - el.clientHeight;
+      var dragObj = new Dragger(
+        '#draggableElement', // el, 
+        { 
+          attachElement: null,
+          lowerBound: new Position( leftEdge, topEdge ),
+          upperBound: new Position( 0, 0 ),
+          startCallback: function() { console.log( 'drag started' ); },
+          moveCallback: function() { console.log( 'dragging' ); },
+          endCallback: function() { console.log( 'drag ended' ); },
+          axis: 'y'
+        }
+      );
+    });
+
+  </script>
+
+</head>
+<body style="
+  font-family:sans-serif; ">
+
+  <h1>Vertically draggable</h1>
+
+  <div id="theScrollingDuck">
+    <div id="borderBox"
+    style="position:relative; border:1px solid black; width:333px; height:555px; overflow:hidden; ">
+      <img id="draggableElement" src="images/duck.jpg"
+      style="width:1024px; height:1024px; top:-333px; left:-500px; position:absolute; cursor:move; "/>
+    </div>
+  </div>
+
+  <p>No-framework dragging</p>
+
+</body>
+</html>

@@ -1,0 +1,101 @@
+
+  /* the container, a fieldset element */
+  .piti                   { display:inline-block; border:0; }
+  /* the input fields */
+  fieldset.piti           { margin:0; padding:0; position:relative; padding-right:13px; }
+  .piti input             { margin:0; padding:0; padding-right:2px; text-align:right; border:0; }
+  .piti span              { margin:0; padding:0; text-align:center;  }
+  .piti input,
+  /* each input field has its own class */
+  .piti .piti_year        { width:4.5ex; }
+  .piti .piti_month       { width:2.35ex; } 
+  .piti .piti_date        { width:2.35ex; }
+  .piti .piti_hour        { width:2.35ex; }
+  .piti .piti_minute      { width:2.35ex; }
+  .piti .piti_second      { width:2.35ex; }
+  .piti .piti_millisecond { width:3.5ex; }
+  .piti .piti_timezone    { width:3.25ex; }
+  .piti .piti_picker      { width:3.00ex; height:0.9em; display:inline-block;
+                            cursor:pointer;
+                            background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAOCAIAAAB/6NG4AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAm0lEQVR42q3PsQ6CMBDG8T+kbJ3YcMKnqyUxxLAZNtkMJMQHlEleoFtJcDBWNBUh8Tdcmsv1u5bxSWs1+kz7QdPUgDGm729puo2iiAlrbdddk2QjpQRwV39ma61CFxPHMT5v/W+R3iUCyPO9EIJZwzAAAmjbCwtk2S5kjdd0URweh6o6ufpp1S89L6nrs6tAWR7/lz0j0Fotn74Dd8nqt3QdusIAAAAASUVORK5CYII=);
+                            background-repeat:no-repeat; background-position:center;
+                          }
+  /* separator fields between any two input elements */
+  .piti .piti_sep         {  }
+  .piti .piti_sepChar     { display:inline-block; }
+  /* class to highlight values in error */
+  .piti input.piti_outOfRange { background-color:#fff023; }
+  /* up/down arrows to increment/decrement values */
+  .piti .piti_incDec      { visibility:hidden;
+                            width:13px; margin-right:-13px; background-color:#f1f1f1;
+                            position:absolute; top:0; right:0; height:100%; }
+  .piti .piti_incDec      { margin:0; padding:0; background-color:rgb(240,240,240); display:inline-block; }
+  .piti .piti_incDec .piti_valueUp,
+  .piti .piti_incDec .piti_valueDown
+                          { margin:0; padding:0; width:7px; height:50%; cursor:pointer; }
+  .piti .piti_incDec .piti_valueUp  
+                          { top:0; left:0; width:100%; background-repeat:no-repeat; background-position: 50% 50%;
+                            background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAFCAYAAACXU8ZrAAAAMElEQVR42m2MwQkAQAjDYvffxRG910HRBoq0BJkZPEDvTRhV1X4/2kLqSsL5DETBeZ/xHXr1o1H5AAAAAElFTkSuQmCC);
+                          }
+  .piti .piti_incDec .piti_valueDown
+                          { bottom:0; left:0; width:100%; background-repeat:no-repeat; background-position: 50% 50%;
+                            background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAFCAYAAACXU8ZrAAAAMUlEQVR42oWKyQkAMAzD1GyYSTOi+uqjoYfBYAsNoPgk1HwJasYaNwEgOjh+dStQnU2CXS0iXex4IgAAAABJRU5ErkJggg==);
+                          }
+  .piti .piti_incDec .piti_valueUp:hover,
+  .piti .piti_incDec .piti_valueDown:hover
+                          { background-color:rgb(210,210,210); }
+
+
+  /* =================== styles for the popup =============================== */
+  /* jQuery UI classes hijacked */
+  .piti_datePicker .ui-widget-content { border:0; }
+  .piti_datePicker .ui-state-default,
+  .piti_datePicker .ui-widget-content .ui-state-default,
+  .piti_datePicker .ui-widget-header .ui-state-default
+    { border:1px solid transparent; background-color:transparent; background-image:none; }
+  .piti_datePicker .ui-datepicker-current-day { background-color:blue; color:white; }
+  .piti_datePicker .ui-datepicker-current-day a { color:white; font-weight:bold; }
+  .piti_datePicker .ui-state-default .ui-state-active { background-color:blue; color:white; }
+  .piti_datePicker .ui-datepicker th { padding:0; }
+  .piti_datePicker .ui-widget-header { border:0; background-color:rgb(240,240,240); background-image:none; }
+  .piti_datePicker .ui-widget { font-size:14px; font-family:sans-serif; }
+  .piti_datePicker .ui-datepicker select.ui-datepicker-month:hover,
+  .piti_datePicker .ui-datepicker select.ui-datepicker-year:hover { background-color:rgb(222,222,255); }
+  .piti_datePicker .ui-datepicker select.ui-datepicker-month,
+  .piti_datePicker .ui-datepicker select.ui-datepicker-year { border-color: transparent; background-color:rgb(240,240,240); }
+  .piti_pickerDialog { background-color:white; border:1px solid rgb(222,222,222); } /* test */
+
+  /* the whole artifact, includes date and time */
+  .piti_pickerDialog { width: 340px; position:absolute; display:none; } /* if jQUI freaks out then move to -50000 or so */
+
+  /* the optional header */
+  .piti_pickerHeader { float:left; font-size:16px; }
+
+  /* the jQuert UI date picker artifact */
+  .piti_datePicker { float:left; }
+
+  /* the time picker artifact */
+  .piti_timePicker { position:relative; width:65px; padding:0; background-color:rgb(240,240,222);
+    display:inline-block; margin-left:10px; }
+  /* the pointer that slides along the times column */
+  .piti_timePointer { width:30px; height:15px; padding:0; margin:0;
+    cursor:ns-resize; border:0; background-repeat:no-repeat; background-color:transparent;
+    background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAPCAYAAAARZmTlAAAACXBIWXMAAAsTAAALEwEAmpwYAAABRUlEQVR42rWUvy4EURyFv9/sROEBbIh4BI2wFgkF+u1VGhkaj6CmYcZu4k+1U4iCQrckIiGDJyBKhIjQWZHdzFFtYhP/xo6vPvd+yb05xyTxEZs9GwdNYYwhdYO9AVfAHpl4TcHwHQmxhsS8qAOzMjD5Tf4Vs0XeFGgz/5xIYvPnWWrxOaLnd6eoIpXJmK8gf/lzHBne6SEwSuJ3QIgKGVZYze9L6PPYXFQgZofWucDwqbeFWuurNku8aAcokBbGM2Id1ynJz902JPdAlvSpgXZxnGXDi2L+GQd4/Ke766BtiIdc4CT1P4ENcEsq9t8AuJi2kKUhuQTzaW8PtdT70uxdkMNDdAQ28seeHGAsU8pXvuyJJGzmuBPXPU3WeELMfBUHLxJuFyHYxPfbpSXMDbQ68JR4IJtWWJrGlAPrAqrAdSsr/A5ZbZICibmtBAAAAABJRU5ErkJggg==);
+  }
+  /* the times choice column */
+  .piti_allHours { font-size:11px; line-height:95%; list-style-type:none;
+    margin:0; padding:0; padding-top:4px;
+    background-color:rgb(250,250,250); /* for testing */
+  }
+  .piti_time { height:10px; }
+  .piti_timeSelected { background-color:yellow; }
+  /* make the times column wide, to enable click on the slider track too */
+  .piti_timePointer { position:absolute; float:left; }
+  .piti_allHours { text-align: right; width: 65px; }
+  .piti_allHours { -moz-user-select: none; -webkit-user-select: none; -ms-user-select: none; }
+  .piti_allHours li { text-align: right; }
+
+  /* the bottom of the artifact with the choosen date and the buttons */
+  .piti_pickerDateAndButtons { padding:10px; }
+  .piti_pickerDateDisplay { padding:5px; float:left; width:25ex; background-color:rgb(240,240,240); }
+  /* ======================== styles for the popup - end ========================== */

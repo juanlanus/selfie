@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Choose time by dragging a pointer</title>
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <style>
+    h3 { clear:left; }
+    body { font-family:sans-serif; }
+  </style>
+
+  <style>
+    .piti_timePicker {
+      width:65px;
+      padding:0;
+/*    background-image:url(images/nightAndDayGradient.png);
+      background-repeat:repeat-x;
+      background-size:auto 272px; */
+      background-color:rgb(240,240,222);
+    }
+    .piti_timePointer {
+      width:30px;
+      height:15px;
+      padding:0;
+      float:left;
+      margin:0;
+      cursor:n-resize;
+      border:0;
+      background-image:url(images/timeSelectorHandle.png);
+      background-repeat:no-repeat;
+      background-color:transparent;
+    }
+    .piti_allHours {
+      font-size:11px;
+      line-height:95%;
+      list-style-type:none;
+      margin:0;
+      padding:0;
+      padding-top:4px;
+      background-color:rgb(250,250,250);
+      width:30px;
+    }
+    .piti_time { height:10px; }
+    .piti_timeSelected { background-color:yellow; }
+
+    /* make the times column wide, to enable click on the slider track too */
+    .piti_timePicker { position: relative; width: 65px; }
+    .piti_timePointer { position: absolute; float: left; }
+    .piti_allHours { text-align: right; width: 65px; }
+    .piti_allHours { -moz-user-select: none; -webkit-user-select: none; -ms-user-select: none; }
+    .piti_allHours li { text-align: right; }
+  </style>
+
+
+</head>
+<body>
+
+<h3>Choose time by dragging a pointer:</h3>
+  <div id="timePicker" class="piti_timePicker">
+
+    <div  class="piti_timePointer ui-widget-content">
+    </div>
+
+    <div style="float:right;">
+      <ul class="piti_allHours">
+        <li class="piti_time">12 am</li>
+        <li class="piti_time">01 am</li>
+        <li class="piti_time">02 am</li>
+        <li class="piti_time">03 am</li>
+        <li class="piti_time">04 am</li>
+        <li class="piti_time">05 am</li>
+        <li class="piti_time">06 am</li>
+        <li class="piti_time">07 am</li>
+        <li class="piti_time">08 am</li>
+        <li class="piti_time">09 am</li>
+        <li class="piti_time">10 am</li>
+        <li class="piti_time">11 am</li>
+        <li class="piti_time">12 pm</li>
+        <li class="piti_time">01 pm</li>
+        <li class="piti_time">02 pm</li>
+        <li class="piti_time">03 pm</li>
+        <li class="piti_time">04 pm</li>
+        <li class="piti_time">05 pm</li>
+        <li class="piti_time">06 pm</li>
+        <li class="piti_time">07 pm</li>
+        <li class="piti_time">08 pm</li>
+        <li class="piti_time">09 pm</li>
+        <li class="piti_time">10 pm</li>
+        <li class="piti_time">11 pm</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div>
+    <p>Time selected: <span id="timeSelected">...</span></p>
+  </div>
+
+  <div id="todoList">
+    <style>
+      .doneItem             { color:#c0c0c0; }
+      .doneItem a           { color:#a0a0f0; text-decoration:underline; }
+    </style>
+    <h3>to-dos</h3>
+    <ul>
+      <li class="doneItem">Replace ids by piti_ classes in all CSS selectors</li>
+      <li class="doneItem">Use the actual height of the li elements for
+      calculations</li>
+      <li class="doneItem">Highlight the selected time in the list</li>
+      <li class="doneItem">Upon click on a time, select it and move the pointer
+        accordingly</li>
+      <li>Set an initial time</li>
+      <li class="doneItem">The slider container (left side) needs to allot
+        additional space for when the slider image is taller than a single time
+        slot on the right side, and the right side has to be positioned
+      vertically</li>
+      <li>NTH: add half-hour resolution by halving the slider grid step, albeit not
+        showing the numbers in the list</li>
+      <li class="doneItem">Allow selection of a time also by clicking the slider
+        track</li>
+      <li>Change the cursor pointer to grab/grabbing</li>
+      <li class="doneItem">Add mouse wheel support</li>
+      <li>When dragging with the wheel, return higher resolution times, like 10' or
+        15'</li>
+</ul>
+  </div>
+
+</body>
+</html>
+

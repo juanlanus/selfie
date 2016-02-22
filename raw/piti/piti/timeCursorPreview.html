@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>jQuery UI Dialog Test</title>
+  <link rel="shortcut icon" href="https://www.jpmorgan.com/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="jquery-ui-1.9.2.custom.css">
+  <script src="jquery-1.7.2.js"></script>
+  <script src="jquery-ui-1.9.2.custom.js"></script>
+  <!-- <script src="jquery.pointInTime.js"></script> -->
+  <!-- <link rel="stylesheet" href="jquery.pointInTime.css" type="text/css"> -->
+
+  <script>
+
+    $( function( ) {
+
+      var piti = {};
+
+      piti.Dragger = function( element, options ) {
+      // enables dragging element according to options
+      // element is an element reference or a jQuery selector
+      // options is an object, see defaults below
+
+        var defaults = {
+          attachElement: null,  // optional drag handle, element or jQuery selector
+          lowerBound: null,     // a Position object:
+                                // (leftmost, topmost) position allowed to left top
+                                // corner of the dragged element, relative to the
+                                // container's left top corner, calculated like:
+                                // container width - content width, similar with heights
+          upperBound: null,     // similar but using right bottom corners, like (0, 0)
+          startCallback: null,  // optional function to run when dragging starts  
+          moveCallback: null,   // optional function to run during dragging
+          endCallback: null,    // optional function to run when dragging ends
+          axis: 'x'             // 'x' | 'y' | false
+        };
+
+        this.config = {};
+
+        function cancelEvent( $e ) {
+          $e.stopPropagation();
+          $e.preventDefault();
+        }
+
+        function dragStart( $eventObj ) {
+          if( dragging ) { return; }
+          dragging = true;
+          theDragger.config.startCallback && theDragger.config.startCallback( $eventObj, element );
+          cursorStartPos = new piti.Position( $eventObj.pageX, $eventObj.pageY );
+          elementStartPos = new piti.Position( parseInt( element.style.left ), parseInt( element.style.top )).check();
+          $( document ).on( 'mousemove' + '.dragger', dragGo );
+          $( document ).on( 'mouseup' + '.dragger', dragStopHandler );
+          cancelEvent( $eventObj );
+        }
+
+        function dragGo( $eventObj ) {
+          if( ! dragging ) { return; }
+          var newPos = new piti.Position( $eventObj.pageX, $eventObj.pageY );
+          newPos = newPos.add( elementStartPos ).subtract( cursorStartPos );
+          newPos = newPos.bound( theDragger.config.lowerBound, theDragger.config.upperBound )
+          newPos.apply( element, theDragger.config.axis );
+          theDragger.config.moveCallback && theDragger.config.moveCallback( newPos, element );
+          cancelEvent( $eventObj );
+        }
+
+        function dragStopHandler( $eventObj ) {
+          if( ! dragging ) { return; }
+          $( document ).off( 'mousemove', dragGo );
+          $( document ).off( 'mouseup', dragStopHandler );
+          cursorStartPos = null;
+          elementStartPos = null;
+          theDragger.config.endCallback && theDragger.config.endCallback( $eventObj, element );
+          dragging = false;
+          cancelEvent( $eventObj );
+        }
+
+        // initialization
+        var theDragger = this;
+        $.extend( this.config, defaults, options );
+        if( typeof( element ) === 'string' ) {
+          element = $( element )[0];
+        }
+        if( element == null ) { return; }
+        var cursorStartPos = null;
+        var elementStartPos = null;
+        var dragging = false;
+
+        if( typeof( this.config.attachElement ) === 'string' ) {
+          this.config.attachElement = $( this.config.attachElement )[0];
+        }
+        if( this.config.attachElement == null ) { 
+          this.config.attachElement = element;
+        }
+        $( this.config.attachElement ).on( 'mousedown' + '.dragger', dragStart );
+        
+      }; // end of Dragger object
+
+
+      piti.Position = function( x, y ) {
+      // contains a screen position (X, Y) and provides a number of
+      // related methods
+
+        this.X = x;
+        this.Y = y;
+        
+        this.add = function( val ) {
+          return new piti.Position( this.X + val.X, this.Y + val.Y );
+        }
+        
+        this.subtract = function( val ) {
+          return new piti.Position( this.X - val.X, this.Y - val.Y );
+        }
+        
+        this.min = function( val ) {
+          return new piti.Position( Math.min( this.X, val.X ), Math.min( this.Y, val.Y ) );
+        }
+        
+        this.max = function( val ) {
+          return new piti.Position( Math.max( this.X, val.X ), Math.max( this.Y, val.Y ) );
+        }  
+        
+        this.bound = function( lower, upper ) {
+          return this.max( lower ).min( upper );
+        }
+        
+        this.check = function( ) {
+          return new piti.Position( isNaN( this.X ) ? 0 : this.X, isNaN( this.Y ) ? 0 : this.Y );
+        }
+        
+        this.apply = function( element, axis ) {
+          if( ! axis || axis === 'x' ) { if( ! isNaN( this.X )) element.style.left = this.X + 'px'; }
+          if( ! axis || axis === 'y' ) { if( ! isNaN( this.Y )) element.style.top = this.Y + 'px'; }
+        }
+      } // of Position object
+
+
+      var dragObj = new piti.Dragger(
+        '#thePitiDateInput .piti_timePointer',
+        { 
+          attachElement: null,
+          lowerBound: new piti.Position( 60 - 100, 299 - 600 ),
+          upperBound: new piti.Position( 0, -15 ),
+          startCallback: function() { console.log( 'drag started' ); },
+          moveCallback: function() { console.log( 'dragging' ); },
+          endCallback: function() { console.log( 'drag ended' ); },
+          axis: 'y'
+        }
+      );
+
+
+    });
+
+  </script>
+
+  <style>
+    .piti_time { 
+      background-image:url(timeScale.png);
+      background-repeat:no-repeat;
+      background-position:left;
+      height:12px;
+      text-align:right;
+      padding-right:4px;
+    }
+  </style>
+
+</head>
+<body style="
+  font-family:sans-serif;
+  margin:0;
+">
+
+  <div id="thePitiDateInput">
+
+    <div class="piti_timePicker" style="
+      display:inline-block;
+      position:relative;
+      width:60px;
+      height:288px;
+      padding:0;
+      image-rendering:pixelated;
+      -ms-interpolation-mode:nearest-neighbor;
+    ">    
+      <div class="piti_timeScale" tabindex="0" style="
+        position:relative;
+        top:0;
+        left:0;
+        height:100%;
+        width:60px;
+        overflow:hidden;
+        border:0;
+        border:1px solid black;
+        padding:0;
+        margin:0;
+        outline:0px none;
+      ">
+        <img class="piti_timePointer" src="timeCursor.png" alt="scroll check" style="
+          position:absolute;
+          display:block;
+          cursor:ns-resize;
+          height:600px;
+          width:100px;
+          top:-200px;
+          image-rendering:-moz-crisp-edges;
+          image-rendering:-o-crisp-edges;
+          image-rendering:-webkit-optimize-contrast;
+          image-rendering:pixelated;
+          -ms-interpolation-mode:nearest-neighbor;
+        ">
+      </div>
+    </div>
+
+    <div>
+        <ul class="piti_allHours" style="
+          z-index:-100;
+          position:absolute;
+          top:0;
+          left:0;
+          font-size:11px;
+          list-style-type:none;
+          margin:0;
+          padding:0;
+          text-align:right;
+          width:60px;
+          height:100%;
+          -moz-user-select:none;
+          -webkit-user-select:none;
+          -ms-user-select:none;
+          user-select:none;
+        ">
+          <li class="piti_time">12 am</li>
+          <li class="piti_time">01 am</li>
+          <li class="piti_time">02 am</li>
+          <li class="piti_time">03 am</li>
+          <li class="piti_time">04 am</li>
+          <li class="piti_time">05 am</li>
+          <li class="piti_time">06 am</li>
+          <li class="piti_time">07 am</li>
+          <li class="piti_time">08 am</li>
+          <li class="piti_time">09 am</li>
+          <li class="piti_time">10 am</li>
+          <li class="piti_time">11 am</li>
+          <li class="piti_time">12 pm</li>
+          <li class="piti_time">01 pm</li>
+          <li class="piti_time">02 pm</li>
+          <li class="piti_time">03 pm</li>
+          <li class="piti_time">04 pm</li>
+          <li class="piti_time">05 pm</li>
+          <li class="piti_time">06 pm</li>
+          <li class="piti_time">07 pm</li>
+          <li class="piti_time">08 pm</li>
+          <li class="piti_time">09 pm</li>
+          <li class="piti_time">10 pm</li>
+          <li class="piti_time">11 pm</li>    
+        </ul>  
+    </div>
+
+  </div>
+
+  </body>
+</html>
+

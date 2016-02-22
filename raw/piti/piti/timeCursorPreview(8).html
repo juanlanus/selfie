@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>jQuery UI Dialog Test</title>
+  <link rel="shortcut icon" href="https://www.jpmorgan.com/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="jquery-ui-1.9.2.custom.css">
+  <script src="jquery-1.7.2.js"></script>
+  <script src="jquery-ui-1.9.2.custom.js"></script>
+  <script src="jquery.pointInTime.js"></script>
+  <link rel="stylesheet" href="jquery.pointInTime.css" type="text/css">
+
+  <style> /* for this demo page */
+    body { font-family:sans-serif; }
+    h1 { font-size:1.9em; }
+    pre { font-family:Consolas; }
+    .doneItem { color:#c0c0c0; }
+    .doneItem::before { content:"(done) ";}
+    .bugs { max-width:34em; }
+    .bugs li { margin-bottom:6px; }
+    .bugs p { margin:0; }
+    .bugs pre { font-size:80%; }
+    #bugsList span { font-weight:100; font-size:75%; }  
+    .bugs p { margin:0; }
+    .bugs pre { font-size:80%; }
+    #bugsList span { font-weight:100; font-size:75%; }  
+
+
+  /* the time picker artifact */
+  .piti_timePicker { position:relative; width:100px; padding:0; background-color:rgb(240,240,222);
+    display:inline-block; }
+  /* the pointer that slides along the times column */
+  .piti_timePointer { width:30px; height:15px; padding:0; margin:0;
+    cursor:ns-resize; border:0; background-repeat:no-repeat; background-color:transparent;
+    background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAPCAYAAAARZmTlAAAACXBIWXMAAAsTAAALEwEAmpwYAAABRUlEQVR42rWUvy4EURyFv9/sROEBbIh4BI2wFgkF+u1VGhkaj6CmYcZu4k+1U4iCQrckIiGDJyBKhIjQWZHdzFFtYhP/xo6vPvd+yb05xyTxEZs9GwdNYYwhdYO9AVfAHpl4TcHwHQmxhsS8qAOzMjD5Tf4Vs0XeFGgz/5xIYvPnWWrxOaLnd6eoIpXJmK8gf/lzHBne6SEwSuJ3QIgKGVZYze9L6PPYXFQgZofWucDwqbeFWuurNku8aAcokBbGM2Id1ynJz902JPdAlvSpgXZxnGXDi2L+GQd4/Ke766BtiIdc4CT1P4ENcEsq9t8AuJi2kKUhuQTzaW8PtdT70uxdkMNDdAQ28seeHGAsU8pXvuyJJGzmuBPXPU3WeELMfBUHLxJuFyHYxPfbpSXMDbQ68JR4IJtWWJrGlAPrAqrAdSsr/A5ZbZICibmtBAAAAABJRU5ErkJggg==);
+  }
+  /* the times choice column */
+  .piti_allHours { font-size:11px; list-style-type:none; margin:0; padding:0; background-color:rgb(240,240,240); }
+  .piti_time { height:10px; }
+  .piti_time:hover { background-color:white; }
+  .piti_timeSelected { background-color:yellow; }
+  /* make the times column wide, to enable click on the slider track too */
+  .piti_timePointer { position:absolute; float:left; }
+  .piti_allHours { text-align:right; width:100px; }
+  .piti_allHours { -moz-user-select:none; -webkit-user-select:none; -ms-user-select:none; }
+  .piti_allHours li { text-align: right; }
+
+  /* for jQuery UI datepicker */
+  .ui-datepicker table { font-ize:.8em; }
+
+  </style>
+
+  <script>
+      $(function() {
+
+      });
+  </script>
+
+</head>
+<body>
+
+
+  <div id="thePitiDateInput">
+
+    <div class="piti_timePicker"
+    style="position:relative; display: inline-block; margin-left:10px; width:100px; ">    
+      <ul class="piti_allHours">
+        <li class="piti_time">12 am</li>
+        <li class="piti_time">01 am</li>
+        <li class="piti_time">02 am</li>
+        <li class="piti_time">03 am</li>
+        <li class="piti_time">04 am</li>
+        <li class="piti_time">05 am</li>
+        <li class="piti_time">06 am</li>
+        <li class="piti_time">07 am</li>
+        <li class="piti_time">08 am</li>
+        <li class="piti_time">09 am</li>
+        <li class="piti_time">10 am</li>
+        <li class="piti_time">11 am</li>
+        <li class="piti_time">12 pm</li>
+        <li class="piti_time">01 pm</li>
+        <li class="piti_time">02 pm</li>
+        <li class="piti_time">03 pm</li>
+        <li class="piti_time">04 pm</li>
+        <li class="piti_time">05 pm</li>
+        <li class="piti_time">06 pm</li>
+        <li class="piti_time">07 pm</li>
+        <li class="piti_time">08 pm</li>
+        <li class="piti_time">09 pm</li>
+        <li class="piti_time">10 pm</li>
+        <li class="piti_time">11 pm</li>    
+      </ul>  
+      <div class="piti_timePointerBox" style="position:absolute; top:0; left:0; display:inline-block; height:240px;">    
+        <div class="piti_timePointer" tabindex="0"
+        style="
+          position:absolute; top:0; left:0;
+          height:100%; width:120px; overflow-x:hidden; overflow-y:scroll;
+        ">
+          <img src="timeCursor.png" alt="scroll check"/>
+      
+        </div>    
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
+

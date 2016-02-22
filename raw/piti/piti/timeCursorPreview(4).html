@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>jQuery UI Dialog Test</title>
+  <link rel="shortcut icon" href="https://www.jpmorgan.com/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="jquery-ui-1.9.2.custom.css">
+  <script src="jquery-1.7.2.js"></script>
+  <script src="jquery-ui-1.9.2.custom.js"></script>
+  <!-- <script src="jquery.pointInTime.js"></script> -->
+  <!-- <link rel="stylesheet" href="jquery.pointInTime.css" type="text/css"> -->
+
+  <script>
+      $(function() {
+
+        var startTop = 0;
+
+        function handleDrag( elem, top ){
+          // calculate time according to top
+          console.log( 'dragging! top: ' + top );
+        }
+
+        $( '.piti_timePointer img' ).on(
+          'mousedown',
+          function( $e ){
+            startTop = $e.target.y;
+          }
+        )
+
+        $( '.piti_timePointer img' ).draggable({
+          axis: 'y',
+          // grid: [ 1, h ],  no grid
+          // containment: '.piti_timePicker',
+          containment: [0, 0, 50, 288],
+          scroll: false,
+          drag: function( event, ui ) {
+            handleDrag( event.target, ui.position.top );
+          }
+        });
+
+      });
+  </script>
+
+  <style>
+    .piti_time { 
+      background-image:url(timeScale.png);
+      background-repeat:no-repeat;
+      background-position:left;
+      height:12px;
+      text-align:right;
+      padding-right:4px;
+    }
+  </style>
+
+</head>
+<body style="
+  font-family:sans-serif;
+">
+
+  <div id="thePitiDateInput">
+
+    <div class="piti_timePicker" style="
+      display:inline-block;
+      position:relative;
+      width:60px;
+      height:288px;
+      padding:0;
+      image-rendering:pixelated;
+      -ms-interpolation-mode:nearest-neighbor;
+    ">    
+      <ul class="piti_allHours" style="
+        font-size:11px;
+        list-style-type:none;
+        margin:0;
+        padding:0;
+        text-align:right;
+        width:60px;
+        height:100%;
+        -moz-user-select:none;
+        -webkit-user-select:none;
+        -ms-user-select:none;
+        user-select:none;
+      ">
+        <li class="piti_time">12 am</li>
+        <li class="piti_time">01 am</li>
+        <li class="piti_time">02 am</li>
+        <li class="piti_time">03 am</li>
+        <li class="piti_time">04 am</li>
+        <li class="piti_time">05 am</li>
+        <li class="piti_time">06 am</li>
+        <li class="piti_time">07 am</li>
+        <li class="piti_time">08 am</li>
+        <li class="piti_time">09 am</li>
+        <li class="piti_time">10 am</li>
+        <li class="piti_time">11 am</li>
+        <li class="piti_time">12 pm</li>
+        <li class="piti_time">01 pm</li>
+        <li class="piti_time">02 pm</li>
+        <li class="piti_time">03 pm</li>
+        <li class="piti_time">04 pm</li>
+        <li class="piti_time">05 pm</li>
+        <li class="piti_time">06 pm</li>
+        <li class="piti_time">07 pm</li>
+        <li class="piti_time">08 pm</li>
+        <li class="piti_time">09 pm</li>
+        <li class="piti_time">10 pm</li>
+        <li class="piti_time">11 pm</li>    
+      </ul>  
+      <div class="piti_timePointer" tabindex="0" style="
+        outline:1px dotted blue;
+        position:absolute;
+        top:0;
+        left:0;
+        height:100%;
+        width:60px;
+        overflow:hidden;
+        border:0;
+        padding:0;
+        margin:0;
+        outline:0px none;
+      ">
+        <img src="timeCursor.png" alt="scroll check" style="
+          display:block;
+          cursor:ns-resize;
+          height:600px;
+          width:60px;
+          margin-top:-300px;
+          image-rendering:-moz-crisp-edges;
+          image-rendering:-o-crisp-edges;
+          image-rendering:-webkit-optimize-contrast;
+          image-rendering:pixelated;
+          -ms-interpolation-mode:nearest-neighbor;
+        ">
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
+

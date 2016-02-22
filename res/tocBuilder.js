@@ -16,6 +16,7 @@
     init: function (options) {
       // '$that' is the div that will contain the TOC
       var $that = this;
+      if( ! $that.length ) { return false; }; // return if no TOC target
 
       props = jQuery.extend({}, defaultProps, options); 
 

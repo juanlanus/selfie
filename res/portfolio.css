@@ -35,6 +35,12 @@
   .glossary             {  }
   .glossary dt          { font-style:italic; font-weight:bold; }
   .glossary dd          { margin-left:2em; }
+  /************** close button ***************/
+  .closeButton { background-image:url(../res/icon-close.png); background-size:cover;
+    background-repeat:no-repeat; border:6px solid transparent; corner-radius:4px;
+    background-color:rgb(240,240,240); height:32px; width:32px; position:fixed;
+    top:0; right:0; opacity:0.4; }
+  .closeButton:hover { opacity:1; }
   /*******************************************/
     .abstract             { font-style:italic; border:1px solid #c0c0c0; padding:6px 1em; margin:6px 2em 6px 2em; }
     .rt_showButton        { border:0; margin:0 0.3em 0 0.1em; vertical-align:middle; }
