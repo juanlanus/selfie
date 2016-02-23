@@ -63,6 +63,7 @@
           if( colData.selected ) { colClass += 'colIsSelected ' };
           if( colData.locked ) { colClass += 'colIsLocked ' };
           var $col = $('<li id="' + colName + '" class="' + colClass + '">' + colData.name + '</' + 'li>');
+          $col.attr( 'title', colData.title );
           $col.prepend( $('<div class="colDnDArea"/>') );
           $col.prepend( $('<div class="colSelArea"/>') );
           $col.prepend( $('<div class="colLockArea"/>') );
@@ -191,18 +192,18 @@
     <style>
       body { font-family:calibri, sans-serif; }
       #colNamesearch { border:2px solid silver; border-radius:4px; padding:0 6px; width:14em; line-height:125%; }
-      #colNamesearchBox { margin:0px; padding-bottom:10px; padding-left:10px; background-color:#f0f0f0; }
+      #colNamesearchBox { margin:0px; padding-bottom:10px; padding-left:10px; background-color:#f0f0f0; padding-top:6px; }
 
 
       #columnNamesContainer { position:relative; border:2px solid silver; padding:0 0 0 0px; overflow-x:scroll; }
       #columnNames { list-style-type:none; margin-top:10px; 
-      -moz-column-count:auto; -moz-column-width:280px; -moz-column-fill:auto;
-      -webkit-column-count:auto; -webkit-column-width:280px;
-      column-count:auto; column-width:280px;
+      -moz-column-count:auto; -moz-column-width:230px; -moz-column-fill:auto;
+      -webkit-column-count:auto; -webkit-column-width:230px;
+      column-count:auto; column-width:230px; column-gap:0px; 
       font-size:80%; line-height:110%; overflow:hidden;
       }
       #columnNames li { border-top: 1px solid transparent; }
-      #columnNames li:hover div { margin-bottom:-1px; }
+      #columnNames li:hover div {  }
       #columnNames li div.colLockArea { display:inline-block; height:16px; width: 16px; }
       #columnNames li div.colSelArea { display:inline-block; height:16px; width: 16px; }
       #columnNames li div.colDnDArea { display:inline-block; height:16px; width: 16px; }
