@@ -94,7 +94,7 @@
   blockquote            { margin-top : 4px; margin-bottom : 2px; }
   ul, ol                { margin-top : 0px; margin-bottom : 2px; margin-left : 4px; }
   ul                    { padding-left: 1em; }
-  li                    { margin-left: 8px;margin-top: 0px; margin-bottom: 1px;  }
+  li                    { margin-left: 8px;margin-top: 6px; margin-bottom: 4px;  }
   img                   { border-width : 0px 0px 0px 0px; }
   hr                    { color: #808080; background-color: #808080; height: 1px; width: 100%; border: 0px; }
 

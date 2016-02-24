@@ -41,6 +41,24 @@
   <script type="text/javascript">
     $(document).ready(function () {
 
+      // bind F1 in a field to displaying its help
+      $('#formExample input').keyup(
+        function( event ){
+          // ensure the key was F1
+          if( event.which !== 112 ) { return }; // F1
+          // reference an img inside a .formHelpIcon div hanging from the 
+          // event target's ancestor td
+          $helpButton = $( event.target ).closest( 'td' ).find( 'div.formHelpIcon img' );
+          $helpButton.click();
+          event.preventDefault();
+        }
+      );
+
+      // pre-load current date
+      $('#formExample input#InputTodaysDate').val(
+        (new Date() ).toLocaleDateString( 'en-GB', { year:'numeric', month:'2-digit', day:'2-digit' } )
+      );
+
       $(document).keydown(function(e){
         if( e.which == 112 ){
           $( '#form_f1' ).click();
@@ -190,7 +208,7 @@
         </tr>
         <tr>
           <td class="formLabel">Today's date* </td>
-          <td><input type="text" class="formInputText" style="width:100px; ">
+          <td><input id="InputTodaysDate" type="text" class="formInputText" style="width:100px; ">
           </td>
           <td></td>
         </tr>
@@ -239,14 +257,36 @@
   </div>
   </form>
   <style>
-    .subHeader { font-weight:bold; }
+    .subHeader { font-weight:bold; line-height:200%; }
   </style>
 
 
-  <p>This is a wireframe to demonstrate a proposal for the form-level and
-  field-level help artifacts functionality. </p>
+  <p>A wireframe to demonstrate a proposal for the help artifacts
+  functionality, that also introduces some additional form good practices.
+  </p>
 
-  <p class="subHeader">Don't download help each and every time</p>
+  <p class="subHeader">Why is this good for the user?</p>
+  <ul>
+    <li>Help can be available everywhere, but only visible when needed.</li>
+    <li>The suggested design for the help buttons is washy, in order to reduce
+    cognitive load. Only the relevant button shows itself more vividly when
+    hovered or when the associated field gets focused.</li>
+    <li>The help content is displayed close to the related field, just below
+    it. The user doesn't lose context.</li>
+    <li>The suggested implementation allows help content to be anything, like
+    text with format, and images. All one can do witn HTML, even outbound
+    links to pages with additional information.</li>
+    <li>The suggested design for the relative text values emphasizes the 
+    content (black) over the labels (grayed). What matters to the user is
+    made more visible. </li>
+    <li>The focused input gets highlighted. This helps the user to get back 
+    to the right spot with ease should she have to look somewhere else to
+    check the input data.</li>
+    <li>Field input sizes are defined after their expected content. This is
+    a hint on what to type in each case.</li>
+  </ul>
+
+  <p class="subHeader">Don't download help text each and every time</p>
   <p>The help information is not displayed when the user first sees the form. It
   is assumed that the users will be recurrent and will need to read the help
   information about once in their lifetimes, if ever. </p>

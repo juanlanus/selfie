@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Language" content="en">
+    <title>Column selection &amp; sorting</title>
+    <script src="res/jquery.js"></script>
+    <script src="res/jquery.quicksearch.js"></script>
+    <script src="res/Sortable.js"></script>
+    <script src="res/jquery.ui.position.js"></script>
+    <script src="columnProperties.js"></script>
+    <script>
+      $(document).ready(function () {
+
+        // handle click on reset settings button
+        $('#resetAllSettings').on(
+          'click',
+          function() {
+            var warningText = 
+            'This action will reset all your settings:\n' +
+            '  -columns selected\n' +
+            '  -column ordering\n' +
+            '  -rows sorting\n' +
+            '  -column widths\n' +
+            ' \n' +
+            'Click "OK" to jump into.';
+            if( window.confirm(warningText) ) {
+              location.reload();
+            }
+          }
+        );
+
+        // click on "done" button
+        $('#doneSelectingCols').on(
+          'click',
+          function() { alert('thanks for trying this prototype') }
+        );
+
+        // change on "show only selected" checkbox
+        $('#showOnlySelected').on(
+          'change',
+          function() {
+            if(this.checked) {
+              // browser bug? it adds display:list-item to the moved elements, this
+              // loops clear the explicit element-level "display" style
+              var cols = $('#columnNames li');
+              for( var icol = 0; icol < cols.length; icol++) {
+                  var d = cols[icol].style;
+                  d.display = "";
+              }
+              $('#columnNames li').not('.colIsSelected').addClass('colNameHidden');
+            } else {
+              $('#columnNames li').removeClass('colNameHidden');
+            }
+          }
+        )
+
+        /*** set up *********************************************************************/
+
+        // build the columns list by looping over the columns data
+        var buildOneColumnItem = function(colName, colData, $theColumnsList) {
+          var colClass ="";
+          if( colData.selected ) { colClass += 'colIsSelected ' };
+          if( colData.locked ) { colClass += 'colIsLocked ' };
+          var $col = $('<li id="' + colName + '" class="' + colClass + '">' + colData.name + '</' + 'li>');
+          $col.attr( 'title', colData.title );
+          $col.prepend( $('<div class="colDnDArea"/>') );
+          $col.prepend( $('<div class="colSelArea"/>') );
+          $col.prepend( $('<div class="colLockArea"/>') );
+          $theColumnsList.append( $col );
+        };
+
+        var $theColumnsList = $('#columnNames');
+
+        for (var colName in columnsData) {
+           if (columnsData.hasOwnProperty(colName)) {
+              var aColumnsData = columnsData[colName];
+              buildOneColumnItem( colName, aColumnsData, $theColumnsList );
+           }
+}
+
+        /*** actions ********************************************************************/
+
+        // click on a col name: toggle selection
+        $('#columnNames li').on(
+          'click',
+          function(e) {
+            // only react to the click of the primary mouse button
+            if(e.which !== 1) { return false; }
+            var $this = $(this);
+            $this.toggleClass('colIsSelected');
+            // if the column was freezed, de-selection unfreezes it
+            if( $this.hasClass('colIsLocked') && ! $this.hasClass('colIsSelected') ){
+              $this.removeClass('colIsLocked')
+            }
+          }
+        );
+
+        // action: lock a col and flock together with the frozen cols pack
+        $('#columnNames li div.colLockArea').on(
+          'click',
+          function(e) {
+            // where to move the newly-frozen column after
+            var lastFrozenColName = $('#columnNames li.colIsLocked').last();
+            // get a reference to the col name where the clicked icon belongs
+            var $this = $(this).parent();
+            // set or reset the lock status
+            $this.toggleClass('colIsLocked');
+            if( $this.hasClass('colIsLocked') ){
+              // force selection for frozen cols
+              $this.addClass('colIsSelected');
+              // remove the element from the dom flow
+              $this.css({ position:'absolute', top:$this.offset().top, left:$this.offset().left });
+              // move the element to its new place and insert it there
+              var p = lastFrozenColName.offset();
+              $this.animate(
+                {
+                  left:p.left,
+                  top:p.top + $this.height()
+                },
+                {
+                  duration: 1000,
+                  complete: function() {
+                    $(this).css( 'position', 'static' );
+                  }
+                }
+              );
+              $this.insertAfter(lastFrozenColName[0]);
+            }
+            // stop event bubbling else it will change the selection status
+            e.stopPropagation();
+            e.preventDefault();
+            // tell the user that the newly-frozen col has been moved
+            // if( $this.hasClass('colIsLocked') ){
+            //   $('#tellTheUser').show('fast').delay(2000).hide('slow');
+            // }
+            // >>>> highlight the moved element for a while <<<<<<<<<<<
+          }
+        );
+
+        // enable quicksearch
+        var qs = $('#colNamesearch').quicksearch(
+          '#columnNames li',
+          {
+            show: function () {
+              $(this).removeClass('hiddenByQS');
+            },
+            hide: function () {
+              $(this).addClass('hiddenByQS');
+            },
+          }
+        );
+
+        // enable sort with drag and drop
+        var sortable = Sortable.create( document.getElementById( 'columnNames' ) ); 
+
+/*
+        // highlight drop target during DnD
+        $('#columnNames li').on(
+          'dragenter',
+          function(e) {
+            $(this).addClass('colDropTarget');
+            e.originalEvent.draggedElementId = this.id;
+          }
+        );
+        $('#columnNames li').on(
+          'dragover',
+          function(e) {
+            $(this).addClass('colDropTarget');
+          }
+        );
+        $('#columnNames li').on(
+          'dragleave',
+          function(e) {
+            $('.colDropTarget').removeClass('colDropTarget');
+          }
+        );
+        $('#columnNames li').on(
+          'dragend',
+          function(e) {
+            $('.colDropTarget').removeClass('colDropTarget');
+          }
+        );
+*/
+
+        $('#colNamesearch').focus();
+
+        /********************************************************************************/
+
+      });
+    </script>
+    <style>
+      body { font-family:calibri, sans-serif; }
+      #colNamesearch { border:2px solid silver; border-radius:4px; padding:0 6px; width:14em; line-height:125%; }
+      #colNamesearchBox { margin:0px; padding-bottom:10px; padding-left:10px; background-color:#f0f0f0; padding-top:6px; }
+
+
+      #columnNamesContainer { position:relative; border:2px solid silver; padding:0 0 0 0px; overflow-x:scroll; }
+      #columnNames { list-style-type:none; margin-top:10px; 
+      -moz-column-count:auto; -moz-column-width:230px; -moz-column-fill:auto;
+      -webkit-column-count:auto; -webkit-column-width:230px;
+      column-count:auto; column-width:230px; column-gap:0px; 
+      font-size:80%; line-height:110%; overflow:hidden;
+      }
+      #columnNames li { border-top: 1px solid transparent; }
+      #columnNames li:hover div {  }
+      #columnNames li div.colLockArea { display:inline-block; height:16px; width: 16px; }
+      #columnNames li div.colSelArea { display:inline-block; height:16px; width: 16px; }
+      #columnNames li div.colDnDArea { display:inline-block; height:16px; width: 16px; }
+      
+      #columnNames li:hover { background-color:rgb(222,222,192); }
+      #columnNames li:hover { }
+      #columnNames li:hover div.colDnDArea { background:url("res/menuIcons/drag_icon_NO.png") center 50% no-repeat; }
+      #columnNames li:hover div.colSelArea { background:url("res/menuIcons/check_mark-NO.png") center 50% no-repeat; }
+      #columnNames li:hover div.colLockArea { background:url("res/menuIcons/lock_icon14_NO.png") center 50% no-repeat; }
+
+      #columnNames li.colIsSelected div.colSelArea { background:url("res/menuIcons/check_mark.png") center 50% no-repeat; }
+      #columnNames li.colIsLocked div.colLockArea { background:url("res/menuIcons/lock_icon14.png") center 50% no-repeat; }
+      #columnNames li.colIsSelected:hover div.colSelArea { background:url("res/menuIcons/check_mark.png") center 50% no-repeat; }
+      #columnNames li.colIsLocked:hover div.colLockArea { background:url("res/menuIcons/lock_icon14.png") center 50% no-repeat; }
+      #columnNames li div.colDnDArea { cursor:move; }
+
+      #columnNames li.colDropTarget { border-top:1px solid silver; }
+
+      .hiddenByQS { display:none; }
+      .colNameHidden { display:none; }
+
+      #tellTheUser { display:none; }
+      #tellTheUser { border:4px solid rgb(192,192,192); border-radius:8px; background-color:rgb(240,240,240);
+      padding:16px; position:fixed; left:200px; top:200px; width:250px; }
+      
+
+      /* context menu icons */
+      .context-menu-item.icon-select { background-image: url(res/menuIcons/check_mark.png); }
+      .context-menu-item.icon-freeze { background-image: url(res/menuIcons/lock_icon.png); }
+      .context-menu-item.icon-edit { background-image: url(res/menuIcons/gear.png); }
+
+    </style>
+  </head>
+  
+  <body>
+    <form>
+      <div id="columnNamesContainer">
+        <div id="colNamesearchBox">
+          <input type="search" id="colNamesearch" placeholder="type partial or full words"/>
+          <label><input type="checkbox" id="showOnlySelected" name="showOnlySelected">Show only selected col names</label>
+        </div>
+
+        <ul id="columnNames">
+        </ul>
+      </div>
+
+      <div>
+        <button id="resetAllSettings" type="button" 
+        title="reset all column selections, ordering, widths and row sort criteria to the initial default values"
+        style="margin:10px; border-radius:4px; border:1px solid silver;">reset all settings</button>
+
+        <button id="doneSelectingCols" type="button" 
+        title="in this a prototype, this button does nothing"
+        style="float:right; margin:10px; border-radius:4px;
+        border:1px solid silver; padding:2px 24px;">done</button>
+      </div>
+    </form>
+    
+    <div id="tellTheUser">
+      <p>Notice:</p>
+      <p>The column name you have just locked was moved near the start of the list, together with the other locked columns.</p>
+    </div>
+
+  </body>
+</html>
