@@ -267,7 +267,7 @@
 			var t = (typeof options.selector === "string") ? jq_results.find(options.selector) : jq_results;
 			
 			cache = t.map(function () {
-				var temp = self.strip_html(this.innerHTML);
+				var temp = self.strip_html(this.innerText + ' ' + this.title);
 				return options.removeDiacritics ? self.removeDiacritics(temp) : temp;
 			});
 			

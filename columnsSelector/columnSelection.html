@@ -97,26 +97,26 @@
         );
 
         // action: lock a col and flock together with the frozen cols pack
-        $('#columnNames li div.colLockArea').on(
+        $( '#columnNames li div.colLockArea' ).on(
           'click',
           function(e) {
             // where to move the newly-frozen column after
-            var lastFrozenColName = $('#columnNames li.colIsLocked').last();
+            var firstNonFrozenColName = $( '#columnNames li' ).not( '.colIsLocked' ).first();
             // get a reference to the col name where the clicked icon belongs
             var $this = $(this).parent();
             // set or reset the lock status
-            $this.toggleClass('colIsLocked');
-            if( $this.hasClass('colIsLocked') ){
+            $this.toggleClass( 'colIsLocked' );
+            if( $this.hasClass( 'colIsLocked' ) ){
               // force selection for frozen cols
-              $this.addClass('colIsSelected');
+              $this.addClass( 'colIsSelected' );
               // remove the element from the dom flow
               $this.css({ position:'absolute', top:$this.offset().top, left:$this.offset().left });
               // move the element to its new place and insert it there
-              var p = lastFrozenColName.offset();
+              var pp = firstNonFrozenColName.offset();
               $this.animate(
                 {
-                  left:p.left,
-                  top:p.top + $this.height()
+                  left:pp.left,
+                  top:pp.top
                 },
                 {
                   duration: 1000,
@@ -125,15 +125,11 @@
                   }
                 }
               );
-              $this.insertAfter(lastFrozenColName[0]);
-            }
+              $this.insertBefore(firstNonFrozenColName[0]);
+            } // else must move the unlocked element out of the locked group
             // stop event bubbling else it will change the selection status
             e.stopPropagation();
             e.preventDefault();
-            // tell the user that the newly-frozen col has been moved
-            // if( $this.hasClass('colIsLocked') ){
-            //   $('#tellTheUser').show('fast').delay(2000).hide('slow');
-            // }
             // >>>> highlight the moved element for a while <<<<<<<<<<<
           }
         );
@@ -191,6 +187,15 @@
     </script>
     <style>
       body { font-family:calibri, sans-serif; }
+
+    /************** close button ***************/
+    .closeButton { background-image:url(../res/icon-close.png); background-size:cover;
+      background-repeat:no-repeat; border:6px solid transparent; corner-radius:4px;
+      background-color:rgb(240,240,240); height:32px; width:32px; position:fixed;
+      top:0; right:0; opacity:0.4; z-index:999; }
+    .closeButton:hover { opacity:1; }
+
+    /**************** wireframe ****************/
       #colNamesearch { border:2px solid silver; border-radius:4px; padding:0 6px; width:14em; line-height:125%; }
       #colNamesearchBox { margin:0px; padding-bottom:10px; padding-left:10px; background-color:#f0f0f0; padding-top:6px; }
 
@@ -200,7 +205,7 @@
       -moz-column-count:auto; -moz-column-width:230px; -moz-column-fill:auto;
       -webkit-column-count:auto; -webkit-column-width:230px;
       column-count:auto; column-width:230px; column-gap:0px; 
-      font-size:80%; line-height:110%; overflow:hidden;
+      font-size:80%; line-height:80%; overflow:hidden;
       }
       #columnNames li { border-top: 1px solid transparent; }
       #columnNames li:hover div {  }
@@ -225,8 +230,6 @@
       .hiddenByQS { display:none; }
       .colNameHidden { display:none; }
 
-      #tellTheUser { display:none; }
-      #tellTheUser { border:4px solid rgb(192,192,192); border-radius:8px; background-color:rgb(240,240,240);
       padding:16px; position:fixed; left:200px; top:200px; width:250px; }
       
 
@@ -239,10 +242,12 @@
   </head>
   
   <body>
+    <div class="closeButton" onclick="window.close();" title="close this window and return to the index">
+    </div>
     <form>
       <div id="columnNamesContainer">
         <div id="colNamesearchBox">
-          <input type="search" id="colNamesearch" placeholder="type partial or full words"/>
+          <input type="search" id="colNamesearch" placeholder="type text to search"/>
           <label><input type="checkbox" id="showOnlySelected" name="showOnlySelected">Show only selected col names</label>
         </div>
 
@@ -262,9 +267,23 @@
       </div>
     </form>
     
-    <div id="tellTheUser">
-      <p>Notice:</p>
-      <p>The column name you have just locked was moved near the start of the list, together with the other locked columns.</p>
+    <div id="comments">
+      <style>
+        .subHeader { font-weight:bold; line-height:200%; }
+      </style>
+
+
+      <p>Wireframe to demonstrate a panel for the management of a lengthy
+      columns list for a grid of a complex business application. 
+      </p>
+
+      <p class="subHeader">Why is this good for the user?</p>
+      <ul>
+      <li>Interactions are straighforward.</li>
+      <li>Despite the number of possible actions (three per item or about 600
+      in this example) the UI is clean, thanks to the use of the negative white
+      icons that only show when needed.</li>
+      </ul>
     </div>
 
   </body>
