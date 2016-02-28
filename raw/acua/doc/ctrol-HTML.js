@@ -1,0 +1,75 @@
+   1	pleno	43
+   2	pleno	38
+   3	pleno	37
+   4	pleno	42
+   5	pleno	41
+   6	trans	33
+   7	pleno	44
+   8	pleno	49
+   9	transp	15
+  10	pleno	48
+  11	transp	16
+  12	transp	06
+  13	transp	09
+  14	pleno	46
+  15	pleno	36
+  16	transp	13
+  17	transp	19
+  18	pleno	35
+  19	transp	12
+  20	transp	14
+  21	pleno	39
+  22	trans	22
+  23	trans	24
+  24	trans	21
+  25	trans	23
+  26	trans	28
+  27	trans	27
+  28	trans	25
+  29	trans	32
+  30	trans	26
+  31	trans	20
+  32	transp	03
+  33	transp	04
+  34	transp	05
+  35	transp	02
+  36	transp	01
+  37	transp	00
+  38	transp	17
+  39	textur	64
+  40	transp	18
+  41	transp	08
+  42	transp	07
+  48	pleno	40
+  49	pleno	45
+  50	pleno	50
+  51	pleno	47
+  52	trans	29
+  53	transp	10
+  54	trans	34
+  55	transp	11
+  56	trans	31
+  57	trans	30
+  58	textur	63
+ 117	satin	71
+ 122	satin	70
+ 125	satin	69
+ 126	satin	73
+ 127	textur	68
+ 132	satin	72
+ 138	satin	74
+ 222	textur	65
+ 226	textur	66
+ 232	textur	67
+ 43F	fluo	51
+ 44F	fluo	52
+ 45F	fluo	53
+ 46F	fluo	54
+ 47F	fluo	55
+1001	textur	56
+1002	textur	57
+1003	textur	58
+1004	textur	59
+1005	textur	60
+1006	textur	61
+1056	textur	62

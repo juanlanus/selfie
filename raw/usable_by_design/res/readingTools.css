@@ -1,0 +1,31 @@
+    /*******************************************/
+    .abstract             {font-style: italic; border: 1px solid #c0c0c0; padding: 6px 1em; margin: 6px 2em 6px 2em; }
+    .rt_showButton        { border: 0; margin: 0 0.3em 0 0.1em; vertical-align: middle; }
+    .rt_hideButton        { border: 0; margin: 0 0.3em 0 0.1em; vertical-align: middle; }
+    .rt_showHide          { text-shadow:0.15em 0.15em 4px #c0c0c0; } 
+    .rt_hideShow          { text-shadow:0.15em 0.15em 4px #c0c0c0; } 
+    .rt_TOC_H1            { margin-left: 0em; font-weight: bold; display: none; list-style-type: none; } 
+    .rt_TOC               { margin-left: 3em; border-left: 4px solid #e5e7bc; position: relative; } 
+    .rt_TOC a             { text-decoration: none; }
+    .rt_TOC li            { padding-top: 2px; padding-bottom: 2px; } 
+    .rt_TOC_H2            { margin-left: 2em; line-height: 90%; font-weight: bold; display: block; list-style-type: none; } 
+    .rt_TOC_H3            { margin-left: 4em; line-height: 100%; font-size: 80%; list-style-type: none; font-weight: bold; } 
+    .rt_TOC_H5            { margin-left: 7em; line-height: 100%; font-size: 75%; list-style-type: none; } 
+    .rt_TOC_H4            { margin-left: 6em; line-height: 100%; font-size: 75%; list-style-type: none; } 
+    .rt_TOC_H6            { margin-left: 8em; line-height: 100%; font-size: 75%; list-style-type: none; } 
+    .rt_TOC_H7            { margin-left: 9em; line-height: 100%; font-size: 75%; list-style-type: none; } 
+    .rt_TOCLabel          { display: block; float: left; margin-top: .5em; font-size: 1.5em; color: #e5e7bc; -webkit-transform: rotate(-90deg); -moz-transform: rotate(-90deg); }
+  /*******************************************/
+    /* initial menu */
+    .linksList                 { width: 33em; margin-left: 10%; margin-top: 2em; }
+    .linksList a               { display: block; text-decoration: none; font-size: 1.20em; color: #404040; font-weight: 400;
+                                 padding: .3em 2.5em .3em .8em; border: 1px solid #f4f4f4; }
+    .linksList a:hover         { background-color: #f8f8f8; border: 1px solid #f0f0f0; color: #000000; 
+                                 background-image: url(menuRightArrow.png); background-repeat: no-repeat; 
+                                 background-position: right center; }
+    .linksList td              { border: 1px solid #f0f0f0; background-color: #f4f4f4; margin: 0px; padding: 0px; }
+    .linksList table           { border-collapse: collapse; }
+
+
+
+  /*******************************************/

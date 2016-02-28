@@ -1,0 +1,719 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+  <title>BSI - references #3: listing</title>
+  <link rel="stylesheet" href="./res/demo.css" type="text/css">
+  <script type="text/javascript" src="./res/jquery-1.6.2.js"></script>
+ 
+</head>
+
+<body>
+
+<div class="wideColumn">
+<h1>BSI Entropy 5 - References Management </h1>
+
+<h2>Build reference dialog</h2>
+
+<p>The user chose to build a new reference. </p>
+
+<p>As there are three reference target types: </p>
+<ul>
+  <li>a system record, </li>
+  <li>an uploaded file, and </li>
+  <li>a resource outside the system referenced using a URL, </li>
+</ul>
+
+<p>the UI has to adapt to each one. </p>
+
+<p>The action starts by the user choosing the reference target type. Depending
+on her answer, it shows one of three dialogs. </p>
+
+<style>
+  .refTabsContainer 	{ border:4px solid rgb(121,212,212); width:999px; padding:12px; margin:0; border-radius:8px; font-family:Arial,sans-serif; font-size:12px; }
+  .refTitleH1 		{ color:rgb(14, 91, 150); font-size:18px; line-height: 20px; border-bottom: 2px dotted #CCC; margin-bottom:11px; }
+  .refTabs             	{ list-style-type:none; width:100%; font-weight:bold; }
+  .refTabs input[type="radio"] { display:none; } 
+  .refTabs li          	{ display:inline; padding:0; margin:0; }
+  .refTabs label       	{ border:1px solid rgb(222,222,222); background:rgb(240,240,240); color:black; border-radius:6px; }
+  .refTabs li.selected 	{ }
+  .refTabs input[type="radio"]:checked + label { border:1px solid rgb(31,70,101); background:rgb(31,70,101); color:white; border-radius:6px 6px 0 0; }
+
+  .refTabs table 	{ padding:0; margin:0; }
+  .refTabs td 		{ padding:1px 4px 1px 4px; margin:0; }
+  .refTabs th 		{ background-color:rgb(31,70,101); opacity:1; color:white; text-align:left; line-height:160%; padding:4px 4px 4px 4px; margin:0px; font-size:120%; }
+  .refNote      	{ font-size:9px !important; color:blue !important; font-family:Consolas !important; }
+  .refNoteWhite 	{ font-size:9px !important; color:blue !important; background-color:white !important; font-family:Consolas !important; }
+  .refTabs label       	{ padding:2px; margin:0; border:1px solid rgb(222,222,222); border-radius:4px 0 4px 0; }
+  .refCreate           	{ width:280px; border:1px solid rgb(212,212,212); border-radius:4px; padding-left:.5em; margin-bottom:2px; padding:6px; }
+  .refCreate p         	{ font-family:Arial; font-size:12px; font-weight:normal; }
+  .refCreate button    	{ border:1px solid black; border-radius:4px; height:30px; 
+                         font-family:Arial; font-size:12px; font-weight:bold; color:rgb(14,115,193); 
+                         background:url(BSIButtonBackground.png); background-repeat:repeat-x; float:right; }
+
+  .refCommitButtonContainer { width:972px; text-align:right; padding-right:22px; padding-bottom:6px; padding-top:6px; border:1px solid rgb(204,204,204); margin-top:-1px; }
+  .refCommitButton	{ border:1px solid black; border-radius:4px; height:30px; font-size:12px; font-weight:bold; color:#0E73C1;
+			background:url(./res/BSIButtonBackground.png); background-repeat:repeat-x; }
+  .refCancelButton	{ border:1px solid black; border-radius:4px; height:18px; font-size:12px; font-weight:normal; color:#0E73C1;
+			background:url(./res/BSIButtonBackground.png); background-repeat:repeat-x; }
+
+  .refListingContainer 	{ border:4px solid rgb(121,212,212); width:auto; padding:12px; margin:0; border-radius:8px; font-family:Arial,sans-serif; font-size:12px; }
+  .refListing table 	{ padding:0; margin:0; }
+  .refListing td 	{ padding:1px 4px 1px 4px; margin:0; }
+  .refListing th 	{ background-color:rgb(31,70,101); opacity:1; color:white; text-align:left; line-height:160%; padding:4px 4px 4px 4px; margin:0px; font-size:120%; }
+
+  .refButtonAdd  	{ background-image:url("./res/button-add.png"); background-position: 0 0; background-repeat:no-repeat;
+			width:24px; height:24px; float:left; padding-right:4px; }
+  .refButtonAdd a 	{ display:block; }
+  .refButtonDelete  	{ background-image:url("./res/button-remove.png"); background-position: 0 0; background-repeat:no-repeat;
+			width:24px; height:24px; float:left; padding-right:4px; }
+  .refButtonDelete a 	{ display:block; }
+
+</style>
+
+<div>
+
+<form action="#">
+
+  <div class="refTabsContainer">
+  <p class="refTitleH1">New reference [from record description or designator]<span class="refNote"><a href="#refNote1">[1]</a></span></p>
+  <ul class="refTabs">
+    <li><input type="radio" name="selectedTab" id="tab1" tabindex="111" checked onclick="showPanel('refDialog1');"><label for="tab1">Target is a system record </label></li>
+    <li><input type="radio" name="selectedTab" id="tab2" tabindex="112" onclick="showPanel('refDialog2');"><label for="tab2">... an uploaded file</label></li>
+    <li><input type="radio" name="selectedTab" id="tab3" tabindex="113" onclick="showPanel('refDialog3');"><label for="tab3">... an external resource</label></li>
+    <li style="padding-left:4em; font-weight:normal; color:gray;"> &larr; Click one of the three reference target choices</li>
+  </ul>
+
+<script>
+    function showPanel(panelId) {
+	$('#refDialog1').css('display', 'none');
+	$('#refDialog2').css('display', 'none');
+	$('#refDialog3').css('display', 'none');
+	$('#' + panelId).css('display', 'block');
+    }
+</script>
+
+  <div class="refDialogStack">
+
+
+
+<!-- **************************************************************************************************** -->
+<!-- dialog #1: search for a record using query builder -->
+    <div id="refDialog1">   <!-- 996 x 535 + elements below the image -->
+	<img src="./res/references04.png">
+        <div class="refCommitButtonContainer">
+	  <button class="refCommitButton">Add 4 references</button>
+	  <button class="refCancelButton" style="height:18px;">Cancel</button>
+        </div>
+
+	<p style="text-align:center; font-size:200%; color:rgb(222,222,222);">build reference to a system record</p>
+	<p>The user ran a query using the system´s query builder, and checked four of the records returned. <br>
+	The <em>Add N references</em> button tells the the user number of checked records, as a safety check, because there
+	might be more cheched records scrolled out of sight. When there are no selected records the button stays disabled. <br>
+	After clicking the button the references are built and this form is closed, returning the user to the context where
+	she clicked the <em>Add references</em> button. 
+	<p>When the "<em>Add N references</em> button is clicked, a dialog pops offering the user to enter a comment or
+	explanation for the to-be-built references, and may be choose some keywords to make it more findable. </p>
+	<p>During a session, the querybuilder must preserve its state across invocations. </p>
+	<p>If the query builder shows a record that already is a reference target for the current source record, it should flag
+	it somehow for the user to know. One way is to show it selected (checked) but disabled so the user it and realizes
+	it was checked by the system. Also, it must not be included in the button's <em>Build N references</em> count. </p>
+
+	</p>
+<p> </p><p> </p><p> </p><p>
+    </div>
+
+<!-- **************************************************************************************************** -->
+<!-- dialog #2: search for a uploaded file -->
+    <div id="refDialog2" style="width:996px; border:1px solid silver; display:none; ">   <!-- 996 x 535 -->
+
+	<!-- browse list of uploaded files -->
+	<table class="refListing borderTable" border="0" width="996px">
+	    <colgroup>
+		<col>
+		<col>
+		<col>
+		<col>
+		<col>
+		<col>
+	    </colgroup>
+	    <thead>
+	      <tr>
+		<!-- top row with tool buttons -->
+		<td colspan="6"> 
+		  <div class="refButtonAdd">
+		      <a title="upload a new file" href="#"></a> 
+		  </div> 
+		  <div class="refButtonDelete">
+		      <a title="break selected references" href="#"></a> 
+		  </div>
+		  <div>
+		  <div class="refButtonsRight" title="the usual functions" style="float:right;">
+		      <img src="./res/button_filterPrintExport.png">
+		  </div>
+		</td>
+	      </tr>
+	      <tr>
+		<!-- column headings -->
+		<th><input type="checkbox"></th>
+		<th>File name or title</th>
+		<th>File date</th>
+		<th>Date uploaded</th>
+		<th>Uploaded by</th>
+	      </tr>
+	    </thead>
+
+	    <tbody>
+	      <tr>
+		<td><input type="checkbox"></td>
+		<td><img src="./res/icon_excel.jpg"> (BSI-Entropy5-GlossaryOfTerms).BSI_Entropy_V5_Business Glossary 0.4 WIP.xlsx</td>
+		<td>2011-08-16 12:01</td>
+		<td>2011-08-16 12:01</td>
+		<td>Guido K</td>
+	      </tr>
+	      <tr>
+		<td><input type="checkbox"></td>
+		<td><img src="./res/icon_msword.jpg"> (BSI-Entropy5-Overview.Document).Entropy5_5MinutesOverview.docx</td>
+		<td>2011-06-20 22:05</td>
+		<td>2011-06-20 22:05</td>
+		<td>Carl M</td>
+	      </tr>
+	      <tr>
+		<td><input type="checkbox" checked="checked"></td>
+		<td><img src="./res/icon_pdf.jpg"> (BSI-Entropy5-SOW.Original.Backlog).BSI RFP Entropy v5 0 Annex D Product Backlog.pdf</td>
+		<td>2011-06-20 22:17</td>
+		<td>2011-06-20 22:17</td>
+		<td>Juan L</td>
+	      </tr>
+	      <tr>
+		<td><input type="checkbox"></td>
+		<td><img src="./res/icon_pdf.jpg"> (BSI-Entropy5-Vision.Document).Entropy Presentation for RFP Vendors - Mar 1 2011 - Final.pdf</td>
+		<td>2011-06-20 22:05</td>
+		<td>2011-06-20 22:05</td>
+		<td>Guido K</td>
+	      </tr>
+	      <tr>
+		<td><input type="checkbox"></td>
+		<td><img src="./res/icon_msword.jpg"> BSI Entropy V5-ui Guidelines.docx</td>
+		<td>2011-09-15 12:14</td>
+		<td>2011-09-15 12:14</td>
+		<td>Guido K</td>
+	      </tr>
+	      <tr>
+		<td><input type="checkbox" checked="checked"></td>
+		<td><img src="./res/icon_msword.jpg"> BSI Entropy V5-ui Guidelines_COMMENTED_BY_JUAN.docx</td>
+		<td>2011-09-15 12:45</td>
+		<td>2011-09-15 12:45</td>
+		<td>Guido K</td>
+	      </tr>
+	      <tr>
+		<td><input type="checkbox" checked="checked"></td>
+		<td><img src="./res/icon_pdf.jpg"> BSI-ENTROPY5-DAR-DAR (Telerik) (Sergio Matteoda).pdf</td>
+		<td>2011-09-08 16:03</td>
+		<td>2011-09-08 16:03</td>
+		<td>Juan L</td>
+	      </tr>
+	      <tr>
+		<td><input type="checkbox"></td>
+		<td><img src="./res/icon_zip.jpg"> BSI-Entropy5-Induction.Documents.zip</td>
+		<td>2011-08-11 18:49</td>
+		<td>2011-08-11 18:49</td>
+		<td>Carl M</td>
+	      </tr>
+	      <tr>
+		<td><input type="checkbox"></td>
+		<td><img src="./res/icon_pdf.jpg"> BSI_Entropy5_Scope_Release1.pdf</td>
+		<td>2011-08-26 16:56</td>
+		<td>2011-08-26 16:56</td>
+		<td>Guido K</td>
+	      </tr>
+	      <tr>
+		<td><input type="checkbox"></td>
+		<td><img src="./res/icon_excel.jpg"> Iteration2Backlog.xlsx</td>
+		<td>2011-08-29 18:12</td>
+		<td>2011-08-29 18:12</td>
+		<td>Guido K</td>
+	      </tr>
+	      <tr>
+		<td><input type="checkbox"></td>
+		<td><img src="./res/icon_jpg.jpg" checked="checked"> m012-treeView-associations.jpg</td>
+		<td>2011-08-26 16:33</td>
+		<td>2011-08-26 16:33</td>
+		<td>Carl M</td>
+	      </tr>
+	      <tr>
+		<td><input type="checkbox"></td>
+		<td><img src="./res/icon_jpg.jpg"> m013-treeView-associations-popup.jpg</td>
+		<td>2011-09-13 18:28</td>
+		<td>2011-09-13 18:28</td>
+		<td>Carl M</td>
+	      </tr>
+	      <tr>
+		<td><input type="checkbox"></td>
+		<td><img src="./res/icon_txt.jpg"> Menu Navigation.txt</td>
+		<td>2011-08-24 11:06</td>
+		<td>2011-08-24 11:06</td>
+		<td>Juan L</td>
+	      </tr>
+	      <tr>
+		<td><input type="checkbox"></td>
+		<td><img src="./res/icon_excel.jpg"> Ref.Specification-Audit.Attributes.xlsx</td>
+		<td>2011-08-29 18:13</td>
+		<td>2011-08-29 18:13</td>
+		<td>Guido K</td>
+	      </tr>
+	      <tr>
+		<td><input type="checkbox"></td>
+		<td><img src="./res/icon_excel.jpg"> Showcase.IT3.xlsx</td>
+		<td>2011-09-26 07:34</td>
+		<td>2011-09-26 07:34</td>
+		<td>Carl M</td>
+	      </tr>
+	    </tbody>
+	  </table>
+          <div class="refCommitButtonContainer">
+	    <button class="refCommitButton">Add 3 references</button>
+	    <button class="refCancelButton" style="height:18px;">Cancel</button>
+          </div>
+
+	<!-- data for an uploaded file -->
+	<table  class="borderTable" style="float:right; margin-left:3em; margin-right:3em; margin-top:1em;">
+	    <tbody>
+		<tr>
+		    <th >name</th>
+		    <th >description</th>
+		    <th >displayed as</th>
+		</tr>
+		<tr>
+		    <td >id</td>
+		    <td > Abstract identifier used to point to this upload</td>
+		    <td > </td>
+		</tr>
+		<tr>
+		    <td > name</td>
+		    <td > File name</td>
+		    <td > </td>
+		</tr>
+		<tr>
+		    <td > path</td>
+		    <td > File path</td>
+		    <td > </td>
+		</tr>
+		<tr>
+		    <td > title</td>
+		    <td > Optional file title</td>
+		    <td > </td>
+		</tr>
+		<tr>
+		    <td > file size</td>
+		    <td > File size, in bytes</td>
+		    <td > </td>
+		</tr>
+		<tr>
+		    <td > file date</td>
+		    <td > File date acording to OS</td>
+		    <td > </td>
+		</tr>
+		<tr>
+		    <td > date uploaRadFileExplorer ded</td>
+		    <td > Timestamp when the file was uploaded</td>
+		    <td > </td>
+		</tr>
+		<tr>
+		    <td > mime type</td>
+		    <td > The mime type of the file, reported by the uploader</td>
+		    <td > </td>
+		</tr>
+		<tr>
+		    <td > uploaded by</td>
+		    <td > User who uploaded the file</td>
+		    <td > </td>
+		</tr>
+		<tr>
+		    <td > version</td>
+		    <td > A version number used to reflect changes</td>
+		    <td > </td>
+		</tr>
+		<tr>
+		    <td > uploaded within module</td>
+		    <td > The context from where the upload was triggered</td>
+		    <td > </td>
+		</tr>
+		<tr>
+		    <td > classification</td>
+		    <td > </td>
+		    <td > </td>
+		</tr>
+		<tr>
+		    <td > keywords or tags</td>
+		    <td > Optional keywords added by the user</td>
+		    <td > </td>
+		</tr>
+	    </tbody>
+	</table>
+
+      <div style="padding:1.5em;">
+	<p style="text-align:center; font-size:200%; color:rgb(222,222,222);">build reference to an uploaded file</p>
+	<p>The user is browsing the list of available uploaded files, in a grid. <br>
+	The list can be sorted by any appropriate column, and it can be filtered on its content. <br>
+	The user can select one or mRadFileExplorer ore files as reference targets. <br>
+	These references are always one-way. <br>
+	The [+] button brings a file upload dialog. The user chooses the file and starts the upload process, while the
+	upload is in process the reference is not built, it has to wait until the upload ends. <br>
+	In the file upload form the user can enter a title for the file, that will be used instead of the filename
+	in the listings. This is useful to allow the identification of files without meaningful names. <br>
+
+	<br>
+	<br>
+	<p><strong>Pending:</strong></p>
+	<p>The user must be able to state that an upload is a replacement, a new version, of a previously uploaded
+	file. Even if the new file does not have the same name as the previous version. <br>
+	One way (not easily findable) would be to select a file (one and only one) and click the [+] button. Will 
+	the users understand this idiom? </p>
+	Allow the user to select one or more files. <br>
+	Implement the [+] button so it opens an <em>upload file</em> dialog allowing the user to add more files, 
+	check the Telerik Upload control for the ability to do multiple uploads in a single operation. <br>
+	Anyway, the system should put the user to wait until the upload ends, to be sure that the reference is
+	valid (do we have a delayed messages pipeline?). 
+	</p>
+      </div>
+<p> </p><p> </p><p> </p><p> </p>
+    </div>
+
+
+
+<!-- **************************************************************************************************** -->
+<!-- dialog #3: browse the web or the filesystem for an external resource -->
+    <div id="refDialog3" style="width:996px; border:1px solid silver; display:none; padding:1.5em; width:96%; "> 
+      <div style="
+	width:777px;
+	border:3px solid silver;
+	border-radius:8px;
+	margin:2em;
+	padding:1em;
+      ">
+	<ul style="list-style-type:none; font-size:133%; font-weight:bold;">
+	    <li><a href="#">Browse the web</a></li>
+	    <li><a href="#">Browse the file system</a></li> 
+	</ul>
+      </div>
+<p> </p><p> </p><p> </p><p> </p><p> </p>
+	<p style="text-align:center; font-size:200%; color:rgb(222,222,222);">build reference to an external resource</p>
+	<p>This sub-case has two sub-cases: browse the web, and browse the filesystem. </p>
+	<p>To browse the web the user sees a browser frame, either a browser tab or an embedded browser. <br>
+	Once the user reached the desired page, she clicks an <em>OK</em> button and the reference is built. <br>
+	This procedure allows for building a reference to a single target, as opposed to the others that have
+	the capability for building more then one reference in a single operation. This should not be an issue. </p>
+	<p>To build references to files (not uploaded, files in their original locations) the user sees a file browser 
+	like Telerik's RadFileExplorer that should be started at, and limited to, a set of paths known to be
+	<em>shared</em>, that is, allowing all system users to reach the files (and not the user´s PC directories). 
+	
+	</p>
+    </div>
+  </div>
+
+  <p></p>
+  </div>
+</form>
+
+<div>
+  <h4>A reference: </h4>
+
+  <table class="borderTable">
+    <tbody>
+      <tr>
+        <th>name</th>
+        <th>description</th>
+        <th>displayed as </th>
+      </tr>
+      <tr>
+        <td>id</td>
+        <td>Abstract identifier used to point to this reference</td>
+        <td>concealed</td>
+      </tr>
+      <tr>
+        <td>source</td>
+        <td>The reference source, a system record.</td>
+        <td>record description</td>
+      </tr>
+      <tr>
+        <td>target</td>
+        <td>The reference target, can be one of the three target types
+          enumerated below. </td>
+        <td>(according to target type, see below)</td>
+      </tr>
+      <tr>
+        <td>type (of target)</td>
+        <td><ul>
+            <li>system record </li>
+            <li>uploaded file </li>
+            <li>external resource via URL</li>
+          </ul>
+        </td>
+        <td><ul>
+            <li>record description</li>
+            <li>title or file name</li>
+            <li>title or URL</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>type</td>
+        <td><ul>
+            <li>one-way</li>
+            <li>reciprocal </li>
+          </ul>
+        </td>
+        <td><strong>&rarr;</strong> or <strong>&#x21c4;</strong> (&amp;rarr; or
+          &amp;#x21c4;)</td>
+      </tr>
+      <tr>
+        <td>type </td>
+        <td><ul>
+            <li>mandatory </li>
+            <li>associated information</li>
+          </ul>
+        </td>
+        <td>may be <strong>!</strong> or <strong>?</strong></td>
+      </tr>
+      <tr>
+        <td>target version</td>
+        <td>Used to detect changed targets.</td>
+        <td>version string</td>
+      </tr>
+      <tr>
+        <td>date</td>
+        <td>Timestamp when the reference was established</td>
+        <td>culture timestamp</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div>
+
+<p> </p>
+
+<p></p>
+
+<p></p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+</div>
+</body>
+</html>

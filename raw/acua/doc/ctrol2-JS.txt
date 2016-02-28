@@ -1,0 +1,75 @@
+   1	pleno	0 
+   2	pleno	1 
+   3	pleno	2 
+   4	pleno	3 
+   5	pleno	4 
+   6	trans	5 
+   7	pleno	6 
+   8	pleno	7 
+   9	transp	8 
+  10	pleno	9 
+  11	transp	10
+  12	transp	11
+  13	transp	12
+  14	pleno	13
+  15	pleno	14
+  16	transp	15
+  17	trans	16
+  18	pleno	17
+  19	transp	18
+  20	transp	19
+  21	pleno	20
+  22	trans	21
+  23	trans	22
+  24	trans	23
+  25	trans	24
+  26	trans	25
+  27	trans	26
+  28	trans	27
+  29	trans	28
+  30	trans	29
+  31	trans	30
+  32	transp	31
+  33	transp	32
+  34	transp	33
+  35	transp	34
+  36	transp	35
+  37	transp	36
+  38	transp	37
+  39	transp	38
+  40	transp	39
+  41	transp	40
+  42	transp	41
+  48	pleno	42
+  49	pleno	43
+  50	pleno	44
+  51	pleno	45
+  52	trans	46
+  53	transp	47
+  54	trans	48
+  55	transp	49
+  56	trans	50
+  57	trans	51
+  58	bijou	74
+ 117	satin	52
+ 122	satin	53
+ 125	textur	54
+ 126	satin	55
+ 127	textur	58
+ 132	satin	56
+ 138	satin	57
+ 222	textur	59
+ 226	textur	60
+ 232	textur	61
+ 43F	fluo	62
+ 44F	fluo	63
+ 45F	fluo	64
+ 46F	fluo	65
+ 47F	fluo	66
+1001	bijou	67
+1002	bijou	68
+1003	bijou	69
+1004	bijou	70
+1005	bijou	71
+1006	bijou	72
+1056	bijou	73

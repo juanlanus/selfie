@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="ISO_8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta name="description" content="Test page" />
+    <title>Test page</title>
+    <link type="text/css" rel="stylesheet" media="all" href="./res/acua.css" />
+    <link type="text/css" rel="stylesheet" media="all" href="./res/muestrario.css" />
+    <script type="text/javascript" src="./res/jquery.js"></script>
+    <script type="text/javascript" src="./res/acua.js"></script>
+    <script type="text/javascript" src="./res/muestrario.js"></script>
+</head>
+
+<body>
+<h1>Print style, Crop image </h1>
+
+<!-- ============================================================================================= -->
+<!-- @media print -->
+<style>
+    #MCEColoresElegidos     { float:none; width:90%; margin-left:5%; }
+    .noPrint                { display:inherit; }
+    .siPrint                { display:block; }
+    .texto                  { max-width:inherit; }
+    .MCEColorElegido        { font-family:Calibri,Arial,sans-serif; font-size:100%; color:black; }
+    .MCEColorElegidoImg     { background-image:none; }
+    .MCEColorElegidoClose   { display:none; }
+
+    /* colores elegidos, en pantalla */
+    #MCEColoresElegidos     { width:90%; } 
+    .MOculto                { display:none; }
+    #MCEEncab               { display:block; }
+
+    .MCEColorElegido        { font-family:Calibri,Arial,sans-serif; font-size:100%; }
+    .MCEColorElegidoPrint   { display:inline; }
+    .MCEColorElegidoImg     { background-image:url(./res/colorNO.png); background-repeat:no-repeat; height:90px; width:auto; }
+    .MCEColorElegidoClose   { display:none; }
+    .separadorDeColores     { height:1px; background-color:rgb(192,192,192); border:0; }
+
+</style>
+<!-- ============================================================================================= -->
+
+<div class="" id="MCEColoresElegidos">
+    <h3 class="siPrint" id="MCEEncab">Colores elegidos</h3>
+    <hr class="separadorDeColores" >
+
+    <div class="MCEColorElegido MOculto MColorClaro" id="color_elegido_1004" 
+    style="background-image: url(none); display: block;" 
+    title="color código 1004 ? - bijouterie">
+        <img class="MCEColorElegidoImg" src="./imag/1004.jpg" />
+        <p class="MCEColorElegidoPrint">Color 1004 ? - bijouterie </p>
+
+        <!-- boton para cerrar -->
+        <div title="click para quitar de aquí" onclick="M.closeColorElegido(this);" class="MCEColorElegidoClose noPrint MColorClaro">
+            <p class="MCEColorElegidoCloseX"> x </p>
+        </div>
+        <hr class="separadorDeColores" >
+    </div>
+
+    <div class="MCEColorElegido MOculto MColorOscuro" id="color_elegido_14" 
+    style="background-image: url(none); display: block;" 
+    title="color código 14 Azul oscuro cartel - pleno">
+        <img class="MCEColorElegidoImg" src="./imag/14.jpg" />
+        <p class="MCEColorElegidoPrint">Color 14 Azul oscuro cartel - pleno </p>
+
+        <!-- boton para cerrar -->
+        <div title="click para quitar de aquí" onclick="M.closeColorElegido(this);" class="MCEColorElegidoClose noPrint">
+            <p class="MCEColorElegidoCloseX"> x </p>
+        </div>
+        <hr class="separadorDeColores" >
+    </div>
+
+    <div class="MCEColorElegido MOculto MColorClaro" id="color_elegido_5" 
+    style="background-image: url(none); display: block;" 
+    title="color código 5 Amarillo McDonald's cartel - pleno">
+        <img class="MCEColorElegidoImg" src="./imag/5.jpg" />
+        <p class="MCEColorElegidoPrint">Color 5 Amarillo McDonald's cartel - pleno </p>
+
+        <!-- boton para cerrar -->
+        <div title="click para quitar de aquí" onclick="M.closeColorElegido(this);" class="MCEColorElegidoClose noPrint MColorClaro">
+            <p class="MCEColorElegidoCloseX"> x </p>
+        </div>
+        <hr class="separadorDeColores" >
+    </div>
+
+    <div class="MCEColorElegido MOculto MColorClaro" id="color_elegido_25" 
+    style="background-image: url(none); display: block;" 
+    title="color código 25 Rosa mampara - translúcido">
+        <img class="MCEColorElegidoImg" src="./imag/25.jpg" />
+        <p class="MCEColorElegidoPrint">Color 25 Rosa mampara - translúcido </p>
+
+        <!-- boton para cerrar -->
+        <div title="click para quitar de aquí" onclick="M.closeColorElegido(this);" class="MCEColorElegidoClose noPrint MColorClaro">
+            <p class="MCEColorElegidoCloseX"> x </p>
+        </div>
+        <hr class="separadorDeColores" >
+    </div>
+
+    <div class="MCEColorElegido MOculto MColorClaro" id="color_elegido_32" 
+    style="background-image: url(none); display: block;" 
+    title="color código 32 Humo tenue - transparente">
+        <img class="MCEColorElegidoImg" src="./imag/32.jpg" />
+        <p class="MCEColorElegidoPrint">Color 32 Humo tenue - transparente </p>
+
+        <!-- boton para cerrar -->
+        <div title="click para quitar de aquí" onclick="M.closeColorElegido(this);" class="MCEColorElegidoClose noPrint MColorClaro">
+            <p class="MCEColorElegidoCloseX"> x </p>
+        </div>
+        <hr class="separadorDeColores" >
+    </div>
+
+    <!-- prototipo para clonar: un color elegido -->
+    <div class="MCEColorElegido MOculto" id="MCETemplate">
+        <img class="MCEColorElegidoImg" src="" />
+        <p class="MCEColorElegidoBlah">... info del color ...</p>
+
+        <!-- boton para cerrar -->
+        <div title="click para quitar de aquí" onclick="M.closeColorElegido(this);" class="MCEColorElegidoClose noPrint">
+            <p class="MCEColorElegidoCloseX"> x </p>
+        </div>
+    </div>
+
+</div>
+
+<!-- ======================================== CROP IMAGE ========================================= -->
+<style>
+    .crop{
+            margin:1em 1em;
+            overflow:hidden; /* this is important */
+            position:relative; /* this is important too */
+            border:1px solid #ccc;
+            width:150px;
+            height:90px;
+            }
+    .crop img{
+            position:absolute;
+            top:-565px;
+            left:-310px;
+            }
+</style>
+
+<p class="crop">
+  <img src="../fotos/057SySbr.jpg" alt="css template" />
+  <a href="http://templatica.com" title="Css Templates">Templatica</a>
+</p> 
+
+
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+@media print {
+/* solo muestrario de colores */
+    .noPrint                { display:none; }
+    .siPrint                { display:block; }
+    .texto                  { max-width:inherit; }
+     
+    /* header de pagina */
+    #PHeader                {  }
+    #PHeader h1             { margin-top:0px; margin-bottom:0px; }
+    #PHeader p              { margin:0px; }
+    #PHeader td             { vertical-align:top; padding:0px; padding-top:0em; padding-left:0em; padding-right:0em; }
+    .PTitulo                { font-weight:700; font-size:150%; } 
+
+
+    /* colores elegidos, es lo unico que se imprime */
+    #MCEEncab               { display:block; }
+    #MCEColoresElegidos     { display:block; float:none; width:95%; margin-left:2.0%; solid blue; }
+    .texto                  { max-width:inherit; }
+    .MCEColorElegido        { font-family:Calibri,Arial,sans-serif; font-size:100%; color:black;
+                              border-bottom:1px solid rgb(192,192,192); padding-top:6px; }
+    .MCEColorElegidoImg     { height:90px; width:auto; display:inline; }
+    p.MCEColorElegidoBlah   { display:inline; font-size:110%; }
+    .MCEColorElegidoClose   { display:none; }
+    .MCEColorElegidoPrint   { display:inline; }
+
+    /* no imprimir lo que no se imprime */
+    .noPrint                { display:none; }
+
+    /* no imprimir navegacion */
+    #nav                    { display:none; }
+    #contenido              { margin:0; width:100%; }  
+
+    /* no imprimir tiras de muestras */
+    #MTodosLosColores       { display:none; margin:0; }
+
+    /* el rengl[on separador no se imprime ... */
+    .separadorDeColores     { height:1px; color:rgb(192,192,192); background-color:rgb(192,192,192); border:0; }
+
+/* =====================================  PROTOTIPO  ========================================
+<div style="background-image: url(&quot;./imag/39.jpg&quot;);"
+class="MCEColorElegido MColorClaro"
+id="color_elegido_39"
+title="color código 39 Fantasía cristal - transparente">
+    <img src="./imag/39.jpg" class="MCEColorElegidoImg">
+    <p class="MCEColorElegidoBlah">Color 39 Fantasía cristal - transparente </p>
+    <div title="click para quitar de aquí"
+    onclick="M.closeColorElegido(this);"
+    class="MCEColorElegidoClose MColorClaro">
+        <p class="MCEColorElegidoCloseX"> x </p>
+    </div>
+</div>
+========================================================================================== */
+
+}

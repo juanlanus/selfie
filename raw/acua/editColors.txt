@@ -1,0 +1,72 @@
+        color_1: ["1", 1,   1  , "1.jpg", "ladrillo - pleno", "claro", "  "],
+                               1       1         1                            1                                         2      1
+<td class="MUnColor" id="color_2" alt="2" title="2" onclick="M.elegirUnColor('2');" style="background-image:url(./imag/2.jpg)">2</td>
+cod	imagen	descripción	tipo	tono	obs	grupo	orden
+17	17.jpg	 	translúcido	claro	 	2	100
+31	31.jpg	 	translúcido	claro	 	2	200
+24	24.jpg	 	translúcido	claro	 	2	300
+22	22.jpg	 	translúcido	claro	 	2	400
+25	25.jpg	 	translúcido	claro	 	2	500
+23	23.jpg	 	translúcido	claro	 	2	600
+28	28.jpg	 	translúcido	oscuro	 	2	700
+30	30.jpg	 	translúcido	claro	 	2	800
+27	27.jpg	 	translúcido	claro	 	2	900
+26	26.jpg	 	translúcido	claro	 	2	1000
+52	52.jpg	 	translúcido	claro	 	2	1100
+57	57.jpg	 	translúcido	oscuro	 	2	1200
+56	56.jpg	 	translúcido	oscuro	 	2	1300
+29	29.jpg	 	translúcido	claro	 	2	1400
+6	6.jpg	 	translúcido	oscuro	 	2	1500
+54	54.jpg	 	translúcido	oscuro	 	2	1600
+37	37.jpg	 	transparente	oscuro	 	1	1700
+36	36.jpg	 	transparente	oscuro	 	1	1800
+35	35.jpg	 	transparente	claro	 	1	1900
+32	32.jpg	 	transparente	claro	 	1	2000
+33	33.jpg	 	transparente	oscuro	 	1	2100
+34	34.jpg	 	transparente	oscuro	 	1	2200
+12	12.jpg	celeste 	transparente	claro	 	1	2300
+42	42.jpg	 	transparente	oscuro	 	1	2400
+41	41.jpg	 	transparente	oscuro	 	1	2500
+11	11.jpg	 	transparente	claro	 	1	2600
+9	9.jpg	 	transparente	claro	 	1	2700
+20	20.jpg	 	transparente	claro	 	1	2800
+16	16.jpg	 	transparente	oscuro	 	1	2900
+19	19.jpg	 	transparente	oscuro	 	1	3000
+55	55.jpg	 	transparente	claro	 	1	3100
+53	53.jpg	 	transparente	oscuro	 	1	3200
+13	13.jpg	 	transparente	oscuro	 	1	3300
+38	38.jpg	 	transparente	claro	 	1	3400
+40	40.jpg	 	transparente	claro	 	1	3500
+39	39.jpg	 	transparente	claro	 	1	3600
+18	18.jpg	 	pleno	claro	 	3	3700
+15	15.jpg	 	pleno	claro	 	3	3800
+3	3.jpg	 	pleno	oscuro	 	3	3900
+2	2.jpg	negro 	pleno	oscuro	 	3	4000
+21	21.jpg	 	pleno	oscuro	 	3	4100
+48	48.jpg	 	pleno	claro	 	3	4200
+5	5.jpg	 	pleno	claro	 	3	4300
+4	4.jpg	 	pleno	claro	 	3	4400
+1	1.jpg	 	pleno	claro	 	3	4500
+7	7.jpg	 	pleno	claro	 	3	4600
+49	49.jpg	 	pleno	oscuro	 	3	4700
+14	14.jpg	 	pleno	oscuro	 	3	4800
+51	51.jpg	 	pleno	oscuro	 	3	4900
+10	10.jpg	 	pleno	oscuro	 	3	5000
+8	8.jpg	 	pleno	oscuro	 	3	5100
+50	50.jpg	 	pleno	oscuro	 	3	5200
+43F	43F.jpg	 	fluorescente	claro	 	4	5300
+44F	44F.jpg	 	fluorescente	claro	 	4	5400
+45F	45F.jpg	 	fluorescente	claro	 	4	5500
+46F	46F.jpg	 	fluorescente	claro	 	4	5600
+47F	47F.jpg	 	fluorescente	claro	 	4	5700
+222	222.jpg	 	fantasía	claro	 	5	5800
+226	226.jpg	 	fantasía	claro	 	5	5900
+232	232.jpg	 	fantasía	claro	 	5	6000
+125	125.jpg	 	fantasía	claro	 	5	6100
+122	122.jpg	 	fantasía	claro	 	5	6200
+117	117.jpg	 	fantasía	claro	 	5	6300
+132	132.jpg	 	fantasía	claro	 	5	6400
+126	126.jpg	 	fantasía	claro	 	5	6500
+138	138.jpg	 	fantasía	claro	 	5	6600
+127	127.jpg	 	fantasía	claro	 	5	6700
+

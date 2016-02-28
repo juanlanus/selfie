@@ -1,0 +1,535 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+  <title>Usable by design: how and why</title>
+  <link rel="stylesheet" href="./\agenda.css" type="text/css">
+</head>
+
+<body>
+
+<div id="agendaBody">
+<h1>Usable by design: how and why</h1>
+
+<p>My client does its software development in house, but this time they hired me because they
+needed a small application with high usability, as you will see. </p>
+
+<p>They know about the user interfaces I do because I worked for them several years ago. </p>
+
+<div style="margin:2em 0 1.4em 10em;">
+
+<div class="toc">
+<ul>
+  <li><a href="#L28">What's the application for?</a></li>
+  <li><a href="#L48">Requirements</a></li>
+  <li><a href="#L64">Thinking of usability</a></li>
+  <li><a href="#L90">Filtering</a> 
+    <ul>
+      <li><a href="#L94">Starting the program</a></li>
+      <li><a href="#L144">File filtering</a></li>
+      <li><a href="#L170">Operation of the file filtering interaction </a></li>
+      <li><a href="#L182">Cancelled processes</a></li>
+    </ul>
+  </li>
+  <li><a href="#L204">Managing excepted vehicles</a> 
+    <ul>
+      <li><a href="#L210">A bit of context</a></li>
+      <li><a href="#L216">Avoiding the design of the interaction</a></li>
+      <li><a href="#L286">How not to design?</a></li>
+      <li><a href="#L304">Interacting with a long list</a></li>
+      <li><a href="#L316">Editing an item</a></li>
+    </ul>
+  </li>
+</ul>
+</div>
+</div>
+
+<h2 id="L28">What's the application for?</h2>
+
+<p>My client operates a complex system for recording and processing millions of traffic offenses
+for one province. Part of the system involves the use of traffic speed sensors that measure the
+speed of the vehicles and take a picture when said speed exceeds a limit. These are the so-called
+"radars". </p>
+
+<div style="margin: 1em 0em 1em 1.5em;">
+<img alt="image of an offender" src="./usableByDesign/offender.png" class="imgR"></div>
+
+<p>Every day they are handled a number DVDs containing thousands of pictures together with files
+with supporting data like the location, the date and time, the speed, the "dominio" (Spanish for
+"dominion", the legal name of the plate number), and more. </p>
+
+<p>The automatic speed sensors take pictures without regarding if the vehicle is an ambulance
+striving to save somebody's life, a police patrol, or a regular wrongdoer. </p>
+
+<p>According to the law, if an ambulance or another public service vehicle gets fined they can go
+to the court and demonstrate that they did it for good and the fine is waived. But having to go to
+the court (maybe travelling several hundred kilometers) and losing a whole day is a chore that
+raises complaints. </p>
+
+<p>So, the idea is to <em>filter</em> out the data of the excepted vehicles before sending it to
+the normal circuit. </p>
+
+<p>The data is a huge number of text and image files, many gigabytes a day. It is handled by the
+employees of the transit authority office, who are not expected to have any special qualifications
+albeit the information is rather sensible and critical, and the volume is huge. </p>
+
+<p>The filtering is to be done by means of a list of excepted plate numbers, provided by the
+interested parts: police, hospitals, firemen, and others.</p>
+
+<h2 id="L48">Requirements</h2>
+
+<p>In brief, the business need is to:</p>
+<ul>
+  <li>Mantain a list of excepted vehicles, </li>
+  <li>filter the data aginst that list, and</li>
+  <li>let anyone do the related tasks without special training. </li>
+</ul>
+
+<p>We are interested in the last requirement, the usability part. </p>
+
+<h2 id="L64">Thinking of usability</h2>
+
+<p>I detected that the usability requirement was especially aimed at reducing the additional
+operations cost due to errors.</p>
+
+<p>My client handled me a formal use case mainly devoted to the description of the data file
+formats, and alloted me a lot of freedom. I rewrote the use case with focus on interaction. UCs are
+for capturing functional requirements, and functionality is the closest thing to interaction. I
+always rely in UCs for injecting interaction desing in a system's UI, as a first step before
+wireframes and mockups, writing UCs that are not formal behemots but easy to read and understand.
+</p>
+
+<p>Let's recall the ISO/IEC definition of usability:</p>
+
+<p style="margin-left:2em"><cite>"The extent to which a product can be used by specified users to
+achieve specified goals with effectiveness, efficiency and satisfaction in a specified context of
+use." </cite></p>
+
+<p>Protecting the user from their own errors is the <em>effectiveness</em> part, the part that
+affects the operational costs. Later on it came out that there was a stringent <em>efficiency</em>
+requirement, because of the high volume of the data and the time it takes to filter it. The
+<em>satisfaction</em> part tends to come out off the first two. </p>
+
+<p>As protecting the users from their errors was the focus, I did mental walk-throughs of the UC
+steps asking me what could go wrong at any step.</p>
+
+<p>At this point it might be useful to recall that protecting the users from their errors is not
+asking them "Are you sure that you want to wreck havoc?" in a pop-up modal dialog, but instead it
+'s about letting the users know what are they doing. In the next sections I will show the system
+operation and comment on the features that are there to make the UI safe.</p>
+
+<h3>General usability features</h3>
+
+<p>There are many features built into the UI that are not visible but make the user's life easier,
+like: </p>
+<ul>
+  <li>Forms are resizable, and the program will remember the window geometry and position across
+    sessions. </li>
+  <li>Column widths of the many reports available are also resizable, and the user preferred sizes
+    are remembered across sessions on a per-report basis. </li>
+  <li>No frills: the UI is as spartan as possible. This is how it has to be in applications that
+    are to be used daily for work. A clean design reduces the cognitive load and the users are
+    happier to operate the program. </li>
+  <li>Normal action buttons are always located near the bottom right corner. The primary action
+    button has its label bolded and is bigger, to make it more visible and also to make it a bigger
+    mouse target (abiding by Fitt's law). </li>
+  <li>All forms have a secondary "cancel" button, smaller and less noticeable, always at the right
+    of the primary action button as usual in Windows. This button's help text communicates its
+    funcion, and where appropriate it tells that no files will be written, thus reassuring the
+    user. </li>
+  <li>Always the primary button is activated by the enter ket, and the cancel button by the escape
+    key, in all forms. Users start using these shortcuts automatically, without thinking of it, as
+    it should be. </li>
+  <li>The button labels describe the associated actions, clearly. It doesn't matter if the text
+    gets a litle longer than in the usual button label. </li>
+  <li>But button labels avoid useless repetitive initial words. For example in the main menu the
+    actions are named in a way that the users can discards those they are not interested in by
+    reading the first word only. To achieve this, in this menu, button labels are names instead of
+    verbs, because a prepended verb would be repetitive. </li>
+  <li>The button help texts avoid repeating what the button label already communicated, so the
+    users will feel that they are getting fresh information. </li>
+  <li>In all screens colors and fonts are always coherent, but ...</li>
+  <li>Subtle color differences are used where appropriate, for example a slight change in the
+    background color of the input controls that have focut, and a completely different backgtound
+    color in the updateable exceptions list (to make it different form the report screens, that
+    look the same). </li>
+  <li>Labeling coherence is cheched: the same data element bears the same name everywhere. </li>
+</ul>
+
+<p></p>
+
+<h2 id="L90">Filtering</h2>
+
+<p>This is the ultimate purpose of this application, and it is also the stage where errors are
+significant. The kind of errors at this stage are related to skipping a file, delivering a file
+more than once, or delivering incomplete file sets. Recall that a set is comprised of a file and
+its related images in a folder.</p>
+
+<h3 id="L94">Starting the program</h3>
+
+<div style="clear:both; margin: 1em 3em 1em 1.5em;">
+<img alt="the app's distinctive icon: a car with the usual prohibition signal on it"
+src="./usableByDesign/CarNot_64x64.gif" class="imgL"></div>
+
+<p>The program is a Windows application, so it can be started by double-clicking its icon.
+Everybody is aware of this, but I mention it so I can introduce the application icon, a car with a
+prohibition sign on it. Simple and disctinctive: don't fine this car.</p>
+
+<div style="clear:both; margin: 1em 0em 1em 1.5em;">
+<img alt="the initial menu enumerates the program functions" src="./usableByDesign/excep-menu.png"
+class="imgR"></div>
+
+<p>The main window is simply a menu that enumerates the available operations:</p>
+<ul>
+  <li>Filtering process</li>
+  <li>Filtering history</li>
+  <li>Exceptions registration</li>
+  <li>Queries and reports</li>
+  <li>Exceptions history</li>
+  <li>Configuration</li>
+  <li>End</li>
+</ul>
+
+<p>This is not the regular Windows menu comprised of a concealed list of small font items. This
+menu always displays all its options, loud and clear, without the usual click to open, choosing,
+and click again to select. Moreover, the most likely operation is already selected so it can be
+activated by a single touch of the enter key.</p>
+
+<div style="clear:both; margin: 1em 2em 2em 0em;">
+<img alt="the initial menu showing help" src="./usableByDesign/menuHelp.png" class="imgL"></div>
+
+<p>There is help everywhere. Hovering over an option displays a reasonable amount of information
+about what will it do, in case the label is not enough. The help information is not a single short
+text line but a readable window. Users don't read manuals (let alone thick manuals) so providing
+easily reachable short and complete instructions can be the only opportunity to show them with
+written instructions. </p>
+
+<p>Every control in the application has its help popup that shows after hovering it for a short
+while. </p>
+
+<p></p>
+
+<p></p>
+
+<p></p>
+
+<h3 id="L144">File filtering</h3>
+
+<div style="clear:both; margin: 1em 0em 1em 1.5em;">
+<img alt="selection of files to filter" src="./usableByDesign/filteringFileSelection.png"
+class="imgR"></div>
+
+<p>Clicking the "Proceso de filtrado" option ("Filtering process") opens the files selection
+window. </p>
+
+<p>This window has a number of user protection features, as it is the most critical one.</p>
+
+<p>But before looking at them, a bit of context. The user designates a directory as its source
+location in the configuration form; it will usually be a DVD reader. This screen enumerates all the
+files found in said directory for the user to select which one to filter (usually all). </p>
+
+<p>At the top of the screen there is a confirmation of the location of the input folder ("K:\") and
+the DVD number. The users keep a record of the DVDs they handle, so seeing the DVD number is
+reassuring. Near this heading there is a button to allow the user to switch to other directory
+without having to tweak the configuration. The button is hidden in a corner and its label is not
+bolded, to make it stay out of sight. The user will find it if the need arises. The button label
+says it all: "change directory".</p>
+
+<p>If the designated directory is a DVD reader and it is not ready, a "unit not ready" message is
+shown and the form primary button changes to "retry". </p>
+
+<p>The list of files has the least possible information, only the useful data: file name and
+extension, date, and size. File sizes are in bytes whilst folder sizes are expressed in number of
+files (images) contained.</p>
+
+<p>Files are selectable, folders are not because the images are selected after their associated
+file records. The user can't select a file without its images folder or viceversa.</p>
+
+<p>The files with .txt extension are selected by default, other file types have to be explicitely
+selected. </p>
+
+<p>In addition to have a check box that makes them different from folders, file names are bolded in
+an eyecatching fashion. And, the button that triggers the filtering process displays the number of
+files found as a reasuring measure, because not all files are visible all the time. Changing the
+selection updates the number in the button, of course. </p>
+
+<p>There is a cancel secondary button. It has its help information, same as the menu. In this case
+the help says that clicking this button cancels the process and that no files will be modified.
+This is quite reassuring.</p>
+
+<p>As in all screens, the design is haken to it minimum. There are only controls for the actions
+the user needs, and nothing else. The window does not shot that it is possible to resize it, or
+resize the column widths, until you try to do it. Then it communicates these affordances by
+displaying the usual double-arrow mouse pointers. </p>
+
+<h3 id="L170">Operation of the file filtering interaction </h3>
+
+<div style="clear:both; margin: 1em 0em 1em 1.5em;">
+<img alt="ongoing filtering process report" src="./usableByDesign/filteringReport.png"
+class="imgR"></div>
+
+<p>The filtering process is a batch process, i.e., it is not interactive. Once it is started, the
+progran only has to keep the user informed about its progress. It does so by logging all what it
+does in a report screen. It also writes the same information in a log file, for the techies to look
+in case of a problem: more user protection, as they are ot required to take note of the error
+messages and other ancillary information. </p>
+
+<p>Behing the scenes the program builds a directory where it will put the output files of this
+process, giving it a unique but predictable name. One such name can be "PROD_00042-1" where the
+"00042" part is a sequential process number. During the filtering process that name will be
+"PROD_00042-1-INCOMPLETO" signaling that the directori holds the output of an incomplete process.
+Only after everything ends happily the program will change the name, deleting the "-INCOMPLETO"
+part. This protects the user from sending a set of files in the belief that it is right, being that
+in the last minute or when the user winked, it failed. </p>
+
+<p>When the user is done with a successful filtering task, they have to gather the files and send
+them to be processed. Again the application guides the user steps, as it opens a Windows Explorer
+zeroed in the output directory just built. There might be many directories with like names striving
+to make a human err, but a program will not be fooled: it will always open the featured directory.
+Once more the users are protected of their own errors.</p>
+
+<h3 id="L182">Cancelled processes</h3>
+
+<p></p>
+
+<div style="clear:both; margin: 1em 0em 1em 1.5em;">
+<img alt="cancelled filtering process report" src="./usableByDesign/filteringCancelled.png"
+class="imgR"></div>
+
+<p>Anyway, if the process is cancelled either by user action or because of an error, the screen
+changes its color. This way the user is protected of the problems arising if they don't notice that
+something failed, for example, a hard disk full condition.</p>
+
+<p>Notice that after the process ends the cancel button is relabeled "retornar" ("return") because
+its function has changed.</p>
+
+<p>Also, after a cancellation by the user, the program deletes all the files written during the
+failed process. Even if the users don't notice the colored screen and the messages, there will be
+no files to send, they will see an empty directory. Somewhere else a log file will have information
+about what happened, something like an aircraft's black box. </p>
+
+<p></p>
+
+<p></p>
+
+<p></p>
+
+<p></p>
+
+<h2 id="L204">Managing excepted vehicles</h2>
+
+<p>Managing the list of excepted vehicles is the other set of interactions, required to be able to
+do the filtering. </p>
+
+<p>This process is not as critical as the filtering one, by far. In this part I put the emphasis in
+making the users' life easier, albeit still caring about protecting them.</p>
+
+<h3 id="L210">A bit of context</h3>
+
+<p>The list has several thousand items. Each one in comprised of the "dominio" (plate number), an
+owner usually some Government office, a validity period , and a few more data columns like who
+registered it when. </p>
+
+<p>Every now and then a list is sent by another office asking th except some vehicles, for example
+by email or in paper. The users simply add the requested exceptions to the list. </p>
+
+<h3 id="L216">Avoiding the design of the interaction</h3>
+
+<p>In my experience, it is not possible to know in advance how will the users work. Usera will do
+as they want, using the UI in surprising ways one wouldn't predict. Aditionally, I didn't have any
+contact with the users, not at all, so I was unable to get a glimpse of what were them willing to
+do. </p>
+
+<p>But I got a current excepted vehicles list and analyzed its content. The defects it contained
+spoke about the issues they were facing. Actually it was more shouting than speaking.</p>
+
+<p>The most noticeable issue was that they were writing down the names of the requesting offices
+instead of having a list to select from. I noticed it because there were several versions of each
+name differing in abreviations or simply punctuation, for example "PODER EJEC. DE LA PCIA. DE
+BUENOS AIRES-POLICIA BONAERENSE" and "PODER EJEC. PCIA. BS. AS.-POLICIA BONAERENSE" refer to the
+same. Check the variations on one Ministery:</p>
+<ul>
+  <li>PODER EJECUTIVO DDE LA PROV. DE BS. AS.-MINISTERIO DE GOBIERNO-</li>
+  <li>PODER EJECUTIVO DE AL PROV. DE BS. AS.-MINISTERIO DE GOBIERNO-</li>
+  <li>PODER EJECUTIVO DE LA PROV. DE BS. AS.-MINISTERIO DE GOBIERNO-</li>
+  <li>PODER EJECUTIVO DE LA PROV. DE BS.AS.-MINISTERIO DE GOBIERNO-</li>
+  <li>PODER EJECUTIVO PCIA BS.AS-MINISTERIO DE GOBIERNO-</li>
+  <li>PODER EJECUTIVO PCIA BS.AS.-MINISTERIO DE GOBIERNO-</li>
+  <li>PODER EJECUTIVO PCIA DE BS.AS-MINISTERIO DE GOBIERNO-</li>
+  <li>PODER EJECUTIVO PCIA DE BS.AS. -MINISTERIO DE GOBIERNO-</li>
+  <li>PODER EJECUTIVO PCIA DE BS.AS.-MINISTERIO DE GOBIERNO-</li>
+  <li>PODER EJECUTIVO PCIA DE BS.AS.MINISTERIO DE GOBIERNO</li>
+  <li>PODER EJECUTIVO PCIA. DE BS.AS.-MINISTERIO DE GOBIERNO-</li>
+  <li>PODER EJECUTIVO PROV. DE BS.AS.-MINISTERIO DE GOBIERNO-</li>
+  <li>PODER EJECUTIVO PROVINCIA BS.AS.-MINISTERIO DE GOBIERNO-</li>
+  <li>PODER EJECUTIVO PROVINCIA BUENOS AIRES - MINISTERIO DE GOBIERNO</li>
+  <li>PODER EJECUTIVO PROVINCIA DE BS.AS.- MINISTERIO DE GOBIERNO-</li>
+</ul>
+
+<p></p>
+
+<p>The names were out of control; it was nos possible to get a list of all the vehicles related to
+one dependence without having to read the complete roster. I dropped my a-priori plan of exposing a
+list of vehicle owners and relate each vehicle to an item in this list because is was not the way
+they were working, despite being the most logical and usual way.</p>
+
+<p>The other thing I noticed after observing the list was that they recorded the data as it came,
+freely, relating hehicles to offices or persons or whatever. </p>
+
+<p>I decided to go the same way: provide a free environment where they could do what they want,
+tidy or sloppy. I did so and after a while I was told that "they were in a process to bring
+reorganize the list" which I interpreted that with a new, better, tool they felt empowered to tame
+the chaos.</p>
+
+<p>Disgression: May be this is related to the hype about "<em>designing the experience</em>". I
+strongly beleive that we don't <em>design the experience</em>, but instead we can offer an ambient
+where the users can build their own experience. We can only provide some bias. In this case I
+provided a helphul hoerking environment and my users decided to leverage its power.</p>
+
+<h3 id="L286">How not to design?</h3>
+
+<p>Or, should I say <em>overdesign</em>? </p>
+
+<p>Software developers love constraints. I know because I'm one. Especially data constraints, like
+"each vehicle owner will be a known Government office" and the like.</p>
+
+<p>Also, developers are wary of the performance impact of their decisions, like for example loading
+<em>the whole</em> excpetions list. We care about what would happen if the list was comprised of
+too many items, even when such numbers would be ridiculous. One fact is that nowadays hardware is
+so powerful that almost anything is possible, given that it is well designed and crafted. </p>
+
+<p>In short, I gave up about structuring data and decided to expose the whole list in a grid
+allowing the users to freely interact with it, as if it was an Excel spreadsheet. </p>
+
+<p>The menu item is labeled "Registración de excepciones (Exceptions recording). This is another
+label that leaves no doubts about the action it triggers. (Additionally, notice that almost all
+label texts are crafted so the users can choose then by reading only the first word, to reduce the
+cognitive load.)</p>
+
+<h3 id="L304">Interacting with a long list</h3>
+
+<p>After choosing the option, a window opens with a grid housing the whole exceptions list, a few
+thousand items. Of course, before going this way I checked the performance impact (I still have
+developer peeves) and it was acceptable. Digging a litle bit more I found a way to load the data in
+a fraction of a second, completely blowing the performance issues.</p>
+
+<p>Leaving the user alone in front of such a long grid would have been cruel. But they are given a
+tool, a search box. This search box is the simplest to operate: the users write something and when
+they make a short pause the list shortens to include only the rows that contain all the search
+words. No need to click let alone open a search parameters form. Just type and see what happens, if
+it's still not right then type more, or less, or something else.</p>
+
+<p>This design supports both targeted searchs (an exact plate number, for example) or exploratory
+searchs (all items related to "policia").</p>
+
+<p>As it is assumed that the user will always have to do a search, when the windows opens the focus
+is in the search box, depriving the users to do an additional useless mouse click.</p>
+
+<p>As usual it is possible to click the column headings to sort the whole list on a column, but
+what actually empowers the users is the search feature. As a security measure, this list has blue
+headings instead of the regular light gray ones of other screens that have the same format, because
+it is editable. The program requires the users to enter a password before opening it. </p>
+
+<h3 id="L316">Editing an item</h3>
+
+<p>Clicking a litk item of the list opens it in an edit dialog, which also has a host of usability
+features.</p>
+
+<p>In this case the most visible feature is a control to enter the vehicle owner's name, made up of
+a text box and a list. The user can enter text in the box, and the list, immediately below it,
+instantly shows the already registered owner names that contain the text just written. The user can
+click in one of the offered names, or enter a new one. There are no restrictions.</p>
+
+<p>For example writing "federal" shows several versions of "POLICIA FEDERAL ARGENTINA" for the user
+to choose. </p>
+
+<p>In addition of helping the users to enter long names, this feature provides extra value in that
+it makes the users aware of the multiple versions of some names. </p>
+
+<h3>Seeing it in action</h3>
+
+<div style="text-align:center;">
+<object
+    classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
+    WIDTH="600"
+    HEIGHT="446"
+    CODEBASE="http://active.macromedia.com/flash5/cabs/swflash.cab#version=5,0,0,0">
+    <param name="movie" VALUE="excepciones2.swf">
+    <param name="play VALUE="false">
+    <param name="autostart" VALUE="false">
+    <param name="loop" VALUE="false">
+    <param name="quality" VALUE="low">
+    <embed
+	SRC="excepciones2.swf"
+	WIDTH="600"
+	HEIGHT="446"
+	quality="low"
+	loop="false"
+	autostart="false"
+	autoplay="false"
+	TYPE="application/x-shockwave-flash"
+	PLUGINSPAGE="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash">
+    </embed>
+</object>
+</div>
+
+<p></p>
+
+<p></p>
+
+<p></p>
+
+<p></p>
+
+<p></p>
+
+<p></p>
+
+<p></p>
+
+<p></p>
+
+<p></p>
+
+<p></p>
+
+<p></p>
+
+<p></p>
+
+<p></p>
+
+<p></p>
+
+<p></p>
+
+<p> </p>
+
+<p></p>
+
+<p></p>
+
+<p></p>
+
+<p></p>
+
+<p></p>
+
+<p></p>
+
+<p></p>
+
+<p></p>
+
+<p></p>
+
+<p></p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+</div>
+</body>
+</html>

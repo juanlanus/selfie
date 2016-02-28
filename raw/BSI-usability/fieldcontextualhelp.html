@@ -1,0 +1,494 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+  <title>BSI - Usability</title>
+  <link rel="stylesheet" href="./res/demo.css" type="text/css">
+  <script type="text/javascript" src="./jquery-1.6.2.js">
+ </script>
+</head>
+
+<body>
+
+<div class="textColumn">
+<h1>BSI Usability </h1>
+
+<h2>Contextual help example</h2>
+
+<p>This is a working prototype to demonstrate a proposal for the form-level and
+field-level help artifacts. </p>
+
+<p>As of the UI, the help artifacts should be almost invisible, to avoid
+presenting the user a cluttered screen. The help buttons, in this prototype are
+small, light gray, and fully displaced to the right. <br>
+Anyway, the users will know that they are there, and will be able to find them
+when the need arises. <br>
+When a field gets the focus, the corresponding help icon changes a bit. This
+small difference tells the users which is the one to click. </p>
+
+<div class="imgR">
+<img id="formInfoIcon" alt="[?]" title="form level information"
+src="./res/help Icon gray dimmed.png"
+onmouseout="$('#formInfoIcon').attr('src', './res/help Icon gray dimmed.png');"
+onmouseover="$('#formInfoIcon').attr('src', './res/help Icon gray.jpg');"
+onclick="$('#formLevelInfo').slideToggle();"> </div>
+
+<div class="framed">
+<h3>Sample form with help </h3>
+
+<div id="formLevelInfo" class="infoContainer" style="display:none; ">
+<h4>Form level information or help</h4>
+
+<p>This place is for form-level information. The opening icon is set near the
+form's headings. </p>
+
+<p>What follows are some thoughts about help usability. </p>
+
+<p>One idea is not to use too much the word <em>help</em> because users are
+used to avoid it due to the generalised bad quality. </p>
+
+<p>This can't be the manual. This place is to allow the user to quicly check
+the purpose and possible effects of this form, by reading few sentences of
+semantic information. <br>
+The manual is somewhere else, and I think it could be valuable to include a
+link to the approrpiate manual page, for users who are willing to learn. </p>
+
+<p>Most people will be in a hurry. They will be pursuing a goal that is not to
+learn a lot about the form. </p>
+
+<p>The help sections must have a distinctive style (TBD) for the user to
+identify them immediately. In this prototype it is different from the form
+content in that the text is gray and there is a big question mark icon at the
+left. </p>
+</div>
+
+<div id="example2" class="framed" style="min-width:555px; border-color:black; ">
+
+<form action="">
+
+  <table>
+    <tbody>
+      <tr>
+        <td style="width:140px; color:rgb(96,96,96); font-weight:200;">Name*
+        </td>
+        <td style="width:240px;"><input type="text" class="inputTypeText"
+          style="width:250px; "
+          onfocus="$('#help3icon').attr('src', './res/helpIcon.gif');"
+          onblur="$('#help3icon').attr('src', './res/helpIconDimmed.gif');"
+          value="Ian"></td>
+        <td style="width:40px;"><img id="help3icon" alt="[ ? ]"
+          src="./res/helpIconDimmed.gif" title="field level information"
+          onclick="$('#help3').toggle('300');"
+          onmouseover="$('#help3icon').attr('src', './res/helpIcon.gif');"
+          onmouseout="$('#help3icon').attr('src', './res/helpIconDimmed.gif');">
+        </td>
+      </tr>
+      <tr id="help3" style="display:none;">
+        <td colspan="3">
+          <div class="infoContainer">
+
+          <div class="imgR">
+          <img src="imag/EntropyWorkflow.png" alt=""> </div>
+
+          <div>
+          <p>Information on a field doesn't have to be plain text, it can
+          contain: </p>
+          <ul>
+            <li>images, </li>
+            <li>graphics, </li>
+            <li>rich text, </li>
+            <li>any other illustrative material. </li>
+          </ul>
+
+          <p>Actually, it can be an HTML snippet containing any element,
+          including links that should open in a different window. </p>
+
+          <p style="clear:both;"></p>
+          </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td style="color:rgb(96,96,96); font-weight:200; ">Last name* </td>
+        <td><input type="text" class="inputTypeText" style="width:250px; "
+          onfocus="$('#help4icon').attr('src', './res/helpIcon.gif');"
+          onblur="$('#help4icon').attr('src', './res/helpIconDimmed.gif');"
+          value="Sesquipedalian"></td>
+        <td><img id="help4icon" alt="[ ? ]" src="./res/helpIconDimmed.gif"
+          title="field level information" onclick="$('#help4').toggle('300');"
+          onmouseover="$('#help4icon').attr('src', './res/helpIcon.gif');"
+          onmouseout="$('#help4icon').attr('src', './res/helpIconDimmed.gif');">
+        </td>
+      </tr>
+      <tr id="help4" style="display:none;">
+        <td colspan="3">
+          <div class="infoContainer">
+          <p>This field, the family name, could have been rendered together
+          with the given name, in the same line, because they are closely
+          related fields. </p>
+
+          <p>The first-name / second-name naming structure is something that
+          should'n be taken for granted: in many countries this is not so. </p>
+
+          <p>To get a glimpse of the posible alternatives please read an
+          interesting article by the W3C about <a
+          href="http://www.w3.org/International/questions/qa-personal-names">personal
+          names around the world</a>. </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td style="color:rgb(96,96,96); font-weight:200; ">Today´s date* </td>
+        <td><input type="text" class="inputTypeText" style="width:100px; ">
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td style="color:rgb(96,96,96); font-weight:200; ">Address* </td>
+        <td><input type="text" class="inputTypeText" style="width:555px; "
+          onfocus="$('#help5icon').attr('src', './res/helpIcon.gif');"
+          onblur="$('#help5icon').attr('src', './res/helpIconDimmed.gif');"
+          value="389 Chiswick High Road"> <br>
+          <label for="zip">Zip</label> <input id="zip" type="text"
+          class="inputTypeText" style="width:111px; "
+          onfocus="$('#help4icon').attr('src', './res/helpIcon.gif');"
+          onblur="$('#help4icon').attr('src', './res/helpIconDimmed.gif');"
+          value="W4 4AL"> <label for="city">City</label> <input id="city1"
+          type="text" class="inputTypeText" style="width:222px; "
+          onfocus="$('#help4icon').attr('src', './res/helpIcon.gif');"
+          onblur="$('#help4icon').attr('src', './res/helpIconDimmed.gif');"
+          value="London"> <br>
+          <label for="country">Country</label> <input id="city" type="text"
+          class="inputTypeText" style="width:222px; "
+          onfocus="$('#help4icon').attr('src', './res/helpIcon.gif');"
+          onblur="$('#help4icon').attr('src', './res/helpIconDimmed.gif');"
+          value="United Kingdom"> <br>
+          <label for="mapurl">Map URL</label> <input id="mapurl" type="text"
+          class="inputTypeText" style="width:499px; "
+          onfocus="$('#help4icon').attr('src', './res/helpIcon.gif');"
+          onblur="$('#help4icon').attr('src', './res/helpIconDimmed.gif');"
+          value="http://www.streetmap.co.uk/newmap.srf?x=519851&amp;y=178433&amp;z=1&amp;sv=519851,178433&amp;st=OSGrid&amp;lu=N&amp;tl=~&amp;ar=y&amp;bi=~&amp;mapp=newmap.srf&amp;searchp=newsearch.srf">
+        </td>
+        <td><img id="help5icon" alt="[ ? ]" src="./res/helpIconDimmed.gif"
+          title="field level information" onclick="$('#help5').toggle('300');"
+          onmouseover="$('#help4icon').attr('src', './res/helpIcon.gif');"
+          onmouseout="$('#help4icon').attr('src', './res/helpIconDimmed.gif');">
+        </td>
+      </tr>
+      <tr id="help5" style="display:none;">
+        <td colspan="3">
+          <div class="infoContainer">
+          <p>This is a structured field. It is conceptually <em>one datum</em>
+          although it spans several input fields. </p>
+
+          <p>For the purpose of the help it has to be considered a unit, so
+          it's labeled <em>Address</em> and its sub-fields are grouped. </p>
+
+          <p>It has to be handled as a unit to avoid annoying and useless
+          instructions like "Enter the address street and number", "Enter the
+          address ZIP code", "Enter the address ...", etc. </p>
+
+          <p>In this prototype the sub-fields look somehow scrambled because
+          there is no special alignment imposed. In a real form they should
+          look tidier. One purpose is to raise awareness about the issues that
+          rear when setting several fields of different sizes in a form. </p>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</form>
+</div>
+</div>
+
+<h3>Functionality</h3>
+
+<p>The help information is not displayed when the user first sees the form. It
+is assumed that the users will be recurrent and will need to read the help
+information about once in their lifetimes, if ever. Thus, the help-related
+artifacts must not be conspicuous until the users need them. <br>
+Also, the help texts should not be set in the form until after the user
+requests them, but pulled from the server usint XHR actions. This is so to
+aknowledge the few times the texts are going to be read.</p>
+
+<h3>Implementation</h3>
+
+<p></p>
+
+<p>The help buttons can be implemented as a custom control that displays the
+icon and knows an internal field name. When a click happens the control
+requests the appropriate text in the appropriate language from the server, sets
+it below the associated field, and displays it using an animtion. The other
+fields slide downwards slowly to inform the user about what is going on,
+avoiding the annoying surprise produced by a fast change.</p>
+
+<p>The help texts can be stored in a database, as HTML snippets, related to the
+corresponding field name stored in the instance of the control. </p>
+
+<h3>Content</h3>
+
+<p>All instances of the same field set in different forms tipically share the
+same help text. </p>
+
+<p>Not all fields deserve a contextual help artifact. </p>
+
+<p>Avoid patronizing the users, at the expense of their own time. The after
+effect of too detailed a help is that users stop using it, forever. Only
+significant information has to be there.</p>
+
+<h3>Optional record fields</h3>
+
+<p></p>
+
+<p>The optional user-defined fields must have the possibility of having help
+too. <br>
+In the field definition form there must be an optional field allowing the user
+to enter the field's help text. <br>
+For the user to leverage the HTML capabilities, this field must be a rich text
+editor capable of producing HTML. </p>
+
+<p></p>
+
+<p></p>
+
+<p></p>
+
+<p></p>
+
+<p></p>
+
+<p></p>
+
+<p></p>
+
+<p></p>
+
+<p></p>
+
+<h1></h1>
+
+<p></p>
+
+<div>
+
+<div>
+<p>  </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+</div>
+</div>
+</div>
+</body>
+</html>

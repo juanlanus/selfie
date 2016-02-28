@@ -1,0 +1,79 @@
+@media all {
+/* solo para el muestrario de colores */
+
+/* tags */
+table {
+    border-spacing:2px;
+}
+
+.MOculto {
+    display:none;
+}
+
+/* muestrario: muestras de todos los colores (no se imprime) */
+#MContainer {
+    title="Pique en los colores que quiere elegir";
+    padding:0px;
+    margin:0px;
+    border-color: white;
+}
+#MTodosLosColores {
+}
+
+.MUnColor {
+    height:100px;
+    vertical-align:bottom;
+    text-align:right;
+    font-size:100%; 
+    font-family:Consolas,"Lucida Console",monospace;
+    border:1px solid transparent;
+    margin:0px;
+    padding:0;
+    position:relative;
+    background-position: -24px -4px;
+}
+.MUnColor:hover {
+    border-color:white;
+    cursor:pointer;
+}
+.MColorOscuro {
+    color:white;
+}
+.MColorClaro {
+    color:black;
+}
+
+.MUnaFilaDeMuestras {
+    height:80px;
+    width:97%;
+}
+.MUnaFilaDeMuestras table {
+    border-collapse:collapse;
+    width:100%;
+    margin-top:-4px;
+}
+table.MUnaFilaDeMuestras {
+    border-collapse:separate;
+    width:100%;
+    margin-top:-4px;
+} 
+.MColorChoice {
+    position:relative;
+    top:0px;
+    right:0px;
+    margin:0;
+}
+.MUnaFilaTitulo {
+    margin:0px 8px 0px 0px;
+    padding-bottom:0px;
+}
+
+/* la columna de colores elegidos y sus elementos */
+.MUnColorElegido {
+}
+
+/* test */
+.resaltado {
+    background-color:yellow;
+}
+    }

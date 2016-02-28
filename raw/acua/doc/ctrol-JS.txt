@@ -1,0 +1,75 @@
+   1	pleno	1	1	Naranja cartel
+   2	pleno	2	2	Marron cartel oscuro
+   3	pleno	3	3	Marron cartel claro
+   4	pleno	4	4	Amarillo taxi cartel
+   5	pleno	5	5	Amarillo McDonald's cartel
+   6	trans	6	6	Bordó cartel
+   7	pleno	7	7	Rojo Coca-Cola cartel
+   8	pleno	8	8	Verde claro cartel
+   9	transp	9	9	Naranja claro
+  10	pleno	10	10	Celeste cartel
+  11	transp	11	11	Amarillo ambar
+  12	transp	12	12	Azul claro
+  13	transp	13	13	Azul oscuro  
+  14	pleno	14	14	Azul oscuro cartel
+  15	pleno	15	15	Gris cartel
+  16	transp	16	16	Rojo  
+  17	trans	17	17	Blanco iluminación
+  18	pleno	18	18	Blanco opal cartel
+  19	transp	19	19	Rubí
+  20	transp	20	20	Naranja
+  21	pleno	21	21	Negro fijo
+  22	trans	22	22	Marrón claro mampara
+  23	trans	23	23	Marrón mampara
+  24	trans	24	24	Gris mampara
+  25	trans	25	25	Rosa mampara
+  26	trans	26	26	Celeste mampara
+  27	trans	27	27	Verde mampara
+  28	trans	28	28	Marrón oscuro mampara
+  29	trans	29	29	Violeta mampara
+  30	trans	30	30	Amarillo mampara
+  31	trans	31	31	Jazmín mampara
+  32	transp	32	32	Humo tenue
+  33	transp	33	33	Humo claro
+  34	transp	34	34	Humo oscuro
+  35	transp	35	35	Habano tenue
+  36	transp	36	36	Habano claro
+  37	transp	37	37	Habano oscuro
+  38	transp	38	38	Tonalidad verde
+  39	transp	39	39	textur cristal
+  40	transp	40	40	Cristal
+  41	transp	41	41	Verde oscuro
+  42	transp	42	42	Verde claro  
+  48	pleno	48	48	Marfil opal
+  49	pleno	49	49	Violeta rojizo opal
+  50	pleno	50	50	Verde cartel
+  51	pleno	51	51	Azul opal
+  52	trans	52	52	Azul mampara
+  53	transp	53	53	Violeta
+  54	trans	54	54	Rojo cartel
+  55	transp	55	55	Violeta claro
+  56	trans	56	56	Magenta cartel
+  57	trans	57	57	Violeta cartel
+ 117	satin	117	117	Blanco iluminación esmerilado
+ 122	satin	122	122	Marfil miel esmerilado
+ 125	textur	125	125	Rosa esmerilado
+ 126	satin	126	126	Celeste esmerilado
+ 132	satin	132	132	Humo tenue esmerilado
+ 138	satin	138	138	Verde claro
+ 127	textur	127	127	Blanco
+ 222	textur	222	222	Marfil miel
+ 226	textur	226	226	Celeste
+ 232	textur	232	232	Humo tenue
+ 43F	fluo	43F	43F	Amarillo
+ 44F	fluo	44F	44F	Verde
+ 45F	fluo	45F	45F	Naranja
+ 46F	fluo	46F	46F	Rojo
+ 47F	fluo	47F	47F	Naranja intenso
+1001	bijou	1001	1001	Magenta claro
+1002	bijou	1002	1002	Magenta oscuro
+1003	bijou	1003	1003	Azul flúor
+1004	bijou	1004	1004	Verde flúor
+1005	bijou	1005	1005	Rosa flúor
+1006	bijou	1006	1006	Naranja flúor
+1056	bijou	1056	1056	Magenta
+  58	bijou	58	58	Amarillo intenso cartel

@@ -1,0 +1,92 @@
+/* ============================================================================================= */
+@media all {
+
+    /* tags */
+    table                   { border-spacing:2px; }
+
+    /* header y footer de pagina muestrario */
+    #MHeader                { }
+    #MFooter                { position:fixed; bottom:-6em; width:100%; height:2em;  background-color:yellow; }
+    .MTitulo                { margin:0; }
+
+    /* muestrario: muestras de todos los colores (no se imprime) */
+    #MContainer             { title="Pique en un color para seleccionarlo"; padding:0px; margin:0px; border-color: white; }
+    #MTodosLosColores       { } /* { margin-right:180px; } */
+
+    #MContainer table       {  }
+
+    .MUnColor               { height:100px; vertical-align:bottom; text-align:right; font-family:Consolas,"Lucida Console",monospace; font-size:100%; 
+                              border:1px solid transparent; margin:0px; padding:0px 0px 0px 0px; position:relative;
+                              background-position: -24px -4px;}
+    .MUnColor:hover         { border-color:white; cursor:pointer; }
+    .MColorOscuro           { color:white; }
+    .MColorClaro            { color:black; }
+
+    .MUnaFilaDeMuestras     { height:80px; width:97%; }
+    .MUnaFilaDeMuestras table { border-collapse:collapse; width:100%; margin-top:-4px; }
+    table.MUnaFilaDeMuestras { border-collapse:separate; width:100%; margin-top:-4px; } 
+    .MColorChoice           { position:relative; top:0px; right:0px; margin:0; }
+    .MUnaFilaTitulo         { margin:0px 8px 0px 0px; padding-bottom:0px; }
+
+    /* test */
+    .resaltado              { background-color:yellow; }
+
+} /* end of @media all del muestrario de colores */
+/* ============================================================================================= */
+@media screen {
+
+    /* colores elegidos, en pantalla */
+/*
+    #MCEColoresElegidos     { float:right; width:160px; }
+    .MOculto                { display:none; }
+    #MCEEncab               { display:none; }
+
+    .MCEColorElegido        { position:relative; width:100%; height:160px;
+                              font-family:Calibri,Arial,sans-serif;
+                              font-size:90%;
+                            }
+    .MCEColorElegidoBlah    { position:absolute; bottom:0px; margin: 0 6px 2px 6px; }
+    .MCEColorElegidoImg     { display:none; }
+    .MCEColorElegidoClose   { position:absolute; right:1px; top:1px; border:1px solid white; margin:0; height:1em;
+                              cursor:pointer; width:1em; line-height:1ex; padding:1px 0 0 0; font-family:Arial,sans-serif; }
+    div.MCEColorElegidoClose.MColorClaro { border-color:rgb(128,128,128); color:128,128,128); }
+    .MCEColorElegidoClose:hover { color:rgb(128,128,128); }
+    .MCEColorElegidoCloseX  { margin:0px 0px 3px 0px; text-align:center; }
+*/
+
+} /* end of @media screen del muestrario de colores */
+/* ============================================================================================= */
+@media print {
+    .noPrint                { display:none; }
+    .siPrint                { display:block; }
+    .texto                  { max-width:inherit; }
+    #MCEColoresElegidos     { float:none; width:90%; margin-left:5%; }
+    .noPrint                { display:inherit; }
+    .siPrint                { display:block; }
+    .texto                  { max-width:inherit; }
+    .MCEColorElegido        { font-family:Calibri,Arial,sans-serif; font-size:100%; color:black; }
+    .MCEColorElegidoImg     { display:inline; }
+    .MCEColorElegidoClose   { display:none; }
+
+    /* no imprimir lo que no se imprime */
+    .noPrint                { display:none; }
+
+    /* no imprimir navegacion */
+    #nav                    { display:none; }
+
+    /* no imprimir tiras de muestras */
+    .MTodosLosColores       { display:none; margin:0; }
+
+    /* colores elegidos, es lo unico que se imprime */
+    #MCEColoresElegidos     { width:90%; } 
+    .MOculto                { display:none; }
+    #MCEEncab               { display:block; }
+
+    .MCEColorElegido        { font-family:Calibri,Arial,sans-serif; font-size:100%; }
+    .MCEColorElegidoPrint   { display:inline; }
+    .MCEColorElegidoImg     { height:90px; width:auto; display:none; }
+    .MCEColorElegidoClose   { display:none; }
+    .separadorDeColores     { height:1px; background-color:rgb(192,192,192); border:0; }
+
+} /* end of @media print */
+/* ============================================================================================= */

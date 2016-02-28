@@ -1,0 +1,204 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+  <title>tasks - acua</title>
+  <link rel="stylesheet" href="./\agenda.css" type="text/css">
+</head>
+
+<body>
+<h1>acua - tasks</h1>
+<ul>
+  <li><a href="index.html">index</a></li>
+  <li><a href="definiciones.html">definiciones</a></li>
+  <li>tasks</li>
+</ul>
+
+<div>
+<p> </p>
+<hr>
+</div>
+
+<div id="agendaBody">
+<h4 id="L1185">Tasks</h4>
+<ul>
+  <li>Páginas: 
+    <ol>
+      <li class="doneItem"><a href="../paginas_OLD/QuienesSomos.html">OLD</a> <a
+        href="../acua/index.html">NEW</a> Quienes somos </li>
+      <li class="doneItem"><a href="../paginas_OLD/Muestrario.html">OLD</a> <a
+        href="../acua/muestrario.html">NEW</a> Muestrario de colores </li>
+      <li class="doneItem"><a href="../paginas_OLD/tubos.html">OLD</a> <a href="tubos.html">NEW</a>
+        Tubos</li>
+      <li class="doneItem"><a href="../paginas_OLD/medidas.html">OLD</a> <a
+        href="../acua/medidas.html">NEW</a> Tablas de medidas </li>
+      <li class="doneItem"><a href="../paginas_OLD/fabrica.html">OLD</a> NEW Nuestra fábrica </li>
+      <li class="doneItem"><a href="../paginas_OLD/mapa.html">OLD</a> <a
+        href="mapa_acrilicos_acua.html">NEW</a> Cómo llegar </li>
+      <li class="doneItem">El &lt;head&gt; en dos includes, uno para todos y uno adicional para el
+        muestrario. No incluir el tag. </li>
+      <li class="doneItem">El &lt;div id="nav"&gt; en un include</li>
+      <li class="doneItem">Hacer un js para resaltar y desactivar el link a la pagina activa en el
+        navegador</li>
+    </ol>
+  </li>
+  <li class="doneItem">Definir y documentar un layout para el muestrario </li>
+  <li class="doneItem">Nico: logo </li>
+  <li class="doneItem">Gigi: en un Excel organizar los colores por tipo y gama (<a
+    href="../acua/ACUA_Colores.xls">ACUA_Colores.xls</a>)</li>
+  <li class="doneItem">Organizar el display de muestras segun la info de ACUA_Colores.xls (grupo,
+    orden, ...) </li>
+  <li class="doneItem">Organizar el display de muestras default para clientes sin js</li>
+  <li class="doneItem">El n° de color en la cell, negro o blanco según el tono de la muestra (class
+    ...)</li>
+  <li class="doneItem">en el array de colores agregar info adicional, tipo "satinado", "labrado",
+    etc: </li>
+  <li class="doneItem">Hay una diferencia de tamaño entre el heading del muestrario y el de
+    "quienes somos" </li>
+  <li class="doneItem">Las tiras de muestritas de colores no están alineadas: el menú las desplaza
+    1em a la derecha </li>
+  <li class="doneItem">En el hover de la muestrita mostrar un div con el color elegido y agregarle
+    toda la información adicional. NO: Puede complicar al usuario el mouseout para ocultar el
+    overlay. </li>
+  <li class="doneItem">Gigi: En ACUA_Colores.xls ponerle nombres a los colores <span
+    class="doneItem">(JGiolito manda una lista interna de nombres)</span></li>
+  <li class="doneItem">Replicar la info de ACUA_Colores.xls en un json (macro?) </li>
+  <li class="doneItem">Ajustar el tamaño del ítem de color elegido</li>
+  <li class="doneItem">NTH: Agregar una animación para la aparición del color elegido</li>
+  <li class="doneItem">Hacer un CSS especial para impresión, posiblemente con algunos datos (la
+    imagen) hidden solo para imprimir </li>
+  <li>Cuando no hay js o no hay colores elegidos imprimir directamente la pagina de muestrario de
+    colores </li>
+  <li>Usar un único event handler para todas las muestritas de colores, agregado con jQuery. No es
+    necesario el del HTML: si no hay js entonces es irrelevante. </li>
+  <li class="doneItem">Agregar un botón "close" a las muestras de colores elegidos </li>
+  <li class="doneItem">js para cerrar la muestra al picar el botón [x] (ocultar, destruír) </li>
+  <li class="doneItem">Crear los colores elegidos clonando en vez de inner HTML </li>
+  <li class="doneItem">Mientras no hay colores elegidos usar todo el ancho para las muestritas (es
+    mejor si no hay js) - esta implementado con margin, hay que usar otro metodo ... una tabla?
+  </li>
+  <li>Poner instrucciones en un overlay del hover de un ícono de ayuda </li>
+  <li>¿Cómo se hace para que el IE no ponga un aviso de que hay contenido peligroso por el js?</li>
+  <li class="doneItem">Cuando reselecciona un color, animar la eliminación de la instancia
+    anterior, para que se note lo que sucede </li>
+  <li><span class="doneItem">Backup del sitio actual</span> (con copia a Andrés) </li>
+  <li class="doneItem">Tiene errores "<em>[Thu Jan 06 21:01:22 2011] [error] [client 200.180.190.1]
+    File does not exist:
+    /www/docs/acrilicosacua.com.ar/public_html/<strong>favicon</strong>.ico</em>"</li>
+  <li class="doneItem">Agregar el tipo (transparente, pleno, ... ) al texto de color elegido, a
+    continuación del número y el nombre. </li>
+  <li class="doneItem">Hacer un navegador que no ocupe espacio para el muestrario, por ejemplo un
+    link back posicionado en una esquina </li>
+  <li>En el muestrario debe decir que los pedidos deben especificar el n° de color </li>
+  <li class="doneItem">El largo de los tubos es 2m, no 20cm</li>
+  <li class="doneItem">El default document debe ser, o redireccionar, al shtml</li>
+  <li class="doneItem">Configurar el server para que procese los includes en archivos .html para
+    avitar la extensión .shmtl</li>
+  <li class="doneItem">Reemplazar el link "/" del logo por index </li>
+  <li class="doneItem">En la muestra de un color elegido, cuando el color es claro la control box
+    debe ser oscura </li>
+  <li class="doneItem">Desplegar un submenu con los tipos de colores solo en la pagina del
+    muestrario </li>
+  <li>Publicar el muestrario en un PDF </li>
+  <li class="doneItem">Separar las medidas del policarbonato como las de las planchas, ancho y
+    largo en dos columnas </li>
+  <li class="doneItem">En el hover de las muestritas poner char entities a "translúcido"</li>
+  <li>Los nombres y descripciones de los colores deben codificarse con character entities (¿o
+    cambiar el encoding?) </li>
+  <li class="doneItem">El color 18 blanco está en la punta de la fila y parece que faltara una
+    muestra: poner un fondo gris muy clarito para delimitar el rectangulo. En la última fila el
+    último color es gris clarito, cambiar de lugar. </li>
+  <li class="doneItem">En el muestrario el menú de navegación debe quedar siempre visible cuando la
+    página escrola, posicionarla fija respecto de la ventana </li>
+  <li class="doneItem">Rehacer las imágenes de los colores texturados </li>
+  <li class="doneItem">En el submenú se ven las bochitas del &lt;LI&gt; de los tipos de colores
+    (solo en ff, se resuelve agregando list-style-type:none)</li>
+  <li class="doneItem">Agregar algunas fotos donde se vea que son planchas de acrílico, y no
+    pomitos de colores <span class="doneItem">(search google images for "acrylic sheet")</span>
+  </li>
+  <li class="doneItem">Aplicar esquinas redondeadas a las imágenes (12px) </li>
+  <li class="doneItem">Reorganizar medidas.html con las imagenes flotadas a la derecha y las tablas
+    con 400px de margin-right, eliminando la layout table. </li>
+  <li class="doneItem">En medidas.html separar verticalmente los tres elementos. </li>
+  <li>Agregar un rotator para las imágenes ilustrativas </li>
+  <li class="doneItem">El H1 del encabezado cambia de posición en algunas páginas (desplazamiento
+    horizontal) por la aparición o no de la scroll bar vertical ... </li>
+  <li class="doneItem">Rehacer el layout con &lt;table&gt;, se rompe al agrandar el font. El
+    problema es el tamaño de los códigos de los colores en las muestritas (girar 90°?) </li>
+  <li class="doneItem">El menú se mueve en los cambios de página </li>
+  <li>Controlar el posicionamiento en search local </li>
+  <li>Agregar instrucciones para bots </li>
+  <li>Poner fondo blanco a "nuestra fábrica"</li>
+  <li class="doneItem">El color 127 no funciona</li>
+  <li class="doneItem">Agregar un submenu como el de los tipos de colores para la página de
+  medidas</li>
+  <li class="doneItem">En Chrome, "Quienes somos" queda resaltado en el menú aún mostrando los
+    colores </li>
+  <li class="doneItem">Cambiar los links para que los submenús funcionen desde las otras páginas,
+    para cuando no hay js </li>
+  <li class="doneItem">Agregar max-width y padding en "Quienes somos" </li>
+  <li class="doneItem">El mapa queda descentrado en (un browser) con class="texto" </li>
+  <li class="doneItem">Cuando hay muchos colores elegidos, los de más abajo no se ven. Hay que
+    recalcular las alturas cuando esto sucede. </li>
+  <li>El color 8 dice "pleno" paro parece translúcido. </li>
+  <li class="doneItem">En "medidas" la última foto sobresale por debajo del container. </li>
+  <li>Hacer una página para el 404 y otros errores. </li>
+  <li>Redireccionar los URLs de las páginas anteriores a las nuevas. </li>
+  <li>En Chrome no ajusta los altos de los colores elegidos. </li>
+</ul>
+
+<p></p>
+
+<p><img alt="doing" src="caramba_yellow.gif" style="margin-right:0.6em;"></p>
+
+<h4>NTH</h4>
+<ul>
+  <li>Poner un script de preload en todas las páginas para cachear las imágenes del muestrario.
+  </li>
+  <li>Hay que encontrar un método (overflow? sprite?) para cortar la imagen al tamaño de la celda,
+    en vez de background image (para que se pueda imprimir). 
+    <p>Se puede hacer con js, usando un div que debe tener especificadas las medidas de ancho y
+    alto, y overflow:hidden. ¿Overflow es para browsers muy nuevos? </p>
+  </li>
+  <li>En el &amp;%@# IE el trick del borde transparente en el hover no funciona</li>
+  <li>Poner una tilde en la muestra de cada color elegido, sacarla si se des-elige </li>
+  <li>Componentizar el color picker, para incluírlo <span
+    style="text-decoration: line-through;">inicialmente en el Drupal y</span> en sitios de
+    revendedores si hay. </li>
+  <li>Al elegir el primer color abrir la columna de elegidos con curtain </li>
+</ul>
+
+<p></p>
+
+<p></p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p></p>
+
+<p></p>
+
+<p> </p>
+
+<p> </p>
+</div>
+</body>
+</html>

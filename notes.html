@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- © Juan Lanus juan dot lanus at gmail -->
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Language" content="en">
+    <title>notes - selfie</title>
+    <link rel="stylesheet" href="res/portfolio.css" type="text/css">
+    <script type="text/javascript" src="common/jquery-2.2.1.js"></script>
+    <script type="text/javascript" src="res/portfolio.js"></script>
+    <script type="text/javascript" src="res/tocBuilder.js"></script>
+    <link href="res/tocBuilder.css" rel="stylesheet" type="text/css">
+<link rel="shortcut icon" href="./common/tecnosol.ico" type="image/x-icon" />
+
+<meta name="description" content="Juan Lanus portfolio" />
+<meta name="keywords"
+content="Juan Lanus, juan_lanus, portfolio, works, samples, prototypes, wireframes, writings, interaction designs, usbility"
+/>
+<meta name="robots" content="index,follow" />
+
+    <script type="text/javascript">
+      $(document).ready(function () { });
+    </script>
+    <style>
+      #docHeader h1    { text-shadow:0.15em 0.15em 4px #c0c0ff; }
+
+      .items           { line-height:22px; }
+      .items li        { list-style-type:none; }
+      .items a         { border-bottom:1px solid transparent; text-decoration:none; color:blue; }
+      .items a:link    { }
+      .items a:visited { color:rgb(128,128,128); text-decoration:none; }
+      .items a:hover   { border-bottom:1px solid gray; text-decoration:none; color:black; background-color:rgb(248,248,248); }
+      .items a:active  { color:blue; }
+      .items a.tocBackLink { color:rgb(222,222,222); }
+      .items a.tocBackLink:hover { color:rgb(192,192,192); }
+      .items li a      { border-radius:4px; }
+      .items li a      { display:block; }
+      .itemsGroup li   { list-style-type:none; }
+      .itemsGroup > span { font-weight:bold; }
+      .itemName        { font-weight:bold; color:black; }
+      .itemDesctiption { color:rgb(96,96,96); display:inline; }
+      .items .doing    { background-image:url(common/caramba_yellow.gif); background-repeat:no-repeat; background-position:left 50%; padding-left:1em; }
+    </style>
+  </head>
+
+  <body>
+
+    <div id="docHeader">
+
+      <div class="fixedHeader">
+        <h1 style="display:inline; color:blue;">notes for portfolio</h1>
+      </div>
+
+      <div style="display:block;" id="docLinks">
+        <div id="tocContainer" class="tocContainer">
+          <div class="toc"></div>
+        </div>
+        <p>&nbsp;</p>
+        <p style="display:block;"><a href="/home/juan/Dropbox/Public/index.html" target="other">Index of Dropbox Public</a></p>
+        <hr>
+
+      </div>
+
+    </div>
+
+    <div id="docBody">
+      <h2>self-promotion pages</h2>
+
+      <ul class="items">
+
+
+        <li class="itemsGroup"><h3>Quick interaction prototypes</h3><br>
+          <div class="itemDesctiption">
+            Working prototypes created to showcase interactions.
+          </div>
+          <ul>
+
+            <li><a href="foodSelector/foodHierarchy.html" target="other"><h4 class="itemName">✓ Food selector:</h4> 
+              <div class="itemDesctiption">
+                The requirement was to allow the users to select items from a rather lengthy
+                set where the structure of the data was known to be hierarchical. 
+              </div></a>
+            </li>
+
+            <li><a href="columnsSelector/columnSelection.html" target="other"><h4 class="itemName">✓ List manager:</h4> 
+              <div class="itemDesctiption">
+                The use case was about managing a big numbers of columns of a grid, allowing
+                to select and reorder them. <br>
+                There is also a number of locked columns, that are displayed the first, and
+                thus need to be grouped.
+              </div></a>
+            </li>
+
+            <li><h4 class="itemName">Date input control</h4></li>
+
+            <li><h4 class="itemName">Microevaluations interaction contexts</h4></li>
+
+
+            <li><a href="acua/muestrario.html" target="other"><h4 class="itemName">✓ Acrylic sheets color sampler:</h4>
+              <div class="itemDesctiption">
+                This is a small website for an acrylic sheets factory. Its edge is the greater
+                colors offering. <br>
+                In order to leverage that, the site sports a simple color picker where one can
+                build the palette by clicking on the desired colors. 
+              </div></a>
+            </li>
+
+            <li><a href="fieldhelp/fieldcontextualhelp.html" target="other"><h4 class="itemName">✓ Contextual help:</h4>
+              <div class="itemDesctiption">
+                A wireframe showcasing a set of recommendations on how to implement contextual
+                help in a portal-like huge application so it's consistent accross all pages, 
+                also allowing to decouple and reuse the help development effort.
+              </div></a>
+            </li>
+
+          </ul>
+        </li>
+
+
+        <li class="itemsGroup"><h3>Functional specifications</h3>
+          <ul>
+            <li><h4>A content management system</h4></li> <!-- cafam -->
+            <li><h4>Congreso interactivo</h4></li>
+            <li><h4>Continuous evaluation</h4></li>
+            <li><h4>Comments on two Mulesoft pages</h4></li>
+            <li><h4>Win 7 Copy File Dialog</h4></li>
+            <li><h4>Sentinel (check 2012)</h4></li>
+          </ul>
+        </li>
+
+
+        <li class="itemsGroup"><h3>Applications</h3>
+          <div class="itemDesctiption">
+            Complete applications that I designed and developed. 
+          </div>
+          <ul>
+
+            <li><a class="itemLink" href="usable_by_design/usable_by_design_how_and_why.html" target="other"><h4 class="itemName">✓ Exceptions (<em>usable by design</em>)</h4>
+              <div class="itemDescription">
+                My client operates a complex system for recording and processing millions of
+		traffic offenses for big argentine province.<br>
+		This is a desktop application that filters out the tickets raised by a number
+		of vehicles like ambulances or police cars that are excepted. <br>
+		The challenge was to devise a UI that enabled <em>anyone</em> to operate it.
+              </div></a>
+            </li>
+
+            <li><h4>TM</h4></li>
+            <li><h4>Lotteries</h4></li>
+            <li><h4>CG & SJ</h4></li>
+          </ul>
+        </li>
+
+
+        <li class="itemsGroup"><h3>Own projects</h3> (check <a style="display:inline;" href="file:///home/juan/Dropbox/Public/samples/index.html" target="other">sample work</a>)
+          <ul>
+            <li><h4>Micro evaluations</h4></li>
+            <li><h4>Semantic texts</h4></li>
+            <li><h4>Bitstarter <a style="display:inline;" href="file:///media/juan/WD%20Passport/bup20150403/HomeJLanus/coursera-startup/index.html" target="other">Coursera Startup</a></h4></li>
+            <li><h4>On-screen reading</h4></li>
+            <li><h4>Introducci&oacute;n al desarrollo web</h4></li>
+            <li><h4>Congreso interactivo ~/Dropbox/taller</h4></li>
+          </ul>
+        </li>
+
+
+        <li class="itemsGroup"><h3>Writings</h3>
+          <ul>
+            <li><h4><a href="/home/juan/Dropbox/Public/UIBlah/UIBlah.html" target="other">Computers vs. people</a></h4></li>
+            <li><h4><a href="/home/juan/glbdoc/webui/internetConcepts.html" target="other">Internet concepts</a></h4></li>
+            <li><h4><a href="/home/juan/glbdoc/webui/internetConcepts-exam.html" target="other">Internet concepts exam</a></h4></li>
+          </ul>
+        </li>
+
+
+        <li class="itemsGroup"><h3>Certificates</h3>
+          <ul>
+            <li><h4>MongoDB</h4></li>
+            <li><h4>Entrepreneurship</h4></li>
+            <li><h4>English writing</h4></li>
+          </ul>
+        </li>
+      </ul>
+
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+    </div>
+  </body>
+</html>
