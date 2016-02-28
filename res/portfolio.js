@@ -24,4 +24,26 @@
       )
     };
 
+    // on scroll, make the top fixed heading dissapear
+    $( window ).scroll(
+      function(){
+
+        var position = $(this).scrollTop();
+        var opacity;
+        if( position > 200 ) {
+          opacity = 0;
+        } else if( position < 10 ) {
+          opacity = 1;
+        } else {
+          opacity = 1 / ( position * position / 8000 );
+        };
+        $( '.fixedHeader' ).css( 'opacity', opacity );
+        if( opacity === 0 ){ // move it out of the way
+          $( '.fixedHeader' ).css( 'margin-top', -1000 );
+        } else {
+          $( '.fixedHeader' ).css( 'margin-top', 0 );
+        };
+      }
+    );
+
 });

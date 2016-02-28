@@ -4,8 +4,9 @@
   <meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
   <title>Contextual help</title>
   <link rel="stylesheet" href="helpbg.css" type="text/css">
-  <script type="text/javascript" src="jquery-1.5.2.js">
-  </script>
+  <script type="text/javascript" src="jquery-1.5.2.js"></script>
+  <script type="text/javascript" src="../common/jl.js"></script>
+  <link type="text/css" rel="stylesheet" media="screen" href="../common/jl.css" />
   <style>
 
     body { font-family:sans-serif; padding-top:22px; }
@@ -28,13 +29,6 @@
       background-color:yellow;
       }
     .formHelpCell img     { display:block; }
-
-    /************** close button ***************/
-    .closeButton { background-image:url(../res/icon-close.png); background-size:cover;
-      background-repeat:no-repeat; border:6px solid transparent; corner-radius:4px;
-      background-color:rgb(240,240,240); height:32px; width:32px; position:fixed;
-      top:0; right:0; opacity:0.4; }
-    .closeButton:hover { opacity:1; }
 
     /*******************************************/
   </style>
@@ -96,8 +90,6 @@
 </head>
 
 <body>
-  <div class="closeButton" onclick="window.close();" title="close this window and return to the index">
-  </div>
 
   <div id="agendaBody" style="max-width:40em;">
 

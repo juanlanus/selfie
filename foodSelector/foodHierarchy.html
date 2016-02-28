@@ -5,11 +5,11 @@
   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
   <meta http-equiv="Content-Language" content="en">
   <title>Food selector</title>
-  <!-- script: -->
   <script type="text/javascript" src="res/jquery/jquery-1.8.2.js"></script>
   <script type="text/javascript" src="res/jquery/ui/jquery-ui-1.9.1.js"></script>
-  <!-- style: -->
   <link rel="stylesheet" href="res/jquery/themes/base/jquery-ui-1.9.1.css" type="text/css">
+  <script type="text/javascript" src="../common/jl.js"></script>
+  <link type="text/css" rel="stylesheet" media="screen" href="../common/jl.css" />
   <style>
     body {  font-family:"Trebuchet MS", "sans-serif"; }
     #outputList { float:right; font-size:75%; min-width:20em; min-height:30em; }
@@ -19,17 +19,9 @@
     .ui-menu { width: 200px; }
   </style>
 
-  <style>
-.closeButton { background-image:url(../res/icon-close.png); background-size:cover; background-repeat:no-repeat;
-  border:6px solid transparent; corner-radius:4px; background-color:rgb(240,240,240); height:32px; width:32px; position:fixed; top:0; right:0; opacity:0.4; }
-.closeButton:hover { opacity:1; }
-  </style>
-
 </head>
 
 <body style="overflow-y:scroll;">
-  <div class="closeButton" onclick="window.close();" title="close this window and return to the index">
-  </div>
   <div id="outputList">
     <ul id="selectedFoods">
     </ul>

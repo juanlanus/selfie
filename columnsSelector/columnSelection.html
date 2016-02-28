@@ -9,6 +9,8 @@
     <script src="res/Sortable.js"></script>
     <script src="res/jquery.ui.position.js"></script>
     <script src="columnProperties.js"></script>
+    <script type="text/javascript" src="../common/jl.js"></script>
+    <link type="text/css" rel="stylesheet" media="screen" href="../common/jl.css" />
     <script>
       $(document).ready(function () {
 
@@ -102,21 +104,21 @@
           function(e) {
             // where to move the newly-frozen column after
             var firstNonFrozenColName = $( '#columnNames li' ).not( '.colIsLocked' ).first();
+	    var pp = firstNonFrozenColName.offset();
             // get a reference to the col name where the clicked icon belongs
             var $this = $(this).parent();
             // set or reset the lock status
             $this.toggleClass( 'colIsLocked' );
-            if( $this.hasClass( 'colIsLocked' ) ){
+            if( $this.hasClass( 'colIsLocked' ) ){ // now is locked
               // force selection for frozen cols
               $this.addClass( 'colIsSelected' );
               // remove the element from the dom flow
               $this.css({ position:'absolute', top:$this.offset().top, left:$this.offset().left });
               // move the element to its new place and insert it there
-              var pp = firstNonFrozenColName.offset();
               $this.animate(
                 {
                   left:pp.left,
-                  top:pp.top
+                  top:pp.top - 10
                 },
                 {
                   duration: 1000,
@@ -126,7 +128,9 @@
                 }
               );
               $this.insertBefore(firstNonFrozenColName[0]);
-            } // else must move the unlocked element out of the locked group
+            } else { // was locked, now is unlocked
+	      $this.insertBefore(firstNonFrozenColName[0]);
+            }
             // stop event bubbling else it will change the selection status
             e.stopPropagation();
             e.preventDefault();
@@ -188,14 +192,7 @@
     <style>
       body { font-family:calibri, sans-serif; }
 
-    /************** close button ***************/
-    .closeButton { background-image:url(../res/icon-close.png); background-size:cover;
-      background-repeat:no-repeat; border:6px solid transparent; corner-radius:4px;
-      background-color:rgb(240,240,240); height:32px; width:32px; position:fixed;
-      top:0; right:0; opacity:0.4; z-index:999; }
-    .closeButton:hover { opacity:1; }
-
-    /**************** wireframe ****************/
+      /**************** wireframe ****************/
       #colNamesearch { border:2px solid silver; border-radius:4px; padding:0 6px; width:14em; line-height:125%; }
       #colNamesearchBox { margin:0px; padding-bottom:10px; padding-left:10px; background-color:#f0f0f0; padding-top:6px; }
 
@@ -242,8 +239,6 @@
   </head>
   
   <body>
-    <div class="closeButton" onclick="window.close();" title="close this window and return to the index">
-    </div>
     <form>
       <div id="columnNamesContainer">
         <div id="colNamesearchBox">
