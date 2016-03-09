@@ -46,4 +46,21 @@
       }
     );
 
+    // activate zoom of certificate thumbnails
+    $( '.certifThumbnail' ).on(
+      'click',
+      function( event ){
+        var $theCertificate = $( event.target ).parent();
+        $theCertificate.toggleClass( 'active' );
+        if( $theCertificate.hasClass( 'active' ) ) {
+          $theCertificate.css( 'height', $(window).height() + 'px' );
+          $theCertificate.attr( 'title', 'click again to close' );
+        } else {
+          $theCertificate.attr( 'title', 'click to see the certificate' );
+          $theCertificate.css( 'height', '' );
+        };
+      }
+    );
+    
+
 });
