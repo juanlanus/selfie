@@ -42,7 +42,7 @@
     top:0; right:0; opacity:0.4; }
   .closeButton:hover { opacity:1; }
   /************** certificates ***************/
-  .certifThumbnail        { float:right; margin-left:8px; text-align:right; width:200px; height:200px; cursor:pointer; }
+  .certifThumbnail        { float:right; margin-left:8px; text-align:right; width:200px; height:auto; cursor:pointer; }
   .certifThumbnail img    {  max-width:100%; max-height:100%; }
   .certifThumbnail.active img {  position:fixed; top:0; left:50px; width:500px; height:500px; }
   /*******************************************/

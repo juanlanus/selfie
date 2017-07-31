@@ -55,6 +55,7 @@
         if( $theCertificate.hasClass( 'active' ) ) {
           $theCertificate.css( 'height', $(window).height() + 'px' );
           $theCertificate.attr( 'title', 'click again to close' );
+          console.log( $(window).height() + 'px' );
         } else {
           $theCertificate.attr( 'title', 'click to see the certificate' );
           $theCertificate.css( 'height', '' );
