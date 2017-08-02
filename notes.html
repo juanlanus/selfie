@@ -22,8 +22,14 @@ content="Juan Lanus, juan_lanus, portfolio, works, samples, prototypes, wirefram
       $(document).ready(function () { });
     </script>
     <style>
+      /************** done items *****************/
+      .doneItem        { color:#c0c0c0; }
+      .doneItem a      { color:#a0a0f0; text-decoration:underline; }
+      a .doneItem      { color:#a0a0f0; text-decoration:underline; }
+      /*******************************************/
       #docHeader h1    { text-shadow:0.15em 0.15em 4px #c0c0ff; }
 
+      /*******************************************/
       .items           { line-height:22px; }
       .items li        { list-style-type:none; }
       .items a         { border-bottom:1px solid transparent; text-decoration:none; color:blue; }
@@ -157,17 +163,20 @@ content="Juan Lanus, juan_lanus, portfolio, works, samples, prototypes, wirefram
 
         <li class="itemsGroup"><h3>Writings</h3>
           <ul>
+            <li><a href="http://bit.ly/UsabilityTheory" target="other">Usability Theory slides deck</a></li>
             <li><a href="/home/juan/Dropbox/Public/UIBlah/UIBlah.html" target="other">Computers vs. people</a></li>
             <li><a href="/home/juan/glbdoc/webui/internetConcepts.html" target="other">Internet concepts</a></li>
-            <li><a href="/home/juan/glbdoc/webui/internetConcepts-exam.html" target="other">Internet concepts exam</a></li>
+            <li><a href="/home/juan/glbdoc/webui/internetconcepts-exam.html" target="other">internet concepts exam</a></li>
           </ul>
         </li>
 
-        <li class="itemsGroup"><h3>Certificates</h3>
+        <li class="itemsgroup"><h3>Certificates</h3>
           <ul>
-            <li><span class="doneItem">Certificates: add TítuloCalculistaCientificoCAECE. </span></li>
-            <li class="doneItem">Certificates: add CongresoEducativo2017</li>
-            <li class="doneItem">Certificates: add DemocraciaYPoliticasPublicas</li>
+            <li>Close the enlarged certificate view with escape key</li>
+            <li>The enlarged certificate does not keep the original proportions</li>
+            <li><span class="doneItem">certificates: add títulocalculistacientificocaece. </span></li>
+            <li class="doneItem">certificates: add congresoeducativo2017</li>
+            <li class="doneItem">certificates: add democraciaypoliticaspublicas</li>
           </ul>
         </li>
 
