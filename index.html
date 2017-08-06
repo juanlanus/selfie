@@ -5,7 +5,6 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta http-equiv="Content-Language" content="en">
     <title>Juan Lanus</title>
-    <link rel="stylesheet" href="ZZZres/portfolio.css" type="text/css">
     <script type="text/javascript" src="common/jquery-2.2.1.js"></script>
     <script type="text/javascript" src="res/portfolio.js"></script>
     <script type="text/javascript" src="res/tocBuilder.js"></script>
@@ -29,11 +28,13 @@
       .itemName        { font-weight:bold; color:black; }
       .itemDescription { color:rgb(96,96,96); display:inline; }
       .items .certifText p { margin-right:222px; }
-      .items .certifThumbnail { margin-bottom:1em; }
-      .items .certifThumbnail { float:right; margin-left:8px; text-align:right; width:200px; height:auto; cursor:pointer; }
-      .items .certifThumbnail img { height:auto; width:100%; }
+      .items .certif li { clear:both; }
+      .items .certifThumbnail { margin-bottom:1em; border:8px solid rgb(192,192,192); }
+      .items .certifThumbnail { float:right; margin-left:8px; width:200px; height:auto; cursor:pointer; }
+      .items .certifThumbnail img { height:auto; width:100%; display:block; object-fit:contain; }
       .items .certifThumbnail img { max-width:100%; max-height:100%; }
-      .items .certifThumbnail.active img {  position:fixed; top:0; left:50px; }
+      .items .certifThumbnail.active img {  position:fixed; top:0; left:0px; margin-left:0px; }
+      .items .certifImage { height:auto; }
 
 
   body                  { margin:0px 8px; font-family:Calibri, helvetica, sans-serif; font-size:100%; background-color:#fffff8; }
@@ -44,7 +45,7 @@
   .fixedHeader h1       { opacity:0.9; font-size:180%; vertical-align:20%; }
   .fixedHeader img      { opacity:0.85; }
 
-  #docBody           { max-width:54em; padding-top:44px; }
+  #docBody           { max-width:42em; padding-top:44px; }
   #docHeader h1      { text-shadow:0.15em 0.15em 4px #c0c0c0; }
     </style>
   </head>
@@ -76,7 +77,10 @@
 
         <li class="itemsGroup"><h2>Quick interaction prototypes</h2>
           <div class="itemDescription">
-            Working prototypes created to showcase interactions.
+            <p>Working prototypes created to showcase interactions.</p>
+            <p>Instead of trying to explain an interaction context in words, these prototypes just
+            show how it works, for real, leaving no doubts. </p>
+            <p>Click on one to open it in a new window, return by clicking the [x] box at the top right corner. </p>
           </div>
           <ul>
 
@@ -138,13 +142,13 @@
 
         <li class="itemsGroup">
           <h2>Certificates</h2>
-          <ul style="clear:both;">
+          <ul class="certif">
 
-            <div class="certifThumbnail">
-              <img style="height:auto; margin-left:-16px; border:8px solid rgb(192,192,192);" src="certificates/CourseraStartupEngineering2013.png">
-            </div>
             <li>
-              <h4 style="">Startup</h4>
+              <div class="certifThumbnail">
+                <img class="certifImage" src="certificates/CourseraStartupEngineering2013.png">
+              </div>
+              <h4>Startup</h4>
               <div class="certifText">
                 <p>A course not about any kind of startup, but about <em>internet
                 startups</em>.</p>
@@ -152,11 +156,11 @@
               </div>
             </li>
 
-            <li style="clear:both;">
-            <div class="certifThumbnail">
-              <img style="height:auto; margin-left:-16px; border:8px solid rgb(192,192,192);" src="certificates/Mongo-JS101-Certificate.png">
-            </div>
-              <h4 style="">MongoDB</h4>
+            <li>
+              <div class="certifThumbnail">
+                <img class="certifImage" src="certificates/Mongo-JS101-Certificate.png">
+              </div>
+              <h4>MongoDB</h4>
               <div class="certifText">
                 <p>MongoDB is the most representative of the new no-SQL databases. </p>
                 <p>The course involved several programming assignments requiring to create and
@@ -164,9 +168,9 @@
               </div>
             </li>
 
-            <li style="clear:both;">
+            <li>
               <div class="certifThumbnail">
-                <img style="height:auto; margin-left:-16px; border:8px solid rgb(192,192,192);" src="certificates/Write101x-EnglishGrammarAndStyle.png">
+                <img class="certifImage" src="certificates/Write101x-EnglishGrammarAndStyle.png">
               </div>
               <h4>English writing</h4>
               <div class="certifText">
@@ -176,9 +180,9 @@
               </div>
             </li>
 
-            <li style="clear:both;">
+            <li>
               <div class="certifThumbnail">
-                <img style="height:auto; margin-left:-16px; border:8px solid rgb(192,192,192);" src="certificates/W3Cx HTML5.png">
+                <img class="certifImage" src="certificates/W3Cx HTML5.png">
               </div>
               <h4>HTML5</h4>
               <div class="certifText">
@@ -189,9 +193,9 @@
               </div>
             </li>
 
-            <li style="clear:both;">
+            <li>
               <div class="certifThumbnail">
-                <img style="height:auto; margin-left:-16px; border:8px solid rgb(192,192,192);" src="certificates/CongresoEducativo2017.png">
+                <img class="certifImage" src="certificates/CongresoEducativo2017.png">
               </div>
               <h4>Congreso Educativo 2017</h4>
               <div class="certifText">
@@ -201,21 +205,22 @@
               </div>
             </li>
 
-            <li style="clear:both;">
+            <li>
               <div class="certifThumbnail">
-                <img style="height:auto; margin-left:-16px; border:8px solid rgb(192,192,192);" src="certificates/DemocraciaYPoliticasPublicas.png">
+                <img class="certifImage" src="certificates/DemocraciaYPoliticasPublicas.png">
               </div>
               <h4>Democracia y Políticas Públicas</h4>
               <div class="certifText">
-                <p>An excellent course on <em>Democracy and Public Policies</em> by Universitat Autònoma de Barcelona.</p>
+                <p>An excellent course on <em>Democracy and Public Policies</em> by Universitat
+                Autònoma de Barcelona.</p>
                 <p>Public policies became a significant subject when I started thinking of
                 my "Democom" project. </p>
               </div>
             </li>
 
-            <li style="clear:both;">
+            <li>
               <div class="certifThumbnail">
-                <img style="height:auto; margin-left:-16px; border:8px solid rgb(192,192,192);" src="certificates/TítuloCalculistaCientificoCAECE.png">
+                <img class="certifImage" src="certificates/TítuloCalculistaCientificoCAECE.png">
               </div>
               <h4>Graded as "Calculista Científico"</h4>
               <div class="certifText">

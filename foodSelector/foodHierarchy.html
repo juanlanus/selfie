@@ -12,10 +12,12 @@
   <link type="text/css" rel="stylesheet" media="screen" href="../common/jl.css" />
   <style>
     body {  font-family:"Trebuchet MS", "sans-serif"; }
-    #outputList { float:right; font-size:75%; min-width:20em; min-height:30em; }
+    #outputList { float:right; font-size:75%; min-width:20em; background-color:rgb(255,255,192); margin-top:80px; }
     #outputList ul { list-style-type:none; padding-left: 12px; }
-    #foods { font-size:90%; }
-    #foods .selected { font-weight:bold; display:block, }
+    #foods { font-size:80%; background-color:rgb(222,222,222);    border-color: transparent; }
+    #foods ul { border-color: transparent; }
+    #foods li { background-color:rgb(222,222,222); }
+    #foods .selected { color:rgb(128,128,128); cursor:default; display:block, }
     .ui-menu { width: 200px; }
   </style>
 
@@ -25,6 +27,7 @@
   <div id="outputList">
     <ul id="selectedFoods">
     </ul>
+    &nbsp;
   </div>
   <div id="blah">
     <h1>Build a selection list</h1>
@@ -370,7 +373,7 @@
 </body>
 
 <script>
-  $( "#foods" ).menu();
+$( "#foods" ).menu( { "borderColorActive": "transparent" } );
 
   $('#foods li').mouseenter(function() {
     var $this = $(this);

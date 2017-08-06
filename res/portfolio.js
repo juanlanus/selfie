@@ -53,12 +53,13 @@
         var $theCertificate = $( event.target ).parent();
         $theCertificate.toggleClass( 'active' );
         if( $theCertificate.hasClass( 'active' ) ) {
-          $theCertificate.css( 'height', $(window).height() + 'px' );
+          $theCertificate.css( 'max-height', $(window).height() + 'px' );
+          $( 'body' ).css( 'background-color', 'rgba(80,80,80,.5)' );
           $theCertificate.attr( 'title', 'click again to close' );
-          console.log( $(window).height() + 'px' );
         } else {
+          $theCertificate.css( 'max-height', '' );
+          $( 'body' ).css( 'background-color', '' );
           $theCertificate.attr( 'title', 'click to see the certificate' );
-          $theCertificate.css( 'height', '' );
         };
       }
     );
