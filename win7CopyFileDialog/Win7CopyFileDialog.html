@@ -1,0 +1,192 @@
+<!DOCTYPE html >
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta http-equiv="Content-Language" content="es, en">
+  <meta http-equiv="Copyright" content="Juan Lanus">
+  <title>Win 7 Copy File Dialog</title>
+  <link rel="stylesheet" type="text/css" href="../res/doc.css">
+  <link rel="stylesheet" type="text/css" href="../res/tocBuilder.css">
+  <script type="text/javascript" src="../res/jquery.js"></script>
+  <script type="text/javascript" src="../res/tocBuilder.js"></script>
+  <script type="text/javascript">
+      $(document).ready(function () {
+
+        // build dynamic TOC
+        /*
+        $('#tocContainer').tocBuilder({
+          type: 'headings',
+          backLinkText: 'TOC',
+          startLevel: 2,
+          endLevel: 6
+        });
+
+        // show slide number on hover
+        $('.slideNumber').css('display', 'none');
+        $('.slide').hover(function() {
+          $('.slideNumber', $(this)).toggle();
+        });
+        */
+      });
+  </script>
+  <script type="text/javascript" src="../res/doc.js">
+ </script>
+</head>
+
+<body>
+
+<div id="agendaBody" class="textColumn">
+<h1 id="Usability">Win 7 Copy File Dialog</h1>
+
+<p class="word">&copy; Juan Lanus 2013</p>
+</div>
+
+<div id="agendaBody1" class="textColumn">
+
+  <h3>Aesthetic and minimalist design</h3>
+      <p>Dialogues should not contain information which is irrelevant or rarely
+      needed. Every extra unit of information in a dialogue competes with the
+      relevant units of information and diminishes their relative visibility.
+      </p>
+      <p>The Windows 7 file overwrite dialog is a counter-example of this rule.
+      </p>
+      <p>How could we re-design it in order to make it more usable? </p>
+    <p>
+      <div class="imgL" style="margin-right:1em; margin-left:-1em;">
+      <img alt="Win7 Copy File Dialog" src="Win7CopyFileDialog_BIG.png"></div>
+      <p></p>
+    </p>
+
+
+    <div style="clear:both; font-family:Segoe UI;">  <!-- it might also be Tahoma -->
+    <style>
+      .dialogHeader     { margin:0; padding-bottom:6px; background:rgb(178,211,246); font-size:80%; }
+      .dialogInfo       { font-size:80%; }
+      .dialogText       { color:rgb(0,60,160); font-size:88%; margin-top:0; }
+      .dialogTextSmall  { color:rgb(0,60,160); }
+      .dialogFileName   { margin-top:0; font-weight:bold; }
+      .dialogButton     { width:14em; line-height:150%; font-size:100%; }
+    </style>
+      <!-- external black border, internal 5px blue border and dialog title  -->
+      <div style="float:left; padding:0px; border:1px solid black; border-radius:6px; background:rgb(178,211,246); padding:5px;"> 
+        <p class="dialogHeader">Copy <strong>newer</strong> version of existing file</p>
+        <!-- internal black border and container -->
+        <div style="padding:12px; border:1px solid black; background:white;"> 
+
+          <p class="dialogFileName">DVyUsabilidad.html</p>
+          <p class="dialogText">There is already a file with this name in the target folder</p>
+          <p class="dialogInfo">
+            Choose one of the actions below
+            &nbsp;<input name="filesOne" value="filesOne" id="filesOne" type="radio" checked="checked"
+             /><label for="filesOne">for this single file</label>
+            &nbsp;&nbsp;&nbsp;<input name="filesOne" value="filesOne" id="filesAll" type="radio"
+             /><label for="filesAll">for all files left</label>
+          </p>
+
+          <!-- buttons for the three actions -->
+          <div>
+            <div style="display:inline-block;">
+              <button class="dialogButton">Replace with newer version</button>
+            </div>
+            <div style="display:inline-block;">
+              <p class="dialogText"> about 7 months newer</p>
+            </div>
+          </div>
+
+          <div>
+            <div style="display:inline-block;">
+              <button class="dialogButton">Rename the incoming file</button>
+            </div>
+            <div style="display:inline-block;">
+              <p class="dialogText">as DVyUsabilidad<strong>_001</strong>.html</p>
+            </div>
+          </div>
+
+          <div>
+            <div style="display:inline-block;">
+              <button class="dialogButton">Omit this file</button>
+            </div>
+            <div style="display:inline-block;">
+              <p class="dialogText"> leave the existing older version</p>
+            </div>
+          </div>
+
+          <!-- files data -->
+          <style>
+            .dialogCell    { display:inline-block; margin:0; padding-top:0.60em;}
+          </style>
+          <div style="width:100%; margin-top:2ex;">
+            <!-- title & headers -->
+            <div style="width:100%; text-align:center; padding-top:0.6em; font-weight:bold;" class="dialogCell dialogHeader">Files Data</div>
+            <div style="width:12%; line-height:80%;" class="dialogCell dialogHeader">&nbsp;
+            </div><div style="width:44%; text-align:center; line-height:80%;" class="dialogCell dialogHeader">Incoming file
+            </div><div style="width:44%; text-align:center; line-height:80%;" class="dialogCell dialogHeader">Existing File</div>
+
+            <!-- file size -->
+            <div style="width:12%; text-align:left;" class="dialogCell dialogInfo">Size:
+            </div><div style="width:88%; text-align:center;" class="dialogCell dialogText">6.15KB</div>
+
+            <!-- file dates -->
+            <div style="width:10%; text-align:left;" class="dialogCell dialogInfo">Date:
+            </div><div style="width:44%; text-align:center;" class="dialogCell dialogText">2013-02-26 16:29
+            </div><div style="width:44%; text-align:center;" class="dialogCell dialogText">2012-07-10 09:05</div>
+
+            <!-- from directory -->
+            <div style="width:12%; text-align:left;" class="dialogCell dialogInfo">From:
+              </div><div style="width:88%; text-align:left;"
+              class="dialogCell dialogText">C:\users\juan.lanus\<strong>AppData\Local\Temp\7xEF891.tmp\</strong></div>
+
+            <!-- to directory -->
+            <div style="width:12%; text-align:left;" class="dialogCell dialogInfo">To:
+              </div><div style="width:88%; text-align:left;"
+              class="dialogCell dialogText">C:\users\juan.lanus\<strong>My Documents\other\uf\</strong></div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <p style="clear:left;">&nbsp;</p>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  <p></p>
+  <p></p>
+  <p></p>
+  <p></p>
+  <p></p>
+  <p></p>
+  <p></p>
+  <p></p>
+  <p></p>
+  <p></p>
+  <p></p>
+  <p></p>
+  <p></p>
+  <p></p>
+  <p></p>
+  <p></p>
+  <p></p>
+  <p></p>
+  <p></p>
+  <p></p>
+  <p></p>
+  <p></p>
+  <p></p>
+  <p></p>
+  <p></p>
+  <p></p>
+  <p></p>
+  <p></p>
+  <p></p>
+  <p></p>
+  <p></p>
+  <p></p>
+  <p></p>
+  <p></p>
+  <p></p>
+</div>
+</body>
+</html>

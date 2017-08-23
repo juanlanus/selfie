@@ -10,12 +10,12 @@
     <script type="text/javascript" src="res/portfolio.js"></script>
     <script type="text/javascript" src="res/tocBuilder.js"></script>
     <link href="res/tocBuilder.css" rel="stylesheet" type="text/css">
-<link rel="shortcut icon" href="./common/tecnosol.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="./common/tecnosol.ico" type="image/x-icon" />
 
-<meta name="description" content="Juan Lanus portfolio" />
-<meta name="keywords"
-content="Juan Lanus, juan_lanus, portfolio, works, samples, prototypes, wireframes, writings, interaction designs, usbility"
-/>
+    <meta name="description" content="Juan Lanus portfolio" />
+    <meta name="keywords"
+    content="Juan Lanus, juan_lanus, interaction designer, UX, usability, portfolio, works, samples,
+    prototypes, wireframes, writings" />
 <meta name="robots" content="index,follow" />
 
     <script type="text/javascript">
@@ -174,9 +174,29 @@ content="Juan Lanus, juan_lanus, portfolio, works, samples, prototypes, wirefram
 
         <li class="itemsgroup"><h3>Certificates</h3>
           <ul>
-            <li>Close the enlarged certificate view with escape key</li>
-            <li>The enlarged certificate does not keep the original proportions</li>
-            <li><span class="doneItem">certificates: add títulocalculistacientificocaece. </span></li>
+            <li class="doneItem">Close the enlarged certificate view with escape key
+            <pre>&lt;a href="img/kitten.jpg" role="button" onclick="handleBtnClick(event)"
+onKeyPress="handleBtnKeyPress(event)">
+	Button
+&lt;/a>
+ 
+function handleBtnClick(event) {		
+	// Do something
+}
+ 
+function handleBtnKeyPress(event) {
+	// Check to see if space or enter were pressed
+	if (event.keyCode === 32 || event.keyCode === 13) {
+		// Prevent the default action to stop scrolling when space is pressed
+		event.preventDefault();
+		
+		// Do something
+ 
+	}
+}
+            </pre></li>
+            <li class="doneItem">The enlarged certificate does not keep the original proportions</li>
+            <li class="doneItem">certificates: add títulocalculistacientificocaece. </li>
             <li class="doneItem">certificates: add congresoeducativo2017</li>
             <li class="doneItem">certificates: add democraciaypoliticaspublicas</li>
           </ul>

@@ -50,19 +50,47 @@
     $( '.certifThumbnail' ).on(
       'click',
       function( event ){
-        var $theCertificate = $( event.target ).parent();
+        // get a ref to the div containing the certif img
+        var $theCertificate = $( event.target );
+        event.target.tagName === 'IMG' && ( $theCertificate = $theCertificate.parent() );
+        // make it focusable
+        $theCertificate.attr( 'tab-index', -1 ).focus();
+        // show or hide
         $theCertificate.toggleClass( 'active' );
         if( $theCertificate.hasClass( 'active' ) ) {
-          $theCertificate.css( 'max-height', $(window).height() + 'px' );
+          // show
           $( 'body' ).css( 'background-color', 'rgba(80,80,80,.5)' );
           $theCertificate.attr( 'title', 'click again to close' );
+
+          // enable closing with esc or enter
+          $( document ).on(
+            'keyup',
+            function( event ){
+              var $theCertificate = $( '.certifThumbnail.active' );
+              if ( event.keyCode === 27 || event.keyCode === 13 ) {
+                // hide
+                $theCertificate.toggleClass( 'active' );
+                $theCertificate.css( 'max-height', '' );
+                $( 'body' ).css( 'background-color', '' );
+                $theCertificate.attr( 'title', 'click to see the certificate' );
+              }
+            }
+          );
         } else {
+          // hide
           $theCertificate.css( 'max-height', '' );
           $( 'body' ).css( 'background-color', '' );
           $theCertificate.attr( 'title', 'click to see the certificate' );
+          $theCertificate.off( 'keyup' );
+
         };
       }
-    );
+    )
     
 
-});
+ 
+	});
+
+
+
+

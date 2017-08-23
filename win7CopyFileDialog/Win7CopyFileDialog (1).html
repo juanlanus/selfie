@@ -1,0 +1,250 @@
+<!DOCTYPE html >
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta http-equiv="Content-Language" content="es, en">
+  <meta http-equiv="Copyright" content="Juan Lanus">
+  <title>Win 7 Copy File Dialog</title>
+  <link rel="stylesheet" type="text/css" href="../res/doc.css">
+  <link rel="stylesheet" type="text/css" href="../res/tocBuilder.css">
+  <script type="text/javascript" src="../res/jquery.js"></script>
+  <script type="text/javascript" src="../res/tocBuilder.js"></script>
+  <script type="text/javascript">
+      $(document).ready(function () {
+
+        // build dynamic TOC
+        /*
+        $('#tocContainer').tocBuilder({
+          type: 'headings',
+          backLinkText: 'TOC',
+          startLevel: 2,
+          endLevel: 6
+        });
+
+        // show slide number on hover
+        $('.slideNumber').css('display', 'none');
+        $('.slide').hover(function() {
+          $('.slideNumber', $(this)).toggle();
+        });
+        */
+      });
+  </script>
+  <script type="text/javascript" src="../res/doc.js">
+ </script>
+</head>
+
+<body>
+
+<div id="agendaBody" class="textColumn">
+<h1 id="Usability">Win 7 Copy File Dialog</h1>
+
+<p class="word">&copy; Juan Lanus 2013</p>
+</div>
+
+<div id="agendaBody1" class="textColumn">
+
+  <h3>Aesthetic and minimalist design</h3>
+      <p>Dialogues should not contain information which is irrelevant or rarely
+      needed. Every extra unit of information in a dialogue competes with the
+      relevant units of information and diminishes their relative visibility.
+      </p>
+      <p>The Windows 7 file overwrite dialog is a counter-example of this rule.
+      </p>
+      <p>How could we re-design it in order to make it more usable? </p>
+    <p>
+      <div class="imgL" style="margin-right:1em; margin-left:-1em;">
+      <img alt="Win7 Copy File Dialog" src="Win7CopyFileDialog_BIG.png"></div>
+      <p></p>
+    </p>
+
+
+    <div style="clear:both; font-family:Open Sans,Segoe UI; width:30em;">  <!-- it might also be Tahoma -->
+    <style>
+      .dialogHeader     { margin:0; padding-bottom:6px; background:rgb(178,211,246); font-size:80%; }
+      .dialogInfo       { font-size:80%; }
+      .dialogText       { color:rgb(0,60,160); font-size:88%; margin-top:0; }
+      .dialogTextSmall  { color:rgb(0,60,160); }
+      .dialogFileName   { margin-top:0; font-weight:bold; }
+      .dialogButton     { width:14em; line-height:200%; font-size:100%; margin-top:.2em;}
+      input[type="radio"]:checked + label { color:black; }
+    </style>
+      <!-- external black border, internal 5px blue border and dialog title  -->
+      <div style="float:left; padding-top:0px; border:1px solid black; border-radius:6px; background:rgb(178,211,246); padding:5px;"> 
+        <p class="dialogHeader">Copy <strong>newer</strong> version of existing file</p>
+        <!-- internal black border and container -->
+        <div style="padding-top:12px; border:1px solid black; background:white;"> 
+
+          <div style="margin:0; padding-left:12px;">
+            <p class="dialogFileName">DVyUsabilidad.html</p>
+            <p class="dialogText">There is already a file with this name in the target folder</p>
+            <p class="dialogInfo"><span style="font-weight:bold;">Choose one of the actions below
+              <span style="color:rgb(128,128,128); font-weight:bold;"><input name="filesOne" value="filesOne" id="filesOne" type="radio" checked="checked" 
+                /><label for="filesOne">for this single file</label>
+                <input name="filesOne" value="filesOne" id="filesAll" type="radio"
+                /><label for="filesAll">for all files left</label>
+              </span>
+              </p>
+
+              <!-- buttons for the three actions -->
+              <div>
+                <div style="display:inline-block;">
+                  <button class="dialogButton">Replace with newer version</button>
+                </div>
+                <div style="display:inline-block;">
+                  <p class="dialogText"> about 7 months newer</p>
+                </div>
+              </div>
+
+              <div>
+                <div style="display:inline-block;">
+                  <button class="dialogButton">Rename the incoming file</button>
+                </div>
+                <div style="display:inline-block;">
+                  <p class="dialogText">as DVyUsabilidad<strong> (2)</strong>.html</p>
+                </div>
+              </div>
+
+              <div>
+                <div style="display:inline-block;">
+                  <button class="dialogButton">Omit this file</button>
+                </div>
+                <div style="display:inline-block;">
+                  <p class="dialogText"> leave the existing older version</p>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- files data -->
+            <style>
+              .dialogCell    { display:inline-block; margin:0; padding-top:0.60em;}
+              .dialogDirCommon { color:rgb(96,140,255); font-size:88%; margin-top:0;  }
+              .dialogDirSpecific { color:rgb(0,60,160); }
+            </style>
+            <div style="width:100%; margin-top:2ex;">
+              <!-- title & headers -->
+              <div class="dialogHeader" style="background:rgb(238,245,255);">
+                <div style="width:100%; text-align:left; padding-top:0.6em; padding:0; padding-left:12px; font-weight:bold;" class="dialogCell ">Files Data</div>
+                <div style="width:12%; padding:0; margin:0; line-height:100%;" class="dialogCell ">&nbsp;
+                  </div><div style="width:44%; padding:0; margin:0; text-align:center; line-height:100%;" class="dialogCell ">Incoming file
+                </div><div style="width:44%; padding:0; margin:0; text-align:center; line-height:100%;" class="dialogCell ">Existing File</div>
+              </div>
+
+              <div style="padding-left:12px;">
+                <!-- file size -->
+                <div style="width:12%; text-align:left;" class="dialogCell dialogInfo">Size:
+                </div><div style="width:88%; text-align:center;" class="dialogCell dialogText">6.15KB</div>
+
+                <!-- file dates -->
+                <div style="width:10%; text-align:left;" class="dialogCell dialogInfo">Date:
+                  </div><div style="width:44%; text-align:center;" class="dialogCell dialogText">2013-02-26 16:29
+                </div><div style="width:44%; text-align:center;" class="dialogCell dialogText">2012-07-10 09:05</div>
+
+                <!-- from directory -->
+                <div style="width:12%; text-align:left;" class="dialogCell dialogInfo">From:
+                  </div><div style="width:88%; text-align:left;"
+                  class="dialogCell dialogDirCommon">C:\users\juan.lanus\<span class="dialogDirSpecific">AppData\Local\Temp\7xEF891.tmp\</span></div>
+
+                <!-- to directory -->
+                <div style="width:12%; text-align:left;" class="dialogCell dialogInfo">To:
+                  </div><div style="width:88%; text-align:left;"
+                  class="dialogCell dialogDirCommon">C:\users\juan.lanus\<span class="dialogDirSpecific">My Documents\other\uf\</span></div>
+              </div>
+
+            </div>
+
+            <!-- cancel button -->
+            <div style="margin-top:1ex; background-color:rgb(240,240,240); padding:8px 12px; text-align:right;">
+              <button class="">Cancel</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <p style="clear:left;">&nbsp;</p>
+    <p>&nbsp;</p>
+    <dd>Dialogues should not contain information which is irrelevant or rarely
+    needed. Every extra unit of information in a dialogue competes with the
+    relevant units of information and diminishes their relative visibility. 
+    <p>The Windows 7 file overwrite dialog is a counter-example of this rule.
+    </p>
+    <p>How could we re-design it in order to make it more usable? </p>
+    </dd>
+    <dt></dt>
+    <dd>Besides having too busy an UI, this dialog has a number of issues: 
+    <ul>
+      <li>The "Copy File" text in the dialog title is not informative. This
+      is a premium location and should be more informative. IMO users have
+      developed <em>dialog title blindness</em> due to the lameness of
+      dialog titles, just space holders. It can inform the user about
+      what's happening, like in "Copy <strong>newer</strong> version of
+      existing file" to help then take the right decision in a split
+      second. </li>
+      <li>It says "There is already a file with the same name in this
+      location" but the mentioned location should show as part of the
+      message. </li>
+      <li>The word "location" in "There is already a file with the same name
+      in this location" is allien. We seldom use this word, it should be
+      "folder" or "directory". </li>
+      <li>The "Click the file you want to keep" instructions are misleading.
+      Where is "the file I want to keep"? It should be something like
+      "Choose one of the options below". </li>
+      <li>The "Copy and Replace" label mentions two operations: <em>copy</em>
+      and <em>replace</em>. To the user it's only one, no matter if the
+      program internally first copies the incoming file and after does the
+      replacement. To convey a sense of singleness, "Replace" would be a
+      better fit. </li>
+      <li>The first and second options have file information, whilst the
+      third doesn't. This is because tha data is already depicted in the
+      previous options, but it makes this option different, a second calss
+      option, conveying a message like <em>don't click me, the other
+        choices are right</em>. 
+      <p>File information doesn't belong to the options but instead is
+      global information, and should not be tied to them. </p>
+      </li>
+      <li>(newer) is good but last: the user didn't read this much</li>
+    </ul>
+    </dd>
+
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+  </div>
+</body>
+</html>
