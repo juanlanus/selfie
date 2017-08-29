@@ -1,135 +1,128 @@
 <!DOCTYPE html >
 <html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta http-equiv="Content-Language" content="en">
   <title>Computers vs. people</title>
-  <link rel="stylesheet" href="agenda.css" type="text/css">
   <script type="text/javascript" src="jquery-1.7.1.js"></script>
-  <script type="text/javascript" src="tocBuilder.js"></script>
-
-	<link rel="stylesheet" href="anythingSlider/css/anythingslider.css">
-	<script src="anythingSlider/js/jquery.anythingslider.js"></script>
-
-  <script type="text/javascript">
-    $(document).ready(function () {
-      $('#slidesContainer').anythingSlider({
-        resizeContents : true,
-        toggleControls : true
-      });
-    });
-  </script>
-  <script type="text/javascript" src="agenda.js"></script>
+	<script src="slick-1.6.0/slick/slick.js"></script>
+  <link rel="stylesheet" type="text/css" href="slick-1.6.0/slick/slick.css"/>
 </head>
 
 <body>
+
+  <div class="your-class">
+    <div>your content</div>
+    <div>your content</div>
+    <div>your content</div>
+  </div>
 
 	<div id="agendaBody" class="textColumn">
 
 		<style>
 			#slidesContainer { width:700px; height:555px; }
-			#slidesContainer li.slide { clear:both; max-width:44rem; height:100%; margin-bottom:33px; }
-			#slidesContainer p { font-size:200%; }
-			#slidesContainer ol { font-size:180%; }
+			#slidesContainer div.slide { clear:both; height:100%; }
+			#slidesContainer p { font-size:100%; }
+      #slidesContainer > div { font-size:133%; }
 		</style>
 
-		<ul id="slidesContainer" style="height:555px;">
+    <div id="slidesContainer">
 
-			<li class="slide">
+			<div class="slide">
         <div style="height:555px; border:25px solid rgb(222,222,222); border-radius:25px; padding:33px;">
           <h1 id="Usability">Computers vs. people</h1>
         </div>
-			</li>
-
-			<li class="slide">
-			<p>Oftentimes computers do harm people, making them suffer a lot. </p>
-			</li>
-
-			<li class="slide">
-			<p>Most of us think that the computer must be right and silently suffer mistreats, like home banking systems. </p>
-			</li>
-
-			<li class="slide">
-			<p>Very few people has taken action, like for example this guy: <br /> </p>
-			<div style="background-image: url(badday.jpg); background-repeat: no-repeat; background-position:left top; margin-top:1.5em; margin-bottom:1.5em; margin-left:5em; height:360px;">
-				<object style="height: 390px; width: 640px">
-					<param name="movie"
-					value="http://www.youtube.com/v/2gIex0pd96U?version=3&amp;feature=player_detailpage">
-					<param name="allowFullScreen" value="true">
-					<param name="allowScriptAccess" value="always">
-					<embed
-					src="http://www.youtube.com/v/2gIex0pd96U?version=3&amp;feature=player_detailpage"
-					type="application/x-shockwave-flash" width="480" height="360" /></object>
 			</div>
-			</li>
 
-			<li class="slide">
-			<p style="float:right; margin-left:1em;"><img src="AENeumann.jpg" /></p>
-			<p>Althought many of us found his outburst encomiable, it was later proved that he was wrong.  </p>
-			<p>The famous researcher Alfred E. Neuman devised the experiment that was going to be the ultimate proof. He ran the same program (not without a humongous development cost) in all different hardware platforms, attaining always the same result.  </p>
-			<p>After years of effort he ruled: <em>The hardware is innocent</em>. </p> 
-			</li>
+			<div class="slide">
+        <p>Oftentimes computers do harm people, making them suffer a lot. </p>
+			</div>
 
-			<li class="slide">
-			<p style="float:right; margin-left:1em;"><img src="pinky.jpg" /></p>
-			<p>After some additional research, that took somehow less time than the previous stage, Neuman concluded that all applications are a combination of hardware and software. Given that the hardware was ruled out, then it was the software to be blamed. </p>
-			<p>He was unable to establish communication with <em>the software</em> but he noticed that <em>the software</em> did everything that <em>the developer</em> told it to do. <em>The developer</em> was the controlling mind, the brain! </p>
-			</li>
+			<div class="slide">
+        <p>Most of us think that the computer must be right and silently suffer mistreats, like home banking systems. </p>
+			</div>
 
-			<li class="slide">
-			<p style="float:right; margin-left:1em;"><img src="theDeveloper.jpg" /></p>
-			<p>The next obvious step was to communicate with the developer. 
-			Neuman gave up after having tried for a long time. </p>
-			<p>The developer, even under the scrutiny of the most sensitive laboratory instruments available, would not show any reaction to words like <em>user</em>, <em>user interface</em> or even <em>usability</em>. </p>
-			</li>
+			<div class="slide">
+        <p>Very few people has taken action, like for example this guy: <br /> </p>
+        <div style="background-image: url(badday.jpg); background-repeat: no-repeat; background-position:left top; margin-top:1.5em; margin-bottom:1.5em; margin-left:5em; height:360px;">
+          <object style="height: 390px; width: 640px">
+            <param name="movie"
+            value="http://www.youtube.com/v/2gIex0pd96U?version=3&amp;feature=player_detailpage">
+            <param name="allowFullScreen" value="true">
+            <param name="allowScriptAccess" value="always">
+            <embed src="http://www.youtube.com/v/2gIex0pd96U?version=3&amp;feature=player_detailpage"
+            type="application/x-shockwave-flash" width="480" height="360" />
+          </object>
+        </div>
+			</div>
 
-			<li class="slide">
-			<p>The developer was totally oblivious of the disaster he was provoking. He was not accountable. </p>
-			<p>Neuman found himself at a dead point.  </em>
-		</li>
+			<div class="slide">
+        <p style="float:right; margin-left:1em;"><img src="AENeumann.jpg" /></p>
+        <p>Althought many of us found his outburst encomiable, it was later proved that he was wrong.  </p>
+        <p>The famous researcher Alfred E. Neuman devised the experiment that was going to be the ultimate proof. He ran the same program (not without a humongous development cost) in all different hardware platforms, attaining always the same result.  </p>
+        <p>After years of effort he ruled: <em>The hardware is innocent</em>. </p> 
+			</div>
 
-		<li class="slide">
-		<p>He changed the perspective of the research, focusing now in the way applications were conceived and developed. </p>
-		<p>He discovered the impedance of the thre models. This means that in every interactive application there are three models involved.  </p>
-		</li>
+			<div class="slide">
+        <p style="float:right; margin-left:1em;"><img src="pinky.jpg" /></p>
+        <p>After some additional research, that took somehow less time than the previous stage, Neuman concluded that all applications are a combination of hardware and software. Given that the hardware was ruled out, then it was the software to be blamed. </p>
+        <p>He was unable to establish communication with <em>the software</em> but he noticed that <em>the software</em> did everything that <em>the developer</em> told it to do. <em>The developer</em> was the controlling mind, the brain! </p>
+      </div>
 
-		<li class="slide">
-		<ol>
-			<li>The user´s mental model, </li>
-			<li>the system's technical implementation model, and </li>
-			<li>the UIs manifest model. </li>
-		</ol>
-		<p style="margin:1em;"><img src="theThreeModels.png" /></p>
-		</li>
+			<div class="slide">
+        <p style="float:right; margin-left:1em;"><img src="theDeveloper.jpg" /></p>
+        <p>The next obvious step was to communicate with the developer. 
+        Neuman gave up after having tried for a long time. </p>
+        <p>The developer, even under the scrutiny of the most sensitive laboratory instruments available, would not show any reaction to words like <em>user</em>, <em>user interface</em> or even <em>usability</em>. </p>
+			</div>
 
-		<li class="slide">
-		<p>The mental model is what the user thinks of the real world things the application is about. For example, if the application is about purchasing music then the mental model is made up of the experience the user has accumulated by purchasing music in brick and mortar music shops. </p>
-		</li>
+			<div class="slide">
+        <p>The developer was totally oblivious of the disaster he was provoking. He was not accountable. </p>
+        <p>Neuman found himself at a dead point.  </p>
+      </div>
 
-		<li class="slide">
-		<p>The implementation model is made up of the things the developers use to build systems, like databases, programs, classes, methods, and all that geeky stuff. Normal people don't understand these features, the developers can't understand that the othrs don't understand. </p>
-		</li>
+      <div class="slide">
+        <p>He changed the perspective of the research, focusing now in the way applications were conceived and developed. </p>
+        <p>He discovered the impedance of the thre models. This means that in every interactive application there are three models involved. </p>
+      </div>
 
-		<li class="slide">
-		<p>The manifest model is the user interface, the way the system communicates with the human race members. Mostly always it's made up of screens displayed on a monitor, and receives input from a mouse or equivalent and a keyboard.  </p>
-		</li>
+		<div class="slide">
+      <ol>
+        <li>The user´s mental model, </li>
+        <li>the system's technical implementation model, and </li>
+        <li>the UIs manifest model. </li>
+      </ol>
+      <p style="margin:1em;"><img src="theThreeModels.png" /></p>
+		</div>
 
-		<li class="slide">
-		<p>Developers usually design UIs aligned after the implementation model, the part of the system they love the most. The part of the system that normal people don't understand. </p>
-		</li>
+		<div class="slide">
+      <p>The mental model is what the user thinks of the real world things the application is about. For example, if the application is about purchasing music then the mental model is made up of the experience the user has accumulated by purchasing music in brick and mortar music shops. </p>
+		</div>
 
-		<li class="slide">
-		<p>The discovery of Neuman was that, for an application to be usable, the manifest model ought to be designed after the user's mental model.  </p>
-		<p>This ensures that the user and the system will understand each other. What is called <em>intuituve</em> despite the fact that it has nothing to see with instinct. </p>
-		</li>
+		<div class="slide">
+      <p>The implementation model is made up of the things the developers use to build systems, like databases, programs, classes, methods, and all that geeky stuff. Normal people don't understand these features, the developers can't understand that the othrs don't understand. </p>
+		</div>
 
-		<li class="slide">
-		<p style="float:right; margin-left:1em;"><img src="theUsersMind.png" /></p>
-		<p>Neuman is now researching about how to find out the content of the user's mind. </p>
-		</li>
-	</ul>
+		<div class="slide">
+      <p>The manifest model is the user interface, the way the system communicates with the human race members. Mostly always it's made up of screens displayed on a monitor, and receives input from a mouse or equivalent and a keyboard. </p>
+		</div>
 
-	<p> </p>
+		<div class="slide">
+      <p>Developers usually design UIs aligned after the implementation model, the part of the system they love the most. The part of the system that normal people don't understand. </p>
+		</div>
+
+		<div class="slide">
+      <p>The discovery of Neuman was that, for an application to be usable, the manifest model ought to be designed after the user's mental model.  </p>
+      <p>This ensures that the user and the system will understand each other. What is called <em>intuituve</em> despite the fact that it has nothing to see with instinct. </p>
+		</div>
+
+		<div class="slide">
+      <p style="float:right; margin-left:1em;"><img src="theUsersMind.png" /></p>
+      <p>Neuman is now researching about how to find out the content of the user's mind. </p>
+		</div>
+	</div>
+
+	<p></p>
 	<p></p>
 	<p></p>
 	<p></p>
@@ -156,5 +149,10 @@
 	<p></p>
 	<p></p>
 </div>
+
+  <script type="text/javascript">
+      $('.your-class').slick({
+      });
+  </script>
 </body>
 </html>
