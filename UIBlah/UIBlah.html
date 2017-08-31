@@ -1,4 +1,5 @@
 <!DOCTYPE html >
+<!-- https://docs.google.com/presentation/d/1nv7GhEkEBXp2YgYl_-FdDOM-_K0_B8PZwR-arEcZGuA/present?includes_info_params=1&slide=id.p#slide=id.p -->
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -6,7 +7,20 @@
   <title>Computers vs. people</title>
   <script type="text/javascript" src="jquery-1.7.1.js"></script>
 	<script src="slick-1.6.0/slick/slick.js"></script>
+  <script>
+    $(document).ready(function(){
+      $('#slidesContainerZZZ').slick({
+        centerMode: true,
+        variableWidth: true,
+        infinite: false,
+        arrows: true,
+        centerMode: true,
+        centerPadding: '40px'
+      });
+    });  
+  </script>
   <link rel="stylesheet" type="text/css" href="slick-1.6.0/slick/slick.css"/>
+  <link rel="stylesheet" type="text/css" href="slick-1.6.0/slick/slick-theme.css"/>
 </head>
 
 <body>
@@ -112,7 +126,7 @@
 		</div>
 
 		<div class="slide">
-      <p style="margin-left:1em;"><img src="theUsersMind.png" /></p>
+      <p style="margin-left:2em;"><img src="theUsersMind.png" /></p>
       <p>Neuman is now researching on how to find out the content of the user's mind. </p>
 		</div>
 	</div>
@@ -146,15 +160,5 @@
 	<p></p>
 </div>
 
-  <script type="text/javascript">
-      $('#slidesContainer').slick({
-          centerMode: true,
-          variableWidth: true,
-          infinite: false,
-          arrows: false,
-          centerMode: true,
-          centerPadding: '40px'
-      });
-  </script>
 </body>
 </html>
