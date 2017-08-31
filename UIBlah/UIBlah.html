@@ -11,25 +11,20 @@
 
 <body>
 
-  <div class="your-class">
-    <div>your content</div>
-    <div>your content</div>
-    <div>your content</div>
-  </div>
+  <style>
+    body { font-family: sans-serif; }
+    #slidesContainer { width:600px; }
+    #slidesContainer div.slide { padding:12px 40px; width:600px; }
+    #slidesContainer p { font-size:100%; }
+    #slidesContainer > div { font-size:240%; }
+  </style>
 
 	<div id="agendaBody" class="textColumn">
-
-		<style>
-			#slidesContainer { width:700px; height:555px; }
-			#slidesContainer div.slide { clear:both; height:100%; }
-			#slidesContainer p { font-size:100%; }
-      #slidesContainer > div { font-size:133%; }
-		</style>
 
     <div id="slidesContainer">
 
 			<div class="slide">
-        <div style="height:555px; border:25px solid rgb(222,222,222); border-radius:25px; padding:33px;">
+        <div style="border:25px solid rgb(222,222,222); border-radius:25px; padding:33px;">
           <h1 id="Usability">Computers vs. people</h1>
         </div>
 			</div>
@@ -39,18 +34,18 @@
 			</div>
 
 			<div class="slide">
-        <p>Most of us think that the computer must be right and silently suffer mistreats, like home banking systems. </p>
+        <p>Most of us think that the computer must be right and silently suffer mistreats like home banking systems. </p>
 			</div>
 
 			<div class="slide">
         <p>Very few people has taken action, like for example this guy: <br /> </p>
-        <div style="background-image: url(badday.jpg); background-repeat: no-repeat; background-position:left top; margin-top:1.5em; margin-bottom:1.5em; margin-left:5em; height:360px;">
+        <div style="background-image: url(badday.jpg); background-repeat: no-repeat; background-position:left top; margin-top:1.5em; margin-bottom:1.5em; height:360px;">
           <object style="height: 390px; width: 640px">
             <param name="movie"
-            value="http://www.youtube.com/v/2gIex0pd96U?version=3&amp;feature=player_detailpage">
+            value="http://www.youtube.com/v/2gIex0pd96U?version=3&feature=player_detailpage">
             <param name="allowFullScreen" value="true">
             <param name="allowScriptAccess" value="always">
-            <embed src="http://www.youtube.com/v/2gIex0pd96U?version=3&amp;feature=player_detailpage"
+            <embed src="http://www.youtube.com/v/2gIex0pd96U?version=3&feature=player_detailpage"
             type="application/x-shockwave-flash" width="480" height="360" />
           </object>
         </div>
@@ -78,7 +73,7 @@
 
 			<div class="slide">
         <p>The developer was totally oblivious of the disaster he was provoking. He was not accountable. </p>
-        <p>Neuman found himself at a dead point.  </p>
+        <p>Neuman found himself at a dead end.  </p>
       </div>
 
       <div class="slide">
@@ -88,7 +83,7 @@
 
 		<div class="slide">
       <ol>
-        <li>The user´s mental model, </li>
+        <li>The user's mental model, </li>
         <li>the system's technical implementation model, and </li>
         <li>the UIs manifest model. </li>
       </ol>
@@ -117,10 +112,11 @@
 		</div>
 
 		<div class="slide">
-      <p style="float:right; margin-left:1em;"><img src="theUsersMind.png" /></p>
-      <p>Neuman is now researching about how to find out the content of the user's mind. </p>
+      <p style="margin-left:1em;"><img src="theUsersMind.png" /></p>
+      <p>Neuman is now researching on how to find out the content of the user's mind. </p>
 		</div>
 	</div>
+
 
 	<p></p>
 	<p></p>
@@ -151,7 +147,13 @@
 </div>
 
   <script type="text/javascript">
-      $('.your-class').slick({
+      $('#slidesContainer').slick({
+          centerMode: true,
+          variableWidth: true,
+          infinite: false,
+          arrows: false,
+          centerMode: true,
+          centerPadding: '40px'
       });
   </script>
 </body>
