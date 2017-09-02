@@ -4,11 +4,12 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="Content-Language" content="en">
     <title>Column selection &amp; sorting</title>
+    <link rel="shortcut icon" href="../common/tecnosol.ico" type="image/x-icon" />
     <script src="res/jquery.js"></script>
     <script src="res/jquery.quicksearch.js"></script>
     <script src="res/Sortable.js"></script>
     <script src="res/jquery.ui.position.js"></script>
-    <script src="columnProperties.js"></script>
+    <script src="countries.js"></script>
     <script type="text/javascript" src="../common/jl.js"></script>
     <link type="text/css" rel="stylesheet" media="screen" href="../common/jl.css" />
     <script>
@@ -205,12 +206,13 @@
       font-size:80%; line-height:80%; overflow:hidden;
       }
       #columnNames li { border-top: 1px solid transparent; }
+      #columnNames li { overflow:hidden; white-space:nowrap; text-overflow:ellipsis; }
       #columnNames li:hover div {  }
       #columnNames li div.colLockArea { display:inline-block; height:16px; width: 16px; }
       #columnNames li div.colSelArea { display:inline-block; height:16px; width: 16px; }
       #columnNames li div.colDnDArea { display:inline-block; height:16px; width: 16px; }
       
-      #columnNames li:hover { background-color:rgb(222,222,192); }
+      #columnNames li:hover { background-color:rgb(192,192,160); }
       #columnNames li:hover { }
       #columnNames li:hover div.colDnDArea { background:url("res/menuIcons/drag_icon_NO.png") center 50% no-repeat; }
       #columnNames li:hover div.colSelArea { background:url("res/menuIcons/check_mark-NO.png") center 50% no-repeat; }
