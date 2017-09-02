@@ -12,7 +12,7 @@
     <link rel="shortcut icon" href="./common/tecnosol.ico" type="image/x-icon" />
     <meta name="description" content="Juan Lanus portfolio" />
     <meta name="keywords" content="Juan Lanus, juan_lanus, interaction designer, UX, usability,
-    portfolio, works, samples, prototypes, wireframes, writings" />
+    portfolio, works, samples, prototypes, wireframes, writings, software development" />
     <meta name="robots" content="index,follow" />
 
     <script type="text/javascript">
@@ -20,40 +20,54 @@
     </script>
 
     <style>
-      .items           { line-height:22px; }
-      .items li        { list-style-type:none; }
-      .items a         { border-bottom:1px solid transparent; text-decoration:none; color:blue; }
-      .items a:link    { }
-      .items a:visited { color:rgb(128,128,128); text-decoration:none; }
-      .items a:hover   { border-bottom:1px solid rgb(222,222,222); text-decoration:none; color:black; background-color:rgb(248,248,248); }
-      .items a:active  { color:blue; }
-      .items li a      { padding:4px; border-radius:4px; }
-      .items li a      { display:inline; }
-      .items li a.itemLink { display:block; }
-      .itemsGroup li   { list-style-type:none; }
-      .itemsGroup > span { font-weight:bold; }
-      .itemName        { font-weight:bold; color:black; }
-      .itemDescription { color:rgb(96,96,96); display:inline; }
-      .items .certifText p { margin-right:222px; }
-      .items .certif li { clear:both; }
-      .items .certifThumbnail { margin-bottom:1em; border:8px solid rgb(192,192,192); }
-      .items .certifThumbnail { float:right; margin-left:8px; width:200px; height:auto; cursor:pointer; }
-      .items .certifThumbnail img { height:auto; width:100%; display:block; object-fit:contain; }
-      .items .certifThumbnail img { max-width:100%; max-height:100%; }
-      .items .certifThumbnail.active img {  position:fixed; top:0; left:0px; margin-left:0px; }
-      .items .certifImage { height:auto; }
+      /**** fixed header *************************/
+      .fixedHeader              { position:fixed; top:0px; left:0px; background-color:#fffff8; width:100%; z-index:99; background:transparent; }
+      .fixedHeader h1           { opacity:0.9; font-size:180%; vertical-align:20%; }
+      .fixedHeader img          { opacity:0.85; }
 
+      #docBody                  { max-width:42em; padding-top:44px; }
+      #docHeader h1             { padding-left:1em; line-height:200%; text-shadow:0.15em 0.15em 4px #c0c0c0; }
 
-  body                  { margin:0px 8px; font-family:Calibri, helvetica, sans-serif; font-size:100%; background-color:#fffff8; }
-  html,body             { height:100%; margin-top:0px; }
-  img                   { border-width:0px 0px 0px 0px; }
-  /************ fixed header *****************/
-  .fixedHeader          { position:fixed; top:0px; left:0px; background-color:#fffff8; width:100%; z-index:99; background:transparent; }
-  .fixedHeader h1       { opacity:0.9; font-size:180%; vertical-align:20%; }
-  .fixedHeader img      { opacity:0.85; }
+      /**** document body ************************/
 
-  #docBody           { max-width:42em; padding-top:44px; }
-  #docHeader h1      { text-shadow:0.15em 0.15em 4px #c0c0c0; }
+      .itemGroups               { line-height:22px; }
+      .itemGroups h2            { line-height:200%; }
+      .itemGroups li            { list-style-type:none; }
+      .itemGroups a             { border-bottom:1px solid transparent; text-decoration:none; }
+      .itemGroups a:link        { }
+      .itemGroups li a.itemLink { padding:11px; }
+      .itemGroups li a.itemLink:hover { background-color:rgb(222,222,222); }
+      .itemGroups a:visited     { color:rgb(128,128,128); }
+      .itemGroups a:hover       { border-bottom:1px solid rgb(222,222,222); text-decoration:none; color:black; background-color:rgb(248,248,248); }
+      .itemGroups a:active      { color:blue; }
+      .itemGroups li a          { padding:4px; border-radius:4px; }
+      .itemGroups li a          { display:inline; }
+      .itemGroups li a.itemLink { display:block; }
+      .itemsGroupDescription    { color:rgb(96,96,96); display:inline; }
+
+      .itemGroups .certifText p { margin-right:222px; }
+      .itemGroups .certif li    { clear:both; }
+      .itemGroups .certifThumbnail { margin-bottom:1em; border:8px solid rgb(192,192,192); }
+      .itemGroups .certifThumbnail { float:right; margin-left:8px; width:200px; height:auto; cursor:pointer; }
+      .itemGroups .certifThumbnail img { height:auto; width:100%; display:block; object-fit:contain; }
+      .itemGroups .certifThumbnail img { max-width:100%; max-height:100%; }
+      .itemGroups .certifThumbnail.active img {  position:fixed; top:0; left:0px; margin-left:0px; }
+      .itemGroups .certifImage  { height:auto; }
+
+      .itemLink.a               { list-style-type:none; }
+
+      .itemsGroup li            { list-style-type:none; }
+      .itemsGroup > span        { font-weight:bold; }
+
+      .itemName                 { font-weight:bold; color:black; }
+      .itemDescription          { color:rgb(96,96,96); display:inline; }
+
+      .itemLink a:hover         { color:rgb(0,0,0); background-color:rgb(222,222,222); }
+
+      body                      { margin:0px 8px; font-family:Calibri, helvetica, sans-serif; font-size:100%; background-color:#fffff8; }
+      html,body                 { height:100%; margin-top:0px; }
+      img                       { border-width:0; }
+
     </style>
   </head>
 
@@ -66,7 +80,7 @@
       </div>
 
       <div style="display:none;" id="docLinks">
-        <div id="ZZZ_tocContainer" class="ZZZ_tocContainer">
+        <div id="ZZZ_tocContainer" class="tocContainer">
           <div class="toc">
           </div>
         </div>
@@ -76,205 +90,216 @@
 
     </div>
 
-    <p style="display:none;"><a href="/home/juan/Dropbox/Public/index.html" target="other">Index of Dropbox Public</a></p>
-
     <div id="docBody">
 
-      <ul class="items">
+      <div class="itemGroups">
 
-        <li class="itemsGroup"><h2>Quick interaction prototypes</h2>
-          <div class="itemDescription">
-            <p>Working prototypes created to showcase interactions.</p>
-            <p>Instead of trying to explain an interaction context in words, these prototypes just
-            show how it works, for real, leaving out any uncertainty. </p>
-            <p>Click on one to open it in a new window, return by clicking the [x] box at the top right corner. </p>
+        <section id="prototypes">
+          <div class="itemsGroup">
+            <h2>Quick interaction prototypes</h2>
+            <div class="itemsGroupDescription">
+              <p>Working prototypes created to showcase interactions.</p>
+              <p>Instead of trying to explain an interaction context in words, these prototypes just
+              show how it works, for real, leaving out any uncertainty. </p>
+              <p>Click on one to open it in a new window, return by clicking the [x] box at the top right corner. </p>
+            </div>
+
+            <ul>
+
+              <li><a class="itemLink" href="foodSelector/foodHierarchy.html" target="other"><span class="itemName">Food selector:</span> 
+                <div class="itemDescription">
+                  The requirement was to allow the users to select items from a rather lengthy
+                  set where the structure of the data was known to be hierarchical. 
+                </div></a>
+              </li>
+
+              <li><a class="itemLink" href="columnsSelector/columnSelection.html" target="other"><span class="itemName">List manager:</span> 
+                <div class="itemDescription">
+                  The use case was about managing a big numbers of columns of a grid, allowing
+                  to select and reorder them. <br>
+                  There is also a number of locked columns, that are displayed the first, and
+                  thus need to be grouped.
+                </div></a>
+              </li>
+
+              <li><a class="itemLink" href="acua/muestrario.html" target="other"><span class="itemName">Acrylic sheets color sampler:</span>
+                <div class="itemDescription">
+                  This is a small website for an acrylic sheets factory. Its edge is the greater
+                  colors offering. <br>
+                  In order to leverage that, the site sports a simple color picker where one can
+                  build the palette by clicking on the desired colors. 
+                </div></a>
+              </li>
+
+              <li><a class="itemLink" href="fieldhelp/fieldcontextualhelp.html" target="other"><span class="itemName">Contextual help:</span>
+                <div class="itemDescription">
+                  A wireframe showcasing a set of recommendations on how to implement contextual
+                  help in a portal-like huge application so it's consistent across all pages, 
+                  also allowing to decouple and reuse the help development effort.
+                </div></a>
+              </li>
+
+            </ul>
           </div>
-          <ul>
+        </section>
 
-            <li><a class="itemLink" href="foodSelector/foodHierarchy.html" target="other"><span class="itemName">Food selector:</span> 
-              <div class="itemDescription">
-                The requirement was to allow the users to select items from a rather lengthy
-                set where the structure of the data was known to be hierarchical. 
-              </div></a>
-            </li>
+        <section id="applications">
+          <div class="itemsGroup">
+            <h2>Applications</h2>
+            <div class="itemsGroupDescription">
+              Applications designed by me.
+            </div>
 
-            <li><a class="itemLink" href="columnsSelector/columnSelection.html" target="other"><span class="itemName">List manager:</span> 
-              <div class="itemDescription">
-                The use case was about managing a big numbers of columns of a grid, allowing
-                to select and reorder them. <br>
-                There is also a number of locked columns, that are displayed the first, and
-                thus need to be grouped.
-              </div></a>
-            </li>
+            <ul>
 
-            <li><a class="itemLink" href="acua/muestrario.html" target="other"><span class="itemName">Acrylic sheets color sampler:</span>
-              <div class="itemDescription">
-                This is a small website for an acrylic sheets factory. Its edge is the greater
-                colors offering. <br>
-                In order to leverage that, the site sports a simple color picker where one can
-                build the palette by clicking on the desired colors. 
-              </div></a>
-            </li>
+              <li><a class="itemLink" href="usable_by_design/usable_by_design_how_and_why.html" target="other"><span class="itemName">Exceptions (<em>usable by design</em>)</span>
+                <div class="itemDescription">
+                  My client operates a complex system for recording and processing millions of
+      traffic offenses for big argentine province.<br>
+      This is a desktop application that filters out the tickets raised by a number
+      of vehicles like ambulances or police cars that are excepted. <br>
+      The challenge was to devise a UI that enabled <em>anyone</em> to operate it.
+                </div></a>
+              </li>
 
-            <li><a class="itemLink" href="fieldhelp/fieldcontextualhelp.html" target="other"><span class="itemName">Contextual help:</span>
-              <div class="itemDescription">
-                A wireframe showcasing a set of recommendations on how to implement contextual
-                help in a portal-like huge application so it's consistent across all pages, 
-                also allowing to decouple and reuse the help development effort.
-              </div></a>
-            </li>
-
-          </ul>
-        </li>
-
-        <li class="itemsGroup">
-          <h2>Applications</h2>
-          <div class="itemDesctiption">
-            Applications designed by me.
+            </ul>
           </div>
-          <ul>
+        </section>
 
-            <li><a class="itemLink" href="usable_by_design/usable_by_design_how_and_why.html" target="other"><span class="itemName">Exceptions (<em>usable by design</em>)</span>
-              <div class="itemDescription">
-                My client operates a complex system for recording and processing millions of
-		traffic offenses for big argentine province.<br>
-		This is a desktop application that filters out the tickets raised by a number
-		of vehicles like ambulances or police cars that are excepted. <br>
-		The challenge was to devise a UI that enabled <em>anyone</em> to operate it.
-              </div></a>
-            </li>
+        <section id="writings">
+          <div class="itemsGroup"><h2>Writings</h2>
+            <div class="itemsGroupDescription">
+              <p>I'm good at writing, both on spanish and in English..</p>
+              <p>All of my work involves communication, eiher written or through interaction. </p>
+              <p>These are a few documents, some are attempts to communicate usability engineering. </p>
+            </div>
 
-          </ul>
-        </li>
+            <ul>
 
-        <li class="itemsGroup"><h2>Writings</h2>
-          <div class="itemDescription">
-            <p>I'm good at writing, both on spanish and in English..</p>
-            <p>All of my work involves communication, eiher written or through interaction. </p>
-            <p>These are a few documents, some are attempts to communicate usability engineering. </p>
+              <li><a class="itemLink" 
+                  href="https://docs.google.com/presentation/d/10YUBvSo7qpkB3IwQjfzSYrtaVgSkE-KAb0DzGItD48M/present#slide=id.p"
+                  target="other"><span class="itemName">Usability Theory:</span>
+                <div class="itemDescription">
+                  This is a presentation I gave to the JPMC crew and the BAs in Globant. <br>
+                  It is aimed as developers, especially BAs. <br>
+                  It shows them which is the context where they can inject usability to an application before
+                  starting development, as opposed to the usual graphics-design usability that is applied
+                  when the application is almost ready to deliver. 
+                </div></a>
+              </li>
+
+              <li><a class="itemLink" 
+                  href="https://docs.google.com/presentation/d/1nv7GhEkEBXp2YgYl_-FdDOM-_K0_B8PZwR-arEcZGuA/present#slide=id.p"
+                  target="other"><span class="itemName">Developers vs. Rest of the World:</span> 
+                <div class="itemDescription">
+                  This was an assignment for an English course. We were asked to write something and to present 
+                  it to the rest of the class. <br>
+                  I devised this humorous piece, shedding light on the fact tha the developers tend to 
+                  be not very good at UI stuff.
+                </div></a>
+              </li>
+
+            </ul>
           </div>
-          <ul>
+        </section>
 
-            <li><a class="itemLink" 
-                href="https://docs.google.com/presentation/d/10YUBvSo7qpkB3IwQjfzSYrtaVgSkE-KAb0DzGItD48M/present#slide=id.p"
-                target="other"><span class="itemName">Usability Theory:</span> 
-              <div class="itemDescription">
-                This is a presentation I gave to the JPMC crew and the BAs in Globant. <br>
-                It is aimed as developers, especially BAs. <br>
-                It shows them which is the context where they can inject usability to an application before
-                starting development, as opposed to the usual graphics-design usability that is applied
-                when the application is almost ready to deliver. 
-              </div></a>
-            </li>
+        <section id="certificates">
+          <div class="itemsGroup">
+            <h2>Certificates</h2>
 
-            <li><a class="itemLink" 
-                href="https://docs.google.com/presentation/d/1nv7GhEkEBXp2YgYl_-FdDOM-_K0_B8PZwR-arEcZGuA/present#slide=id.p"
-                target="other"><span class="itemName">Developers vs. Rest of the World:</span> 
-              <div class="itemDescription">
-                This was an assignment for an English course. We were asked to write something and to present 
-                it to the rest of the class. <br>
-                I devised this humorous piece, shedding light on the fact tha the developers tend to 
-                be not very good at UI stuff.
-              </div></a>
-            </li>
+            <ul class="certif">
 
-          </ul>
-        </li>
+              <li>
+                <div class="certifThumbnail">
+                  <img class="certifImage" src="certificates/CourseraStartupEngineering2013.png">
+                </div>
+                <h4>Startup</h4>
+                <div class="certifText">
+                  <p>A course not about any kind of startup, but about <em>internet
+                  startups</em>.</p>
+                  <p>Very technical, it involved the development of a crowd funding site.</p>
+                </div>
+              </li>
 
-        <li class="itemsGroup">
-          <h2>Certificates</h2>
-          <ul class="certif">
+              <li>
+                <div class="certifThumbnail">
+                  <img class="certifImage" src="certificates/Mongo-JS101-Certificate.png">
+                </div>
+                <h4>MongoDB</h4>
+                <div class="certifText">
+                  <p>MongoDB is the most representative of the new no-SQL databases. </p>
+                  <p>The course involved several programming assignments requiring to create and
+                  use a database mostly through NodeJS servers. </p>
+                </div>
+              </li>
 
-            <li>
-              <div class="certifThumbnail">
-                <img class="certifImage" src="certificates/CourseraStartupEngineering2013.png">
-              </div>
-              <h4>Startup</h4>
-              <div class="certifText">
-                <p>A course not about any kind of startup, but about <em>internet
-                startups</em>.</p>
-                <p>Very technical, it involved the development of a crowd funding site.</p>
-              </div>
-            </li>
+              <li>
+                <div class="certifThumbnail">
+                  <img class="certifImage" src="certificates/Write101x-EnglishGrammarAndStyle.png">
+                </div>
+                <h4>English writing</h4>
+                <div class="certifText">
+                  <p>A course on English to hone my skills. </p>
+                  <p>It was quite interesting and I learned a lot about things I was already
+                  doing <em>by heart</em> without explicitly knowing the rules. </p>
+                </div>
+              </li>
 
-            <li>
-              <div class="certifThumbnail">
-                <img class="certifImage" src="certificates/Mongo-JS101-Certificate.png">
-              </div>
-              <h4>MongoDB</h4>
-              <div class="certifText">
-                <p>MongoDB is the most representative of the new no-SQL databases. </p>
-                <p>The course involved several programming assignments requiring to create and
-                use a database mostly through NodeJS servers. </p>
-              </div>
-            </li>
+              <li>
+                <div class="certifThumbnail">
+                  <img class="certifImage" src="certificates/W3Cx HTML5.png">
+                </div>
+                <h4>HTML5</h4>
+                <div class="certifText">
+                  <p>A review of all the new HTML features packed in a few weeks course. </p>
+                  <p>HTML is a very basic tool of the trade and, altough many of the new
+                  features were around for quite a while, it was good to check them all plus
+                  a few that were new to me. </p>
+                </div>
+              </li>
 
-            <li>
-              <div class="certifThumbnail">
-                <img class="certifImage" src="certificates/Write101x-EnglishGrammarAndStyle.png">
-              </div>
-              <h4>English writing</h4>
-              <div class="certifText">
-                <p>A course on English to hone my skills. </p>
-                <p>It was quite interesting and I learned a lot about things I was already
-                doing <em>by heart</em> without explicitly knowing the rules. </p>
-              </div>
-            </li>
+              <li>
+                <div class="certifThumbnail">
+                  <img class="certifImage" src="certificates/CongresoEducativo2017.png">
+                </div>
+                <h4>Congreso Educativo 2017</h4>
+                <div class="certifText">
+                  <p>Participation in an education congress as listener.</p>
+                  <p>Education became a significant subject when I started thinking of
+                  my "Democom" project. </p>
+                </div>
+              </li>
 
-            <li>
-              <div class="certifThumbnail">
-                <img class="certifImage" src="certificates/W3Cx HTML5.png">
-              </div>
-              <h4>HTML5</h4>
-              <div class="certifText">
-                <p>A review of all the new HTML features packed in a few weeks course. </p>
-                <p>HTML is a very basic tool of the trade and, altough many of the new
-                features were around for quite a while, it was good to check them all plus
-                a few that were new to me. </p>
-              </div>
-            </li>
+              <li>
+                <div class="certifThumbnail">
+                  <img class="certifImage" src="certificates/DemocraciaYPoliticasPublicas.png">
+                </div>
+                <h4>Democracia y Políticas Públicas</h4>
+                <div class="certifText">
+                  <p>An excellent course on <em>Democracy and Public Policies</em> by Universitat
+                  Autònoma de Barcelona.</p>
+                  <p>Public policies became a significant subject when I started thinking of
+                  my "Democom" project. </p>
+                </div>
+              </li>
 
-            <li>
-              <div class="certifThumbnail">
-                <img class="certifImage" src="certificates/CongresoEducativo2017.png">
-              </div>
-              <h4>Congreso Educativo 2017</h4>
-              <div class="certifText">
-                <p>Participation in an education congress as listener.</p>
-                <p>Education became a significant subject when I started thinking of
-                my "Democom" project. </p>
-              </div>
-            </li>
+              <li>
+                <div class="certifThumbnail">
+                  <img class="certifImage" src="certificates/TítuloCalculistaCientificoCAECE.png">
+                </div>
+                <h4>Graded as "Calculista Científico"</h4>
+                <div class="certifText">
+                  <p>Graded with a <em>Scientific Calculist</em> tertiary title in Universidad CAECE.</p>
+                  <p>The syllabus included mostly Algebra, Mathematics, Logic and CS courses.</p>
+                </div>
+              </li>
 
-            <li>
-              <div class="certifThumbnail">
-                <img class="certifImage" src="certificates/DemocraciaYPoliticasPublicas.png">
-              </div>
-              <h4>Democracia y Políticas Públicas</h4>
-              <div class="certifText">
-                <p>An excellent course on <em>Democracy and Public Policies</em> by Universitat
-                Autònoma de Barcelona.</p>
-                <p>Public policies became a significant subject when I started thinking of
-                my "Democom" project. </p>
-              </div>
-            </li>
-
-            <li>
-              <div class="certifThumbnail">
-                <img class="certifImage" src="certificates/TítuloCalculistaCientificoCAECE.png">
-              </div>
-              <h4>Graded as "Calculista Científico"</h4>
-              <div class="certifText">
-                <p>Graded with a <em>Scientific Calculist</em> tertiary title in Universidad CAECE.</p>
-                <p>The syllabus included mostly Algebra, Mathematics, Logic and CS courses.</p>
-              </div>
-            </li>
-
-          </ul>
-        </li>
+            </ul>
+          </div>
+        </section>
 
 
-      </ul>
+      </div>
 
       <p>&nbsp;</p>
       <p>&nbsp;</p>
