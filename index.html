@@ -20,53 +20,42 @@
     </script>
 
     <style>
-      /**** fixed header *************************/
-      .fixedHeader              { position:fixed; top:0px; left:0px; background-color:#fffff8; width:100%; z-index:99; background:transparent; }
-      .fixedHeader h1           { opacity:0.9; font-size:180%; vertical-align:20%; }
-      .fixedHeader img          { opacity:0.85; }
-
-      #docBody                  { max-width:42em; padding-top:44px; }
-      #docHeader h1             { padding-left:1em; line-height:200%; text-shadow:0.15em 0.15em 4px #c0c0c0; }
-
-      /**** document body ************************/
-
-      .itemGroups               { line-height:22px; }
-      .itemGroups h2            { line-height:200%; }
-      .itemGroups li            { list-style-type:none; }
-      .itemGroups a             { border-bottom:1px solid transparent; text-decoration:none; }
-      .itemGroups a:link        { }
-      .itemGroups li a.itemLink { padding:11px; }
-      .itemGroups li a.itemLink:hover { background-color:rgb(222,222,222); }
-      .itemGroups a:visited     { color:rgb(128,128,128); }
-      .itemGroups a:hover       { border-bottom:1px solid rgb(222,222,222); text-decoration:none; color:black; background-color:rgb(248,248,248); }
-      .itemGroups a:active      { color:blue; }
-      .itemGroups li a          { padding:4px; border-radius:4px; }
-      .itemGroups li a          { display:inline; }
-      .itemGroups li a.itemLink { display:block; }
-      .itemsGroupDescription    { color:rgb(96,96,96); display:inline; }
-
-      .itemGroups .certifText p { margin-right:222px; }
-      .itemGroups .certif li    { clear:both; }
-      .itemGroups .certifThumbnail { margin-bottom:1em; border:8px solid rgb(192,192,192); }
-      .itemGroups .certifThumbnail { float:right; margin-left:8px; width:200px; height:auto; cursor:pointer; }
-      .itemGroups .certifThumbnail img { height:auto; width:100%; display:block; object-fit:contain; }
-      .itemGroups .certifThumbnail img { max-width:100%; max-height:100%; }
-      .itemGroups .certifThumbnail.active img {  position:fixed; top:0; left:0px; margin-left:0px; }
-      .itemGroups .certifImage  { height:auto; }
-
-      .itemLink.a               { list-style-type:none; }
-
-      .itemsGroup li            { list-style-type:none; }
-      .itemsGroup > span        { font-weight:bold; }
-
-      .itemName                 { font-weight:bold; color:black; }
-      .itemDescription          { color:rgb(96,96,96); display:inline; }
-
-      .itemLink a:hover         { color:rgb(0,0,0); background-color:rgb(222,222,222); }
 
       body                      { margin:0px 8px; font-family:Calibri, helvetica, sans-serif; font-size:100%; background-color:#fffff8; }
       html,body                 { height:100%; margin-top:0px; }
       img                       { border-width:0; }
+
+      /**** fixed header *************************/
+      .fixedHeader              { position:fixed; top:0px; left:0px; background-color:#fffff8; width:100%; z-index:99; background:transparent; }
+      .fixedHeader h1           { opacity:0.9; font-size:180%; vertical-align:20%; }
+      .fixedHeader h1           { padding-left:1em; line-height:200%; text-shadow:0.15em 0.15em 4px #c0c0c0; }
+      #docBody                  { max-width:42em; padding-top:44px; }
+
+      /**** document body ************************/
+
+      /**** styles common to all sections ********/
+      .itemGroups               { line-height:22px; }
+      .itemGroups h2            { line-height:200%; }
+      .itemGroups li            { list-style-type:none; }
+
+      .itemsGroupDescription    { color:rgb(96,96,96); display:inline; }
+
+      /**** certificates thumbnail and expanded **/
+      #certificates .certifText p { margin-right:222px; }
+      #certificates .certif li    { clear:both; }
+      #certificates .certifThumbnail { margin-bottom:1em; border:8px solid rgb(192,192,192); }
+      #certificates .certifThumbnail { float:right; margin-left:8px; width:200px; height:auto; cursor:pointer; }
+      #certificates .certifThumbnail img { height:auto; width:100%; display:block; object-fit:contain; }
+      #certificates .certifThumbnail img { max-width:100%; max-height:100%; }
+      #certificates .certifThumbnail.active img {  position:fixed; top:0; left:0px; margin-left:0px; }
+      #certificates .certifImage  { height:auto; }
+
+      a.itemLink                { display:block; text-decoration:none; outline:transparent; padding:11px; border-radius:7px; }
+      a.itemLink:hover          { color:rgb(0,0,0); background-color:rgb(222,222,222); }
+      a.itemLink:visited span.itemName { color:rgb(128,128,128); }
+
+      .itemName                 { font-weight:bold; color:black; }
+      .itemDescription          { color:rgb(96,96,96); display:inline; }
 
     </style>
   </head>
