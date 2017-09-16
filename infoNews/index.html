@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Language" content="en">
+  <title>UC77 News navigation</title>
+  <link rel="stylesheet" href="res/doc.css">
+  <script src="res/jquery.js"></script>
+  <script src="res/doc.js"></script>
+  <script src="res/tocBuilder.js"></script>
+  <link href="res/tocBuilder.css" rel="stylesheet">
+  <script type="text/javascript" src="../common/jl.js"></script>
+  <link type="text/css" rel="stylesheet" media="screen" href="../common/jl.css" />
+    <link rel="shortcut icon" href="../common/tecnosol.ico" type="image/x-icon" />
+  <script type="text/javascript">
+    $(document).ready(function () {
+    });
+  </script>
+</head>
+
+<body>
+
+  <div id="docHeader">
+
+    <div class="fixedHeader">
+      <h1>UC77 - News navigation</h1>
+    </div>
+
+    <div id="docLinks">
+
+      <div id="tocContainer" class="tocContainer">
+
+        <div class="toc">
+        </div>
+
+        <div class="toc">
+          <ul>
+            <li><a href="#L43">UC77 - News navigation</a> 
+              <ul>
+                <li><a href="#L54">1 - Brief</a></li>
+                <li><a href="#L59">2 - Actors</a></li>
+                <li><a href="#L80">3 - Interaction steps (main success scenario)</a></li>
+                <li><a href="#L261">4 - Business rules</a> 
+                  <ul>
+                    <li><a href="#L1981">A "news article"</a></li>
+                    <li><a href="#L1990">Selection of news articles</a></li>
+                    <li><a href="#L2013">Filters</a></li>
+                    <li><a href="#L2054">Sorting</a></li>
+                    <li><a href="#L2072">Devaluated interest</a></li>
+                  </ul>
+                </li>
+                <li><a href="#L902">5 - Data elements</a></li>
+                <li><a href="#L1468">z - Concepts</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="docBody">
+
+    <div class="ucItem">
+      <h3 class="ucItemName" id="L54">1 - Brief</h3>
+
+      <p class="ucText">A user (anybody, in fact) wants to read about a subject of
+      their interest and eventually make a purchase. For example read about a beach
+      resort and purchase a vacation ticket. Or, eventually be enticed to affiliate.
+      </p>
+
+      <p class="ucText">According to the profile of the user, the system chooses and
+      keeps displaying the most suitable "news" articles in a stochastic fashion but
+      according to the user type (identified or not), his income level, and his
+      interests. </p>
+    </div>
+
+    <div class="ucItem">
+      <h3 class="ucItemName" id="L59">2 - Actors</h3>
+      <ol class="ucText">
+        <li><strong>user</strong> 
+          <p>Primary: any user of The Company site, can be registered or not, and
+          also can be affiliated or not. Affiliated users are registered. </p>
+        </li>
+        <li><strong>system</strong> 
+          <p>The <span title="System Under Development">Company's portal</span>. </p>
+        </li>
+      </ol>
+    </div>
+
+    <div class="ucItem">
+      <h3 class="ucItemName" id="L80">3 - Interaction steps (main success
+        scenario)</h3>
+
+      <p class="ucText">The interaction steps below define the functionality of the
+      system during a user's session. The looping ends when the user closes the
+      session, or chooses a link like for purchasing something, that takes them
+      somewhere else. </p>
+
+      <p></p>
+      <ol class="ucText">
+        <li><strong>user</strong>: The UC interaction starts when the user enters The
+          Company's site. </li>
+        <li><strong>system</strong>: Displays the splash screen with choices for the
+          user to enter the news portal and possibly other links that are out of
+          scope in this UC. The user choices are: 
+          <ul>
+            <li>Enter as an unidentified user</li>
+            <li>Enter the backoffice as a company's authorized administartor.</li>
+            <li>Login as a registered user</li>
+          </ul>
+          <ol class="ucExtensions">
+            <li><strong>user</strong> chose to enter as an unidentified user: 
+              <ol>
+                <li><strong>system</strong> builds a standard unknown user profile
+                  that will give the user access to news as specified by the rules in
+                  <a href="#newsSelection">News selection</a>. </li>
+                <li><strong>system</strong>: builds the local navigation menu for
+                  this profile. </li>
+                <li>the UC continues in <a href="#step3">the next step</a>. </li>
+              </ol>
+            </li>
+            <li><strong>user</strong> chose to enter the backoffice as a company's
+              authorized administartor: 
+              <ol>
+                <li><strong>system</strong> displays the administrator login
+                  form.</li>
+                <li><strong>user</strong> enters a set of (administrator)
+                  credentials. </li>
+                <li><strong>system</strong> validates the credentials. 
+                  <ol class="ucExtensions">
+                    <li>The credentials are not valid: 
+                      <ol>
+                        <li><strong>system</strong> posts an informative message.
+                        </li>
+                        <li>The UC continues in step 2. </li>
+                      </ol>
+                    </li>
+                    <li>The credentials are OK: 
+                      <ol>
+                        <li><strong>system</strong> redirects the user to use case
+                          for administrators navigation, out of this UC's scope. </li>
+                      </ol>
+                    </li>
+                  </ol>
+                </li>
+              </ol>
+            </li>
+            <li><strong>user</strong> chose to login as a registered user: 
+              <ol>
+                <li><strong>system</strong> displays the user login form.</li>
+                <li><strong>user</strong> enters a set of credentials. </li>
+                <li><strong>system</strong> validates the credentials. 
+                  <ol class="ucExtensions">
+                    <li>The credentials are not valid: 
+                      <ol>
+                        <li><strong>system</strong> posts an informative message.
+                        </li>
+                        <li>The UC continues in step 2. </li>
+                      </ol>
+                    </li>
+                    <li>The credentials are OK: 
+                      <ol>
+                        <li><strong>system</strong>: builds the identified user
+                          profile, that will ultimately determine which are the news
+                          articles this user will be shown. </li>
+                        <li><strong>system</strong>: builds the local navigation menu
+                          for this profile. </li>
+                        <li>The UC continues in <a href="#step3">the next step</a>.
+                        </li>
+                      </ol>
+                    </li>
+                  </ol>
+                </li>
+              </ol>
+            </li>
+          </ol>
+        </li>
+        <li id="step3"><strong>system</strong>: determines the main news article and
+          the secondary news articles for this user at this moment, using the <a
+            href="#newsSelection">news selection algorithm</a> and the <a
+            href="#interestCalculation">devaluated interest calculation</a>. </li>
+        <li><strong>system</strong>: renders the user's current home page containing
+          the previously selected news articles (one main and three secondary
+          articles). </li>
+      </ol>
+
+      <p></p>
+
+      <p></p>
+      <ol class="ucAlternatives">
+        <li><strong>user</strong>chose 
+          <ol>
+            <li><strong>system</strong> </li>
+          </ol>
+        </li>
+      </ol>
+
+      <p></p>
+    </div>
+
+    <div class="ucItem">
+      <h3 class="ucItemName" id="L261">4 - Business rules</h3>
+
+      <h4 id="L1981">A "news article"</h4>
+
+      <p>In this context "news article" does not have the same meaning than in a
+      newspaper. That name is applied to anything that is published in the site, like
+      for example an institutional page or an advertisement (termed "banner"). </p>
+
+      <p>The navigation across the news is not deterministic but based on an
+      algorithm that chooses the ideal articles for each user and point in time based
+      on the properties and tags that the article contains. </p>
+
+      <p>The properties and tags are in the article data structure, and the algorithm
+      combines them with the properties in the user profile in order to provide a
+      ersonalized navigation. </p>
+
+      <h4 id="L1990">Selection of news articles</h4>
+
+      <p>There is a universe of continually created news articles available for
+      publishing. The articles have various properties or tags that the system uses
+      in order to find the relevant ones for a given session.</p>
+
+      <p>In order to choose what to show to a user, the avaiable news are
+      <em>filtered</em> and <em>sorted</em>.</p>
+
+      <p>Filtering means to extract the news articles that are relevant for the
+      current session of the current user and a specific location in the page, from
+      the universe of registered news articles. </p>
+
+      <p>After the filtering pass, the news articles that made the cut are sorted so
+      the most relevant show at the top of the list. The articles are sorted on a
+      priority value, made up of the article's <em>devaluated interest</em> and its
+      <em>currentness</em>. </p>
+
+      <h4 id="L2013">Filters</h4>
+      <ul>
+        <li><strong>currentness</strong>: excludes news articles that are not current
+          this date, be it because they are already expired, or because they didn't
+          start yet. <br>
+        </li>
+        <li><strong>user type</strong>: if the user is not a registered user, this
+          filter excludes the news tagged for registered users only. </li>
+        <li><strong>category</strong>: excludes the news tagged with categories
+          different from that of the user. </li>
+        <li><strong>banner</strong>: excludes all articles but the banners. </li>
+        <li><strong>satisfier</strong>: when there is a selected satosfier, excludes
+          all articles but those tagged with the selected satisfier. </li>
+        <li><strong>sub-satisfier</strong>: when there is a selected satosfier,
+          excludes all articles but those tagged with the selected
+          sub-satisfier. </li>
+        <li><strong>age group</strong>: excludes articles tagged for age groups other
+          then the user's, when the user's age is known. </li>
+      </ul>
+
+      <h4 id="L2054">Sorting</h4>
+
+      <div>
+        The set of filtered news articles is sorted so the most relevant show at the
+        top of the list.  
+
+        <div>
+          The articles are sorted on a <i>priority</i> value, made up of the
+          article's <i>devaluated interest</i> and its <i>currentness</i>.  
+
+          <h4 id="L20721">Lifespan</h4>
+
+          <p>Independently of the <em>interest</em> of an article, it has a
+          <em>lifespan</em> determined by its publish date and its end date. </p>
+
+          <p>The article will not be considered for publishing outside the time lapse
+          defined by said dates. During that time lapse it will be eligible for
+          publishing, as defined in the rules for ranking articles. </p>
+
+          <p>The expired articles will not be proactively published, but will remain in
+          the repository so they can be reached via deep links or bookmarks. </p>
+        </div>
+      </div>
+
+      <h4 id="L2072">Devaluated interest</h4>
+
+      <p>The interest in displaying an article diminishes, or gets devaluated, over
+      the articles's lifespan (determined by the article's <em>publication date</em>
+      and <em>end date</em>).</p>
+
+      <p>When an article is created it is given two parameters: <em>interest</em> and
+      <em>devaluation</em>.</p>
+
+      <p>The first one, <em>interest</em>, is a number from zero to 10 meaning how
+      much the company is interested in showing it. Zero means not to display it, and
+      10 means to always display it.</p>
+
+      <p></p>
+      <ul style="margin-left:2em; list-style-type:none;">
+        <li>10 Force publishing</li>
+        <li>5 Very high</li>
+        <li>4 High</li>
+        <li>3 Medium (default)</li>
+        <li>2 Normal</li>
+        <li>1 Low</li>
+        <li>0 Don't publish </li>
+      </ul>
+
+      <p>The second parameter, <em>devaluation</em>, is a number of days. By its
+      publication date the article's interest value is that stated in the interest
+      parameter, the following days it gets devaluated gradually until it becomes
+      zero after <em>devaluation</em> number of days.</p>
+
+      <p>For example, an article with interest 3 and devaluation 4 will have a
+      devaluated interest of 3 for the first day, and 2.25, 1.4, and .75 for each of
+      the folowing days, and after its devaluated interest will be very low, that is,
+      it will hardly be displayed. </p>
+
+      <p>So, the formula is:</p>
+
+      <p style="margin-left:2em;">devaluated interest = interest - (( days - 1 ) x
+      interest / devaluation )</p>
+
+      <p>where <strong>days</strong> is the number of days elapsed since the
+      publication date until the current date.</p>
+
+      <p>There are a few additional rules: </p>
+      <ul>
+        <li><font face="verdana, sans-serif">If the article's interest is 10 (Force
+            publication) then the devaluated interest is always 10. No devaluation
+            happens. </font></li>
+        <li><font face="verdana, sans-serif">If the article doesn't have a
+            devaluation value then its devaluated interest is always the original
+            interest. </font></li>
+        <li><font face="verdana, sans-serif">If the davaluated interest is negative
+            the article is still selected for publishing; it will have a very low
+            priority. The article stays alive until its end date. </font></li>
+        <li><font face="verdana, sans-serif">The value zero means that the article is
+            not eligible for publishing. </font></li>
+      </ul>
+
+      <p>The following table displays examples of the devaluated interest evolution
+      for various articles with publication date = August 1st. </p>
+
+      <table class="borderTable" style="margin-left:2em;">
+        <colgroup style="margin:0px"><col style="text-align:center;">
+          <col style="text-align:center;">
+          <col style="text-align:right;">
+          <col style="text-align:right;">
+          <col style="text-align:right;">
+          <col style="text-align:right;">
+          <col style="text-align:right;">
+          <col style="text-align:right;">
+          <col style="text-align:right;">
+          <col style="text-align:right;">
+          <col style="text-align:right;">
+          <col style="text-align:right;">
+          <col style="text-align:right;">
+        </colgroup>
+        <tbody>
+          <tr>
+            <th
+               style="text-align:center;margin-left:auto;margin-right:auto;"><p><span>interest</span>
+               <br>
+            </p>
+            </th>
+            <th
+               style="text-align:center;margin-left:auto;margin-right:auto;"><p><span>devaluation</span>
+               <br>
+            </p>
+            </th>
+            <th
+               style="text-align:center;margin-left:auto;margin-right:auto;"><p>01/08</p>
+            </th>
+            <th
+               style="text-align:center;margin-left:auto;margin-right:auto;"><p>02/08</p>
+            </th>
+            <th
+               style="text-align:center;margin-left:auto;margin-right:auto;"><p>03/08</p>
+            </th>
+            <th
+               style="text-align:center;margin-left:auto;margin-right:auto;"><p>04/08</p>
+            </th>
+            <th
+               style="text-align:center;margin-left:auto;margin-right:auto;"><p>05/08</p>
+            </th>
+            <th
+               style="text-align:center;margin-left:auto;margin-right:auto;"><p>06/08</p>
+            </th>
+            <th
+               style="text-align:center;margin-left:auto;margin-right:auto;"><p>07/08</p>
+            </th>
+            <th
+               style="text-align:center;margin-left:auto;margin-right:auto;"><p>08/08</p>
+            </th>
+            <th
+               style="text-align:center;margin-left:auto;margin-right:auto;"><p>09/08</p>
+            </th>
+            <th
+               style="text-align:center;margin-left:auto;margin-right:auto;"><p>10/08</p>
+            </th>
+            <th
+               style="text-align:center;margin-left:auto;margin-right:auto;"><p>11/08</p>
+            </th>
+          </tr>
+          <tr>
+            <th style="text-align:center;margin-left:auto;margin-right:auto;"><p> </p>
+            </th>
+            <th style="text-align:center;margin-left:auto;margin-right:auto;"><p> </p>
+            </th>
+            <th style="text-align:center;margin-left:auto;margin-right:auto;"><p>0</p>
+            </th>
+            <th style="text-align:center;margin-left:auto;margin-right:auto;"><p>1</p>
+            </th>
+            <th style="text-align:center;margin-left:auto;margin-right:auto;"><p>2</p>
+            </th>
+            <th style="text-align:center;margin-left:auto;margin-right:auto;"><p>3</p>
+            </th>
+            <th style="text-align:center;margin-left:auto;margin-right:auto;"><p>4</p>
+            </th>
+            <th style="text-align:center;margin-left:auto;margin-right:auto;"><p>5</p>
+            </th>
+            <th style="text-align:center;margin-left:auto;margin-right:auto;"><p>6</p>
+            </th>
+            <th style="text-align:center;margin-left:auto;margin-right:auto;"><p>7</p>
+            </th>
+            <th style="text-align:center;margin-left:auto;margin-right:auto;"><p>8</p>
+            </th>
+            <th style="text-align:center;margin-left:auto;margin-right:auto;"><p>9</p>
+            </th>
+            <th
+                style="text-align:center;margin-left:auto;margin-right:auto;"><p>10</p>
+            </th>
+          </tr>
+          <tr>
+            <th style="text-align:center;margin-left:auto;margin-right:auto;">10</th>
+            <th style="text-align:center;margin-left:auto;margin-right:auto;">any<br>
+            </th>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">10.00</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">10.00</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">10.00</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">10.00</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">10.00</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">10.00</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">10.00</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">10.00</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">10.00</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">10.00</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">10.00</td>
+          </tr>
+          <tr>
+            <th style="text-align:center;margin-left:auto;margin-right:auto;">5</th>
+            <th style="text-align:center;margin-left:auto;margin-right:auto;">10</th>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">5.00</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">4.50</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">4.00</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">3.50</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">3.00</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">2.50</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">2.00</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">1.50</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">1.00</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">0.50</td>
+            <td
+                style="text-align:right;margin-left:auto;margin-right:0;"><span> </span>
+                <span>0.00</span> </td>
+          </tr>
+          <tr>
+            <th style="text-align:center;margin-left:auto;margin-right:auto;">4</th>
+            <th style="text-align:center;margin-left:auto;margin-right:auto;">20</th>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">4.00</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">3.80</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">3.60</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">3.40</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">3.20</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">3.00</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">2.80</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">2.60</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">2.40</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">2.20</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">2.00</td>
+          </tr>
+          <tr>
+            <th style="text-align:center;margin-left:auto;margin-right:auto;">3</th>
+            <th style="text-align:center;margin-left:auto;margin-right:auto;">4</th>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">3.00</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">2.25</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">1.50</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">0.75</td>
+            <td
+                style="text-align:right;margin-left:auto;margin-right:0;"><span> </span>
+                <span>0.00</span> </td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">--</td>
+            <td
+                style="text-align:right;margin-left:auto;margin-right:0;"><span> </span>
+                <span>--</span> </td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">--</td>
+            <td
+                style="text-align:right;margin-left:auto;margin-right:0;"><span> </span>
+                <span>--</span> </td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">--</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">--</td>
+          </tr>
+          <tr>
+            <th style="text-align:center;margin-left:auto;margin-right:auto;">2</th>
+            <th style="text-align:center;margin-left:auto;margin-right:auto;">2</th>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">2.00</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">1.00</td>
+            <td
+                style="text-align:right;margin-left:auto;margin-right:0;"><span> </span>
+                <span>0.00</span> </td>
+            <td
+                style="text-align:right;margin-left:auto;margin-right:0;"><span> </span>
+                <span>--</span> </td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">--</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">--</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">--</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">--</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">--</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">--</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">--</td>
+          </tr>
+          <tr>
+            <th style="text-align:center;margin-left:auto;margin-right:auto;">1</th>
+            <th style="text-align:center;margin-left:auto;margin-right:auto;">50</th>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">1.00</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">0.98</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">0.96</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">0.94</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">0.92</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">0.90</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">0.88</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">0.86</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">0.84</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">0.82</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">0.80</td>
+          </tr>
+          <tr>
+            <th style="text-align:center;margin-left:auto;margin-right:auto;">5</th>
+            <th style="text-align:center;margin-left:auto;margin-right:auto;">N/A</th>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">5.00</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">5.00</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">5.00</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">5.00</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">5.00</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">5.00</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">5.00</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">5.00</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">5.00</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">5.00</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">5.00</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p></p>
+
+      <p></p>
+    </div>
+
+    <div class="ucItem">
+      <h3 class="ucItemName" id="L902">5 - Data elements</h3>
+
+      <p></p>
+
+      <table class="borderTable">
+        <tbody>
+          <tr>
+            <td colspan="3"><strong>content</strong></td>
+          </tr>
+          <tr>
+            <th>name </th>
+            <th
+                style="text-align:center;margin-left:auto;margin-right:auto;">optio<br>
+                nal</th>
+            <th>description</th>
+          </tr>
+          <tr>
+            <td>Id</td>
+            <td style="text-align:center;margin-left:auto;margin-right:auto;"></td>
+            <td>Internal identification of the article, assigned by the system, used
+              by internal references. </td>
+          </tr>
+          <tr>
+            <td>Title</td>
+            <td style="text-align:center;margin-left:auto;margin-right:auto;"></td>
+            <td>The article's title. </td>
+          </tr>
+          <tr>
+            <td>Subtitle</td>
+            <td style="text-align:center;margin-left:auto;margin-right:auto;"></td>
+            <td>The article's subtitle.</td>
+          </tr>
+          <tr>
+            <td>Picture</td>
+            <td style="text-align:center;margin-left:auto;margin-right:auto;"></td>
+            <td>URL (absolute o partial) of the article's main picture.</td>
+          </tr>
+          <tr>
+            <td>Picture alt</td>
+            <td></td>
+            <td>Main picture's "alt" text.</td>
+          </tr>
+          <tr>
+            <td>Body</td>
+            <td style="text-align:center;margin-left:auto;margin-right:auto;"></td>
+            <td>Article's copy, in HTML.</td>
+          </tr>
+          <tr>
+            <td>Author</td>
+            <td></td>
+            <td>User id of the person who initially created the article. It's 
+            automatically loaded by the system.</td>
+          </tr>
+          <tr>
+            <td>Author - last modification</td>
+            <td></td>
+            <td>User id of the last person who edited the article. Automatically
+              loaded by the system.</td>
+          </tr>
+          <tr>
+            <td>Last edition date</td>
+            <td></td>
+            <td>Timestamp of the last modification. Automaticaly loaded by the
+              system.</td>
+          </tr>
+          <tr>
+            <td>Links</td>
+            <td style="text-align:center;margin-left:auto;margin-right:auto;">✔</td>
+            <td>Links to related news and other articles.</td>
+          </tr>
+          <tr>
+            <td>Secondary picture</td>
+            <td style="text-align:center;margin-left:auto;margin-right:auto;">✔</td>
+            <td>URL of a 200 pixel wide image.</td>
+          </tr>
+          <tr>
+            <td>Abstract</td>
+            <td style="text-align:center;margin-left:auto;margin-right:auto;">*</td>
+            <td>The article's abstract text.</td>
+          </tr>
+          <tr>
+            <td colspan="3"><strong>properties</strong></td>
+          </tr>
+          <tr>
+            <th>name </th>
+            <th
+                style="text-align:center;margin-left:auto;margin-right:auto;">optio<br>
+                nal</th>
+            <th>description</th>
+          </tr>
+          <tr>
+            <td>Portal</td>
+            <td></td>
+            <td>Selection of the portals where this article is intended to be
+              published
+              <ul>
+                <li>child </li>
+                <li>kid </li>
+                <li>adult </li>
+                <li>senior </li>
+                <li>company </li>
+                <li>external </li>
+              </ul>
+
+            </td>
+          </tr>
+          <tr>
+            <td>Menu</td>
+            <td></td>
+            <td>Relates this article with the portals and one or more of the site's
+              local navigation menus: individuals, company portfolio, external.<br>
+              In the case of the individuales portal, the article is related to an item
+              and an age group.<br>
+              Conceptually, the data structure caould be illustrated thus:
+
+              <ul class="compactList small80">
+                <li><strong>Lifestyle </strong> 
+                  <ul>
+                      <table border="0">
+                        <tbody>
+                          <tr>
+                            <td><input type="checkbox"> child </td>
+                            <td><input type="checkbox"> kid </td>
+                            <td><input type="checkbox"> adult </td>
+                            <td><input type="checkbox"> senior </td>
+                            <td><strong>  credits</strong></td>
+                          </tr>
+                          <tr>
+                            <td><input type="checkbox"> child </td>
+                            <td><input type="checkbox"> kid </td>
+                            <td><input type="checkbox"> adult </td>
+                            <td><input type="checkbox"> senior </td>
+                            <td><strong>  subsides</strong></td>
+                          </tr>
+                          <tr>
+                            <td><input type="checkbox"> child </td>
+                            <td><input type="checkbox"> kid </td>
+                            <td><input type="checkbox"> adult </td>
+                            <td><input type="checkbox"> senior </td>
+                            <td><strong>  insurances</strong></td>
+                          </tr>
+                          <tr>
+                            <td><input type="checkbox"> child </td>
+                            <td><input type="checkbox"> kid </td>
+                            <td><input type="checkbox"> adult </td>
+                            <td><input type="checkbox"> senior </td>
+                            <td><strong>  supermarkets</strong></td>
+                          </tr>
+                          <tr>
+                            <td><input type="checkbox"> child </td>
+                            <td><input type="checkbox"> kid </td>
+                            <td><input type="checkbox"> adult </td>
+                            <td><input type="checkbox"> senior </td>
+                            <td><strong>  The Company card</strong></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                  </ul>
+                  <p></p>
+                </li>
+                <li><strong>Entertainment, leisure, free time</strong> 
+                  <p>(a grid similar to that of "Lifestyle" with the appropriate
+                  sub-items. </p>
+                </li>
+                <li><strong>etc...</strong></li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>Category</td>
+            <td></td>
+            <td>"A", "B" o "C". </td>
+          </tr>
+          <tr>
+            <td>Is external</td>
+            <td></td>
+            <td>If the article is par of the "external" portal.</td>
+          </tr>
+          <tr>
+            <td>Is banner</td>
+            <td></td>
+            <td>If this article is a banner.
+
+              <p>Banners are articles but have a different treatment and thus they
+              must be identified.</p>
+            </td>
+          </tr>
+          <tr>
+            <td>Internal unit</td>
+            <td></td>
+            <td>Name of the internal unit this article belongs to, or empty if the
+              article does not belong to any particular unit.</p>
+          </tr>
+          <tr>
+            <td>Lifespan</td>
+            <td></td>
+            <td>Initial date (qhen the article starts being displayed) and end date
+              (when the article will not show any more). 
+              <p>Some articles are permanent, that is, they don't have an end date.
+              In these cases set a high magic value like 299-12-31.</p>
+            </td>
+          </tr>
+          <tr>
+            <td>Relevance</td>
+            <td></td>
+            <td>Indicates the interest The Company has in showing this article. It's
+              expressed as levels in a Likert-like scale:
+              <ul class="compactList">
+                <li>10 Force publication </li>
+                <li>5 Very high </li>
+                <li>4 High </li>
+                <li>3 Medium </li>
+                <li>2 Normal </li>
+                <li>1 Low </li>
+              </ul>
+
+              <p>When organizing the articles by computed priority for navigation,
+              this value (among others) is used to sort them.</p>
+              <p>The "Force publication" value is used to put a particular article
+              at the top of the list and to ensure it will be seen (like for example
+              a tsunami alert).</p>
+            </td>
+          </tr>
+          <tr>
+            <td>Depreciation</td>
+            <td></td>
+            <td>The number of days that the relevance of the article lasts. 
+              <p>The relevance of an article fades with time.</p>
+              <p>This number tells how fast the relevance fades.</p>
+              <p>This value is independent of the article's end-of-life date.</p>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p></p>
+
+      <p></p>
+
+      <p class="ucText"></p>
+    </div>
+
+    <div class="ucItem">
+      <h3 class="ucItemName" id="L1468">6 - Concepts</h3>
+
+      <dl>
+        <dt>article</dt>
+
+        <dd>In this context <em>article</em> means anything that is published.<br>
+        It can be an informative piece, an actual news from inside or outside The
+        company, a banner, an infomertial, anything.<br>
+        Each article has a number of properties and tags that are used to build a
+        navigation menu for each particular user in a particular point in time.<br>
+        The article author provides the tags, like for example the target age
+        group.<br>
+        The tags are part of the data structure of the article, and are combined
+        with the user's properties to build a personalized current navigation
+        offering that looks like a regular navigation menu.<dd>
+
+        <dt>news selection algorithm</dt>
+        <dd>An algorithm to rank the available news accortind to the user's profila
+        and the current date. Its outcome is a ranked list. </dd>
+
+        <dt>devaluated interest</dt>
+        <dd>A formula that returns the level of interest (both of the user and the
+        publisher) on a news article, depending on its age and the devaluation
+        parameters alloted to it during creation. For example, the announcement
+        of a show has zero interest after it was performed. </dd>
+
+        <dt>banner</dt>
+        <dd>An item that has no information content, only advertising. It has the
+        same structure as news articles, and a flag that marks it as a banner.
+        </dd>
+
+        <dt>category</dt>
+        <dd>The users profiles contain a set of tags that enumerate their
+        interests. These tags, termed <em>categories</em>, are used to filter the
+        articles. </dd>
+      </dl>
+    </div>
+
+    <p></p>
+
+    <p></p>
+
+    <p></p>
+    <ul>
+      <li>#newsSelection news selection algorithm</li>
+      <li>#interestCalculation devaluated interest calculation</li>
+      <li class="doneItem">#step3</li>
+    </ul>
+
+    <p></p>
+
+    <p></p>
+
+    <p></p>
+
+    <p></p>
+
+    <p></p>
+
+    <p></p>
+
+    <p></p>
+
+    <p></p>
+  </div>
+</body>
+</html>
