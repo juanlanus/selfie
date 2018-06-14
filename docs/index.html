@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- © Juan Lanus juan dot lanus at gmail -->
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Language" content="en">
+    <title>Juan Lanus - portfolio</title>
+    <script type="text/javascript" src="common/jquery-2.2.1.js"></script>
+    <script type="text/javascript" src="res/portfolio.js"></script>
+    <script type="text/javascript" src="res/tocBuilder.js"></script>
+    <link href="res/tocBuilder.css" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" href="./common/tecnosol.ico" type="image/x-icon" />
+    <meta name="description" content="Juan Lanus portfolio" />
+    <meta name="keywords" content="Juan Lanus, juan_lanus, interaction designer, UX, usability,
+    portfolio, works, samples, prototypes, wireframes, writings, software development,
+    applications design" />
+    <meta name="robots" content="index,follow" />
+    <script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
+
+    <script type="text/javascript">
+      $(document).ready(function () { });
+    </script>
+
+    <style>  /* styles in the HTML body so dumb applications can find them when importing */
+
+      body                      { margin:0px 8px; font-family:Calibri, helvetica, sans-serif; font-size:100%; background-color:#fffff8; }
+      html,body                 { height:100%; margin-top:0px; }
+      img                       { border-width:0; }
+
+      /**** fixed header *************************************************/
+      #docHeader                { max-width:42em; }
+      .fixedHeader              { position:fixed; top:0px; left:0px; width:100%; z-index:99; background:transparent; }
+      .fixedHeader h1           { opacity:0.9; font-size:180%; vertical-align:20%; display:inline; }
+      .fixedHeader h1           { padding-left:32px; line-height:200%; text-shadow:0.15em 0.15em 4px #c0c0c0; }
+
+      /**** document body ************************************************/
+      #docBody                  { max-width:42em; padding-left:32px; }
+
+      /**** styles common to all items (sections) ************************/
+      .sideImage                { float:right; margin-left:1.5em; margin-bottom:1em; }
+
+      .itemGroups               { line-height:22px; }
+      .itemGroups h2            { line-height:200%; }
+      .itemGroups li            { list-style-type:none; }
+
+      .itemsGroupDescription    { color:rgb(96,96,96); display:inline; }
+      .itemsGroupDescription h2 { color:black; }
+      .itemsGroupDescription h3 { color:black; }
+      .itemsGroupDescription h4 { color:black; }
+      .itemsGroupDescription h5 { color:black; }
+      .itemsGroupDescription h6 { color:black; }
+
+      /**** item styles **************************************************/
+      a.itemLink                { display:block; text-decoration:none; outline:transparent; padding:11px; border-radius:7px; }
+      a.itemLink:visited span.itemName { color:rgb(96,96,96); }
+      a.itemLink:hover          { color:black; background-color:rgb(220,220,220); border:1px dotted darkgray; }
+    
+      a.itemLink div:hover        { color:black!important; }
+
+      .itemName                 { font-weight:bold; color:black; }
+      .itemDescription          { color:rgb(96,96,96); }
+
+      /**** certificates thumbnail and expanded **************************/
+      #certificates .certifText p { margin-right:222px; }
+      #certificates .certif li    { clear:both; }
+      #certificates .certifThumbnail { margin-bottom:1em; border:8px solid rgb(192,192,192); }
+      #certificates .certifThumbnail { float:right; margin-left:8px; width:200px; height:auto; cursor:pointer; }
+      #certificates .certifThumbnail img { height:auto; width:100%; display:block; object-fit:contain; }
+      #certificates .certifThumbnail img { max-width:100%; max-height:100%; }
+      #certificates .certifThumbnail.active img {  position:fixed; top:0; left:0px; margin-left:0px; }
+      #certificates .certifAlreadyVisited { color:rgb(96,96,96); }
+
+
+    </style>
+  </head>
+
+  <body>
+
+    <div id="docHeader">
+
+      <div class="fixedHeader">
+        <h1 style="">Juan Lanus - Portfolio</h1>
+      </div>
+
+      <div style="float:right; margin:4em 1.5em 1.5em 1.5em;">
+        <div class="LI-profile-badge"  data-version="v1" data-size="medium" data-locale="en_US"
+        data-type="vertical" data-theme="dark" data-vanity="juanlanus">
+          <a class="LI-simple-link" href='https://ar.linkedin.com/in/juanlanus?trk=profile-badge'>Juan Lanus</a>
+        </div>
+      </div>
+
+      <div style="display:block; padding-top:80px; " id="docLinks">
+        <div id="tocContainer" class="tocContainer">
+          <div class="toc">
+          </div>
+        </div>
+        <p>&nbsp;</p>
+        <hr style="clear:both; ">
+      </div>
+
+    </div>
+
+    <div id="docBody">
+
+      <div class="itemGroups">
+
+        <section id="whatido">
+          <div class="itemsGroup">
+            <h2>What can I do</h2>
+            <div class="itemsGroupDescription">
+              <p>I do <em>interaction design</em>, that is, I design the way users will 
+              interact with the application's <em>user interface</em> (UI). </p>
+              <p>This is not graphics design, which is more related to the looks of the
+              UI in a static way (so you won't see flashy effects in this portfolio
+              purposely kept as plain-vanilla as possible). </p>
+              <p><em>Interaction design</em> is related to the way people
+              <em>dynamically</em> interact with the UI. </p>
+              <p>Some of these pages are intended to showcase actions, each one approached
+              in a slightly innovative way that the appropriate users should be able to
+              perform with ease once they get to know the purpose of its context. </p>
+
+              <h3>Why should you care?</h3>
+              <p>You should if you publish web sites or applications and want your public
+              to use them happily. </p>
+              <p>It's pretty basic. If they get stuck, or if the interaction requires too 
+              much effort, thay just leave. It happened to all of us, so many times. </p>
+              <p>The users approach your application with a purpose, and good interactions
+              (high usability) is intended for them to fulfill that purpose with ease,
+              without even noticing it. Like when you go to a building and use the elevator
+              with no effort (no cognitive load). </p>
+
+              <h3>Usable by design</h3>
+
+              <div class="sideImage">
+                <img src="media/RelativeCostOfAnError.png">
+              </div>
+
+              <p>Good interaction is designed on purpose, up front, before writing the 
+              first line of code. </p>
+              <p>If done so then coding comes out much faster (30% cheaper was reported), 
+              and the application itself is accepted by the users also much faster. </p>
+              <p>The other way is to come out with a dubious UI and turn it acceptable
+              after several rounds of user testing. </p>
+              <p>It's coming out with a good UI and to make it excellent with user testing
+              vs. to start with a mediocre UI and turn it acceptable after the same or
+              more user testing. </p>
+              <p>The interaction defects are expensive to fix once the application is
+              written, so the best policy is to fix them at the outset. </p>
+              <p>This is done by writing definitions of the interaction before going
+              graphical, and checking them with the users or their proxies. </p>
+
+            </div>
+          </div>
+        </section>
+
+        <section id="prototypes">
+          <div class="itemsGroup">
+            <h2>Quick interaction prototypes</h2>
+            <div class="itemsGroupDescription">
+              <p>Samples of working prototypes created to showcase innovative interactions.</p>
+              <p>Instead of trying to explain an interaction context in words, these
+              prototypes just show how it works, for real, leaving out any uncertainty. </p>
+              <p>The prototypes have low visual fidelity (they are not styled) but they
+              are high-fidelity on the functionality side. </p>
+              <p>Click on one to open it in a new window, return by clicking the [x]
+              box at the top right corner. </p>
+            </div>
+
+            <ul>
+
+              <li>
+                <a class="itemLink" href="foodSelector/foodHierarchy.html" target="other">
+                  <div class="itemDescription">
+                  <span class="itemName">Food selector:</span> 
+                  The requirement was to allow the users to select items from a rather
+                  lengthy set where the structure of the data was known to be hierarchical.
+                  </div>
+                </a>
+              </li>
+
+              <li>
+                <a class="itemLink" href="columnsSelector/columnSelection.html" target="other">
+                  <div class="itemDescription">
+                  <span class="itemName">List manager:</span>
+                  The use case was about managing a big number of columns of a grid, allowing
+                  to select and reorder them. <br>
+                  There is also a number of locked columns, that are displayed the first, and
+                  thus need to be grouped. <br>
+                  Although the grid allows to manage its columns through direct action, this
+                  implies lots of horizontal scrolling and is usable only for small changes. 
+                  </div>
+                </a>
+              </li>
+
+              <li>
+                <a class="itemLink" href="fieldhelp/fieldcontextualhelp.html" target="other">
+                  <div class="itemDescription">
+                  <span class="itemName">Contextual help:</span>
+                  A wireframe showcasing a set of recommendations on how to implement contextual
+                  help in a portal-like huge application so it's consistent across all pages, 
+                  also allowing to decouple and reuse the help development effort.
+                  </div>
+                </a>
+              </li>
+
+              <li>
+                <a class="itemLink" href="acua/muestrario.html" target="other">
+                  <div class="itemDescription">
+                  <span class="itemName">Acrylic sheets color sampler:</span>
+                  This is a small website for an acrylic sheets factory. Its edge is the greater
+                  colors offering. <br>
+                  In order to leverage that, the site sports a simple color picker where one can
+                  build the palette by clicking on the desired colors. 
+                  </div>
+                </a>
+              </li>
+
+            </ul>
+          </div>
+        </section>
+
+        <section id="applications">
+          <div class="itemsGroup">
+            <h2>Applications</h2>
+            <div class="itemsGroupDescription">
+              Applications designed by me.
+            </div>
+
+            <ul>
+
+              <li>
+                <a class="itemLink" href="usable_by_design/usable_by_design_how_and_why.html" target="other">
+                  <span class="itemName">Exceptions (<em>usable by design</em>)</span>
+                  <div class="itemDescription">
+                  My client operates a complex system for recording and processing millions of
+                  traffic offenses for big argentine province.<br>
+                  This is a desktop application that filters out the tickets raised by a number
+                  of vehicles like ambulances or police cars that are excepted. <br>
+                  The challenge was to devise a UI that enabled <em>anyone</em> to operate it.
+                  </div>
+                </a>
+              </li>
+
+              <li>
+                <a class="itemLink" href="infoNews/index.html" target="other">
+                  <span class="itemName">News navigation</span>
+                  <div class="itemDescription">
+                  The underlying interactions scheme was successfully implemented in an
+                  "infomercial" web site with a captive audience of 500K users affiliated
+                  through the companies they work for. <br>
+                  The site owner uses the site to promote its services, like supermarkets,
+                  insurance, hotels, travel services, education and more. <br>
+                  The "news" are mostly articles, somehow like magazine articles, with a
+                  mix of interesting information and promotion of related goods and services
+                  provided by The Company. <br>
+                  </div>
+                </a>
+              </li>
+
+            </ul>
+          </div>
+        </section>
+
+        <section id="writings">
+          <div class="itemsGroup"><h2>Writings</h2>
+            <div class="itemsGroupDescription">
+              <p>I'm good at writing, both in Spanish and in English..</p>
+              <p>All of my work involves communication, eiher written or through interaction. </p>
+              <p>These are a few documents, some are attempts to communicate usability engineering. </p>
+            </div>
+
+            <ul>
+
+              <li><a class="itemLink" 
+                  href="https://docs.google.com/presentation/d/10YUBvSo7qpkB3IwQjfzSYrtaVgSkE-KAb0DzGItD48M/present#slide=id.p"
+                  target="other"><span class="itemName">Usability Theory:</span>
+                <div class="itemDescription">
+                  This is a presentation I gave to the JPMC crew and the BAs in Globant. <br>
+                  It is aimed at developers, especially BAs. <br>
+                  It shows them which is the context where they can inject usability to an application before
+                  starting development, as opposed to the usual graphics-design usability that is applied
+                  when the application is almost ready to deliver. 
+                </div></a>
+              </li>
+
+              <li><a class="itemLink" 
+                  href="https://docs.google.com/presentation/d/1nv7GhEkEBXp2YgYl_-FdDOM-_K0_B8PZwR-arEcZGuA/present#slide=id.p"
+                  target="other"><span class="itemName">Computers vs.People:</span> 
+                <div class="itemDescription">
+                  This was an assignment for an English course. We were asked to write something and to present 
+                  it to the rest of the class. <br>
+                  I devised this humorous piece, shedding light on the fact tha the developers tend to 
+                  be not very good at UI stuff.
+                </div></a>
+              </li>
+
+              <li><a class="itemLink" 
+                  href="./telephony/telephony.html"
+                  target="other"><span class="itemName">Telephony:</span>
+                <div class="itemDescription">
+                  A primer on telephony technologies, made while getting ready
+                  to work for a telephony company.
+                </div></a>
+              </li>
+
+            </ul>
+          </div>
+        </section>
+
+        <section id="certificates">
+          <div class="itemsGroup">
+            <h2>Certificates</h2>
+
+            <ul class="certif">
+
+              <li>
+                <div class="certifThumbnail">
+                  <img class="certifImage" src="certificates/CourseraStartupEngineering2013.png">
+                </div>
+                <h4>Startup</h4>
+                <div class="certifText">
+                  <p>A course not about any kind of startup, but about <em>internet
+                  startups</em>.</p>
+                  <p>Very technical, it involved the development of a crowd funding site.</p>
+                </div>
+              </li>
+
+              <li>
+                <div class="certifThumbnail">
+                  <img class="certifImage" src="certificates/15.390.1x-Entrepreneurship101-WhoIsYourCustomer.png">
+                </div>
+                <h4>Entrepreneurship 101: Who is your customer?</h4>
+                <div class="certifText">
+                  <p>A course by MIT about the marketing side of a startup.</p>
+                </div>
+              </li>
+
+              <li>
+                <div class="certifThumbnail">
+                  <img class="certifImage" src="certificates/Mongo-JS101-Certificate.png">
+                </div>
+                <h4>MongoDB</h4>
+                <div class="certifText">
+                  <p>MongoDB is the most representative of the new no-SQL databases. </p>
+                  <p>The course involved several programming assignments requiring to create and
+                  use a database mostly through NodeJS servers. </p>
+                </div>
+              </li>
+
+              <li>
+                <div class="certifThumbnail">
+                  <img class="certifImage" src="certificates/Write101x-EnglishGrammarAndStyle.png">
+                </div>
+                <h4>English writing</h4>
+                <div class="certifText">
+                  <p>A course on English to hone my skills. </p>
+                  <p>It was quite interesting and I learned a lot about things I was already
+                  doing <em>by heart</em> without explicitly knowing the rules. </p>
+                </div>
+              </li>
+
+              <li>
+                <div class="certifThumbnail">
+                  <img class="certifImage" src="certificates/W3Cx HTML5.png">
+                </div>
+                <h4>HTML5</h4>
+                <div class="certifText">
+                  <p>A review of all the new HTML features packed in a few weeks course. </p>
+                  <p>HTML is a very basic tool of the trade and, altough many of the new
+                  features were around for quite a while, it was good to check them all plus
+                  a few that were new to me. </p>
+                </div>
+              </li>
+
+              <li>
+                <div class="certifThumbnail">
+                  <img class="certifImage" src="certificates/CongresoEducativo2017.png">
+                </div>
+                <h4>Congreso Educativo 2017</h4>
+                <div class="certifText">
+                  <p>Participation in an education congress as listener.</p>
+                  <p>Education became a significant subject when I started thinking of
+                  my "Democom" project. </p>
+                </div>
+              </li>
+
+              <li>
+                <div class="certifThumbnail">
+                  <img class="certifImage" src="certificates/DemocraciaYPoliticasPublicas.png">
+                </div>
+                <h4>Democracia y Políticas Públicas</h4>
+                <div class="certifText">
+                  <p>An excellent course on <em>Democracy and Public Policies</em> by Universitat
+                  Autònoma de Barcelona.</p>
+                  <p>Public policies became a significant subject when I started thinking of
+                  my "Democom" project. </p>
+                </div>
+              </li>
+
+              <li>
+                <div class="certifThumbnail">
+                  <img class="certifImage" src="certificates/TítuloCalculistaCientificoCAECE.png">
+                </div>
+                <h4>Graded as "Calculista Científico"</h4>
+                <div class="certifText">
+                  <p>Graded with a <em>Scientific Calculist</em> tertiary title in Universidad CAECE.</p>
+                  <p>The syllabus included mostly Algebra, Mathematics, Logic and CS courses.</p>
+                </div>
+              </li>
+
+            </ul>
+          </div>
+        </section>
+
+
+      </div>
+
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+    </div>
+  </body>
+</html>
