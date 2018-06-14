@@ -6,9 +6,9 @@
 
       $('#tocContainer').tocBuilder({ 
         type: 'headings', 
-        backLinkText: 'TOC', 
+        backLinkText: '', 
         startLevel: 2, 
-        endLevel: 6
+        endLevel: 3
       });
 
       // prevent TOC links from changing the location hash
@@ -53,6 +53,8 @@
         // get a ref to the div containing the certif img
         var $theCertificate = $( event.target );
         event.target.tagName === 'IMG' && ( $theCertificate = $theCertificate.parent() );
+        // display as already visited
+        $theCertificate.parent().find( 'h4' ).addClass( "certifAlreadyVisited" );
         // make it focusable
         $theCertificate.attr( 'tab-index', -1 ).focus();
         // show or hide
