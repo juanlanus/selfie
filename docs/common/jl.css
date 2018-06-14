@@ -1,0 +1,7 @@
+
+  /************** close button ***************/
+  .closeButton { background-image:url(../res/icon-close.png); background-size:cover;
+    background-repeat:no-repeat; border:6px solid transparent; border-radius:4px;
+    background-color:rgb(240,240,240); height:32px; width:32px;
+    position:fixed; top:0; right:0; opacity:0.4; z-index:999; }
+  .closeButton:hover { opacity:1; }
