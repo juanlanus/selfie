@@ -1,0 +1,20 @@
+h1, h2, h3, h4, h5, h6  { font-family:Calibri,Arial,sans-serif; }
+p, li, th, td           { font-family:Calibri,Arial,sans-serif; }
+img                     { border:0px; }
+ 
+/* header de paginas excepto muestrario de colores */
+#PHeader                { background-color:yellow; }
+#PHeader h1             { margin-top:0px; margin-bottom:0px; }
+#PHeader p              { margin:0px; }
+#PHeader td             { vertical-align:top; padding:0px; padding-top:.7em; padding-left:1em; padding-right:0.5em; }
+.PTitulo                { border:1px solid blue; } 
+
+/* layout del cuerpo de la pagina */
+#nav                    { float:left; width:14em; background-color:yellow; }
+
+/* contenido de las tablas de medidas */
+table.medidas           { border-collapse:collapse; border-color:rgb(224,224,224);  font-family:Calibri,Arial,sans-serif; }
+.medidas                { background-color:rgb(248, 248, 248); margin:2ex 3em 2ex 3em; }
+.medidas td             { text-align:center; border:1px solid rgb(224,224,224); padding:2px 2.2em; }
+.medidas th             { text-align:center; font-size:80%; background-color:rgb(240,240,240); border:1px solid rgb(240,240,240);
+                          border-color:rgb(240,240,240); }

@@ -1,0 +1,707 @@
+<!DOCTYPE html >
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Language" content="en">
+  <title>Telephony &amp; Technology</title>
+  <link href="./res/tocBuilder.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="./res/portfolio.css" type="text/css">
+  <script src="./res/jquery.js"></script>
+  <script src="./res/portfolio.js"></script>
+  <script src="./res/tocBuilder.js"></script>
+  <script>
+      $(document).ready(function () {
+        $('#tocContainer').tocBuilder({
+          type: 'headings',
+          backLinkText: '',
+          startLevel: 3,
+          endLevel: 6
+        });
+      });
+  </script>
+  <link rel="stylesheet" href="../common/jl.css" type="text/css">
+  <script src="../common/jl.js"></script>
+</head>
+
+<body>
+
+  <div id="docBody">
+
+    <h1>Telephony &amp; Technology</h1>
+
+    <div id="tocContainer" class="tocContainer">
+      <p></p>
+
+      <div class="toc">
+        <ul>
+          <li><a href="#Module">Telephony Basics</a> 
+            <ul>
+              <li><a href="#brief">A brief history </a></li>
+            </ul>
+          </li>
+          <li><a href="#Module1">Network operation and elements</a> 
+            <ul>
+              <li><a href="#Signal">Signal types </a></li>
+              <li><a href="#Service">Service types </a></li>
+              <li><a href="#Transmissi">Transmission network </a></li>
+              <li><a href="#Circuits">Circuits </a></li>
+              <li><a href="#Digital">Digital signals </a></li>
+              <li><a href="#digital">The digital signal hierarchy </a></li>
+              <li><a href="#Aggregatin">Aggregating Bandwidth </a></li>
+              <li><a href="#Fiber">Fiber Optics </a></li>
+            </ul>
+          </li>
+          <li><a href="#Module2">Private line fundamentals</a> 
+            <ul>
+              <li><a href="#DS-0">DS-0 voice</a></li>
+              <li><a href="#analof">analof data and digital (DDS)</a></li>
+              <li><a href="#Full">Full and fractional DS-1</a></li>
+              <li><a href="#Full1">Full and fractional DS-3</a></li>
+              <li><a href="#Optical">Optical Carrier OC-3 and OC-12 circuits. </a></li>
+              <li><a href="#Private">Private line circuit elements </a></li>
+              <li><a href="#DS-01">DS-0 private line services </a></li>
+              <li><a href="#Order">Order duplicate facilities from another carrier.
+                  This is the most</a></li>
+              <li><a href="#Order1">Order duplicate or redundant circuits from the same
+                  carrier at a</a></li>
+              <li><a href="#There">There are other diversity options: </a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <p><a href="#telephonyTerms">terms</a></p>
+
+    <h3 id="Module">Telephony Basics</h3>
+    <ol>
+      <li><h4 id="brief">A brief history </h4>
+        <p>Alexander Graham Bell applied for the patent in 1876. Westenr Union
+        found it of no practical use and didn't purchase it. </p>
+        <p>By 1877 he gut funding for the Bell Telephone Company and by 1878 the
+        company was licensec to provide telephony in USA. </p>
+        <p>In 1900 AT&amp;T became the parent company of the Bell System. AT&amp;T
+        wanted to manage the long distance business of the Bell licencees. </p>
+        <p>After Bell's patents expired in 1893 and 1894, numerous independent
+        companies (over 6000) offered telephony services. Their networks were not
+        interconnected, so users had to have different telephones for different
+        purposes. </p>
+        <p>This initialy shaped the networks. To communicate two telephones from
+        two different Bell companies,additional long-distance facilities were
+        required. This is the structure of the public switch telephone system
+        (PSTN). </p>
+        <p>Eventually AT&amp;T started purchasing independent companies to
+        alleviate competition and increase revenue. </p>
+        <ol>
+          <li>Kingsbury Commitment 
+            <p>In 1913 the US DOJ brought a monopoly suit against AT&amp;T forcing
+            it to stop purchasing smaller telcos. This Kingsbury Commitment
+            provided: </p>
+            <ul>
+              <li>An arrengement to provide long distance to the independents, </li>
+              <li>Bell's agreement to stop buying independent telcos, </li>
+              <li>the end of the duplication of the telephone service, which
+                finally brought</li>
+              <li>the creation of the best national telecommunications facilities
+                worldwide. </li>
+            </ul>
+          </li>
+        </ol>
+      </li>
+    </ol>
+
+    <h3 id="Module1">Network operation and elements</h3>
+    <ol>
+      <li><h4 id="Signal">Signal types </h4>
+        <ul>
+          <li>analog</li>
+          <li>digital</li>
+        </ul>
+      </li>
+      <li><h4 id="Service">Service types </h4>
+        <ul>
+          <li>voice</li>
+          <li>video</li>
+          <li>data</li>
+        </ul>
+      </li>
+      <li><h4 id="Transmissi">Transmission network </h4>
+        <p>MCI's is all digital. Signals are processed in order to place several in
+        a wire (copper, coaxial, fiber optic or radio signal). </p>
+        <p>Multiplexing: combining several signal in one is called
+        <em>multiplexing</em>. </p>
+        <p>One form of multiplexor "Channel Bank" takes several different signals
+        (analog or digital) and does: </p>
+        <ul>
+          <li>converts analog voice into a specific format of digital, </li>
+          <li>formats all digital signals to a specific format, and</li>
+          <li>combines all the digital signals into a single one. </li>
+        </ul>
+      </li>
+      <li><h4 id="Circuits">Circuits </h4>
+        <p>The physical connection (or path) between two given points through with
+        an electric current may be established. </p>
+        <ol>
+          <li>End-To-End circuit: A source device connecting to an alike
+            destination device. For example one telephone reaching another to
+            complete the circuit. Both process the same type of analog signal. </li>
+          <li>Carrier circuit: A circuit that comines (multiplexes) several signals
+            and moves then from one place to another. It is connected to other
+            <em>carrier</em> circuits at junctions within the network. The
+            <em>network</em> can be defined as local or long-distance. </li>
+        </ol>
+      </li>
+      <li><h4 id="Digital">Digital signals </h4>
+        <p>Digital signals are those regarded as communicating <em>bits</em>. </p>
+      </li>
+      <li><h4 id="digital">The digital signal hierarchy </h4>
+        <p>DS-0 (Digital Signal zer0-level) is the base circuit capacity, at 64,000
+        bits per second. It is designed to carry a voice communication made of an
+        eight-bit signal sampled 8,000 times per second, hence 8 x 8000 = 64000
+        bandwidth. </p>
+        <p>In the hierarchy, the combination of 24 DS-0s makes a DS-1 at 24 x 64000
+        = 1,536,000 bps plus the framing bits giving 1,544,000bps. </p>
+        <ol>
+          <li>Time Division Multiplexing (TDM) 
+            <p>The multiplexer transmits 8 bits of each DS-0, when it reaches the
+            last one it starts over with slot one. This happens 8000 times per
+            second, the sampling frequency of each DS-0. A framing bit is added
+            after each cycle, so the total bandwidth is 8000 + 1,536,000 bps. </p>
+          </li>
+          <li>Digital Signal One (DS-1) 
+            <p>The DS-1 circuit is the first highway (or carrier circuit) onto the
+            network. Is like a 24-lane highway if each DS-0 is a single road. </p>
+            <p>TDM combines four DS-1 to make a DS-2 (not used) and seven DS-2 to
+            make a DS-3 signal. A DS-3 can be made aldo of 28 DS-1s bypassing the
+            Ds-2 level. </p>
+          </li>
+        </ol>
+      </li>
+      <li><h4 id="Aggregatin">Aggregating Bandwidth </h4>
+        <p>A 256Kbps circuit can be made by aggregating 4 DS-0 channels. </p>
+        <p>A DS-3 can be fractionalized in numbers of DS-1 channels. </p>
+        <p>Often signals don't need to be regarded as channels, the user wants a
+        single channel providing all the aggregate bandwith. </p>
+      </li>
+      <li><h4 id="Fiber">Fiber Optics </h4>
+        <img alt="Fiber Optic cable structure" src="FiberOpticCable.gif"
+                                               width="190" class="imgR"> 
+        <p>A fiber optic cable is a core inside a cladding, both made of slightly
+        different ultra-pure glass. </p>
+        <p>These two layers are contained into a protective plastic coating,
+        usually made of a soft cushion enclosed in a tougher outer layer. . </p>
+        <p>Light pulses are injected in one tip of the cable using a laser or a
+        LED. The light is totally reflected inside the core by the surface between
+        the core and the cladding, in a way that allows the light signals to reach
+        distances like 100 miles even if the cable to be bended. </p>
+        <p>Light signals carry much more information than electrical signals
+        because of the higher frequency of the light waves. </p>
+        <ol>
+          <li style="clear:both;">Electrical to Optical Signal Conversion 
+            <p><img
+              alt="The MEINBERG fiber optic modules convert an electrical input signal (TTL or RS-422) into one or more FO (fiber optical) output signals or an FO input signal in one or more electrical output signals."
+              src="ElectricToOpticalSignalConverters.jpg" width="320" height="231"
+                                                                      class="imgR"></p>
+            <p>These devices receive electric digital impulses and retransmit them
+            as light signals, or receive light pulses and convert them to electric
+            digital signals. </p>
+            <p></p>
+          </li>
+        </ol>
+      </li>
+      <li style="clear:both;">Synchronous Optical NETwork (SONET) 
+        <p>SONET is a transmission standard (a protocol) for fiber optic systems.
+        </p>
+        <p>It defines line rates known as Optical Carrier (OC) units. </p>
+        <p>The OC-1 base rate provides 51.84Mbps, close to a DS-3 signal. IXC
+        backbone netxorps operate at OC-48 or OC-192 speeds. OC-192 is a network
+        line with transmission speeds of up to 9953.28 Mbit/s (payload: 9621.504
+        Mbit/s; overhead: 331.776 Mbit/s). </p>
+      </li>
+    </ol>
+
+    <p> </p>
+
+    <p><img alt="T carrier hierarchy" src="T-Carrier Hierarchy.gif"></p>
+
+    <div>
+
+      <table class="borderTable">
+        <tbody>
+          <tr>
+            <th>DS name</th>
+            <th>bandwidth</th>
+            <th>T name</th>
+            <th>voice channels</th>
+          </tr>
+          <tr>
+            <td>DS0 </td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">64Kbps</td>
+            <td style="text-align:center;margin-left:auto;margin-right:auto;">1/24 of
+              T-1</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">1 </td>
+          </tr>
+          <tr>
+            <td>DS1</td>
+            <td
+                style="text-align:right;margin-left:auto;margin-right:0;">1.544Mbps</td>
+            <td style="text-align:center;margin-left:auto;margin-right:auto;">1 T-1
+            </td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">24 </td>
+          </tr>
+          <tr>
+            <td>DS1C</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">3.152 Mbps
+            </td>
+            <td style="text-align:center;margin-left:auto;margin-right:auto;">2 T-1
+            </td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">48 </td>
+          </tr>
+          <tr>
+            <td>DS2</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">6.312
+              Mbps</td>
+            <td style="text-align:center;margin-left:auto;margin-right:auto;">4
+              T-1</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">96 </td>
+          </tr>
+          <tr>
+            <td>DS3</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">44.736
+              Mbps</td>
+            <td style="text-align:center;margin-left:auto;margin-right:auto;">28
+              T-1</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">672 </td>
+          </tr>
+          <tr>
+            <td>DS3C</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">89.472
+              Mbps</td>
+            <td style="text-align:center;margin-left:auto;margin-right:auto;">56
+              T-1</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">1344 </td>
+          </tr>
+          <tr>
+            <td>DS4</td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">274.176
+              Mbps</td>
+            <td style="text-align:center;margin-left:auto;margin-right:auto;">168 T-1
+            </td>
+            <td style="text-align:right;margin-left:auto;margin-right:0;">4032 </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p> </p>
+
+    <h3 id="Module2">Private line fundamentals</h3>
+
+    <p><em>Private Line</em> is a category of dedicated, point-to-point, digital
+    communications services. May be local, long-distance or international. </p>
+
+    <p>Types can be </p>
+    <ul>
+      <li><h4 id="DS-0">DS-0 voice</h4>
+      </li>
+      <li><h4 id="analof">analof data and digital (DDS)</h4>
+      </li>
+      <li><h4 id="Full">Full and fractional DS-1</h4>
+      </li>
+      <li><h4 id="Full1">Full and fractional DS-3</h4>
+      </li>
+      <li><h4 id="Optical">Optical Carrier OC-3 and OC-12 circuits. </h4>
+      </li>
+    </ul>
+    <ol>
+      <li><h4 id="Private">Private line circuit elements </h4>
+
+        <div class="  imgR" style="margin-left:2em;">
+          <ul>
+            <li>Local access 
+              <ul>
+                <li>customer premise</li>
+                <li>C.O.</li>
+                <li>C.O.</li>
+              </ul>
+            </li>
+            <li>IXC 
+              <ul>
+                <li>MCI POP</li>
+                <li>MCI POP</li>
+              </ul>
+            </li>
+            <li>Local access 
+              <ul>
+                <li>C.O.</li>
+                <li>C.O.</li>
+                <li>customer premise</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <p>The characteristic is that the circuit is dedicated to the customer
+        ("pinned") and not switched. </p>
+        <p>The elements required to build the circuit are the IXC and Local Access
+        (in both tips). </p>
+        <p> </p>
+        <p><img alt="P2P line" src="PointToPointDiagram.jpg"></p>
+        <ol>
+          <li>Interexcange Carrier (IXC) Element 
+            <p>It's the part between the MCI POP locations on MCI long distance
+            networks. Sometimes referred as IMTs (inter-machine trunks). </p>
+          </li>
+          <li>Local Access Element 
+            <p>Is the circuit from the POPs to the customer premises. </p>
+            <p>It consists of two CFAs (Carrier Facility Assignments), one between
+            the customer premise and the LEC (Local Exchange Carrier) central
+            office and one between the MCI POP and the LEC central office. </p>
+            <p>The CFA is the interface between network types, like between LEC and
+            IXC, or CLEC (Competitive LEC) and a LEC, or between two IXCs. </p>
+            <p>The LEC CO serving the POP might be the same on both locations. </p>
+          </li>
+        </ol>
+      </li>
+      <li><h4 id="DS-01">DS-0 private line services </h4>
+        <ol>
+          <li>DS-0 voice (VF) 
+            <p>Commonly used with VF (voice frequency) to support voice
+            applications like: </p>
+            <ul>
+              <li>OPX (off-premise extensions), </li>
+              <li>tie lines, </li>
+              <li>ringdown, and</li>
+              <li>shout-down / hoot-n-roller circuits. </li>
+            </ul>
+          </li>
+          <li>Off premise extensiond (OPX) 
+            <p>An OPX is a two-wire circuit extenden from a PBX to a station
+            somewhere else. The OPX functions as an extension of the PBX. </p>
+          </li>
+          <li>Tie Line 
+            <p>A connection between two PBXs as a trunk. Normally terminated as
+            four wires at the customer location. The billing is not usage rated, so
+            the customer can do as many call as desired, only one at a time per
+            DS-0. </p>
+          </li>
+          <li>Ringdown 
+            <p>Connects a pair of phones, each one rings when the other's handset
+            is picked up. </p>
+            <p>There are two types: </p>
+            <p>Automatic Ringdown (ARD)</p>
+            <p>The ARD operates when the telephone handset is picked up in one
+            terminal ans causes a ring at the other one. </p>
+            <p>Manual Ringdown</p>
+            <p>In addition to picking the handset, the caller part has to press a
+            button. These are common in the financial services industry and the
+            military. </p>
+          </li>
+          <li>Shoutdown / Hoot N' Holler 
+            <p>The line is open all times and connected to a speaker and a
+            microphone at each end. </p>
+          </li>
+          <li>DS-0 Analog Data 
+            <p>The service supports frequencies in the range 300 ~ 3000Hz. Data
+            transmission speeds range from 2.4 through 56Kbps, used for Internet
+            connections. </p>
+            <p>Analog data circuits can be used to connect faxes or modems at the
+            customer's premises. </p>
+            <p>Analog circuits come with 2 or 4 wires. A 4-wire circuit can
+            transmit and receive at the same time. There are modems that can do
+            duplex over 2-wire channels. </p>
+          </li>
+          <li>DS-0 Digital Data Services (DDS) 
+            <p>Four-wire circuits supporting data transmissión at 2.4, 4.8, 9.6, 56
+            or 64 Kbps. </p>
+            <p>Typically used in applications requiring low bit error rate and high
+            speed transmission. </p>
+            <p>The key is end-to-end digital transmission. The result is maximun
+            quality with a minimum of distortion. </p>
+            <p>The most common application is a line between the customer system
+            and a remote DTE (Digital Terminal Equipment). </p>
+          </li>
+          <li>DS-0 Multi-Point Circuit 
+            <p>Connects three or more locations. The applications can be DDS or
+            analog. </p>
+            <p>It is a single channel shared among several stations that
+            individually do not generate enough traffic to justify full-time
+            point-to-point circuits. </p>
+            <p>The circuits are multi-drop (terminated in the same city) or
+            multi-point (terminate drops in different cities). </p>
+          </li>
+        </ol>
+      </li>
+    </ol>
+    <ul>
+      <li>Network diversity 
+        <p>A frugal network design, with no contingency options, might initially
+        seem less expensive but after having an outage, in might prove to be much
+        less convenient. </p>
+        <p>To combate outages there are three options: </p>
+        <ul>
+          <li><p id="Order">Order duplicate facilities from another carrier. This
+            is the most common approach. </p>
+          </li>
+          <li><p id="Order1">Order duplicate or redundant circuits from the same
+            carrier at a recuced rate. It is desirable that those different
+            circuits use different routings to enhance survability. </p>
+          </li>
+          <li><p id="There">There are other diversity options: </p>
+            <ul>
+              <li>Optical diversity: The circuits are provisiones on different OC
+                facilities. </li>
+              <li>Local diversity: The local accesses are ordered (via <span
+                 title="Connecting Facility Assignment ">CFA</span>) to different
+               central offices (<span title="local exchange carrier">LEC</span>
+               and MCI local). </li>
+              <li>DCS diversity: The customer circuits are provisioned to alternate
+                DCS. </li>
+              <li>DS-3 diversity: The customer circuits are provisiones to
+                alternate DS-3 circiots. </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <p></p>
+
+    <p></p>
+
+    <p></p>
+
+    <h3 id="telephonyTerms">Telephony Terms</h3>
+
+    <p><a
+        href="http://www.verizonbusiness.com/external/service_guide/reg/g_online_definitions.htm">Online
+        Definitions by an operator (Verizon)</a></p>
+    <dl>
+      <dt id="LEC"><a>LEC</a></dt>
+      <dd>Local Exchange Carrier (LEC) is a regulatory term in telecommunications
+      for the local telephone company. 
+      <p>In the United States, wireline telephone companies are divided into
+      two large categories: long distance (interexchange carrier, or IXCs) and
+      local (local exchange carrier, or LECs). This structure is a result of
+      1984 divestiture of then-regulated monopoly carrier American Telephone
+      &amp; Telegraph. Local telephone companies at the time of the divestiture
+      are also known as Incumbent Local Exchange Carriers (ILEC). </p>
+      </dd>
+      <dt><a href="http://en.wikipedia.org/wiki/Interexchange_carrier">IXC</a></dt>
+      <dd>An Interexchange Carrier (IXC) is a U.S. legal and regulatory term for
+      a telecommunications company, commonly called a long-distance telephone
+      company, such as MCI (before its absorption by Verizon), Sprint and the
+      former AT&amp;T (before its merger with SBC in 2005) in the United
+      States. It is defined as any carrier that provides inter-LATA
+      communication, where a LATA is a local access and transport area. 
+      <p>See <a href="#LEC">LEC</a>. </p>
+      </dd>
+      <dt>ILEC</dt>
+      <dd>Incumbent Local Exchange Carriers (see <a href="#LEC">LEC</a>). </dd>
+      <dt id="RBOC">RBOC</dt>
+      <dd>The Regional Bell Operating Companies (RBOC) are the result of United
+      States v. AT&amp;T, the U.S. Department of Justice antitrust suit against
+      the former American Telephone &amp; Telegraph Company (later known as
+      AT&amp;T Corp.). </dd>
+      <dd>AT&amp;T Corp.'s local operations were split into seven independent
+      Regional Bell Operating Companies known as "Baby Bells". RBOCs were
+      originally known as Regional Holding Companies (RHCs). Currently, three
+      companies have the RBOCs as predecessors. They are "The New" AT&amp;T,
+      Verizon, and CenturyLink. </dd>
+      <dt>CO</dt>
+      <dd>href="http://en.wikipedia.org/wiki/Telephone_exchange"A central office
+      (CO) is the physical building used to house inside plant equipment
+      including telephone switches, which make telephone calls "work" in the
+      sense of making connections and relaying the speech information. See
+      <a>Telephone Exchange</a>. </dd>
+      <dt>LATA</dt>
+      <dd>Local access and transport area (LATA) is a term used in U.S.
+      telecommunications regulation. It represents a geographical area of the
+      United States under the terms of the Modification of Final Judgment (MFJ)
+      that precipitated the breakup of the original AT&amp;T into the "Baby
+      Bells". 
+      <p>A LATA represents an area within which a divested Regional Bell
+      operating company (<a href="#RBOC">RBOC</a>) is permitted to offer
+      exchange telecommunications and exchange access services. Under the terms
+      of the MFJ, the RBOCs are generally prohibited from providing services
+      that originate in one LATA and terminate in another.</p>
+      <p>LATA boundaries tend to be drawn around markets, and not necessarily
+      along existing state, province, or even area code borders.</p>
+      </dd>
+      <dd>Local carriers make up various terms for "LATA", such as &ldquo;Service
+      Area&rdquo; by Pacific Bell in California, or &ldquo;Regional Calling
+      Area&rdquo; by Verizon in Maryland. </dd>
+      <dt>CLEC</dt>
+      <dd>A competitive local exchange carrier (CLEC), in the United States, is a
+      telecommunications provider company, sometimes called a "carrier")
+      competing with other, already established carriers (generally the
+      incumbent local exchange carrier (ILEC). </dd>
+      <dd>Local exchange carriers (LECs) are divided into incumbent (ILECs) and
+      competitive (CLECs). The ILECs are usually the original, monopoly LEC in
+      a given area, and receive different regulatory treatment from the newer
+      CLECs. A data local exchange carrier (DLEC) is a CLEC specializing in DSL
+      services by leasing lines from the ILEC and reselling them to Internet
+      service providers (ISPs). </dd>
+      <dt>CAP</dt>
+      <dd>Competitive Access Providers </dd>
+      <dt>LLU, LLUB</dt>
+      <dd>Local loop unbundling (LLU or LLUB) is the regulatory process of
+      allowing multiple telecommunications operators to use connections from
+      the telephone exchange to the customer's premises. The physical wire
+      connection between the local exchange and the customer is known as a
+      "local loop", and is owned by the incumbent local exchange carrier (also
+      referred to as the "ILEC", "local exchange", or in the United States
+      either a "Baby Bell" or an independent telephone company). To increase
+      competition, other providers are granted unbundled access. </dd>
+      <dt id="DCS">DCS</dt>
+      <dd>A digital cross-connect system (DCS or DXC) is a piece of
+      circuit-switched network equipment, used in telecommunications networks,
+      that allows lower-level TDM bit streams, such as DS0 bit streams, to be
+      rearranged and interconnected among higher-level TDM signals, such as DS1
+      bit streams. DCS units are available that operate on both older
+      T-carrier/E-carrier bit streams, as well as newer SONET/SDH bit streams. 
+      <p>DCS devices can be used for "grooming" telecommunications traffic,
+      switching traffic from one circuit to another in the event of a network
+      failure, supporting automated provisioning, and other applications.
+      Having a DCS in a circuit-switched network provides important flexibility
+      that can otherwise only be obtained at higher cost using manual "DSX"
+      cross-connect patch panels. ?</p>
+      </dd>
+      <dt>DXC</dt>
+      <dd>See <a href="#DCS">DCS</a>. </dd>
+      <dt>TDM</dt>
+      <dd>Time-division multiplexing (TDM) is a type of digital (or rarely
+      analog) multiplexing in which two or more bit streams or signals are
+      transferred apparently simultaneously as sub-channels in one
+      communication channel, but are physically taking turns on the channel.
+      The time domain is divided into several recurrent time slots of fixed
+      length, one for each sub-channel. A sample byte or data block of
+      sub-channel 1 is transmitted during time slot 1, sub-channel 2 during
+      time slot 2, etc. One TDM frame consists of one time slot per sub-channel
+      plus a synchronization channel and sometimes error correction channel
+      before the synchronization. After the last sub-channel, error correction,
+      and synchronization, the cycle starts all over again with a new frame,
+      starting with the second sample, byte or data block from sub-channel 1,
+      etc. </dd>
+      <dt>PCM</dt>
+      <dd>Pulse-code modulation (PCM) is a method used to digitally represent
+      sampled analog signals. It is the standard form for digital audio in
+      computers and various Blu-ray, DVD and Compact Disc formats, as well as
+      other uses such as digital telephone systems. A PCM stream is a digital
+      representation of an analog signal, in which the magnitude of the analog
+      signal is sampled regularly at uniform intervals, with each sample being
+      quantized to the nearest value within a range of digital steps. 
+      <p>PCM streams have two basic properties that determine their fidelity to
+      the original analog signal: the sampling rate, which is the number of
+      times per second that samples are taken; and the bit depth, which
+      determines the number of possible digital values that each sample can
+      take. </p>
+      <p>DS-0 llines are designed after a signal sampled 8000 times per second
+      at 8-bit deph = 64,000 bits per second. </p>
+      </dd>
+      <dt id="PVC">PVC</dt>
+      <dd>Permanent Virtual Circuit</dd>
+      <dt>DLCI</dt>
+      <dd>Digital Link Circuit Identifier. DLCIs are numbers from 0 to 1023.
+      DLCIs 16 to 991 are available to identify s, the others are for signaling
+      and management. </dd>
+      <dt>L-port</dt>
+      <dd>Customer's Logical Port, in a frame relay network. </dd>
+      <dt>CIR</dt>
+      <dd>Committed Information Rate. The average minimum data rate the network
+      will allocate to a <a href="#PVC">Permanent Virtual Circuit</a> under
+      normal operating conditions </dd>
+      <dt>PIR</dt>
+      <dd>Peak Information Rate allows Customer to limit bursting on a PVC by
+      capping the allowable bandwidth to a Customer-specified limit. </dd>
+      <dt>IETF</dt>
+      <dd>Internet Engineering Task Force </dd>
+    </dl>
+
+
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+
+    <p></p>
+
+    <p></p>
+
+    <p></p>
+
+    <p></p>
+
+    <p></p>
+
+    <p></p>
+
+    <p></p>
+
+    <p>?</p>
+
+
+    <p></p>
+
+    <p></p>
+
+    <p></p>
+
+    <p></p>
+
+    <p></p>
+
+    <p></p>
+
+    <p></p>
+
+    <p></p>
+
+    <p></p>
+
+    <p></p>
+
+    <p></p>
+
+    <p></p>
+
+    <p></p>
+
+    <p></p>
+
+    <p></p>
+  </div>
+</body>
+</html>
