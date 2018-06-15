@@ -6,9 +6,10 @@
 .tocContainer a.tocLink:visited { color:#088; }
 a.tocBackLink, a.tocBackLink:visited { display:block; float:right; font-size:12px; font-style:normal; text-decoration:none !important; padding-left:0.5em; font-weight:normal; color:rgb(192,192,192); }
 .tocBackTarget { }
-.tocContainer div.tocLevel1 { padding-top:0.3em; font-size:100%; font-weight:bold; }
-.tocContainer div.tocLevel2 { padding-left:2em; font-size:90%; font-weight:bold; }
-.tocContainer div.tocLevel3 { padding-left:4em; font-size:80%; }
-.tocContainer div.tocLevel4 { padding-left:6em; font-size:70%; }
-.tocContainer div.tocLevel5 { padding-left:8em; font-size:65%; solid blue; }
-.tocContainer div.tocLevel6 { padding-left:10em; font-size:65%; }
+.tocContainer div { }
+.tocContainer div.tocLevel1 { padding-top:0.3em; font-size:100%; font-weight:300; }
+.tocContainer div.tocLevel2 { padding-left:2em; font-size:90%; font-weight:300; }
+.tocContainer div.tocLevel3 { padding-left:4em; font-size:80%; font-weight:300; }
+.tocContainer div.tocLevel4 { padding-left:6em; font-size:70%; font-weight:300; }
+.tocContainer div.tocLevel5 { padding-left:8em; font-size:65%; solid blue; font-weight:300; }
+.tocContainer div.tocLevel6 { padding-left:10em; font-size:65%; font-weight:300; }
