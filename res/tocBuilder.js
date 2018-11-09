@@ -16,7 +16,7 @@
     init: function (options) {
       // '$that' is the div that will contain the TOC
       var $that = this;
-      if( ! $that.length ) { return false; }; // return if no TOC target
+      if( ! $that.length ) { return false; } // return if no TOC target
 
       props = jQuery.extend({}, defaultProps, options); 
 
@@ -25,19 +25,21 @@
       if (props.startLevel > props.endLevel) { return null; }
 
       // reference the target, bind the props as data, and empty it
+      $that.empty();
       props.targetElement = $that;
       $that.data('props', props); 
-      $that.empty();
 
-      var TOCTargetId = $that.attr('id') + "targetTOC";
+      var TOCTargetId = $that.attr('id') + 'targetTOC';
 
       // Create a target for the back link (from a heading to the TOC)
-      $("<a/>")
+      if( props.backLinkText ){
+        $('<a/>')
         .attr({
           'id': TOCTargetId,
           'name': TOCTargetId,
           'class': 'tocBackTarget'
         }).appendTo($that);
+      }
 
       // select all Hx elements
       // TODO: instead of "all" allow the specification of a subset
@@ -51,8 +53,8 @@
         if (level < props.startLevel || level > props.endLevel) return;
 
         // build the id's for the TOC link and the back link
-        var targetId = "toc_" + level + "_" + index;
-        var linkBackId = "toc_" + level + "_" + index + "B"; 
+        var targetId = 'toc_' + level + '_' + index;
+        var linkBackId = 'toc_' + level + '_' + index + 'B'; 
 
         // Check if a previous TOC has already processed and stored the original heading. If not,
         // so that we don't include our own back link in the text when creating
@@ -67,7 +69,10 @@
         if (!headingText || headingText.length === 0) return true;
 
         // backlink: create an anchor and append it to the target heading
-        var backLink = $("<a>" + props.backLinkText + "</a>")
+        var backLink;
+        if( props.backLinkText ){
+          console.log( 'backlinking #' + linkBackId + ' / ' + targetId );
+          backLink = $('<a>' + props.backLinkText + '</a>')
           .attr({
             'class': 'tocBackLink' + ' ' + props.backLinkClass,
             'name': targetId,
@@ -75,26 +80,34 @@
             'href': '#' + linkBackId,
             'title': 'back to TOC'
           });
+        } else {
+          // console.log( 'not backlinking #' + linkBackId + ' / ' + targetId );
+          backLink = $('<a />')
+          .attr({
+            'id': targetId,
+            // 'href': '#' + linkBackId,
+          });
+        }
         backLink.appendTo($this);
 
         // create a toc line at the right level
-        var $TOCLine = $( "<div class='TOCLine' />" )
-          .attr( 'class', 'tocLevel' + level.toString() )
-          .attr( 'id', linkBackId );                
+        var $TOCLine = $( '<div class="TOCLine" />' )
+        .attr( 'class', 'tocLevel' + level.toString() )
+        .attr( 'id', linkBackId );                
 
         // create a TOC entry and append it to the toc line div
-        var $entry = $("<a>" + 'eee' + "</a>")
+        var $entry = $('<a>' + 'eee' + '</a>');
         $entry[0].textContent = headingText;
         $entry.attr({
-            'title': headingText,
-            'href': '#' + targetId,
-            'class': 'tocLink'
-          })
+          'title': headingText,
+          'href': '#' + targetId,
+          'class': 'tocLink'
+        })
 
         // append the new TOC line to the toc div
         .appendTo($TOCLine)
-          .parent()
-          .appendTo($that);
+        .parent()
+        .appendTo($that);
       });
 
       return this.show();
@@ -104,7 +117,7 @@
       props = this.data('props');
       // empty the TOC element of all links and hide the element, unless keepElement=true
       this.empty();
-      $("a.tocBackLink").remove();
+      $('a.tocBackLink').remove();
       if (keepElement !== true) { this.hide(); }
       return this;
     },

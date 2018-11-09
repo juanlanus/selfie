@@ -1,0 +1,37 @@
+   683210    120 -rw-r--r--   1 juan     juan       120832 ene 19  2012 /home/juan/Desktop/fromOlderPCs/dropBox_20170225/2012/Juan\ Lanus_CV.doc
+  1182918     16 -rw-r--r--   1 juan     juan        14120 mar  9  2012 /home/juan/Desktop/fromOlderPCs/dropBox_20170225/curriculum_20130407/public_cv/Juan_Lanus_IxD_CV.html
+  1182962     20 -rw-r--r--   1 juan     juan        18600 feb 23  2011 /home/juan/Desktop/fromOlderPCs/dropBox_20170225/curriculum_20130407/public_cv/Juan_Lanus_IxD_CV_COGNIZANT.html~
+  1182960     12 -rw-r--r--   1 juan     juan        11001 feb 20  2011 /home/juan/Desktop/fromOlderPCs/dropBox_20170225/curriculum_20130407/public_cv/Juan_Lanus_IxD_CV.html~
+  1182917     20 -rw-r--r--   1 juan     juan        18625 feb 23  2011 /home/juan/Desktop/fromOlderPCs/dropBox_20170225/curriculum_20130407/public_cv/Juan_Lanus_IxD_CV_COGNIZANT.html
+  1182834     60 -rw-r--r--   1 juan     juan        59392 ago 27  2012 /home/juan/Desktop/fromOlderPCs/dropBox_20170225/curriculum_20130407/cvGlobant/Juan_Lanus_CV20120827.doc
+  1182893     64 -rw-r--r--   1 juan     juan        65536 jun  2  2008 /home/juan/Desktop/fromOlderPCs/dropBox_20170225/curriculum_20130407/cvs/Juan_Lanus_CV20080601.doc
+  1182891     56 -rw-r--r--   1 juan     juan        56320 ene 31  2010 /home/juan/Desktop/fromOlderPCs/dropBox_20170225/curriculum_20130407/cvs/Juan_Lanus_CV20100131.doc
+  1182895     52 -rw-r--r--   1 juan     juan        50688 nov 23  2009 /home/juan/Desktop/fromOlderPCs/dropBox_20170225/curriculum_20130407/cvs/Juan\ Lanus_CV20091123.doc
+  1182892     60 -rw-r--r--   1 juan     juan        59392 nov 23  2009 /home/juan/Desktop/fromOlderPCs/dropBox_20170225/curriculum_20130407/cvs/Juan_Lanus_CV20090909.doc
+  1182889     60 -rw-r--r--   1 juan     juan        61440 mar 23  2010 /home/juan/Desktop/fromOlderPCs/dropBox_20170225/curriculum_20130407/cvs/Juan_Lanus_CV20100323.doc
+  1183407     20 -rw-r--r--   1 juan     juan        17725 feb 23  2011 /home/juan/Desktop/fromOlderPCs/dropBox_20170225/cv_UX_20130930/Juan_Lanus_IxD_CV.html
+  1183441     20 -rw-r--r--   1 juan     juan        17725 feb 23  2011 /home/juan/Desktop/fromOlderPCs/dropBox_20170225/cv_UX_20130930/Juan_Lanus_IxD_CV.html~
+   683950    120 -rw-r--r--   1 juan     juan       120832 jul 25  2011 /home/juan/Desktop/fromOlderPCs/dropBox_20170225/2011/Juan\ Lanus_CV.doc
+   692968     20 -rw-r--r--   1 juan     juan        17725 feb 23  2011 /home/juan/Desktop/fromOlderPCs/pendrive2GB/curriculum/cv-ixd/Juan_Lanus_IxD_CV.html
+   692969     20 -rw-r--r--   1 juan     juan        17725 feb 23  2011 /home/juan/Desktop/fromOlderPCs/pendrive2GB/curriculum/cv-ixd/Juan_Lanus_IxD_CV.html~
+   693024     64 -rw-r--r--   1 juan     juan        65536 jun  2  2008 /home/juan/Desktop/fromOlderPCs/pendrive2GB/curriculum/cvs/Juan_Lanus_CV20080601.doc
+   693026     56 -rw-r--r--   1 juan     juan        56320 ene 31  2010 /home/juan/Desktop/fromOlderPCs/pendrive2GB/curriculum/cvs/Juan_Lanus_CV20100131.doc
+   693023     52 -rw-r--r--   1 juan     juan        50688 nov 23  2009 /home/juan/Desktop/fromOlderPCs/pendrive2GB/curriculum/cvs/Juan\ Lanus_CV20091123.doc
+   693025     60 -rw-r--r--   1 juan     juan        59392 nov 23  2009 /home/juan/Desktop/fromOlderPCs/pendrive2GB/curriculum/cvs/Juan_Lanus_CV20090909.doc
+   693028     60 -rw-r--r--   1 juan     juan        61440 mar 23  2010 /home/juan/Desktop/fromOlderPCs/pendrive2GB/curriculum/cvs/Juan_Lanus_CV20100323.doc
+  1055715     20 -rwxr--r--   1 juan     juan        18600 feb 23  2011 /home/juan/w/cv/public_cv/Juan_Lanus_IxD_CV_COGNIZANT.html~
+  1055717     12 -rwxr--r--   1 juan     juan        11001 feb 21  2011 /home/juan/w/cv/public_cv/Juan_Lanus_IxD_CV.html~
+  1048594     20 -rw-rw-r--   1 juan     juan        19867 nov  5 13:21 /home/juan/w/cv/public_cv/Juan_Lanus_CV.html
+  1055708     20 -rwxr--r--   1 juan     juan        18625 feb 23  2011 /home/juan/w/cv/public_cv/Juan_Lanus_IxD_CV_COGNIZANT.html
+  1055654     60 -rwxr--r--   1 juan     juan        59392 ago 27  2012 /home/juan/w/cv/cvGlobant/Juan_Lanus_CV20120827.doc
+  1061446     60 -rwxrwxrwx   1 juan     juan        59392 ago 27  2012 /home/juan/w/cv/cvGlobant/cvGlobant/Juan_Lanus_CV20120827.doc
+  1055609     64 -rwxr--r--   1 juan     juan        65536 jun  2  2008 /home/juan/w/cv/cvs/Juan_Lanus_CV20080601.doc
+  1055608     56 -rwxr--r--   1 juan     juan        56320 feb  1  2010 /home/juan/w/cv/cvs/Juan_Lanus_CV20100131.doc
+  1055611     52 -rwxr--r--   1 juan     juan        50688 nov 23  2009 /home/juan/w/cv/cvs/Juan\ Lanus_CV20091123.doc
+  1055615     60 -rwxr--r--   1 juan     juan        59392 nov 23  2009 /home/juan/w/cv/cvs/Juan_Lanus_CV20090909.doc
+  1055610     60 -rwxr--r--   1 juan     juan        61440 mar 23  2010 /home/juan/w/cv/cvs/Juan_Lanus_CV20100323.doc
+  1581920    120 -rw-rw-r--   1 juan     juan       120832 ene 19  2012 /home/juan/w/agenda/2012/Juan\ Lanus_CV.doc
+  1582111    120 -rw-rw-r--   1 juan     juan       120832 jul 25  2011 /home/juan/w/agenda/2011/Juan\ Lanus_CV.doc
+  1048593     20 -rwxr--r--   1 juan     juan        19682 ene 17  2018 /home/juan/.local/share/Trash/files/Juan_Lanus_IxD_CV.html
+  1061471     60 -rwxrwxrwx   1 juan     juan        59392 ago 27  2012 /home/juan/.local/share/Trash/files/cvGlobant\ (1)/Juan_Lanus_CV20120827.doc
+   922402      4 -rw-rw-r--   1 juan     juan          100 ene 17  2018 /home/juan/.local/share/Trash/info/Juan_Lanus_IxD_CV.html.trashinfo
