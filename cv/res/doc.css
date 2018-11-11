@@ -2,7 +2,6 @@
 /* links en el encabezado de página de agenda */
     .extLink { color: blue; }
     body { margin:30px; font-family: Montserrat, helvetica, sans-serif; font-size: 100%; background-color: #fffff8; }
-    #docBody { margin-bottom:777px; }
     #cvHeader    { max-width:43em; }
     #cvHeader h1 { margin: 0px; }
     #cvHeader span#linkPER { margin-left: 8em;  }
@@ -24,7 +23,7 @@ a[href^="http:"] { background: url(external_link.gif) no-repeat right top; paddi
     .prex2em { border: 1px solid; padding: 4px; background-color: #fffff0; margin-left: 2em; }
     .dateSaved { font-size: 70%; color: #4040ff; }
     .msgToSelf { border: 1px solid gray; background-color: yellow; padding-left: 2px; padding-right: 2px; }
-    P { margin-top:4px; margin-bottom:1px; padding-top:1px; color:rgb(96,96,96); }
+    P { margin-top:12px; margin-bottom:1px; padding-top:1px; color:rgb(96,96,96); }
     ul, ol { margin-top : 0px; margin-bottom : 6px; margin-left : 0.2em; padding-left : 1em; }
     li { margin-left: 8px; }
     dd { margin-left : 2em; }
@@ -43,7 +42,9 @@ a[href^="http:"] { background: url(external_link.gif) no-repeat right top; paddi
 } /* fin de @media all */
 
 /* los links se ven como links pero se imprimen como texto normal */
-@media screen { a { text-decoration : underline; color: black; }
+@media screen { 
+    #docBody { margin-bottom:777px; }
+    a { text-decoration : underline; color: black; }
     a      { font-size:80%; text-decoration:none; color:rgb(40,40,128); display:block; }
     a:link { text-decoration:none; }
     a:visited { color:rgb(40,40,80); text-decoration:none; }
