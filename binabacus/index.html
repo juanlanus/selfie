@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>jQuery binabacus</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.js"></script>
+    <script src="jquery.binabacus.js"></script>
+    <link href="jquery.binabacus.css" rel="stylesheet">
+  </head>
+  <body style="padding:20px;">
+    <script>
+      $(function() {
+        // create a binabacus widget
+        $("#binAbacus2").binabacus({
+          numBits: 8
+          // ,
+          // silent: true,
+          // clickVolume: '0.1',
+          // ballTravelTime: '0.9s',               // ball travel time (default 0.3s)
+          // ballEasing: 'linear'                  // easing function (default 'ease-in')
+        });
+      });
+    </script>
+
+    <!-- provide your own click sound for a ball ending its trip
+    <audio id="ba_clickSoundCustom" preload="auto" volume="0.3" style="display:none">
+      <source type="audio/mp3" src="res/binabacusClick.mp3">
+      <source type="audio/ogg" src="res/binabacusClick.ogg">
+    </audio>
+    -->
+
+    <!-- the widget containers -->
+    <div id="binAbacus" />
+    <div id="binAbacus0" style="margin:1em; padding:2em; background-color:transparent;">
+    <div id="binAbacus2" style="margin:1em; padding:2em; background-color:transparent;">
+    </div>
+
+
+  </body>
+</html>
