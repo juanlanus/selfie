@@ -1,5 +1,6 @@
 *swp
 *~
+**/commitmsg
 node_modules/**
 **/node_modules/**
 [._]*.s[a-w][a-z]

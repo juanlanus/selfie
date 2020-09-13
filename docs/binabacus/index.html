@@ -5,12 +5,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.js"></script>
     <script src="jquery.binabacus.js"></script>
     <link href="jquery.binabacus.css" rel="stylesheet">
+    <script type="text/javascript" src="../common/jl.js"></script>
   </head>
-  <body style="padding:20px;">
+  <body>
     <script>
       $(function() {
         // create a binabacus widget
-        $("#binAbacus2").binabacus({
+        $("#binAbacus").binabacus({
           numBits: 8
           // ,
           // silent: true,
@@ -28,12 +29,19 @@
     </audio>
     -->
 
-    <!-- the widget containers -->
-    <div id="binAbacus" />
-    <div id="binAbacus0" style="margin:1em; padding:2em; background-color:transparent;">
-    <div id="binAbacus2" style="margin:1em; padding:2em; background-color:transparent;">
-    </div>
+    <div style="margin:40px; font-family:Montserrat,sans-serif;">
 
+      <h3>binabacus</h3>
+
+      <!-- the widget container -->
+      <div id="binAbacus" style="padding:2em; margin:1em; background-color:transparent; ">
+      </div>
+
+      <div style="font-size:80%;">
+        Click the [+1] button to add 1, or a ball to toggle a power of 2.
+      </div>
+
+    </div>
 
   </body>
 </html>
