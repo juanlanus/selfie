@@ -45,10 +45,10 @@ a[href^="http:"] { background: url(external_link.gif) no-repeat right top; paddi
 @media screen { 
     #docBody { margin-bottom:777px; }
     a { text-decoration : underline; color: black; }
-    a      { font-size:80%; text-decoration:none; color:rgb(40,40,128); display:block; }
-    a:link { text-decoration:none; }
-    a:visited { color:rgb(40,40,80); text-decoration:none; }
-    a:hover { background-color:rgb(220,220,220); color:black; text-decoration:underline; }
+    .chronoList li { margin-left: 8px; }
+    .chronoList a { font-size: 80%; text-decoration: none; color: rgb(40,40,128); display: block; }
+    .chronoList a:visited { color:rgb(40,40,80); text-decoration:none; }
+    .chronoList a:hover { background-color: rgb(220,220,220); color: black; text-decoration: underline; }
 }
 
 @media print {
@@ -64,5 +64,7 @@ a[href^="http:"] { background: url(external_link.gif) no-repeat right top; paddi
     body { font-size: 80%; }
     div.toc { margin-left:1em; }
     .ZZZ { page-break-inside: avoid; }
+    #lista { page-break-before: always; }
+    #historia { page-break-before: always; }
 }
 
